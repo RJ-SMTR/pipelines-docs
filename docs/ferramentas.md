@@ -32,4 +32,4 @@ Documentação: [https://cloud.google.com/storage/docs?hl=pt-br](https://cloud.g
 
 O Infisical é utilizado para criação e armazenamento de tokens e segredos.
 
-Documentação: [https://infisical.com/docs/documentation/getting-started/introduction] (https://infisical.com/docs/documentation/getting-started/introduction)
+Documentação: [https://infisical.com/docs/documentation/getting-started/introduction](https://infisical.com/docs/documentation/getting-started/introduction)
