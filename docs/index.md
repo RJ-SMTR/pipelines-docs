@@ -1,17 +1,17 @@
-# Welcome to MkDocs
+# Documentação das pipelines, ferramentas e nomenclaturas de dados da SMTR
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Seja bem-vindo(a) à nossa documentação!
 
-## Commands
+Se quiser contribuir com nossos projetos siga os links abaixo:
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+[Repositório documentação](https://github.com/RJ-SMTR/pipelines-docs)
 
-## Project layout
+[Repositório pipelines](https://github.com/prefeitura-rio/pipelines_rj_smtr)
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+[Guia de boas práticas do Escritório de dados](https://docs.dados.rio/)
+
+[Datalake da prefeitura](https://www.dados.rio/datalake)
+
+
+
+![](./img/pao-de-acucar.png)
