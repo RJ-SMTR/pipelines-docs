@@ -6,6 +6,7 @@ nav:
   - Quick Start: quick_start.md # setar ambiente virtual, instalar com poetry, mencionar o infisical, configuração por OS 
   - Pastas e arquivos: pastas_arquivos.md # descrição da estrutura de pastas e arquivos
   - Ambientes: ambientes.md # descrever ambientes de produção, staging e dev
+  - Histórico: historico.md # descrição dos motivos para criarmos as pipelines como fazemos atualmente
   - Pipelines: 
     - Introdução: pipelines/introducao.md # descrição dos motivos para criarmos as pipelines como fazemos atualmente
     - Criação de pipelines: pipelines/novos_pipelines.md # como criar novos pipelines
