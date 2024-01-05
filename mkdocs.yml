@@ -1,2 +1,19 @@
 site_name: SMTR -  Pipelines
-theme: readthedocs
+
+nav:
+  - Home: index.md # descrição das pessoas, repositórios, da documentação
+  - Quick Start: quick_start.md # setar ambiente virtual, instalar com poetry, mencionar o infisical, configuração por OS 
+  - Pastas e arquivos: pastas_arquivos.md # descrição da estrutura de pastas e arquivos
+  - Ambientes: ambientes.md # descrever ambientes de produção, staging e dev
+  - Pipelines: # descrição dos motivos para criarmos as pipelines como fazemos atualmente 
+    - Criação de pipelines: novos_pipelines.md # como criar novos pipelines
+    - Pipelines genéricos: templates.md # templates de pipelines genéricos, captura, tratamento
+    - Listagem das pipelines: listagem_pipelines.md # histórico das pipelines já existentes, para cada uma falar dos parâmetros e do que se trata    
+  - Datasets:
+    - Histórico: datasets.md # histórico dos datasets já existentes
+    - Nomenclatura: nomenclatura.md # nomenclatura dos datasets
+  - Ferramentas: ferramentas.md # ferramentas e versões utilizadas
+
+theme:
+  name: material
+  favicon: img/favicon.ico
