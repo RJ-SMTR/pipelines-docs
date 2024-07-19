@@ -10,7 +10,14 @@ nav:
     - Introdução: pipelines/introducao.md # descrição dos motivos para criarmos as pipelines como fazemos atualmente
     - Criação de pipelines: pipelines/novos_pipelines.md # como criar novos pipelines
     - Pipelines genéricos: pipelines/templates.md # templates de pipelines genéricos, captura, tratamento
-    - Listagem das pipelines: pipelines/listagem_pipelines.md # histórico das pipelines já existentes, para cada uma falar dos parâmetros e do que se trata    
+    - Listagem das pipelines: # histórico das pipelines já existentes, para cada uma falar dos parâmetros e do que se trata    
+      - Monitoramento: 
+        - Tratamento de GPS: pipelines/listagem_pipelines/monitoramento/tratamento_gps.md # pipeline de tratamento dos dados de GPS
+        - Apuração de viagens (SPPO) [1.0]: pipelines/listagem_pipelines/monitoramento/apuracao_viagens_v1.md # pipeline de apuração de viagens v1
+        - Apuração de viagens [2.0]: pipelines/listagem_pipelines/monitoramento/apuracao_viagens_v2.md # pipeline de apuração de viagens
+      - Financeiro: 
+        - Apuração do subsídio (SPPO): pipelines/listagem_pipelines/financeiro/apuracao_subsidio_sppo.md # pipeline de apuração dos valores do subsídio
+      - FAQ: pipelines/listagem_pipelines/faq.md # perguntas frequentes sobre as pipelines de apuração do subsídio
   - Datasets: datasets.md # histórico dos datasets já existentes
   - Ferramentas: ferramentas.md # ferramentas e versões utilizadas
 
