@@ -34,7 +34,7 @@ src="https://user-images.githubusercontent.com/20743819/179118003-d97f632c-810b-
 
 **Observações**:
 
-* Os trajetos circulares têm seu shape dividido em ida e volta, apa
+* Os trajetos circulares têm seu shape dividido em ida e volta, para
   possibilitar a identificação da viagem. Nestes casos, a coluna
   `shape_id_planejado` recebe o id "teórico" e `shape_id` recebe o ID
   de ida ou volta, trocando-se 11º caractere do ID [ex: 866 -
