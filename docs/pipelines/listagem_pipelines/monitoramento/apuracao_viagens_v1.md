@@ -130,7 +130,3 @@ final do trajeto de volta.
 #### 2.3. Classificação das posições de GPS nas viagens (`registros_status_viagem`)
 
 #### 2.4. Cálculo dos percentuais de conformidade da viagem (`viagem_conformidade`, `viagem_completa`)
-
-### 3. Sumarização de viagens
-
-<img width="1341" alt="image" src="https://user-images.githubusercontent.com/20743819/179116232-fb73d399-068c-4a79-8165-733c01f597ea.png">
