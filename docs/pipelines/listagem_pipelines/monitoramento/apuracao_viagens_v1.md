@@ -72,7 +72,7 @@ src="https://user-images.githubusercontent.com/20743819/179121947-3bc63cfd-9f81-
 
 As posições de GPS dos ônibus são capturadas a cada minuto, e
 posteriormente tratadas a cada hora na tabela
-[`gps_sppo`](). A partir dos dados de GPS, sabemos para cada veículo
+[`gps_sppo`](https://console.cloud.google.com/bigquery?p=rj-smtr&d=br_rj_riodejaneiro_veiculos&t=gps_sppo&page=table). A partir dos dados de GPS, sabemos para cada veículo
 (`id_veiculo`, ou número de ordem) e datahora (`timestamp_gps`), qual era sua posição
 (`latitude`, `longitude`) e o serviço no qual estava operando (`servico`)
 naquele momento.
