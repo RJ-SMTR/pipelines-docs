@@ -1,0 +1,141 @@
+### **1. Fonte de dados: gps_sppo**
+
+Este é o ponto de partida, contendo dados brutos de GPS de ônibus. O objetivo aqui é calcular a velocidade dos veículos, identificar paradas e verificar a conformidade com a rota planejada.
+
+![gps_sppo](image-1.png)
+- **Cálculo de velocidade e movimento:**
+  - Usando a função **ST_DISTANCE**, o sistema calcula a distância entre dois pontos consecutivos de GPS.
+  - A velocidade é calculada dividindo a distância pelo intervalo de tempo entre os pontos.
+  - A velocidade é convertida para km/h para padronizar as análises.
+  - Além disso, uma média móvel é aplicada nas velocidades dos últimos 10 minutos para suavizar flutuações naturais no GPS.
+
+- **Identificação de paradas:**
+  - O sistema verifica se os veículos estão parados próximos a terminais (dentro de um raio de 250 metros) ou se estão dentro de uma garagem. Essas informações são úteis para identificar quando um ônibus está operando ou parado em um local previsto (terminal/garagem).
+
+- **Verificação de conformidade com a rota:**
+  - O sistema verifica se o ônibus está seguindo a rota correta comparando sua posição de GPS com a rota esperada, representada por **shapes** (linhas geométricas que indicam as rotas planejadas). Se o ônibus estiver a menos de 500 metros da rota planejada, ele é considerado dentro da rota.
+  - As flags de conformidade de rota são usadas para identificar se o ônibus está "Em operação", "Fora de rota" ou "Parado".
+
+Essa etapa fornece dados fundamentais que serão processados nas etapas seguintes, ajudando a categorizar o status operacional de cada ônibus.
+
+### **2. Processamento de registros e status de viagens: aux_registros_status_trajeto**
+
+Após o processamento inicial dos dados de GPS, os registros são armazenados na tabela **aux_registros_status_trajeto**. Esse processo é estruturado em duas partes principais: processamento dos dados de **GPS** e análise do **status_viagem**.
+
+![aux_registros_status_trajeto](image-2.png)
+
+- **Processamento de GPS:**
+  - Utiliza a tabela **gps_sppo** como fonte principal.
+  - Seleciona todos os campos dessa tabela, exceto **longitude**, **latitude** e **serviço**.
+  - Adiciona colunas extras, como:
+    - **id_empresa**: Obtido a partir de uma substring de **id_veiculo**.
+    - **posicao_veiculo_geo**: Cria um ponto geográfico a partir dos dados de longitude e latitude usando a função **ST_GEOGPOINT**.
+  - Aplica filtros para processar apenas os dados dentro de uma janela de tempo específica (Entre D-2 às 00h até D-1 às 3h) e remove registros com o status "Parado na garagem".
+
+- **Análise do status da viagem:**
+  - Realiza um **JOIN** com a tabela **viagem_planejada**, que contém as informações das rotas planejadas para comparação.
+  - A coluna **distancia** é tratada para receber um valor padrão de 0, caso os valores estejam nulos.
+  - Define o **status_viagem** como "início", "fim", "meio" ou "fora", com base na proximidade do veículo a determinados pontos da rota, utilizando a função **ST_DWITHIN**.
+
+Essa etapa é essencial para associar os dados reais de GPS aos planejamentos de rota e viagem, permitindo o monitoramento da conformidade e do status operacional de cada viagem.
+
+### **3. Identificação do início e fim das viagens: aux_viagem_inicio_fim**
+
+
+
+Esta etapa busca identificar com precisão os momentos de início e fim das viagens de cada veículo.
+![aux_viagem_inicio_fim](image-3.png)
+
+- **Identificação de status de viagem (aux_status):**
+  - Analisa a sequência de status dos registros de GPS para identificar o início e o fim das viagens.
+  - Define uma coluna chamada **starts** como verdadeira quando o status de viagem muda de "início" para "meio".
+  - Da mesma forma, define a coluna **ends** como verdadeira quando o status muda de "meio" para "fim".
+
+- **Geração de informações de início e fim (aux_inicio_fim):**
+  - A partir dos status identificados, gera as colunas **datetime_partida** (indicando a hora de início da viagem) e **datetime_chegada** (hora de chegada) com base nos registros de início e fim extraídos de **aux_status**.
+  - Aplica um filtro para incluir apenas os registros onde as colunas **starts** ou **ends** são verdadeiras, garantindo que sejam consideradas apenas viagens com início e fim claramente definidos.
+
+- **Ajuste dos registros de viagem (inicio_fim):**
+  - Os dados são ordenados por veículo e rota. Utiliza-se a função **LEAD** para capturar a próxima **datetime_chegada** (hora de chegada), de modo a identificar a chegada prevista para o próximo ponto.
+  - Exclui os registros de chegada intermediários para manter apenas o momento de chegada mais recente.
+
+Esta etapa permite que o sistema gere um **id_viagem** único e calcule a distância entre o ponto de partida e o ponto de chegada de cada viagem.
+
+### **4. Registro dos status de viagem: registro_status_viagem**
+
+Depois de identificar os registros de início e fim das viagens, os dados são combinados com a tabela **aux_viagem_circular** para identificar o comportamento circular das viagens (ida e volta).
+
+![registro_status_viagem](image-4.png)
+
+- A tabela **registros_status_viagem** realiza um **JOIN** entre **aux_registros_status_trajeto** e **aux_viagem_circular**, cruzando os registros de veículos e trip_id.
+- Só são selecionados os registros com um **id_viagem** válido e que correspondam ao período entre **datetime_partida** e **datetime_chegada**.
+
+### **5. Identificação de viagens circulares: aux_viagem_circular**
+
+Essa parte do processo identifica e trata viagens que possuem uma ida e volta (viagem circular).
+
+![aux_viagem_circular](image-5.png)
+
+- **Identificação de Ida e Volta (ida_volta_circular):**
+  - Utiliza a função **LEAD** para verificar se o próximo trecho de uma viagem corresponde a um trecho de volta (marcado como sentido 'V').
+  - Armazena as informações de horários de partida e chegada desses trechos de volta para garantir que as viagens circulares sejam identificadas e tratadas corretamente.
+
+- **Processamento de Viagem Circular (viagem_circular):**
+  - Combina os dados gerados anteriormente, atribuindo um **id_viagem** único às viagens identificadas como circulares, abrangendo tanto a ida quanto a volta.
+  - Filtra registros onde o **id_viagem** seja nulo, assegurando que apenas as viagens circulares válidas e completas sejam incluídas no processamento final.
+
+- **Combinação de Registros (UNION ALL):**
+  - Após identificar e tratar as viagens circulares, o sistema combina esses registros com outros tipos de viagens que não são circulares, mas que também são relevantes para o processo. Isso assegura que todas as viagens úteis, sejam circulares ou não, estejam disponíveis para análises subsequentes.
+
+### **6. Subsidio e cálculos de conformidade: subsidio_data_versao_efetiva**
+
+Esta tabela está relacionada ao tratamento de subsídios e ao cálculo de conformidade das viagens com base em datas e versões de dados. A parte importante aqui envolve o **tratamento de tipos de dias** (calendário de operação) e a associação de cada dia a uma versão específica de dados de viagem, shape e frequência.
+
+![subsidio_data_versao_efetiva](image-6.png)
+
+- **Criação da tabela de datas:**
+  - O sistema gera uma tabela temporária com datas que vão de 1º de junho de 2022 até 31 de março de 2024.
+  - Cada dia é classificado com um **tipo_dia**, que pode ser um dia útil, final de semana, feriado ou dia especial. Isso garante que o sistema leve em consideração a variação nas operações conforme o tipo de dia, já que os horários de operação e padrões de viagem mudam drasticamente em feriados ou fins de semana.
+
+- **Atribuição de versões de dados:**
+  - Para cada data, o sistema associa uma **versão de dados** específica para as viagens (**data_versao_trips**), as formas geométricas das rotas (**data_versao_shapes**) e as frequências de operação (**data_versao_frequencies**).
+  - Essa associação é importante para garantir que o sistema esteja sempre usando a versão correta dos dados em vigor naquele dia específico, especialmente quando há atualizações no planejamento das rotas ou nos horários de operação.
+
+- **Cálculo de subsídio:**
+  - Para cada data, é calculado um valor de subsídio por quilômetro (**valor_subsidio_por_km**), que pode variar conforme o mês e o ano. Isso garante que o cálculo de subsídios seja ajustado conforme o contexto econômico e operacional de cada período.
+
+- **Junções com outras tabelas:**
+  - A tabela de datas é então combinada com outras três tabelas de referência (trips, shapes e frequencies) para obter as versões distintas de cada data, assegurando que todas as viagens estejam ligadas à versão correta do planejamento.
+
+### **7. Planejamento de Viagens: viagem_planejada**
+
+Nesta etapa, o sistema prepara e organiza os dados das viagens planejadas para que possam ser comparadas com as viagens reais, garantindo a precisão do planejamento e a aderência do transporte aos padrões estabelecidos.
+
+![viagem_planejada](image-7.png)
+
+- **Preparação dos Dados:**
+  - Utiliza os dados da tabela **subsidio_data_versao_efetiva**, para obter informações detalhadas sobre as datas e suas classificações (como tipo de dia: dia útil, fim de semana, feriado, etc.), além das versões associadas às viagens, **shapes** e frequências operacionais.
+  - Seleciona os registros dessa tabela para um intervalo específico de tempo. A tabela assegura que cada dia possui uma versão específica de dados, garantindo que o sistema utilize a versão correta dos dados para o planejamento.
+
+- **Processamento de Horários (quadro):**
+  - Realiza um **JOIN** com a tabela de horários planejados (**subsidio_quadro_horario**) para associar as viagens aos horários corretos.
+  - Converte os horários de início e fim (**inicio_periodo** e **fim_periodo**) para objetos datetime.
+
+- **Integração de Dados das Viagens (trips):**
+  - Faz um **JOIN** com a tabela de trips (**subsidio_trips_desaninhada**), aplicando filtros com base nas versões específicas para garantir que os dados planejados sejam alinhados corretamente.
+
+- **Ajustes dos IDs das Trips (quadro_trips):**
+  - Ajusta os IDs das trips com base na direção do trajeto (**sentido**), criando identificadores únicos que diferenciam as trips de ida, volta e circular, quando aplicável.
+
+- **Combinação de Trips e Shapes (quadro_tratada):**
+  - Integra os dados das trips ajustadas com os **shapes** das rotas, combinando os **trip_id** planejados e reais para garantir a aderência entre o planejamento e a execução.
+  - Ajusta os **shape_id** com base no sentido da viagem, assegurando que a geometria associada corresponda ao trajeto planejado.
+
+- **Processamento dos Dados de Shapes (shapes):**
+  - Faz um **JOIN** com a tabela de formas geométricas (**subsidio_shapes_geom**), recuperando a geometria completa das rotas, assim como os pontos de início e fim para cada trajeto planejado.
+
+- **Seleção e Ajuste Final:**
+  - Combina as informações processadas das trips e dos shapes, estabelecendo a direção do shape (**sentido_shape**) com base nas condições observadas.
+  - Adiciona colunas complementares como **id_tipo_trajeto**, **feed_version**, e a data/hora atual para registrar a última atualização (**datetime_ultima_atualizacao**).
+
+O resultado final é um conjunto de dados consolidado que engloba todas as informações planejadas das viagens, associando horários, trajetos e geometrias. Esse conjunto serve como base para as comparações com os dados reais de execução, permitindo uma análise detalhada da conformidade e do desempenho operacional.
