@@ -8,6 +8,7 @@ nav:
   - Ambientes: ambientes.md # descrever ambientes de produção, staging e dev
   - Tabelas:
     - Manual de Estilo: tabelas/manual_estilo_tabelas.md # manual para criação de tabelas e modelos
+    - Backup: tabelas/backups.md #descreve o processo de backups
   - Pipelines: 
     - Introdução: pipelines/introducao.md # descrição dos motivos para criarmos as pipelines como fazemos atualmente
     - Pipelines genéricos: pipelines/templates.md # templates de pipelines genéricos, captura, tratamento
