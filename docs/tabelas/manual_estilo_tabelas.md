@@ -1,6 +1,6 @@
 # Manual de Estilo de Modelos e Tabelas
 
-Esta página é baseada no [manual de estilo da Base dos Dados](https://basedosdados.github.io/mais/style_data/)
+Esta página é baseada no [manual de estilo da Base dos Dados](https://basedosdados.github.io/sdk/style_data/)
 
 ## Modelos DBT
 
@@ -106,3 +106,33 @@ dataset deve contenter um arquivo schema.yml para a criação das descrições d
     `datetime_ultima_atualizacao` (controle),  
     `versao` (controle)  
 
+## Unidades de medida
+
+As unidades de medida devem ser registradas na descrição da coluna entre parênteses, garantindo clareza e padronização na interpretação dos dados. Nossas regras são:
+
+- Caso a coluna represente um valor absoluto, utilize apenas a unidade correspondente (ex.: R$, km, min).
+- Se a unidade estiver associada a uma referência, utilize o formato "Unidade/Referência" para indicar a relação entre grandezas (ex.: R$/km, km/h).
+- Sempre use abreviações padronizadas para unidades, evitando variações informais (ex.: h para horas, não hrs).
+- Caso a unidade não seja óbvia, inclua uma explicação sucinta.
+
+<br>Exemplo:
+- "Valor máximo de subsídio, conforme tipo de viagem (R$/km)."
+- "Distância percorrida (km)."
+
+## Cobertura temporal
+
+Preencher a coluna `cobertura_temporal` nos metadados de tabela, coluna e chave (em dicionários) segue o seguinte padrão.
+
+- Formato geral: `data_inicial(unidade_temporal)data_final`
+    - `data_inicial` e `data_final` estão na correspondente unidade temporal.
+        - Exemplo: tabela com unidade `ano` tem cobertura `2005(1)2018`.
+        - Exemplo: tabela com unidade `mes` tem cobertura `2005-08(1)2018-12`.
+        - Exemplo: tabela com unidade `semana` tem cobertura `2005-08-01(7)2018-08-31`.
+        - Exemplo: tabela com unidade `dia` tem cobertura `2005-08-01(1)2018-12-31`.
+
+## Dicionários
+
+- Cada base inclui somente um dicionário (que cobre uma ou mais tabelas).
+- Para cada tabela, coluna, e cobertura temporal, cada chave mapeia unicamente um valor.
+- Chaves não podem ter valores nulos.
+- Dicionários devem cobrir todas as chaves disponíveis nas tabelas originais.
