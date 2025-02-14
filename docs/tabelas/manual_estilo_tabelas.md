@@ -123,7 +123,7 @@ As unidades de medida devem ser registradas na descrição da coluna entre parê
 
 As descrições de tabelas e colunas devem seguir um padrão específico para garantir clareza e consistência. A estrutura adotada é a seguinte:
 - **Descrição dos dados**: Explicação clara e objetiva sobre o conteúdo da coluna ou tabela.
-- **Explicação/Observação**: Se aplicável, qualquer informação adicional relevante deve ser incluída entre colchetes [].
+- **Explicação/Observação**: Se aplicável, qualquer informação adicional relevante deve ser incluída entre colchetes em minúsculo [].
 - **Unidade de medida**: Se aplicável, seguir as regras das unidades de medida.
 
 <br>Exemplo:
