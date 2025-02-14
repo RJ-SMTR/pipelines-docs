@@ -149,7 +149,7 @@ Preencher a coluna `cobertura_temporal` nos metadados de tabela, coluna e chave 
 
 ## Dicionários
 
-- Cada base inclui até um dicionário (que cobre uma ou mais tabelas);
+- Sempre que possível e necessário, cada conjunto de dados deverá incluir até um dicionário;
 - Para cada tabela, coluna e cobertura temporal, cada chave mapeia unicamente um valor;
 - Chaves não podem ter valores nulos;
 - Dicionários devem cobrir todas as chaves disponíveis nas tabelas originais.
