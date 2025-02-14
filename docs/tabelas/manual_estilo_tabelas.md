@@ -106,32 +106,45 @@ dataset deve contenter um arquivo schema.yml para a criação das descrições d
     `datetime_ultima_atualizacao` (controle),  
     `versao` (controle)  
 
-## Unidades de medida
-
-As unidades de medida devem ser registradas na descrição da coluna entre parênteses, garantindo clareza e padronização na interpretação dos dados. Nossas regras são:
-
-- Caso a coluna represente um valor absoluto, utilize apenas a unidade correspondente (ex.: R$, km, min).
-- Se a unidade estiver associada a uma referência, utilize o formato "Unidade/Referência" para indicar a relação entre grandezas (ex.: R$/km, km/h).
-- Sempre use abreviações padronizadas para unidades conforme Sistema Internacional de Unidades (SI), evitando variações informais (ex.: h para horas, não hrs).
-- Caso a unidade não seja óbvia, inclua uma explicação sucinta.
-
-<br>Exemplo:
-- "Valor máximo de subsídio, conforme tipo de viagem (R$/km)"
-- "Distância percorrida (km)"
-
 ## Descrições de tabelas e colunas
 
 As descrições de tabelas e colunas devem seguir um padrão específico para garantir clareza e consistência. A estrutura adotada é a seguinte:
-- **Descrição dos dados**: Explicação clara e objetiva sobre o conteúdo da coluna ou tabela.
-- **Explicação/Observação**: Se aplicável, qualquer informação adicional relevante deve ser incluída entre colchetes em minúsculo [].
-- **Unidade de medida**: Se aplicável, seguir as regras das unidades de medida.
+
+- **Descrição dos dados**: Explicação clara e objetiva sobre o conteúdo da coluna ou tabela;
+- **Explicação/Observação**: Se aplicável, qualquer informação adicional relevante deve ser incluída entre colchetes em minúsculo (exceto siglas) `[]`;
+- **Unidade de medida**: Se aplicável, sempre por último, observadas também as regras da [seção específica](#unidades-medida).
 
 <br>Exemplo:
+```yml
 - "Receita total esperada com base na quilometragem [IRK x km] (R$)"
-- "Nome curto da linha operada pelo veículo com variação de serviço [ex: 010, 011SN, ...]"
-- "Parâmetros de remuneração do subsídio dos serviços de ônibus [SPPO] por tipo de viagem [Descontinuada a partir de 2024-03-01]"
+- "Nome curto da linha operada pelo veículo com variação de serviço [ex.: 010, 011SN, ...]"
+- "Parâmetros de remuneração do subsídio dos serviços de ônibus [SPPO] por tipo de viagem [descontinuada a partir de 2024-03-01]"
+```
 
-## Cobertura temporal
+### <h3 id="unidades-medida">Unidades de medida</h3>
+
+As unidades de medida devem ser registradas na descrição da coluna entre parênteses, garantindo clareza e padronização na interpretação dos dados. Nossas regras são:
+
+- Caso a coluna represente um valor absoluto, utilize apenas a unidade correspondente (ex.: `R$`, `km`, `min`);
+- Se a unidade estiver associada a uma referência, utilize o formato "Unidade/Referência" para indicar a relação entre grandezas (ex.:`R$/km`, `km/h`);
+- Sempre use abreviações padronizadas para unidades conforme Sistema Internacional de Unidades (SI), evitando variações informais (ex.: `h` para horas, não `hrs`);
+- Caso a unidade não seja óbvia, inclua uma explicação sucinta entre colchetes.
+
+<br>Exemplo:
+```yml
+- "Receita total aferida [receita tarifária + subsidio pago] (R$)"
+- "Valor máximo de subsídio, conforme tipo de viagem (R$/km)"
+- "Distância percorrida (km)"
+```
+
+## Dicionários
+
+- Sempre que possível e necessário, cada conjunto de dados deverá incluir até um dicionário;
+- Para cada tabela, coluna e cobertura temporal, cada chave mapeia unicamente um valor;
+- Chaves não podem ter valores nulos;
+- Dicionários devem cobrir todas as chaves disponíveis nas tabelas originais.
+
+### Cobertura temporal
 
 Preencher a coluna `cobertura_temporal` nos metadados de tabela, coluna e chave (em dicionários) segue o seguinte padrão.
 
@@ -146,10 +159,3 @@ Preencher a coluna `cobertura_temporal` nos metadados de tabela, coluna e chave 
         - Exemplo: tabela com unidade `mes` tem cobertura `2005-08(1)`.
         - Exemplo: tabela com unidade `semana` tem cobertura `2005-08-01(7)`.
         - Exemplo: tabela com unidade `dia` tem cobertura `2005-08-01(1)`.
-
-## Dicionários
-
-- Sempre que possível e necessário, cada conjunto de dados deverá incluir até um dicionário;
-- Para cada tabela, coluna e cobertura temporal, cada chave mapeia unicamente um valor;
-- Chaves não podem ter valores nulos;
-- Dicionários devem cobrir todas as chaves disponíveis nas tabelas originais.
