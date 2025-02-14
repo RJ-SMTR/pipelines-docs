@@ -112,7 +112,7 @@ As unidades de medida devem ser registradas na descrição da coluna entre parê
 
 - Caso a coluna represente um valor absoluto, utilize apenas a unidade correspondente (ex.: R$, km, min).
 - Se a unidade estiver associada a uma referência, utilize o formato "Unidade/Referência" para indicar a relação entre grandezas (ex.: R$/km, km/h).
-- Sempre use abreviações padronizadas para unidades, evitando variações informais (ex.: h para horas, não hrs).
+- Sempre use abreviações padronizadas para unidades conforme Sistema Internacional de Unidades (SI), evitando variações informais (ex.: h para horas, não hrs).
 - Caso a unidade não seja óbvia, inclua uma explicação sucinta.
 
 <br>Exemplo:
