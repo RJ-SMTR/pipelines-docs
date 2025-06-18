@@ -5,22 +5,38 @@
 * *Nome do Projeto:* Avaliação de Climatização de Viagens
 * *Equipe Técnica:*
     * Rodrigo Cunha (Diretor Técnico Especial de Dados e Inovação)
-    * Adriano (Analista de Dados)
+    * Adriano Neto (Analista de Dados)
 * *Instituição/Setor:* PCRJ/SMTR/SUBTT
-* *Data de Início:*
+* *Data de Início:*  21/05/2025
 * *Status:* Em andamento
 
 ## 2. Objetivo e Justificativa
 
-* Descreva o propósito do projeto e o problema que pretende resolver.
+* Descreva o propósito do projeto e o problema que pretende resolver:  
+  
+  De forma geral o objetivo primordial do projeto é garantir o pleno funcionamento da climatização dos veículos durante as viagens da frota municipal.
+    
 * Contextualize com políticas públicas, metas estratégicas ou necessidades operacionais.
 
 ## 3. Diagnóstico e Fontes de Dados
 
-* Bases utilizadas:
-* Origem dos dados:
+* Bases utilizadas:  
+Base de dados meteorológicos das 4 estações de medição do município do Rio de Janeiro oriundas do Banco de Dados Meteorológicos do INMET. Assim como, dados de bilhetagem provenientes da concessionária de bilhetagem digital da prefeitura do Rio de Janeiro.  
+
+* Origem dos dados:  
+ Plataforma de bilhetagem Jaé e  Banco de Dados Meteorológicos do INMET.  
+  
 * Avaliação da qualidade e limitações:
-* Observações relevantes:
+  
+   - **Dados - Instituto Nacional de Meteorologia:**  
+  
+  Avaliando de forma objetiva, sobre os dados de temperatura das duas fontes de origem utilizadas foram de suma importância na busca por soluções no contexto de climatização de viagens do transporte público de ônibus da prefeitura, mas que também demonstram cercas limitações. Detalhamento melhor sobre, no que diz respeito aos dados de temperatura oriundos do INMET, temos um dado com precisão muito acima da média, além de maior robustez e confiabilidade dado toda infraestrutura especializada  contida nas estações para tal captação de informações meteorológicas. Porém, no contexto de descritivos acerca de variáveis, colunas ou metologodias aplicadas aos dados carece de um dicionário descritivo ou mesmo de transparência maior em relação a determinados conceitos e detalhes sobre os números consolidados.
+    
+   - **Dados - Concessionária de bilhetagem Jaé:**  
+  
+  Segundamente, com os dados de temperatura interna temos algumas inconsistências em relação aos valores de medição de temperatura captados pelos sensores do veículos da frota municipal, com uma presença frequente de dados extremos (outliers) que vão desde medições de 0°C ou 1°C até mesmo 900°C de temperatura. Dessa forma, fazendo necessário todo uma identificação e tratamento de registros problemáticos durante toda a base de dados obtida através do gps_validador.
+* Observações relevantes:  
+
 
 ## 4. Levantamento de Requisitos
 
