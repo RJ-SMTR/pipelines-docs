@@ -223,11 +223,11 @@
 ## 13. Referências e Documentos Vinculados
 
 * **Normas, leis, decretos:**  
-  - Acordo Judicial.  
-  - Norma da ABNT.  
-  - Decreto de 2025.  
-  - Termo de conciliação.
-  - Norma de 2023.  
+  - Acordo Judicial firmado em 30 de abril de 2025 entre o Município do Rio de Janeiro e os consórcios operadores do sistema de transporte coletivo, foram estabelecidas novas diretrizes para a operação e monitoramento do serviço, incluindo obrigações específicas de transparência e cumprimento de metas operacionais sob a supervisão da SPPO.  
+
+  - Norma ABNT NBR 15570:2021 
+  - Art. 3° do Decreto n° 53.856/2023.
+  - Resolução SMTR Nº 3636, de 11 de julho de 2023.  
 * **Relatórios técnicos:**  
   - NETO, Adriano. Análise da Regularidade de Temperatura - SMTR20250521. Rio de Janeiro: SMTR, 2025. Disponível em: https://github.com/RJ-SMTR/analises-interno/. Acesso em: 23 jun. 2025.   
   - NETO, Adriano. 20250616_Análise da Regularidade de Temperatura - SMTR 2025. Rio de Janeiro: SMTR, 2025. Apresentação em slides. Disponível em: https://docs.google.com/presentation/d/1lFGgDx2-42lpawTwoulhAXygr0CgW4-S99R2sQR-Fic/. Acesso em: 23 jun. 2025.  
@@ -260,12 +260,12 @@ Usar esta versão diretamente no changelog do projeto ou como parte do corpo do 
 ## [Não publicado]
 
 ### Adicionado
-- Campo `uf_autuacao` no modelo `autuacao.sql`
+  
 
 #### FRAME-DADOS LITE
-- **Motivo:** Necessidade de filtro federativo nos painéis da CGM
-- **Impacto técnico:** Rebuild do modelo `mart_autuacoes_mensais` e ajustes em dashboards
-- **Impacto institucional:** Atende recomendação CGM 2025, dá suporte a painel de fiscalização pública
+- **Motivo:** Adequar a qualidade do serviço ofertado pelas frotas municipais
+- **Impacto técnico:** Facilita a validação e fiscalização de viagens e veículos em regularidade.
+- **Impacto institucional:** Atende a demandas da SMTR por fundamentação técnica para embasar regras sobre regularidade da climatização de viagens.
 - **Responsável:** Adriano Neto
 - **Data:** 23/06/2025
 ```
