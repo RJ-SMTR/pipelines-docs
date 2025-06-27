@@ -56,8 +56,8 @@
   - Testes, validação, relacionamento de tabelas, verificação de replicabilidade e desempenho factível.
   - Dados públicos, portanto não há problema em relação a LGPD e entre outros fatores que vigoram sobre dados sensíveis, privados ou de terceiros.
 * **Demandas regulatórias ou legais:**  
-  - Acordo judicial
-  - Norma ABNT
+  - Acordo Judicial Nº 0072879-94.2023.8.19.0001
+  - Norma ABNT NBR 15570:2021
   - Termo de conciliação
 * **Partes interessadas envolvidas:**  
   - Gestores internos:
@@ -77,6 +77,7 @@
     │   └── Gerar Dados de temperatura externa por hora
     │
     ├── Processamento dos dados de temperatura interna brutos
+    │   └── Realizar Remoção de Nulos  
     │   └── Realizar Remoção de outliers (IQR + Modified Z-Score)           
     │
     └── Avaliação da Regularidade e Apuração Final da Viagem 
@@ -223,7 +224,7 @@
 ## 13. Referências e Documentos Vinculados
 
 * **Normas, leis, decretos:**  
-  - Acordo Judicial firmado em 30 de abril de 2025 entre o Município do Rio de Janeiro e os consórcios operadores do sistema de transporte coletivo, foram estabelecidas novas diretrizes para a operação e monitoramento do serviço, incluindo obrigações específicas de transparência e cumprimento de metas operacionais sob a supervisão da SPPO.  
+  - Acordo Judicial Nº 0072879-94.2023.8.19.0001 firmado em 30 de abril de 2025 entre o Município do Rio de Janeiro e os consórcios operadores do sistema de transporte coletivo, foram estabelecidas novas diretrizes para a operação e monitoramento do serviço, incluindo obrigações específicas de transparência e cumprimento de metas operacionais sob a supervisão da SPPO.  
 
   - Norma ABNT NBR 15570:2021 
   - Art. 3° do Decreto n° 53.856/2023.
