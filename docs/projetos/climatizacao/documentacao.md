@@ -14,38 +14,36 @@
 ## 2. Objetivo e Justificativa
 
 * Descreva o propósito do projeto e o problema que pretende resolver:  
-  
-  De forma geral o objetivo primordial do projeto é garantir o pleno funcionamento da climatização dos veículos durante as viagens da frota municipal.
     
-* Contextualize com políticas públicas, metas estratégicas ou necessidades operacionais.
+  O transporte público municipal trava uma jornada constante de busca por melhorias do serviço prestado a população, um dos fatores que impactam diretamente na satisfação do usuário, mas também na qualidade do que é oferecido aos mesmos é a climatização das viagens, onde uma temperatura adequada e agradável fornece um transporte mais confortável e de qualidade. 
+  
+  Portanto visando primariamente obter esse grau de qualidade e conforto do serviço, a frota municipal está caminhando para garantir a climatização adequada dos veículos durante todas as viagens realizadas, assim como a aplicabilidade disso na operação diária pelas operadorsa das concessionárias de transportes público. Segundamente, no contexto operacional buscando garantir a efeitos reais destas medidas, utizou-se da construção de regras e patamares mínimos aceitáveis para a regularidade da temperatura nas viagens efetuadas, assim como punição para casos onde o patamar mínimo não for obtido.
+
+  De forma a contextualizar melhor essa necessidade, é possível citar as grandes ondas de calor que afetam diretamente todo o planeta e que estão cada vez mais frequentes no dia-a-dia da população e que podem causar diversos malefícios a saúde do individuo. Medidas como esta podem incentivar o aumento do uso de transporte público, assim como evitar possíveis complicações de saúde durante o trajeto e garantir conforto durante o uso (OLIVEIRA, 2015).
+
+  Essas medidas seguem dando continuidade e trazendo melhorias a políticas adotadas há vários anos no município do Rio de Janeiro, como disposto no Decreto nº 38.328/2014 que determinou que todos os ônibus adquiridos para o sistema municipal deveriam estar equipados com ar-condicionado. E com essas melhorias, trazendo evidências para exigir um melhor funcionamento dessas ferramentas objetivamente atingir a meta de 100% das viagens com pelo menos 80% das temperaturas em regularidade com a resolução proposta a partir deste projeto.
+
 
 ## 3. Diagnóstico e Fontes de Dados
 
-* **3.1. Plataforma de bilhetagem Jaé:**
- **Bases utilizadas:**
+* **3.1. Plataforma de Bilhetagem Digital Jaé:**
+  
+  Dados de temperatura interna dos veículos são provenientes da bilhetagem referente a concessionária de Bilhetagem Digital (Jaé) da Prefeitura Municipal do Rio de Janeiro.
+
+  A procedência e a disponibilidade desses dados são caracterizadas pela disponibilidade constante das medições realizadas pelos sensores de temperatura localizados no interior dos veículos da frota municipal de transportes público. Embora apresentem um grau de precisão razoável, a qualidade da informação é considerada adequada, especialmente sob boas condições de manutenção dos equipamentos.
+
+  É possível notar certas limitações nas medições que podem ser contornadas de forma robusta por tratamentos estatísticos de identificação de dados extremos. Estes, em poucos casos, mostram-se presentes, mas, em sua maioria, não comprometem a integridade da análise técnica e rigorosa, que utiliza regras e métodos cientificamente validados.
+
+  Através dessa avaliação, é possível também identificar possíveis problemáticas que estarão sendo monitoradas visando reduzir e mitigar toda e qualquer intervenção indesejada na disponibilidade de informações de qualidade por defeitos técnicos, operacionais ou acidentais.
   <br>  
 
-* **Origem dos dados:**  
-  - Plataforma de bilhetagem Jaé.  
-    Assim como, dados de bilhetagem provenientes da concessionária de bilhetagem digital da prefeitura do Rio de Janeiro.
+* **3.2. Instituto Nacional de Meteorologia - INMET:** 
 
-  <br>  
+  Os dados meteorológicos utilizados como parâmetro de avaliação para a temperatura externa do ambiente são provenientes das 4 estações de medição do INMET referentes ao município do Rio de Janeiro, que são devidamente armazenadas e disponibilizadas publicamente no Site/Banco de Dados Meteorológicos do INMET.
 
-     - **Dados - Concessionária de Bilhetagem Digital Jaé:**  <br>  
-  Segundamente, com os dados de temperatura interna temos algumas inconsistências em relação aos valores de medição de temperatura captados pelos sensores do veículos da frota municipal, com uma presença frequente de dados extremos (outliers) que vão desde medições de 0°C ou 1°C até mesmo 900°C de temperatura. Dessa forma, fazendo necessário todo uma identificação e tratamento de registros problemáticos durante toda a base de dados obtida através do gps_validador.  
-  <br>  
+  A procedência e qualidade dos dados fornecidos pelo INMET são de alta precisão e qualidade, dada toda a tecnologia e equipamento especializado para medições de temperatura. Podemos citar o uso de termohigrógrafos e estações meteorológicas automáticas para medir e registrar a temperatura do ambiente, considerando a umidade relativa do ar e outras variáveis relevantes. Há dados disponibilizados em tempo real, mas que carecem de algumas padronizações e tratamentos (nada referente a imprecisão), e dados consolidados, os quais demoram um tempo um pouco maior para serem disponibilizados, portanto não estão disponíveis em tempo real.
 
-* **3.2. INMET:**
-  **Bases utilizadas:**  
-
-  * **Origem dos dados:** 
-    - Banco de Dados Meteorológicos do INMET.  
-    Base de dados meteorológicos das 4 estações de medição do município do Rio de Janeiro oriundas do Banco de Dados Meteorológicos do INMET
-    
-  * **Avaliação da qualidade e limitações:**  
-   - **Dados - Instituto Nacional de Meteorologia:**  <br>  
-  Avaliando de forma objetiva as origens de dados de temperatura, temos duas principais fontes utilizadas, que foram de suma importância na busca por soluções dado o contexto de climatização de viagens de veículos do transporte público da prefeitura, apesar da disponibilidade do dado, observou-se algumas limitações que foram contornadas adequadamente, mas que carecem ser mecionadas.  <br>  
-  Buscando trazer um maior detalhamente das características aos dados de temperatura oriundos do INMET, temos um dado com precisão e qualidade ótima, que dispõe de maior robustez dada a infraestrutura especializada utilizada nas estações metereológicas para captação de de temperatura, umidade do ar, precipitação e dentre outras informações. Mas, que no momento ainda demonstram algumas limitações no que tange documentação, como dicionário de variáveis ou mesmo métodos aplicados no tratamento do dados e afins, porém nada que não possa ser inferido pelo usuário da informação.  
+  Apesar de todos os pontos positivos mencionados anteriormente, ainda é observável a carência de um dicionário de dados mais robusto e acessível, que, dessa forma, possa centralizar informações e conceitos de forma mais detalhada sobre colunas e tabelas dos dados meteorológicos.
     
   <br>  
 
