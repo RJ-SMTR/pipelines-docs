@@ -13,13 +13,13 @@
 
 ## 2. Objetivo e Justificativa 
     
-  O transporte público municipal trava uma jornada constante pela busca de melhorias n serviço prestado à população. Um dos fatores que impactam diretamente na qualidade do serviço e consequentemente na satisfação do usuário do transporte público, é a climatização, que se aplicada de forma correta proporcionará a população um transporte mais confortável e de qualidade.
+  O transporte público municipal trava uma jornada constante pela busca de melhorias no serviço prestado à população. Um dos fatores que impactam diretamente na qualidade do serviço e consequentemente na satisfação do usuário do transporte público, é a climatização, que se aplicada de forma correta proporcionará a população um transporte mais confortável e de qualidade.
   
-  Portanto visando primariamente obter esse grau de qualidade e conforto do serviço, a frota municipal está caminhando para garantir a climatização adequada dos veículos durante todas as viagens realizadas, assim como a aplicabilidade disso na operação diária pelas operadoras das concessionárias de transportes público. Segundamente, no contexto operacional avaliar a efetividade dessas medidas, utilizou-se da construção de regras e patamares mínimos aceitáveis para a regularidade da temperatura nas viagens efetuadas, assim como punição para casos onde o patamar mínimo não for obtido.
+  COm o objetivo primário de alcançar níveis adequados de qualidade e conforto, a SMTR está criando regras guiarão a frota municipal para garantir a climatização adequada visando viagens mais agradáveis ao usuário. Mas, também garantindo a aplicação real na operação diária pelas operadoras das concessionárias de transportes público. Segundamente, no contexto operacional avaliar a efetividade dessas medidas, utilizou-se da construção de regras e patamares mínimos aceitáveis para a regularidade da temperatura nas viagens efetuadas, assim como punição para casos onde o patamar mínimo não for obtido.
 
   De forma a contextualizar melhor essa necessidade, é possível citar as grandes ondas de calor que afetam diretamente todo o planeta e que estão cada vez mais frequentes no dia-a-dia da população e que podem causar diversos malefícios à saúde do individuo. Medidas como esta podem incentivar o aumento do uso de transporte público, assim como evitar possíveis complicações de saúde durante o trajeto e garantir conforto durante o uso (OLIVEIRA, 2015).
 
-  Essas medidas dão continuidade a políticas públicas anteriores e introduzem melhorias substanciais para o transporte do município do Rio de Janeiro, como disposto no Decreto nº 38.328/2014 que determinou que todos os ônibus adquiridos para o sistema municipal deveriam estar equipados com ar-condicionado. E com essas melhorias, trazendo evidências para exigir um melhor funcionamento dessas ferramentas objetivamente atingir a meta de 100% das viagens com pelo menos 80% das temperaturas em regularidade com a resolução proposta a partir deste projeto.
+  Essas medidas dão continuidade às políticas públicas já estabelecidas, como o Decreto nº 38.328/2014, que determina que todos os ônibus adquiridos para o sistema municipal sejam equipados com ar-condicionado. Além disso, reforçam a necessidade de evidências técnicas que assegurem o funcionamento adequado desses equipamentos, com o objetivo de atingir a meta de que 100% das viagens tenham, no mínimo, 80% dos registros de temperatura em conformidade com os parâmetros definidos neste projeto.
 
 
 ## 3. Diagnóstico e Fontes de Dados
@@ -30,7 +30,7 @@
 
   A procedência e a disponibilidade desses dados são caracterizadas pela disponibilidade constante das medições realizadas pelos sensores de temperatura localizados no interior dos veículos da frota municipal de transportes público. Embora apresentem um grau de precisão razoável, a qualidade da informação é considerada adequada, especialmente sob boas condições de manutenção dos equipamentos.
 
-   Apesar de algumas limitações, as medições podem ser devidamente trtadas por técnicas estatísticas robustas para identificação e mitigação de dados extremos(Outliers). Estes, em poucos casos, mostram-se presentes, mas, em sua maioria, não comprometem a integridade da análise técnica e rigorosa, que utiliza regras e métodos cientificamente validados.
+   Apesar de algumas limitações, as medições podem ser devidamente tratadas por técnicas estatísticas robustas para identificação e mitigação de dados extremos(Outliers). Estes, em poucos casos, mostram-se presentes, mas, em sua maioria, não comprometem a integridade da análise técnica e rigorosa, que utiliza regras e métodos cientificamente validados.
 
   Através dessa avaliação, é possível também identificar possíveis problemáticas que estarão sendo monitoradas visando reduzir e mitigar toda e qualquer intervenção indesejada na disponibilidade de informações de qualidade por defeitos técnicos, operacionais ou acidentais.
   <br>  
@@ -51,21 +51,22 @@
   - Classificar de forma clara e objetiva se a viagem efetuada está em regularidade com as regras de climatização impostas pela Secretaria Municipal de Transportes (SMTR).  
   
   - **Requisitos funcionais acessório:**
-    - Tabelas, painéis ou elementos similares contendo informações atualizadas em tempo real sobre veículos com possíveis problemas de médição visando apoiar e direcionar a operação de fiscalização nas concessionárias envolvidas. 
+    - Tabelas, painéis ou elementos similares contendo informações atualizadas em tempo real sobre veículos com possíveis problemas de medição visando apoiar e direcionar a operação de fiscalização nas concessionárias envolvidas. 
 
       Para Exemplificar o que poderia constar como esses veículos com problemas, temos como exemplo:
-        - Veículos que após avaliarmos a temperatura registrada ao longo de um dia ou mesmo 1 viagem, não é possível observar qualquer variação da temperatura medida. Essa avaliação pode ser feita através do cálculo do desvio padrão da temperatura no período, onde espera-se que o desvio padrão seja diferente de zero.  
+        - Veículos que após avaliarmos a temperatura registrada ao longo de um dia ou mesmo 1 viagem, não é possível observar qualquer variação da temperatura medida. Essa avaliação pode ser feita através do cálculo do desvio padrão da temperatura no período, onde espera-se que o desvio padrão seja maior que zero.  
 
   - API com dados de temperatura, onde a operação poderá ter acesso as informações e assim poder efetuar um monitoramento em tempo real. As condições de disponbilidade serão disponibilizar as duas horas mais recentes do dia em relação ao momento da consulta a API.
     
 * **Requisitos não funcionais (desempenho, segurança, disponibilidade etc.):** 
   - Testes, validação, relacionamento de tabelas, verificação de replicabilidade e desempenho factível.
-  - Os dados são públicos, não sendo abrandigos por restrições da LGPD quanto a dados sensíveis.  
-
+  - Os dados são públicos, não sendo abrangidos por restrições da LGPD quanto a dados sensíveis.  
+  
 * **Demandas regulatórias ou legais:**  
   - Acordo Judicial Nº 0072879-94.2023.8.19.0001
   - Norma ABNT NBR 15570:2021
-  - Termo de conciliação
+  - Termo de conciliação  
+    
 * **Partes interessadas envolvidas:**  
   - Gestores internos:
     - Subsecretário de Tecnologia em Transportes.
@@ -194,6 +195,7 @@
   - Índice de veículos suspeitos.
   - Índice de ajuste da operação:  
      Avaliado através do tempo que os indicadores anteriores progridem ou regridem em marcos temporais de 30 dias, 90 dias, 180 dias e 365 dias. Ou mesmo avaliando uma série de tempo diária.   
+
 ## 10. Plano de Manutenção Técnica
 
 * **Frequência de revisão dos dados/pipelines:**  
@@ -204,7 +206,8 @@
 * **Responsável pela sustentação:**  
   Equipe de dados da SMTR.
 * **Monitoramento e alertas:**  
-  Possívelmente verificações de duplicações, nulidade dos dados e frequência adequada de atualização do dado visando não impactar o operador.
+  Possivelmente verificações de duplicações, nulidade dos dados e frequência adequada de atualização do dado visando não impactar o operador.  
+
 ## 11. Plano de Manutenção da Documentação
 
 * **Responsável por atualizar o FRAME-DADOS:**  
@@ -222,7 +225,7 @@
 * **O que funcionou bem:** 
   - Uma análise inicial curta para atender demandas mais urgentes e dessa forma, pautar melhor as discussões sobre melhorias, resultados encontrados e caminhos a seguir.  
 * **O que poderia ter sido feito de outra forma:**
-  - Efetuar uma análise completa em um momento anterior a definição de quaisquer regras necessárias para aplicação posterior. Com isso, evidências e resultados prévios passam a fundamentar tecnicamente as regras e políticas públicas, ao invés de seren desenvolvidas posteriormente à sua implementação.
+  - Efetuar uma análise completa em um momento anterior a definição de quaisquer regras necessárias para aplicação posterior. Com isso, evidências e resultados prévios passam a fundamentar tecnicamente as regras e políticas públicas, ao invés de serem desenvolvidas posteriormente à sua implementação.
 
   - Definição inicial do escopo (detalhar melhor)  
 
