@@ -20,7 +20,7 @@
 **1. Tabela gps_sppo** 
 
 Definição: A tabela *gps_sppo* é onde são armazenados os dados do gps após passar pelas seguintes transformações de cálculo da velocidade instantânea, 
-cálculo da velocidade média e análise se o veículo encontra-se parado. 
+cálculo da velocidade média, análise se o veículo encontra-se parado, conformidade com a rota. 
 
 1.1 Cálculo da velocidade instantânea [velocidade_instantanea]
 A velocidade instantânea é calculada dividindo a distância percorrida pelo tempo entre dois registros de timestamp consecutivos. 
@@ -28,10 +28,10 @@ O resultado é então multiplicado por 3,6 para converter a unidade para km/h.
 
 1.2 Cálculo da velocidade média [velocidade_estimada_10_min] 
 - Modelo ephemeral [sppo_aux_registros_velocidade.sql]
-- A velocidade média é zerada quando há qualquer alteração de veículo ou serviço.
-- A velocidade média é calculada a partir da média das velocidades dos últimos 10 minutos (declarado no modelo como 600 seconds).
-- Antes de completar os 10 minutos, a velocidade média permanece igual a zero.
-- Caso a velocidade exceda XX km/h (sendo um outlier), ela será ajustada para 60 km/h.
+A velocidade média é zerada quando há qualquer alteração de veículo ou serviço.
+A velocidade média é calculada a partir da média das velocidades dos últimos 10 minutos (declarado no modelo como 600 seconds).
+Antes de completar os 10 minutos, a velocidade média permanece igual a zero.
+Caso a velocidade exceda XX km/h (sendo um outlier), ela será ajustada para 60 km/h.
 
 1.3 Veículo parado [tipo_parada]
 - Modelo ephemeral [sppo_aux_registros_parada]
@@ -39,47 +39,19 @@ Veículo recebe o *status quo* de parado quando a velocidade entre dois pontos �
 O veículo poderá estar parado próximos a terminais (dentro de um raio de 250m) ou dentro da garagem.
 Esta definição permite rotular as observações da coluna tipo_parada como "Em operação", "Parado garagem"
 
+1.4 Rota
+- Modelo ephemeral [sppo_aux_registros_flag_trajeto_correto]
+Etapa que objetiva analisar se o veículo realizou o trajeto correto, conforme as shapes dos trajetos e dos trajetos alternativos. 
+
 
 1.4 Linhagem do dado
-
-
-
-
-# PIPELINES
-
-
-
-### **1. Fonte de dados: gps_sppo**
-
-## A apuração das viagens se inicia a partir da análise dos dados do dataframe "gps_sppo" que contém os dados brutos das comunicações do GPS dos ônibus. 
-## O dataframe fornece as informações necessárias para cálculo da velocidade dos veículos, para a identificação das paradas e verificar a conformidade das rotas realizadas com as rotas planejadas.
-
-## Dica inserir a imagem do dataframe (ele é primeiro/Bruto? De acordo com o open metadata esse dataframe tem origem das shapes, rotas, houve manipulação)
-
-
-Este é o ponto de partida, contendo dados brutos de GPS de ônibus. O objetivo aqui é calcular a velocidade dos veículos, identificar paradas e verificar a conformidade com a rota planejada.
-
 ![gps_sppo](image-1.png)
-- **Cálculo de velocidade e movimento:**
-
-Qual a query que faz esse cálculo?
-
-  - Usando a função **ST_DISTANCE**, o sistema calcula a distância entre dois pontos consecutivos de GPS. 
-  
-  ## ? tem algum padrão de verificação de comunicação, um tempo mínimo dentro do código antes de medir a distância
-
-  - A velocidade é calculada dividindo a distância pelo intervalo de tempo entre os pontos.
-  - A velocidade é convertida para km/h para padronizar as análises.
-  - Além disso, uma média móvel é aplicada nas velocidades dos últimos 10 minutos para suavizar flutuações naturais no GPS. 
-  
- ##  Se é no início da viagem, tem algum filtro que inicia depois dos primeiros dez? 
-
-- **Identificação de paradas:**
-
-## Como é identificado? tem um mapeamento dos terminais?
 
 
-  - O sistema verifica se os veículos estãparados próximos a terminais (dentro de um raio de 250 metros) ou se estão dentro de uma garagem. Essas informações são úteis para identificar quando um ônibus está operando ou parado em um local previsto (terminal/garagem).o 
+
+** 
+
+
 
 - **Verificação de conformidade com a rota:**
   - O sistema verifica se o ônibus está seguindo a rota correta comparando sua posição de GPS com a rota esperada, representada por **shapes** (linhas geométricas que indicam as rotas planejadas). Se o ônibus estiver a menos de 500 metros da rota planejada, ele é considerado dentro da rota.
