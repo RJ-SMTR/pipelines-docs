@@ -5,7 +5,7 @@
 - Distância - O cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos.
 - Garagem - local onde os veículos de transporte ficam quando não estão em operação.
 - id_veiculo - Identificação do veículo a partir de um número individual.
-- Modelo efêmero -
+- Modelo ephemeral -
 - Modelo incremental
 - Plano operacional - 
 - Ponto - comunicação pontual do GPS.
