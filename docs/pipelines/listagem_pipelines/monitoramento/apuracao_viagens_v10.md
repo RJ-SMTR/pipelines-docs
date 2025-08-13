@@ -1,17 +1,20 @@
 ## **Glossário:**
-- Distância - O cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos.
-- Garagem - local onde os veículos de transporte ficam quando não estão em operação.
-- id_veiculo - Identificação do veículo a partir de um número individual.
-- Modelo ephemeral -
-- Modelo incremental
-- Plano operacional - 
-- Ponto - comunicação pontual do GPS.
-- Rota planejada - Rota planejada para aquele tipo de serviço e sentido conforme divulgado em...
-- Rota realizada - Rota realizada pelo veículo em determinado tipo de serviço, sentido, data, horário
-- Serviço -
+- Distância: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos.
+- Garagem: Local onde os veículos de transporte ficam quando não estão em operação.
+- GTFS: Padrão de formato de dados aberto usado para descrever informações de transporte público.
+- id_veiculo: Identificação do veículo a partir de um número individual.
+- id_viagem: Identificação única para cada viagem
+- Modelo ephemeral: Modelo temporário que existe apenas durante a execução de uma query ou de um pipeline.
+- Modelo incremental: Modelo que processa e adiciona apenas dados novos ou modificados desde a última execução.
+- Plano operacional: Documento divulgado pelo site <https://transportes.prefeitura.rio> que contém as características operacionais dos serviços.
+- Ponto: Comunicação pontual do GPS.
+- Rota planejada: Rota planejada para aquele tipo de serviço e sentido conforme divulgado em...
+- Rota realizada: Rota realizada pelo veículo em determinado tipo de serviço, sentido, data, horário
+- Serviço: Codificação alfanumérica que possui itinerário pré-definido e especificação de quilometragem. 
+- Shape/Shapefile - Arquivo que contem elementos georreferenciados. 
 - Timestamp - Registro eletrônico de data e hora
-- Viagem - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final.
-- Viagem Circular -  
+- Viagem - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término.
+- Viagem Circular - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
 
 
 ## **1. Tabela: gps_sppo** 
@@ -104,9 +107,9 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 - O objetivo dessa tabela é consolidar informações para cada viagem de distância planejada e distância aferida, tempo de viagem, número de registros da comunicação do GPS e apresentar o percentual de conformidade.
   * Regra de negócio: O veículo para estar em conformidade, deve no mínimo comunicar em 80% do trajeto planejado, sendo que uma comunicação deve ser no star e outra no end..
 - Modelo da tabela
-  
+- ![Tabela Viagem Completa](docs/pipelines/listagem_pipelines/viagem_completa_tabela.png) 
 - Linhagem da tabela
-
+- ![Linhagem da Tabela Viagem Completa](docs/pipelines/listagem_pipelines/linhagem_viagem_completa.png) 
 
 **3.1 Tabela Viagem planejada**
 - Modelo incremental: viagem_planejada.sql
