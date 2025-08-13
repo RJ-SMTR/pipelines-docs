@@ -153,42 +153,38 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 **4. Tabela subsidio_data_versao_efetiva**
 - Modelo Incremental: subsidio_data_versao_efetiva.sql
 - Caminho queries/models/projeto_subsidio_sppo/subsidio_data_versao_efetiva.sql
+- O objetivo desse modelo é criar um calendário operacional, classificando os tipos de dia como:
+  * Dia útil,
+  * Sábado,
+  * Domingo,
+  * Ponto Facultativo.
+- O modelo faz a classificação por subtipo de dia, classificados como:
+  * Verão,
+  * E eventos como (Show da Madonna, Rock in Rio, Concurso Público Unificado (CNU), Eleição.
+- O modelo capta a última data_versao, considerando um intervalo de 30 dias, que consta nas tabelas trips, shapes e frequencies.
+- No modelo atual há especificação de datas atípicas, como eventos na cidade.
+- Atenção para a variável: {var('DATA_SUBSIDIO_**_INICIO')- Declarada no dbt_project com datas importantes. 
+
+**4.1 Modelo de tabela**
+
+**4.2 Linhagem do dado**
+
+
+------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------
 
 
 
 
 
-### **6. Subsidio e cálculos de conformidade: subsidio_data_versao_efetiva**
-
-Esta tabela está relacionada ao tratamento de subsídios e ao cálculo de conformidade das viagens com base em datas e versões de dados. A parte importante aqui envolve o **tratamento de tipos de dias** (calendário de operação) e a associação de cada dia a uma versão específica de dados de viagem, shape e frequência.
- 
 
 
-![subsidio_data_versao_efetiva](image-6.png)
 
-- **Criação da tabela de datas:**
-  - O sistema gera uma tabela temporária com datas que vão de 1º de junho de 2022 até 31 de março de 2024.
-  - Cada dia é classificado com um **tipo_dia**, que pode ser um dia útil, final de semana, feriado ou dia especial. Isso garante que o sistema leve em consideração a variação nas operações conforme o tipo de dia, já que os horários de operação e padrões de viagem mudam drasticamente em feriados ou fins de semana.
 
-- **Atribuição de versões de dados:**
-  - Para cada data, o sistema associa uma **versão de dados** específica para as viagens (**data_versao_trips**), as formas geométricas das rotas (**data_versao_shapes**) e as frequências de operação (**data_versao_frequencies**).
-  - Essa associação é importante para garantir que o sistema esteja sempre usando a versão correta dos dados em vigor naquele dia específico, especialmente quando há atualizações no planejamento das rotas ou nos horários de operação.
 
-- **Cálculo de subsídio:**
-  - Para cada data, é calculado um valor de subsídio por quilômetro (**valor_subsidio_por_km**), que pode variar conforme o mês e o ano. Isso garante que o cálculo de subsídios seja ajustado conforme o contexto econômico e operacional de cada período.
-
-- **Junções com outras tabelas:**
-  - A tabela de datas é então combinada com outras três tabelas de referência (trips, shapes e frequencies) para obter as versões distintas de cada data, assegurando que todas as viagens estejam ligadas à versão correta do planejamento.
-
-### **7. Planejamento de Viagens: viagem_planejada**
-
-Nesta etapa, o sistema prepara e organiza os dados das viagens planejadas para que possam ser comparadas com as viagens reais, garantindo a precisão do planejamento e a aderência do transporte aos padrões estabelecidos.
-
-![viagem_planejada](image-7.png)
-
-- **Preparação dos Dados:**
-  - Utiliza os dados da tabela **subsidio_data_versao_efetiva**, para obter informações detalhadas sobre as datas e suas classificações (como tipo de dia: dia útil, fim de semana, feriado, etc.), além das versões associadas às viagens, **shapes** e frequências operacionais.
-  - Seleciona os registros dessa tabela para um intervalo específico de tempo. A tabela assegura que cada dia possui uma versão específica de dados, garantindo que o sistema utilize a versão correta dos dados para o planejamento.
 
 - **Processamento de Horários (quadro):**
   - Realiza um **JOIN** com a tabela de horários planejados (**subsidio_quadro_horario**) para associar as viagens aos horários corretos.
