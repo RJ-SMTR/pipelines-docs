@@ -97,17 +97,27 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 
   -  ![Linhagem Registros_status_viagem](docs/pipelines/listagem_pipelines/linhagem_registros_status_viagem.png)
 
-**3. Tabela: viagem completa**
-- Caminho queries/models/projeto_subsidio_sppo/viagem_completa.sql
 
-**3.1 Viagem planejada**
+### **3. Tabela: viagem completa**
+- Caminho queries/models/projeto_subsidio_sppo/viagem_completa.sql
+- Esse modelo acessa três tabelas, sendo os itens 3.1 Viagem Planejada e 3.2 Viagem Conformidade e a Tabela de Shapes proveniente do GTFS.
+- O objetivo dessa tabela é consolidar informações para cada viagem de distância planejada e distância aferida, tempo de viagem, número de registros da comunicação do GPS e apresentar o percentual de conformidade.
+  * Regra de negócio: O veículo para estar em conformidade, deve no mínimo comunicar em 80% do trajeto planejado, sendo que uma comunicação deve ser no star e outra no end..
+- Modelo da tabela
+  
+- Linhagem da tabela
+
+
+**3.1 Tabela Viagem planejada**
 - Modelo incremental: viagem_planejada.sql
 - Caminho queries/models/projeto_subsidio_sppo/viagem_planejada.sql
 - O objetivo dessa consulta para a geração do modelo viagem completa é gerar uma tabela de viagens planejadas para o período apurado.
 
 **3.1.1 Modelo Tabela**
-
+- ![Tabela_Viagem_Planejada](docs/pipelines/listagem_pipelines/modelo_viagem_planejada.png)
 **3.1.2 Linhagem da tabela viagem planejada**
+
+- ![Linhagem_Viagem_Planejada](docs/pipelines/listagem_pipelines/linhagem_viagem_planejada.png)
 
 
 **3.2 Viagem conformidade**
@@ -124,11 +134,17 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
      - Os principais objetivos desse modelo são:
        * medir a quantidade de registros;
        * medir a distância entre o início e fim do trecho;
-       * contar registros de comunicações do GPS no indicador de posição (2.2): start, middle, end. (O veículo para estar em conformidade, deve no mínimo comunicar em 80% do trajeto planejado.)
+       * contar registros de comunicações do GPS no indicador de posição (2.2): start, middle, end.
 
 **3.2.2 Modelo Tabela Viagem Conformidade**
+- ![Tabela_Viagem_Conformidade](docs/pipelines/listagem_pipelines/tabela_viagem_conformidade.png)
 
+- 
 **3.2.3 Linhagem da Tabela viagem conformidade**
+- ![Linhagem_Viagem_Conformidade](docs/pipelines/listagem_pipelines/linhagem_viagem_conformidade.png)
+
+
+
 
 
 
