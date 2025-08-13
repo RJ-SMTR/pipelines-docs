@@ -44,9 +44,10 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
 
 1.5 Linhagem do dado
 
-![Linhagem GPPO](docs/img/linhagem_gppo.png)
+![Linhagem GPS SPPO](docs/pipelines/listagem_pipelines/linhagem_gps_sppo.png)
 
-
+1.6 Exemplo da Tabela
+![Exemplo da Tabela GPS_SPPO](docs/pipelines/listagem_pipelines/gps_sppo_tabela.png)
 
 ### **2. Processamento de registros e status de viagens: aux_registros_status_trajeto**
 
