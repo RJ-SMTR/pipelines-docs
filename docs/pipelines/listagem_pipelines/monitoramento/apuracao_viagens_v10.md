@@ -16,6 +16,7 @@
 - Viagem - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término.
 - Viagem Circular - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
 
+------------------------------------------------------------------------------
 
 ## **1. Tabela: gps_sppo** 
 
@@ -53,6 +54,8 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
 **1.6 Exemplo da Tabela**
 
 - ![Exemplo da Tabela GPS_SPPO](docs/pipelines/listagem_pipelines/gps_sppo_tabela.png)
+
+------------------------------------------------------------------------------
 
 ### **2. Tabela: registros_status_viagem**
 Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
@@ -100,7 +103,7 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 
   -  ![Linhagem Registros_status_viagem](docs/pipelines/listagem_pipelines/linhagem_registros_status_viagem.png)
 
-
+------------------------------------------------------------------------------
 ### **3. Tabela: viagem completa**
 - Caminho queries/models/projeto_subsidio_sppo/viagem_completa.sql
 - Esse modelo acessa três tabelas, sendo os itens 3.1 Viagem Planejada e 3.2 Viagem Conformidade e a Tabela de Shapes proveniente do GTFS.
@@ -121,7 +124,6 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 **3.1.2 Linhagem da tabela viagem planejada**
 
 - ![Linhagem_Viagem_Planejada](docs/pipelines/listagem_pipelines/linhagem_viagem_planejada.png)
-
 
 **3.2 Viagem conformidade**
 - Modelo incremental: viagem_conformidade.sql
@@ -146,58 +148,11 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 **3.2.3 Linhagem da Tabela viagem conformidade**
 - ![Linhagem_Viagem_Conformidade](docs/pipelines/listagem_pipelines/linhagem_viagem_conformidade.png)
 
+------------------------------------------------------------------------------
 
-
-
-
-
-- 
-Após o processamento inicial dos dados de GPS, os registros são armazenados na tabela **aux_registros_status_trajeto**. Esse processo é estruturado em duas partes principais: processamento dos dados de **GPS** e análise do **status_viagem**.
-
-![aux_registros_status_trajeto](image-2.png)
-
-- **Processamento de GPS:** 
-## esse registro foi citado no 1 do cálculo da distância, é o mesmo?
-  - Utiliza a tabela **gps_sppo** como fonte principal.
-  - Seleciona todos os campos dessa tabela, exceto **longitude**, **latitude** e **serviço**.
-  - Adiciona colunas extras, como:
-    - **id_empresa**: Obtido a partir de uma substring de **id_veiculo**.
-    - **posicao_veiculo_geo**: Cria um ponto geográfico a partir dos dados de longitude e latitude usando a função **ST_GEOGPOINT**.
-  - Aplica filtros para processar apenas os dados dentro de uma janela de tempo específica (Entre D-2 às 00h até D-1 às 3h) e remove registros com o status "Parado na garagem".
-
-- **Análise do status da viagem:**
-  - Realiza um **JOIN** com a tabela **viagem_planejada**, que contém as informações das rotas planejadas para comparação.
-  - A coluna **distancia** é tratada para receber um valor padrão de 0, caso os valores estejam nulos.
-  - Define o **status_viagem** como "início", "fim", "meio" ou "fora", com base na proximidade do veículo a determinados pontos da rota, utilizando a função **ST_DWITHIN**.
-
-Essa etapa é essencial para associar os dados reais de GPS aos planejamentos de rota e viagem, permitindo o monitoramento da conformidade e do status operacional de cada viagem.
-
- **3. Identificação do início e fim das viagens: aux_viagem_inicio_fim**
-
-Esta etapa busca identificar com precisão os momentos de início e fim das viagens de cada veículo.
-![aux_viagem_inicio_fim](image-3.png)
-
-- **Ajuste dos registros de viagem (inicio_fim):**
-  - Os dados são ordenados por veículo e rota. Utiliza-se a função **LEAD** para capturar a próxima **datetime_chegada** (hora de chegada), de modo a identificar a chegada prevista para o próximo ponto.
-  - Exclui os registros de chegada intermediários para manter apenas o momento de chegada mais recente.
-
-Esta etapa permite que o sistema gere um **id_viagem** único e calcule a distância entre o ponto de partida e o ponto de chegada de cada viagem.
-
-## id_viagem é VEICULO&SERVICO&SENTIDO&SHAPE&DATA&HHMMSS? 
-### **4. Registro dos status de viagem: registro_status_viagem**
-
-Depois de identificar os registros de início e fim das viagens, os dados são combinados com a tabela **aux_viagem_circular** para identificar o comportamento circular das viagens (ida e volta).
-
-![registro_status_viagem](image-4.png)
-
-- A tabela **registros_status_viagem** realiza um **JOIN** entre **aux_registros_status_trajeto** e **aux_viagem_circular**, cruzando os registros de veículos e trip_id.
-- Só são selecionados os registros com um **id_viagem** válido e que correspondam ao período entre **datetime_partida** e **datetime_chegada**.
-
-
-
-
-- **Combinação de Registros (UNION ALL):**
-  - Após identificar e tratar as viagens circulares, o sistema combina esses registros com outros tipos de viagens que não são circulares, mas que também são relevantes para o processo. Isso assegura que todas as viagens úteis, sejam circulares ou não, estejam disponíveis para análises subsequentes.
+**4. Tabela subsidio_data_versao_efetiva**
+- Modelo Incremental: subsidio_data_versao_efetiva.sql
+- Caminho queries/models/projeto_subsidio_sppo/subsidio_data_versao_efetiva.sql
 
 
 
@@ -207,10 +162,6 @@ Depois de identificar os registros de início e fim das viagens, os dados são c
 
 Esta tabela está relacionada ao tratamento de subsídios e ao cálculo de conformidade das viagens com base em datas e versões de dados. A parte importante aqui envolve o **tratamento de tipos de dias** (calendário de operação) e a associação de cada dia a uma versão específica de dados de viagem, shape e frequência.
  
-## A partir da nova regra implementada em 16/07 ampliou-se a faixa horária, mas apresenta também o conceito de viagem adicional.
- 
-## O que é uma viagem adicional?
-
 
 
 ![subsidio_data_versao_efetiva](image-6.png)
