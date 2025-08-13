@@ -16,6 +16,7 @@
 - Viagem - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término.
 - Viagem Circular - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
 
+
 ------------------------------------------------------------------------------
 
 ## **1. Tabela: gps_sppo** 
