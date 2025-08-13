@@ -14,7 +14,7 @@
 - Viagem Circular -  
 
 
-## **1. Tabela gps_sppo** 
+## **1. Consolidação da Tabela gps_sppo** 
 
 Definição: A tabela *gps_sppo* é onde são armazenados os dados do gps após passar pelas seguintes transformações de cálculo da velocidade instantânea, 
 cálculo da velocidade média, análise se o veículo encontra-se parado, conformidade com a rota. 
@@ -28,11 +28,12 @@ cálculo da velocidade média, análise se o veículo encontra-se parado, confor
 - A velocidade média é zerada quando há qualquer alteração de veículo ou serviço.
 - A velocidade média é calculada a partir da média das velocidades dos últimos 10 minutos (declarado no modelo como 600 seconds).
 - Antes de completar os 10 minutos, a velocidade média permanece igual a zero.
-- Caso a velocidade exceda XX km/h (sendo um outlier), ela será ajustada para 60 km/h.
+- Caso a velocidade exceda 60 km/h (sendo um outlier), ela será ajustada para 60 km/h.
 
 1.3 Veículo parado [tipo_parada]
 - Modelo ephemeral [sppo_aux_registros_parada]
 Veículo recebe o *status quo* de parado quando a velocidade entre dois pontos é igual a 0km/h.
+- Velocidade limiar parada: 3km/h
 O veículo poderá estar parado próximos a terminais (dentro de um raio de 250m) ou dentro da garagem.
 Esta definição permite rotular as observações da coluna tipo_parada como "Em operação", "Parado garagem"
 
@@ -40,7 +41,7 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
 - Modelo ephemeral [sppo_aux_registros_flag_trajeto_correto]
 - Etapa que objetiva analisar se o veículo realizou o trajeto correto, conforme as shapes (camadas georreferenciadas) dos trajetos e dos trajetos alternativos. 
 - A partir da utilização do window_function o modelo calcula um indicador de quantas vezes o veículo esteve dentro do trajeto correto.
-- A condição de trajeto correto é atingida se o veículo estiver dentro da variável buffer_segmento_metros. (VERIFICAR O VALOR DO BUFFER)
+- A condição de trajeto correto é atingida se o veículo estiver dentro da variável buffer_segmento_metros (500 metros). 
 
 1.5 Linhagem do dado
 
@@ -49,7 +50,24 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
 1.6 Exemplo da Tabela
 ![Exemplo da Tabela GPS_SPPO](docs/pipelines/listagem_pipelines/gps_sppo_tabela.png)
 
-### **2. Processamento de registros e status de viagens: aux_registros_status_trajeto**
+### **2. Registro do status da viagem - tabela: registros_status_viagem** 
+Objetivo: processamento do status da viagem (start, middle, end)
+
+**2.1 Serviços com exceção dos CIRCULARES**
+- Modelo ephemeral: aux_registros_status_trajeto
+- O objetivo desse modelo é verificar se o veículo está em rota e, em caso positivo, verificar qual parte do trajeto o veículo está.
+- Indicador de posição:
+      - start: o veículo está próximo ao início da rota.
+      - middle: a viagem e o veículo recebem o status de middle a partir da primeira comunicação depois do buffer inicial (start).
+      - end: o veículo encontra-se próximo ao final da rota
+      - out: veículo fora da rota.
+
+- Variável buffer geográfico {{ var("buffer") }} define o quanto o veículo precisa estar próximo a rota para que o trajeto seja considerado válido - 500 metros
+- Função determinística para validação do indicador de posição - ST_DWITHIN.
+- Caso especial (janela temporal): eventos como o show da Madonna requerem ajuste de parâemtros como do buffer geográfico ou seleções de tipos de serviço.
+- Correspondência do tipo de serviço: o modelo analisa que se o serviço informado via GPS está igual ao serviço planejado. 
+
+
 
 Após o processamento inicial dos dados de GPS, os registros são armazenados na tabela **aux_registros_status_trajeto**. Esse processo é estruturado em duas partes principais: processamento dos dados de **GPS** e análise do **status_viagem**.
 
