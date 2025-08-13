@@ -44,7 +44,7 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
 
 1.5 Linhagem do dado
 
-![gps_sppo](image-1.png)
+![Linhagem GPPO](docs/img/linhagem_gppo.png)
 
 
 
