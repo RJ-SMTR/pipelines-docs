@@ -16,59 +16,85 @@
 
 ## **1. Consolidação da Tabela gps_sppo** 
 
-Definição: A tabela *gps_sppo* é onde são armazenados os dados do gps após passar pelas seguintes transformações de cálculo da velocidade instantânea, 
+- Definição: A tabela *gps_sppo* é onde são armazenados os dados do gps após passar pelas seguintes transformações de cálculo da velocidade instantânea, 
 cálculo da velocidade média, análise se o veículo encontra-se parado, conformidade com a rota. 
 
-1.1 Cálculo da velocidade instantânea [velocidade_instantanea]
+**1.1 Cálculo da velocidade instantânea [velocidade_instantanea]**
 - A velocidade instantânea é calculada dividindo a distância percorrida pelo tempo entre dois registros de timestamp consecutivos. 
 - O resultado é então multiplicado por 3,6 para converter a unidade para km/h.
 
-1.2 Cálculo da velocidade média [velocidade_estimada_10_min] 
+**1.2 Cálculo da velocidade média [velocidade_estimada_10_min]**
 - Modelo ephemeral [sppo_aux_registros_velocidade.sql]
 - A velocidade média é zerada quando há qualquer alteração de veículo ou serviço.
 - A velocidade média é calculada a partir da média das velocidades dos últimos 10 minutos (declarado no modelo como 600 seconds).
 - Antes de completar os 10 minutos, a velocidade média permanece igual a zero.
 - Caso a velocidade exceda 60 km/h (sendo um outlier), ela será ajustada para 60 km/h.
 
-1.3 Veículo parado [tipo_parada]
+**1.3 Veículo parado [tipo_parada]**
 - Modelo ephemeral [sppo_aux_registros_parada]
-Veículo recebe o *status quo* de parado quando a velocidade entre dois pontos é igual a 0km/h.
+- Veículo recebe o *status quo* de parado quando a velocidade entre dois pontos é igual a 0km/h.
 - Velocidade limiar parada: 3km/h
 O veículo poderá estar parado próximos a terminais (dentro de um raio de 250m) ou dentro da garagem.
 Esta definição permite rotular as observações da coluna tipo_parada como "Em operação", "Parado garagem"
 
-1.4 Rota
+**1.4 Rota**
 - Modelo ephemeral [sppo_aux_registros_flag_trajeto_correto]
 - Etapa que objetiva analisar se o veículo realizou o trajeto correto, conforme as shapes (camadas georreferenciadas) dos trajetos e dos trajetos alternativos. 
 - A partir da utilização do window_function o modelo calcula um indicador de quantas vezes o veículo esteve dentro do trajeto correto.
 - A condição de trajeto correto é atingida se o veículo estiver dentro da variável buffer_segmento_metros (500 metros). 
 
-1.5 Linhagem do dado
+**1.5 Linhagem do dado**
 
-![Linhagem GPS SPPO](docs/pipelines/listagem_pipelines/linhagem_gps_sppo.png)
+- ![Linhagem GPS SPPO](docs/pipelines/listagem_pipelines/linhagem_gps_sppo.png)
 
-1.6 Exemplo da Tabela
-![Exemplo da Tabela GPS_SPPO](docs/pipelines/listagem_pipelines/gps_sppo_tabela.png)
+**1.6 Exemplo da Tabela**
+
+- ![Exemplo da Tabela GPS_SPPO](docs/pipelines/listagem_pipelines/gps_sppo_tabela.png)
 
 ### **2. Registro do status da viagem - tabela: registros_status_viagem** 
-Objetivo: processamento do status da viagem (start, middle, end)
 
-**2.1 Serviços com exceção dos CIRCULARES**
+- Objetivo: processamento do status da viagem (start, middle, end, out)
+
+**2.1 Tratamento das viagens com serviço caracterizado como circular**
+- Modelo ephemeral:aux_viagem_circular  
+- Caminho queries/models/projeto_subsidios_sppo/aux_viagem_circular.sql
+- Esse modelo ephemeral consulta o modelo aux_viagem_inicio_fim para filtrar apenas as viagens com sentido = "C", o objetivo é selecionar para essa análise apenas as viagens circulares.
+- Ao utilizar a window function LEAD o modelo identifica o próximo registro de determinado veículo e serviço dentro de uma janela de tempo.
+- flag_proximo_volta se for igual a TRUE e o sentido do shape for igual a "I" (Ida) e o datetime chegada for menor ou igual ao datetime partida volta gera um resultado que garante que o trajeto que representa a ida de uma viagem circular com sua volta logo em seguida.
+- O modelo, ao realizar o particionamento de ida e volta, garante que ambos sentidos recebam o mesmo id_viagem.
+- Após o tratamento das viagens circulares, o modelo concatena as viagens usando "union all" que não têm os serviços circulares. 
+
+**2.2 Processamento**
 - Modelo ephemeral: aux_registros_status_trajeto
-- O objetivo desse modelo é verificar se o veículo está em rota e, em caso positivo, verificar qual parte do trajeto o veículo está.
-- Indicador de posição:
-      - start: o veículo está próximo ao início da rota.
-      - middle: a viagem e o veículo recebem o status de middle a partir da primeira comunicação depois do buffer inicial (start).
-      - end: o veículo encontra-se próximo ao final da rota
-      - out: veículo fora da rota.
+- Caminho queries/models/projeto_subsidios_sppo/aux_registros_status_trajeto.sql
 
-- Variável buffer geográfico {{ var("buffer") }} define o quanto o veículo precisa estar próximo a rota para que o trajeto seja considerado válido - 500 metros
+- O objetivo desse modelo é verificar se o veículo está em rota e, em caso positivo, verificar qual indicador de posição o veículo está.
+- Indicador de posição:
+      * start: o veículo está próximo ao início da rota.
+      * middle: a viagem e o veículo recebem o status de middle a partir da primeira comunicação depois do buffer inicial (start).
+      * end: o veículo encontra-se próximo ao final da rota
+      * out: veículo fora da rota.
+
+- Variável buffer geográfico {{ var("buffer") }} define o quanto o veículo precisa estar próximo a rota para que o trajeto seja considerado válido ( Atualmente o buffer está declarado como 500 metros)
 - Função determinística para validação do indicador de posição - ST_DWITHIN.
 - Caso especial (janela temporal): eventos como o show da Madonna requerem ajuste de parâemtros como do buffer geográfico ou seleções de tipos de serviço.
 - Correspondência do tipo de serviço: o modelo analisa que se o serviço informado via GPS está igual ao serviço planejado. 
+- Resumo de validação da viagem:
+  * Indicador de posição (start, middle, end): a comunicação do GPS deve acontecer nas três instâncias do indicador de posição
+    e, o veículo deve, no mínimo comunicar em 80% do trajeto planejado.
+  * O serviço planejado deve ser igual ao serviço informado.
+
+(Verificar se é nesse trecho que instancio a faixa horária)
 
 
 
+
+
+
+
+
+
+- 
 Após o processamento inicial dos dados de GPS, os registros são armazenados na tabela **aux_registros_status_trajeto**. Esse processo é estruturado em duas partes principais: processamento dos dados de **GPS** e análise do **status_viagem**.
 
 ![aux_registros_status_trajeto](image-2.png)
