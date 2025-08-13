@@ -51,7 +51,8 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
 
 - ![Exemplo da Tabela GPS_SPPO](docs/pipelines/listagem_pipelines/gps_sppo_tabela.png)
 
-### **2. Registro do status da viagem - tabela: registros_status_viagem** 
+### **2. Registro do status da viagem - tabela: registros_status_viagem**
+Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 
 - Objetivo: processamento do status da viagem (start, middle, end, out)
 
@@ -74,6 +75,7 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
       * middle: a viagem e o veículo recebem o status de middle a partir da primeira comunicação depois do buffer inicial (start).
       * end: o veículo encontra-se próximo ao final da rota
       * out: veículo fora da rota.
+  - Vide ilustração esquemática:
 
 - Variável buffer geográfico {{ var("buffer") }} define o quanto o veículo precisa estar próximo a rota para que o trajeto seja considerado válido ( Atualmente o buffer está declarado como 500 metros)
 - Função determinística para validação do indicador de posição - ST_DWITHIN.
@@ -86,6 +88,11 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
 
 (Verificar se é nesse trecho que instancio a faixa horária)
 
+
+**2.3 Modelo de tabela: registros_status_viagem**
+
+
+**2.4 Linhagem da tabela registro_status_viagem**
 
 
 
@@ -120,15 +127,6 @@ Essa etapa é essencial para associar os dados reais de GPS aos planejamentos de
 Esta etapa busca identificar com precisão os momentos de início e fim das viagens de cada veículo.
 ![aux_viagem_inicio_fim](image-3.png)
 
-- **Identificação de status de viagem (aux_status):**
-  - Analisa a sequência de status dos registros de GPS para identificar o início e o fim das viagens.
-  - Define uma coluna chamada **starts** como verdadeira quando o status de viagem muda de "início" para "meio".
-  - Da mesma forma, define a coluna **ends** como verdadeira quando o status muda de "meio" para "fim".
-
-- **Geração de informações de início e fim (aux_inicio_fim):**
-  - A partir dos status identificados, gera as colunas **datetime_partida** (indicando a hora de início da viagem) e **datetime_chegada** (hora de chegada) com base nos registros de início e fim extraídos de **aux_status**.
-  - Aplica um filtro para incluir apenas os registros onde as colunas **starts** ou **ends** são verdadeiras, garantindo que sejam consideradas apenas viagens com início e fim claramente definidos.
-
 - **Ajuste dos registros de viagem (inicio_fim):**
   - Os dados são ordenados por veículo e rota. Utiliza-se a função **LEAD** para capturar a próxima **datetime_chegada** (hora de chegada), de modo a identificar a chegada prevista para o próximo ponto.
   - Exclui os registros de chegada intermediários para manter apenas o momento de chegada mais recente.
@@ -145,22 +143,6 @@ Depois de identificar os registros de início e fim das viagens, os dados são c
 - A tabela **registros_status_viagem** realiza um **JOIN** entre **aux_registros_status_trajeto** e **aux_viagem_circular**, cruzando os registros de veículos e trip_id.
 - Só são selecionados os registros com um **id_viagem** válido e que correspondam ao período entre **datetime_partida** e **datetime_chegada**.
 
-### **5. Identificação de viagens circulares: aux_viagem_circular**
-
-Essa parte do processo identifica e trata viagens que possuem uma ida e volta (viagem circular).
-
-![aux_viagem_circular](image-5.png)
-
-- **Identificação de Ida e Volta (ida_volta_circular):**
-  - Utiliza a função **LEAD** para verificar se o próximo trecho de uma viagem corresponde a um trecho de volta (marcado como sentido 'V').
-  - Armazena as informações de horários de partida e chegada desses trechos de volta para garantir que as viagens circulares sejam identificadas e tratadas corretamente.
-
-- **Processamento de Viagem Circular (viagem_circular):**
-  - Combina os dados gerados anteriormente, atribuindo um **id_viagem** único às viagens identificadas como circulares, abrangendo tanto a ida quanto a volta.
-  - Filtra registros onde o **id_viagem** seja nulo, assegurando que apenas as viagens circulares válidas e completas sejam incluídas no processamento final.
-
-## Não entendi muito bem o conceito de viagem circular
-## No plano operacional tem ida e volta e outras linhas são circulares, mas entendi que se cria um conceito virtual para fazê-las ficarem iguais as ida-volta
 
 
 
