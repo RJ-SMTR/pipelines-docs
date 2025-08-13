@@ -1,7 +1,4 @@
-
-# TABELAS
-
-**Glossário:**
+## **Glossário:**
 - Distância - O cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos.
 - Garagem - local onde os veículos de transporte ficam quando não estão em operação.
 - id_veiculo - Identificação do veículo a partir de um número individual.
@@ -17,21 +14,21 @@
 - Viagem Circular -  
 
 
-**1. Tabela gps_sppo** 
+## **1. Tabela gps_sppo** 
 
 Definição: A tabela *gps_sppo* é onde são armazenados os dados do gps após passar pelas seguintes transformações de cálculo da velocidade instantânea, 
 cálculo da velocidade média, análise se o veículo encontra-se parado, conformidade com a rota. 
 
 1.1 Cálculo da velocidade instantânea [velocidade_instantanea]
-A velocidade instantânea é calculada dividindo a distância percorrida pelo tempo entre dois registros de timestamp consecutivos. 
-O resultado é então multiplicado por 3,6 para converter a unidade para km/h.
+- A velocidade instantânea é calculada dividindo a distância percorrida pelo tempo entre dois registros de timestamp consecutivos. 
+- O resultado é então multiplicado por 3,6 para converter a unidade para km/h.
 
 1.2 Cálculo da velocidade média [velocidade_estimada_10_min] 
 - Modelo ephemeral [sppo_aux_registros_velocidade.sql]
-A velocidade média é zerada quando há qualquer alteração de veículo ou serviço.
-A velocidade média é calculada a partir da média das velocidades dos últimos 10 minutos (declarado no modelo como 600 seconds).
-Antes de completar os 10 minutos, a velocidade média permanece igual a zero.
-Caso a velocidade exceda XX km/h (sendo um outlier), ela será ajustada para 60 km/h.
+- A velocidade média é zerada quando há qualquer alteração de veículo ou serviço.
+- A velocidade média é calculada a partir da média das velocidades dos últimos 10 minutos (declarado no modelo como 600 seconds).
+- Antes de completar os 10 minutos, a velocidade média permanece igual a zero.
+- Caso a velocidade exceda XX km/h (sendo um outlier), ela será ajustada para 60 km/h.
 
 1.3 Veículo parado [tipo_parada]
 - Modelo ephemeral [sppo_aux_registros_parada]
@@ -41,28 +38,15 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
 
 1.4 Rota
 - Modelo ephemeral [sppo_aux_registros_flag_trajeto_correto]
-Etapa que objetiva analisar se o veículo realizou o trajeto correto, conforme as shapes dos trajetos e dos trajetos alternativos. 
+- Etapa que objetiva analisar se o veículo realizou o trajeto correto, conforme as shapes (camadas georreferenciadas) dos trajetos e dos trajetos alternativos. 
+- A partir da utilização do window_function o modelo calcula um indicador de quantas vezes o veículo esteve dentro do trajeto correto.
+- A condição de trajeto correto é atingida se o veículo estiver dentro da variável buffer_segmento_metros. (VERIFICAR O VALOR DO BUFFER)
 
+1.5 Linhagem do dado
 
-1.4 Linhagem do dado
 ![gps_sppo](image-1.png)
 
 
-
-** 
-
-
-
-- **Verificação de conformidade com a rota:**
-  - O sistema verifica se o ônibus está seguindo a rota correta comparando sua posição de GPS com a rota esperada, representada por **shapes** (linhas geométricas que indicam as rotas planejadas). Se o ônibus estiver a menos de 500 metros da rota planejada, ele é considerado dentro da rota.
- 
-##  Isso como um buffer? de 500 mnetros para cada lado?
-
-
-  - As flags de conformidade de rota são usadas para identificar se o ônibus está "Em operação", "Fora de rota" ou "Parado".
-
-Essa etapa fornece dados fundamentais que serão processados nas etapas seguintes, ajudando a categorizar o status operacional de cada ônibus.
-## Definir operação, fora de rota e parado
 
 ### **2. Processamento de registros e status de viagens: aux_registros_status_trajeto**
 
