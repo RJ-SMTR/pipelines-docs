@@ -1,21 +1,19 @@
 ## **Glossário:**
-- Distância: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos.
-- Garagem: Local onde os veículos de transporte ficam quando não estão em operação.
-- GTFS: Padrão de formato de dados aberto usado para descrever informações de transporte público.
-- id_veiculo: Identificação do veículo a partir de um número individual.
-- id_viagem: Identificação única para cada viagem
-- Modelo ephemeral: Modelo temporário que existe apenas durante a execução de uma query ou de um pipeline.
-- Modelo incremental: Modelo que processa e adiciona apenas dados novos ou modificados desde a última execução.
-- Plano operacional: Documento divulgado pelo site <https://transportes.prefeitura.rio> que contém as características operacionais dos serviços.
-- Ponto: Comunicação pontual do GPS.
-- Rota planejada: Rota planejada para aquele tipo de serviço e sentido conforme divulgado em...
-- Rota realizada: Rota realizada pelo veículo em determinado tipo de serviço, sentido, data, horário
-- Serviço: Codificação alfanumérica que possui itinerário pré-definido e especificação de quilometragem. 
-- Shape/Shapefile - Arquivo que contem elementos georreferenciados. 
-- Timestamp - Registro eletrônico de data e hora
-- Viagem - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término.
-- Viagem Circular - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
-
+- **Distância aferida**: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos.
+- **Garagem**: Local onde os veículos de transporte ficam quando não estão em operação.
+- **GTFS**: Arquivo contendo informações sobre linhas de ônibus e serviços de BRT da cidade do Rio de Janeiro. Atualizado mensalmente pela Secretaria Municipal de Transportes <https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about>
+- **id_veiculo**: Identificação do veículo a partir de um número de ordem.
+- **id_viagem**: Identificação única para cada viagem
+- **Modelo ephemeral e incremental**: Vide DBT (<https://docs.getdbt.com/docs/build/materializations>)
+- **Plano operacional**: Documento divulgado pelo site <https://transportes.prefeitura.rio> que contém as características operacionais dos serviços.
+- **Ponto**: Comunicação pontual do GPS.
+- **Rota planejada**: Rota planejada para aquele tipo de serviço e sentido conforme o GTFS.
+- **Rota realizada**: Rota realizada pelo veículo em determinado tipo de serviço, sentido, data, horário
+- **Serviço**: Codificação alfanumérica que possui itinerário pré-definido e especificação de quilometragem. 
+- **Shape** - Elemento geométrico que representa o espaço em formato linestring ou multilinestring.
+- **Timestamp** - Registro de data e hora
+- **Viagem** - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término[duas meias viagens].
+- **Viagem Circular** - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
 
 ------------------------------------------------------------------------------
 
@@ -50,11 +48,11 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
 
 **1.5 Linhagem do dado**
 
-- ![Linhagem GPS SPPO](docs/pipelines/listagem_pipelines/linhagem_gps_sppo.png)
+- ![Linhagem GPS SPPO](imagens/linhagem_gps_sppo.png)
 
 **1.6 Exemplo da Tabela**
 
-- ![Exemplo da Tabela GPS_SPPO](docs/pipelines/listagem_pipelines/gps_sppo_tabela.png)
+- ![Exemplo da Tabela GPS_SPPO](imagens/gps_sppo_tabela.png)
 
 ------------------------------------------------------------------------------
 
@@ -83,7 +81,7 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
       * end: o veículo encontra-se próximo ao final da rota
       * out: veículo fora da rota.
   - Vide ilustração esquemática:
-  -  ![Esquema](docs/pipelines/listagem_pipelines/esquema_status_viagem.png)
+  -  ![Esquema](imagens/esquema_status_viagem.png)
 
 - Variável buffer geográfico {{ var("buffer") }} define o quanto o veículo precisa estar próximo a rota para que o trajeto seja considerado válido ( Atualmente o buffer está declarado como 500 metros)
 - Função determinística para validação do indicador de posição - ST_DWITHIN.
@@ -98,11 +96,11 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 
 **2.3 Modelo de tabela: registros_status_viagem**
 
-  -  ![Modelo de tabela Registros_status_viagem](docs/pipelines/listagem_pipelines/registro_status_viagem.png)
+  -  ![Modelo de tabela Registros_status_viagem](imagens/registro_status_viagem.png)
 
 **2.4 Linhagem da tabela registro_status_viagem**
 
-  -  ![Linhagem Registros_status_viagem](docs/pipelines/listagem_pipelines/linhagem_registros_status_viagem.png)
+  -  ![Linhagem Registros_status_viagem](imagens/inhagem_registros_status_viagem.png)
 
 ------------------------------------------------------------------------------
 ### **3. Tabela: viagem completa**
@@ -111,9 +109,9 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 - O objetivo dessa tabela é consolidar informações para cada viagem de distância planejada e distância aferida, tempo de viagem, número de registros da comunicação do GPS e apresentar o percentual de conformidade.
   * Regra de negócio: O veículo para estar em conformidade, deve no mínimo comunicar em 80% do trajeto planejado, sendo que uma comunicação deve ser no star e outra no end..
 - Modelo da tabela
-- ![Tabela Viagem Completa](docs/pipelines/listagem_pipelines/viagem_completa_tabela.png) 
+- ![Tabela Viagem Completa](imagens/viagem_completa_tabela.png) 
 - Linhagem da tabela
-- ![Linhagem da Tabela Viagem Completa](docs/pipelines/listagem_pipelines/linhagem_viagem_completa.png) 
+- ![Linhagem da Tabela Viagem Completa](imagens/linhagem_viagem_completa.png) 
 
 **3.1 Tabela Viagem planejada**
 - Modelo incremental: viagem_planejada.sql
@@ -121,10 +119,10 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 - O objetivo dessa consulta para a geração do modelo viagem completa é gerar uma tabela de viagens planejadas para o período apurado.
 
 **3.1.1 Modelo Tabela**
-- ![Tabela_Viagem_Planejada](docs/pipelines/listagem_pipelines/modelo_viagem_planejada.png)
+- ![Tabela_Viagem_Planejada](imagens/modelo_viagem_planejada.png)
 **3.1.2 Linhagem da tabela viagem planejada**
 
-- ![Linhagem_Viagem_Planejada](docs/pipelines/listagem_pipelines/linhagem_viagem_planejada.png)
+- ![Linhagem_Viagem_Planejada](imagens/linhagem_viagem_planejada.png)
 
 **3.2 Viagem conformidade**
 - Modelo incremental: viagem_conformidade.sql
@@ -143,11 +141,11 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
        * contar registros de comunicações do GPS no indicador de posição (2.2): start, middle, end.
 
 **3.2.2 Modelo Tabela Viagem Conformidade**
-- ![Tabela_Viagem_Conformidade](docs/pipelines/listagem_pipelines/tabela_viagem_conformidade.png)
+- ![Tabela_Viagem_Conformidade](imagens/tabela_viagem_conformidade.png)
 
 - 
 **3.2.3 Linhagem da Tabela viagem conformidade**
-- ![Linhagem_Viagem_Conformidade](docs/pipelines/listagem_pipelines/linhagem_viagem_conformidade.png)
+- ![Linhagem_Viagem_Conformidade](imagens/linhagem_viagem_conformidade.png)
 
 ------------------------------------------------------------------------------
 
@@ -178,36 +176,3 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 ------------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-- **Processamento de Horários (quadro):**
-  - Realiza um **JOIN** com a tabela de horários planejados (**subsidio_quadro_horario**) para associar as viagens aos horários corretos.
-  - Converte os horários de início e fim (**inicio_periodo** e **fim_periodo**) para objetos datetime.
-
-- **Integração de Dados das Viagens (trips):**
-  - Faz um **JOIN** com a tabela de trips (**subsidio_trips_desaninhada**), aplicando filtros com base nas versões específicas para garantir que os dados planejados sejam alinhados corretamente.
-
-- **Ajustes dos IDs das Trips (quadro_trips):**
-  - Ajusta os IDs das trips com base na direção do trajeto (**sentido**), criando identificadores únicos que diferenciam as trips de ida, volta e circular, quando aplicável.
-
-- **Combinação de Trips e Shapes (quadro_tratada):**
-  - Integra os dados das trips ajustadas com os **shapes** das rotas, combinando os **trip_id** planejados e reais para garantir a aderência entre o planejamento e a execução.
-  - Ajusta os **shape_id** com base no sentido da viagem, assegurando que a geometria associada corresponda ao trajeto planejado.
-
-- **Processamento dos Dados de Shapes (shapes):**
-  - Faz um **JOIN** com a tabela de formas geométricas (**subsidio_shapes_geom**), recuperando a geometria completa das rotas, assim como os pontos de início e fim para cada trajeto planejado.
-
-- **Seleção e Ajuste Final:**
-  - Combina as informações processadas das trips e dos shapes, estabelecendo a direção do shape (**sentido_shape**) com base nas condições observadas.
-  - Adiciona colunas complementares como **id_tipo_trajeto**, **feed_version**, e a data/hora atual para registrar a última atualização (**datetime_ultima_atualizacao**).
-
-O resultado final é um conjunto de dados consolidado que engloba todas as informações planejadas das viagens, associando horários, trajetos e geometrias. Esse conjunto serve como base para as comparações com os dados reais de execução, permitindo uma análise detalhada da conformidade e do desempenho operacional.
-
-## Dicas: inserir todos os nomes das querys
