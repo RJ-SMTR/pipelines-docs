@@ -14,7 +14,7 @@
 - Viagem Circular -  
 
 
-## **1. Consolidação da Tabela gps_sppo** 
+## **1. Tabela: gps_sppo** 
 
 - Definição: A tabela *gps_sppo* é onde são armazenados os dados do gps após passar pelas seguintes transformações de cálculo da velocidade instantânea, 
 cálculo da velocidade média, análise se o veículo encontra-se parado, conformidade com a rota. 
@@ -51,7 +51,7 @@ Esta definição permite rotular as observações da coluna tipo_parada como "Em
 
 - ![Exemplo da Tabela GPS_SPPO](docs/pipelines/listagem_pipelines/gps_sppo_tabela.png)
 
-### **2. Registro do status da viagem - tabela: registros_status_viagem**
+### **2. Tabela: registros_status_viagem**
 Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 
 - Objetivo: processamento do status da viagem (start, middle, end, out)
@@ -76,14 +76,14 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
       * end: o veículo encontra-se próximo ao final da rota
       * out: veículo fora da rota.
   - Vide ilustração esquemática:
+  -  ![Esquema](docs/pipelines/listagem_pipelines/esquema_status_viagem.png)
 
 - Variável buffer geográfico {{ var("buffer") }} define o quanto o veículo precisa estar próximo a rota para que o trajeto seja considerado válido ( Atualmente o buffer está declarado como 500 metros)
 - Função determinística para validação do indicador de posição - ST_DWITHIN.
 - Caso especial (janela temporal): eventos como o show da Madonna requerem ajuste de parâemtros como do buffer geográfico ou seleções de tipos de serviço.
 - Correspondência do tipo de serviço: o modelo analisa que se o serviço informado via GPS está igual ao serviço planejado. 
 - Resumo de validação da viagem:
-  * Indicador de posição (start, middle, end): a comunicação do GPS deve acontecer nas três instâncias do indicador de posição
-    e, o veículo deve, no mínimo comunicar em 80% do trajeto planejado.
+  * Indicador de posição (start, middle, end): a comunicação do GPS deve acontecer nas três instâncias do indicador de posição.
   * O serviço planejado deve ser igual ao serviço informado.
 
 (Verificar se é nesse trecho que instancio a faixa horária)
@@ -91,13 +91,44 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 
 **2.3 Modelo de tabela: registros_status_viagem**
 
+  -  ![Modelo de tabela Registros_status_viagem](docs/pipelines/listagem_pipelines/registro_status_viagem.png)
 
 **2.4 Linhagem da tabela registro_status_viagem**
 
+  -  ![Linhagem Registros_status_viagem](docs/pipelines/listagem_pipelines/linhagem_registros_status_viagem.png)
+
+**3. Tabela: viagem completa**
+- Caminho queries/models/projeto_subsidio_sppo/viagem_completa.sql
+
+**3.1 Viagem planejada**
+- Modelo incremental: viagem_planejada.sql
+- Caminho queries/models/projeto_subsidio_sppo/viagem_planejada.sql
+- O objetivo dessa consulta para a geração do modelo viagem completa é gerar uma tabela de viagens planejadas para o período apurado.
+
+**3.1.1 Modelo Tabela**
+
+**3.1.2 Linhagem da tabela viagem planejada**
 
 
+**3.2 Viagem conformidade**
+- Modelo incremental: viagem_conformidade.sql
+- Caminho queries/models/projeto_subsidio_sppo/viagem_conformidade.sql
+- O objetivo dessa tabela que alimenta a tabela viagem completa é gerar uma tabela de viagens que analisa as conformidades conforme o planejado
+- Esse modelo acessa os modelos efêmeros listados no item:
+  * 2.1 Item aux_viagem_circular
+- Esse modelo consulta o modelo ephemeral aux_viagem_registros (3.2.1).
 
+     **3.2.1 aux_viagem_registro**
+     - Modelo ephemeral: aux_viagem_registros.sql
+     - Caminho queries/models/projeto_subsidio_sppo/ aux_viagem_registros.sql
+     - Os principais objetivos desse modelo são:
+       * medir a quantidade de registros;
+       * medir a distância entre o início e fim do trecho;
+       * contar registros de comunicações do GPS no indicador de posição (2.2): start, middle, end. (O veículo para estar em conformidade, deve no mínimo comunicar em 80% do trajeto planejado.)
 
+**3.2.2 Modelo Tabela Viagem Conformidade**
+
+**3.2.3 Linhagem da Tabela viagem conformidade**
 
 
 
