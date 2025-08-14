@@ -2,20 +2,20 @@
 *Inclui glossário, descrição dos modelos que são apresentados na sequência de execução da pipeline.*
 
 ## **Glossário:**
-- **Distância aferida**: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos.
-- **Garagem**: Local onde os veículos de transporte ficam quando não estão em operação.
-- **GTFS**: Arquivo contendo informações sobre linhas de ônibus e serviços de BRT da cidade do Rio de Janeiro. Atualizado mensalmente pela Secretaria Municipal de Transportes <https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about>
-- **id_veiculo**: Identificação do veículo a partir de um número de ordem.
-- **id_viagem**: Identificação única para cada viagem
-- **Modelo ephemeral e incremental**: Vide DBT (<https://docs.getdbt.com/docs/build/materializations>)
-- **Plano operacional**: Documento divulgado pelo site <https://transportes.prefeitura.rio> que contém as características operacionais dos serviços.
-- **Ponto**: Comunicação pontual do GPS.
-- **Rota planejada**: Rota planejada para aquele tipo de serviço e sentido conforme o GTFS.
-- **Rota realizada**: Rota realizada pelo veículo em determinado tipo de serviço, sentido, data, horário
-- **Serviço**: Codificação alfanumérica que possui itinerário pré-definido e especificação de quilometragem. 
-- **Shape** - Elemento geométrico que representa o espaço em formato linestring ou multilinestring.
-- **Timestamp** - Registro de data e hora
-- **Viagem** - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término[duas meias viagens].
+- **Distância aferida**: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos;
+- **Garagem**: Local onde os veículos de transporte ficam quando não estão em operação;
+- **GTFS**: Arquivo contendo informações sobre linhas de ônibus e serviços de BRT da cidade do Rio de Janeiro. Atualizado mensalmente pela Secretaria Municipal de Transportes <https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about>;
+- **id_veiculo**: Identificação do veículo a partir de um número de ordem;
+- **id_viagem**: Identificação única para cada viagem;
+- **Modelo ephemeral e incremental**: Vide DBT (<https://docs.getdbt.com/docs/build/materializations>);
+- **Plano operacional**: Documento divulgado pelo site <https://transportes.prefeitura.rio> que contém as características operacionais dos serviços;
+- **Ponto**: Comunicação pontual do GPS;
+- **Rota planejada**: Rota planejada para aquele tipo de serviço e sentido conforme o GTFS;
+- **Rota realizada**: Rota realizada pelo veículo em determinado tipo de serviço, sentido, data, horário;
+- **Serviço**: Codificação alfanumérica que possui itinerário pré-definido e especificação de quilometragem;
+- **Shape** - Elemento geométrico que representa o espaço em formato linestring ou multilinestring;
+- **Timestamp** - Registro de data e hora;
+- **Viagem** - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término[duas meias viagens];
 - **Viagem Circular** - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
 
 ------------------------------------------------------------------------------
@@ -65,50 +65,47 @@
 * **1.5 Modelo da Tabela**:
 - ![Tabela gerada](imagens/1.tabela_sppo.png)
 
-
-
-
-
-
-
-
-
-
-
-
-**1.1 Cálculo da velocidade instantânea [velocidade_instantanea]**
-- A velocidade instantânea é calculada dividindo a distância percorrida pelo tempo entre dois registros de timestamp consecutivos. 
-- O resultado é então multiplicado por 3,6 para converter a unidade para km/h.
-
-**1.2 Cálculo da velocidade média [velocidade_estimada_10_min]**
-- Modelo ephemeral [sppo_aux_registros_velocidade.sql]
-- A velocidade média é zerada quando há qualquer alteração de veículo ou serviço.
-- A velocidade média é calculada a partir da média das velocidades dos últimos 10 minutos (declarado no modelo como 600 seconds).
-- Antes de completar os 10 minutos, a velocidade média permanece igual a zero.
-- Caso a velocidade exceda 60 km/h (sendo um outlier), ela será ajustada para 60 km/h.
-
-**1.3 Veículo parado [tipo_parada]**
-- Modelo ephemeral [sppo_aux_registros_parada]
-- Veículo recebe o *status quo* de parado quando a velocidade entre dois pontos é igual a 0km/h.
-- Velocidade limiar parada: 3km/h
-O veículo poderá estar parado próximos a terminais (dentro de um raio de 250m) ou dentro da garagem.
-Esta definição permite rotular as observações da coluna tipo_parada como "Em operação", "Parado garagem"
-
-**1.4 Rota**
-- Modelo ephemeral [sppo_aux_registros_flag_trajeto_correto]
-- Etapa que objetiva analisar se o veículo realizou o trajeto correto, conforme as shapes (camadas georreferenciadas) dos trajetos e dos trajetos alternativos. 
-- A partir da utilização do window_function o modelo calcula um indicador de quantas vezes o veículo esteve dentro do trajeto correto.
-- A condição de trajeto correto é atingida se o veículo estiver dentro da variável buffer_segmento_metros (500 metros). 
-
-**1.5 Linhagem do dado**
-
-- ![Linhagem GPS SPPO](imagens/linhagem_gps_sppo.png)
-
-**1.6 Exemplo da Tabela**
-
-- ![Exemplo da Tabela GPS_SPPO](imagens/gps_sppo_tabela.png)
-
 ------------------------------------------------------------------------------
+## **2. Tabela: viagem_planejada (ocorre em paralelo com o gps_sppo)** 
+- Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_planejada.sql
+- Modelo Incremental particionado por data com granularidade diária.
+
+* **1.1 Objetivo**: A tabela *viagem_planejada* combina os resultados das tabelas *viagem_planejada1* e "viagem_planejada2*
+
+* **1.2 Fluxo de execução do modelo**:
+ - *Junta as tabelas* de viagem_planejada1 e viagem_planejada2 a partir de uma condição de data como variável. 
+
+* **1.3 Resultados apresentados**
+- *Tipo de dia*: Caracterização do dia da operação como:
+     * Dia útil;
+     * Sábado;
+     * Domingo;
+     * Ponto Facultativo.
+ - *Sentido*: Identificação de Ida (I) e Volta (V).
+ - *Partidas planejadas*: Número de viagens planejadas para a aquela faixa horária.
+ - *Distância planjeada*: Distância planejada para determinado serviço em determinada faixa horária.
+ - *Distância total planeada*: A multiplicação de *Partidas planejadas* com a *Distância planjeada*
+ - *Faixa horária de início e faixa horária de fim*: Faixa horária especificada, seguindo os critérios do Plano Operacional.
+ - *Trip_id_planejado*:
+ - *Trip_id*:
+ - *Shape*:  Elemento geométrico que representa no espaço o serviço.
+ - *start_pt*: Elemento geométrico que representa o início da viagem.
+ - *end_pt*:  Elemento geométrico que representa o fim da viagem.
+ 
+ * **1.4 Linhagem**:
+- ![Linhagem GPS SPPO](imagens/1.linhagem_gps_sppo.png)
+
+* **1.5 Modelo da Tabela**:
+- ![Tabela gerada](imagens/1.tabela_sppo.png)
+
+
+
+
+
+
+
+
+
 
 ### **2. Tabela: registros_status_viagem**
 Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
