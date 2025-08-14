@@ -1,3 +1,6 @@
+### Documentação do processo de apuração das viagens para o subsídio do transporte público municipal do Rio de Janeiro. 
+*Inclui glossário, descrição dos modelos que são apresentados na sequência de execução da pipeline.*
+
 ## **Glossário:**
 - **Distância aferida**: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos.
 - **Garagem**: Local onde os veículos de transporte ficam quando não estão em operação.
@@ -35,30 +38,34 @@
  - *CTE[flags]*: seleciona as flags (indicadores) que determinam de forma booleana (True ou False) se o veículo está dentro do trajeto correto, além de verificar se a linha existe no sigmob.
    - Utiliza a tabela ephemeral *sppo_aux_registros_flag_trajeto_correto* e seleciona os campos id_veiculo, timestamp_gps, linha, route_id, flag_linha_existe_sigmob, flag_trajeto_correto, flag_trajeto_correto_hist .
   
-- *Junção final*: seleciona as informações das CTE´s classifica se o veículo está em operação, operando fora do trajeto e define o tipo de parada, como parado trajeto correto e parado fora do trajeto. 
+- *Junção final*: seleciona as informações das CTE´s classifica se o veículo está em operação, operando fora do trajeto e define o tipo de parada, como parado trajeto correto e parado fora do trajeto.
 
-* **Nº.3 Linhagem**:
+* **1.3 Resultados apresentados**
+- *Cálculo da velocidade instantânea [velocidade_instantanea]*
+  - A velocidade instantânea é calculada dividindo a distância percorrida pelo tempo entre dois registros de timestamp consecutivos. 
+  - O resultado é então multiplicado por 3,6 para converter a unidade para km/h.
 
-* **Nº.4 Modelo da Tabela**:
+- *Cálculo da velocidade média [velocidade_estimada_10_min]*
+  - Modelo ephemeral [sppo_aux_registros_velocidade.sql]
+  - A velocidade média é zerada quando há qualquer alteração de veículo ou serviço.
+  - A velocidade média é calculada a partir da média das velocidades dos últimos 10 minutos (declarado no modelo como 600 seconds).
+  - Antes de completar os 10 minutos, a velocidade média permanece igual a zero.
+  - Caso a velocidade exceda 60 km/h (sendo um outlier), ela será ajustada para 60 km/h.
+
+- *Veículo parado [tipo_parada]*
+  - Modelo ephemeral [sppo_aux_registros_parada]
+  - Veículo recebe o *status quo* de parado quando a velocidade entre dois pontos é igual a 0km/h.
+  - Velocidade limiar parada: 3km/h
+  - O veículo poderá estar parado próximos a terminais (dentro de um raio de 250m) ou dentro da garagem.
+  Esta definição permite rotular as observações da coluna tipo_parada como "Em operação", "Parado garagem"
+
+ * **1.4 Linhagem**:
+- ![Linhagem GPS SPPO](imagens/1.linhagem_gps_sppo.png)
+
+* **1.5 Modelo da Tabela**:
+- ![Tabela gerada](imagens/1.tabela_sppo.png)
 
 
-
-
-
-
-
-
-
-
-## **1. Tabela: gps_sppo** 
-- Caminho do modelo: 
-* **Nº.1 Definição**: 
-* **1.2 Objetivo**:
-* **1.3 Linhagem**:
-- Definição: 
-
-- sppo_aux_registros_flag_trajeto
-- sppo
 
 
 
