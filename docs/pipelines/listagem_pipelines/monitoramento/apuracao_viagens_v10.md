@@ -1,3 +1,6 @@
+### Documentação consolidada do processo de apuração das viagens para o subsídio do transporte público municipal do Rio de Janeiro. 
+*Inclui glossário, descrição dos modelos que são apresentados na sequência de execução da pipeline.*
+
 ## **Glossário:**
 - **Distância aferida**: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos.
 - **Garagem**: Local onde os veículos de transporte ficam quando não estão em operação.
@@ -16,11 +19,62 @@
 - **Viagem Circular** - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
 
 ------------------------------------------------------------------------------
-
 ## **1. Tabela: gps_sppo** 
+- Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_veiculos/gps_sppo.sql
+- Modelo Incremental particionado por data com granularidade diária.
 
-- Definição: A tabela *gps_sppo* é onde são armazenados os dados do gps após passar pelas seguintes transformações de cálculo da velocidade instantânea, 
-cálculo da velocidade média, análise se o veículo encontra-se parado, conformidade com a rota. 
+* **1.1 Objetivo**: A tabela *gps_sppo* armazena os dados do gps após passar pelas transformações de cálculo da velocidade instantânea, cálculo da velocidade média, análise se o veículo encontra-se parado, conformidade com a rota.
+
+* **1.2 Fluxo de execução do modelo**:
+ - *CTE[registros]*: seleciona os registros do gps por um filtro de data.
+      - Utiliza a tabela ephemeral *sppo_aux_registros_filtrada* e seleciona os campos id_veiculo, timestamp_gps, timestamp_caputura, velocidade, linha, latitude e longitude.
+    
+ - *CTE[velocidades]*: seleciona as informações de velocidade, distância e movimento.
+   - Utiliza a tabela ephemeral *sppo_aux_registros_velocidade* e seleciona os campos id_veiculo, timestamp_gps, velocidade, linha, distancia, flag_em_movimento.
+   
+ - *CTE[paradas]*: seleciona os tipos parada dos veiculos, como terminal, garagem.
+   - Utiliza a tabela ephemeral *sppo_aux_registros_parada* e seleciona os campos id_veiculo, timestamp_gps, linha, tipo de parada.
+
+ - *CTE[flags]*: seleciona as flags (indicadores) que determinam de forma booleana (True ou False) se o veículo está dentro do trajeto correto, além de verificar se a linha existe no sigmob.
+   - Utiliza a tabela ephemeral *sppo_aux_registros_flag_trajeto_correto* e seleciona os campos id_veiculo, timestamp_gps, linha, route_id, flag_linha_existe_sigmob, flag_trajeto_correto, flag_trajeto_correto_hist .
+  
+- *Junção final*: seleciona as informações das CTE´s classifica se o veículo está em operação, operando fora do trajeto e define o tipo de parada, como parado trajeto correto e parado fora do trajeto.
+
+* **1.3 Resultados apresentados**
+- *Cálculo da velocidade instantânea [velocidade_instantanea]*
+  - A velocidade instantânea é calculada dividindo a distância percorrida pelo tempo entre dois registros de timestamp consecutivos. 
+  - O resultado é então multiplicado por 3,6 para converter a unidade para km/h.
+
+- *Cálculo da velocidade média [velocidade_estimada_10_min]*
+  - Modelo ephemeral [sppo_aux_registros_velocidade.sql]
+  - A velocidade média é zerada quando há qualquer alteração de veículo ou serviço.
+  - A velocidade média é calculada a partir da média das velocidades dos últimos 10 minutos (declarado no modelo como 600 seconds).
+  - Antes de completar os 10 minutos, a velocidade média permanece igual a zero.
+  - Caso a velocidade exceda 60 km/h (sendo um outlier), ela será ajustada para 60 km/h.
+
+- *Veículo parado [tipo_parada]*
+  - Modelo ephemeral [sppo_aux_registros_parada]
+  - Veículo recebe o *status quo* de parado quando a velocidade entre dois pontos é igual a 0km/h.
+  - Velocidade limiar parada: 3km/h
+  - O veículo poderá estar parado próximos a terminais (dentro de um raio de 250m) ou dentro da garagem.
+  Esta definição permite rotular as observações da coluna tipo_parada como "Em operação", "Parado garagem"
+
+ * **1.4 Linhagem**:
+- ![Linhagem GPS SPPO](imagens/1.linhagem_gps_sppo.png)
+
+* **1.5 Modelo da Tabela**:
+- ![Tabela gerada](imagens/1.tabela_sppo.png)
+
+
+
+
+
+
+
+
+
+
+
 
 **1.1 Cálculo da velocidade instantânea [velocidade_instantanea]**
 - A velocidade instantânea é calculada dividindo a distância percorrida pelo tempo entre dois registros de timestamp consecutivos. 
@@ -176,36 +230,3 @@ Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem
 ------------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-- **Processamento de Horários (quadro):**
-  - Realiza um **JOIN** com a tabela de horários planejados (**subsidio_quadro_horario**) para associar as viagens aos horários corretos.
-  - Converte os horários de início e fim (**inicio_periodo** e **fim_periodo**) para objetos datetime.
-
-- **Integração de Dados das Viagens (trips):**
-  - Faz um **JOIN** com a tabela de trips (**subsidio_trips_desaninhada**), aplicando filtros com base nas versões específicas para garantir que os dados planejados sejam alinhados corretamente.
-
-- **Ajustes dos IDs das Trips (quadro_trips):**
-  - Ajusta os IDs das trips com base na direção do trajeto (**sentido**), criando identificadores únicos que diferenciam as trips de ida, volta e circular, quando aplicável.
-
-- **Combinação de Trips e Shapes (quadro_tratada):**
-  - Integra os dados das trips ajustadas com os **shapes** das rotas, combinando os **trip_id** planejados e reais para garantir a aderência entre o planejamento e a execução.
-  - Ajusta os **shape_id** com base no sentido da viagem, assegurando que a geometria associada corresponda ao trajeto planejado.
-
-- **Processamento dos Dados de Shapes (shapes):**
-  - Faz um **JOIN** com a tabela de formas geométricas (**subsidio_shapes_geom**), recuperando a geometria completa das rotas, assim como os pontos de início e fim para cada trajeto planejado.
-
-- **Seleção e Ajuste Final:**
-  - Combina as informações processadas das trips e dos shapes, estabelecendo a direção do shape (**sentido_shape**) com base nas condições observadas.
-  - Adiciona colunas complementares como **id_tipo_trajeto**, **feed_version**, e a data/hora atual para registrar a última atualização (**datetime_ultima_atualizacao**).
-
-O resultado final é um conjunto de dados consolidado que engloba todas as informações planejadas das viagens, associando horários, trajetos e geometrias. Esse conjunto serve como base para as comparações com os dados reais de execução, permitindo uma análise detalhada da conformidade e do desempenho operacional.
-
-## Dicas: inserir todos os nomes das querys
