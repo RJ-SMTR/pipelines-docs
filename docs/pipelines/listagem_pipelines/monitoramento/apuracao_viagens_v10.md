@@ -93,10 +93,10 @@
  - *end_pt*:  Elemento geométrico que representa o fim da viagem.
  
  * **1.4 Linhagem**:
-- ![Linhagem GPS SPPO](imagens/1.linhagem_gps_sppo.png)
+- ![Linhagem GPS SPPO](imagens/2linhagem_viagem_planejada.png)
 
 * **1.5 Modelo da Tabela**:
-- ![Tabela gerada](imagens/1.tabela_sppo.png)
+- ![Tabela gerada](imagens/2ViagemPlanejada.png)
 
 
 
