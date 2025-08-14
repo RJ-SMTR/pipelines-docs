@@ -1,6 +1,8 @@
 ### Documentação consolidada do processo de apuração das viagens para o subsídio do transporte público municipal do Rio de Janeiro. 
 *Inclui glossário, descrição dos modelos que são apresentados na sequência de execução da pipeline.*
 
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 ## **Glossário:**
 - **Distância aferida**: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos;
 - **Garagem**: Local onde os veículos de transporte ficam quando não estão em operação;
@@ -18,6 +20,7 @@
 - **Viagem** - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término[duas meias viagens];
 - **Viagem Circular** - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
 
+------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 ## **1. Tabela: gps_sppo** 
 - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_veiculos/gps_sppo.sql
