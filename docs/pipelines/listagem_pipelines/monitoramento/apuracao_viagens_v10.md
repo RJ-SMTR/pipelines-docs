@@ -16,11 +16,58 @@
 - **Viagem Circular** - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
 
 ------------------------------------------------------------------------------
+## **1. Tabela: gps_sppo** 
+- Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_veiculos/gps_sppo.sql
+- Modelo Incremental particionado por data com granularidade diária.
+
+* **1.1 Objetivo**: A tabela *gps_sppo* armazena os dados do gps após passar pelas transformações de cálculo da velocidade instantânea, cálculo da velocidade média, análise se o veículo encontra-se parado, conformidade com a rota.
+
+* **1.2 Fluxo de execução do modelo**:
+ - *CTE[registros]*: seleciona os registros do gps por um filtro de data.
+      - Utiliza a tabela ephemeral *sppo_aux_registros_filtrada* e seleciona os campos id_veiculo, timestamp_gps, timestamp_caputura, velocidade, linha, latitude e longitude.
+    
+ - *CTE[velocidades]*: seleciona as informações de velocidade, distância e movimento.
+   - Utiliza a tabela ephemeral *sppo_aux_registros_velocidade* e seleciona os campos id_veiculo, timestamp_gps, velocidade, linha, distancia, flag_em_movimento.
+   
+ - *CTE[paradas]*: seleciona os tipos parada dos veiculos, como terminal, garagem.
+   - Utiliza a tabela ephemeral *sppo_aux_registros_parada* e seleciona os campos id_veiculo, timestamp_gps, linha, tipo de parada.
+
+ - *CTE[flags]*: seleciona as flags (indicadores) que determinam de forma booleana (True ou False) se o veículo está dentro do trajeto correto, além de verificar se a linha existe no sigmob.
+   - Utiliza a tabela ephemeral *sppo_aux_registros_flag_trajeto_correto* e seleciona os campos id_veiculo, timestamp_gps, linha, route_id, flag_linha_existe_sigmob, flag_trajeto_correto, flag_trajeto_correto_hist .
+  
+- *Junção final*: seleciona as informações das CTE´s classifica se o veículo está em operação, operando fora do trajeto e define o tipo de parada, como parado trajeto correto e parado fora do trajeto. 
+
+* **Nº.3 Linhagem**:
+
+* **Nº.4 Modelo da Tabela**:
+
+
+
+
+
+
+
+
+
 
 ## **1. Tabela: gps_sppo** 
+- Caminho do modelo: 
+* **Nº.1 Definição**: 
+* **1.2 Objetivo**:
+* **1.3 Linhagem**:
+- Definição: 
 
-- Definição: A tabela *gps_sppo* é onde são armazenados os dados do gps após passar pelas seguintes transformações de cálculo da velocidade instantânea, 
-cálculo da velocidade média, análise se o veículo encontra-se parado, conformidade com a rota. 
+- sppo_aux_registros_flag_trajeto
+- sppo
+
+
+
+
+
+
+
+
+
 
 **1.1 Cálculo da velocidade instantânea [velocidade_instantanea]**
 - A velocidade instantânea é calculada dividindo a distância percorrida pelo tempo entre dois registros de timestamp consecutivos. 
