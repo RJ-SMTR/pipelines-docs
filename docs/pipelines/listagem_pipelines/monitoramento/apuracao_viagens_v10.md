@@ -1,4 +1,4 @@
-### Documentação do processo de apuração das viagens para o subsídio do transporte público municipal do Rio de Janeiro. 
+### Documentação consolidada do processo de apuração das viagens para o subsídio do transporte público municipal do Rio de Janeiro. 
 *Inclui glossário, descrição dos modelos que são apresentados na sequência de execução da pipeline.*
 
 ## **Glossário:**
