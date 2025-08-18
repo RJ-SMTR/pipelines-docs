@@ -22,8 +22,8 @@
 
 ------------------------------------------------------------------------------
 ## ETAPA 1
-- A Figura 1 apresenta um esquema do processo, no qual cada etapa será detalhada nas seções seguintes.
-- ![Figura 1 - Especificação](imagens/etapa1.png)
+- Abaixo um esquema do processo, no qual cada etapa será detalhada nas seções seguintes.
+- ![Especificação](imagens/etapa1.png)
 
 
 ## **1. GTFS** 
@@ -127,12 +127,12 @@
 
 
 - ## LINHAGEM DOS MODELOS
-- ![Figura 2 - Linhagem ETAPA 1](imagens/LINHAGEMETAPA1.png)
+- ![Linhagem ETAPA 1](imagens/LINHAGEMETAPA1.png)
 
 
 ------------------------------------------------------------------------------
 ## ETAPA 2
-- ![Figura 3 - Especificação ETAPA 2](imagens/ETAPA2.png)
+- ![Especificação ETAPA 2](imagens/ETAPA2.png)
 
 
 ## **2. Tabela: gps_sppo** 
@@ -315,11 +315,12 @@
            * *Materização*: Não declarada.
            * *CTE distancia* para calcular a distancia percorrida, somando todas as distancias de todos os trechos e converte em quilometro. Em max(distancia_inicio_fim) inclui um gap, considerando o primeiro sinal de gps e o ponto inicial do shape e o último sinal do gps como o ponto final e arredonda para três casas.
            * *Conta o registro* das comunicações criando a instância n_registros_total e cria também a n_registros_minuto para não contar dois registros que foram emitidos no mesmo minuto.
-           * *CTE filtro de datas* que verifica um ou dois dias de dados. Essa parte do modelo faz essa análise dos dias:
-            - data = date_sub(date("{{ var("run_date") }}"), interval 1 day)
-            - {% else %}
-             - data between date_sub(date("{{ var("run_date") }}"), interval 1 day) and date("{{ var("run_date") }}")
-             - {% endif %}
+           * *CTE filtro de datas* que verifica um ou dois dias de dados. 
+              Essa parte do modelo faz essa análise dos dias:
+             data = date_sub(date("{{ var("run_date") }}"), interval 1 day)
+            {% else %}
+            data between date_sub(date("{{ var("run_date") }}"), interval 1 day) and date("{{ var("run_date") }}")
+            {% endif %}
             * *CTE consolidação final* agrupa pelo id_viagem e consolida os cálculos de distância e refistros de gps. 
        
 **8.3 Resultados apresentados**
@@ -327,9 +328,56 @@
 
 **8.4 Linhagem**:
 - ![Linhagem](imagens/aux_viagem_registro.png)
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+## **9. Viagem_conformidade**
+ - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_conformidade.sql
+         
+**9.1 Objetivo**: Calcular os indicadores de conformidade entre as viagens planejadas e as viagens realizadas.
+         
+**9.2 Fluxo de execução do modelo**:
+           * *Materização*: Incremental.
+           * *CTE viagens* realiza o calculo de quatro indicadores, sendo eles:
+                 * perc_conformidade_shape que se trata do percentual de pontos do GPS dentro do trajeto planeado (pontos_no_trajeto / total_pontos) * 100;
+                 * perc_conformidade_distancia que se trata do percentual da distância real versus a planejada. (distancia_real / distancia_planejada) * 100
+                 * perc_conformidade_registros que se trata do percentual de minutos com registros de GPS. (minutos_com_gps / tempo_total) * 100
+                 * velocidade média que é calculado a partir da divisão da distância pelo tempo. 
 
+           
+**9.3 Resultados apresentados**
+         * Elabora uma tabela com os indicadores das viagens.
 
+**9.4 Linhagem**:
+- ![Linhagem](imagens/vg_conformidade.png)
 
+**9.5 Modelo da Tabela**:
+- ![Tabela gerada](imagens/vg_conformidade_tab1.png)
+- ![Tabela gerada](imagens/vg_conformidade_tab2.png)
+------------------------------------------------------------------------------
+# ETAPA 5
+- ![Especificação ETAPA 5](imagens/etapafinal.png)
 
+## **10. Viagem Completa**
+ - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_completa.sql
+         
+**10.1 Objetivo**: Consolidação das viagens com a apresentação dos indicadores.
+         
+**10.2 Fluxo de execução do modelo**:
+           * *Materização*: Incremental com granularidade diária.
+           * *No primeiro bloco* do modelo é feita uma análise de versões de shapes válidos. A partir da variável  subsidio_data_versao_efetiva roda o dia anterior para selecionar a tabela shapes_geom_gtfs.
+           * *Seleciona as viagens plenejadas* e as viagens realizadas, realizando um filtro de horário.
+           * *Seleciona as viagens completas* desde que tenham um percentual de comunicação dentro do shape, que tenha uma distância aferida dentro do critério que foi planejado (80%).
+           * *Exceções* como o show da Madonna são tratadas com regras diferentes.
+           * *Retira as duplicidades*
+         
+**10.3 Resultados apresentados**
+         * Tabela unificada em que cada linha é uma viagem válida com dados de id, data, consórcio e com os indicadores de conformidade distancia_planejada, distancia_aferida, velocidade_media, perc_conformidade_shape, perc_conformidade_distancia e perc_conformidade_registros.
+         
+**10.4 Linhagem**:
+- ![Linhagem](imagens/vg_completa.png)
 
-
+**10.5 Modelo da Tabela**:
+- ![Tabela gerada](imagens/vg_completa_tab1.png)
+- ![Tabela gerada](imagens/vg_completa_tab2.png)
+- ![Tabela gerada](imagens/vg_completa_tab3.png)
+- ![Tabela gerada](imagens/vg_completa_tab4.png)
