@@ -1,4 +1,4 @@
-### Documentação consolidada do processo de apuração das viagens para o subsídio do transporte público municipal do Rio de Janeiro. 
+# Documentação consolidada do processo de apuração das viagens para o subsídio do transporte público municipal do Rio de Janeiro. 
 *Inclui glossário, descrição dos modelos que são apresentados na sequência de execução da pipeline.*
 
 ------------------------------------------------------------------------------
@@ -19,7 +19,7 @@
 - **Timestamp** - Registro de data e hora;
 - **Viagem** - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término[duas meias viagens];
 - **Viagem Circular** - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
-
+------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 ## ETAPA 1
 - Abaixo um esquema do processo, no qual cada etapa será detalhada nas seções seguintes.
@@ -31,103 +31,82 @@
 - Esta etapa antecede a preparação da tabela de dados de GPS, que será utilizada na apuração das viagens.
 - Consiste no tratamento e estruturação dos dados do GTFS para que possam ser corretamente consumidos nas etapas subsequentes.
 - São utilizados os modelos sppo_realocacao, sppo_registros, sppo_aux_registros_filtrada, sppo_registros_relocacao, sppo_aux_registros_relocacao, sppo_aux_registros_flag_trajeto_correto, sppo_aux_registros_parada, sppo_aux_registros_velocidade que serão detalhados a seguir.
-
-    **1.1 sppo_realocacao**
-    - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_realocacao.sql
-         
-         * **1.1.1 Objetivo**: Padronização de dados
-         
-         * **1.1.2 Fluxo de execução do modelo**:
-          - *Consulta* que converte o id_veiculo para string, ajusta o timestamp para o horário de São Paulo, transforma a coluna serviço gerando um identificador padronizado.
-         
-         * **1.1.3 Resultados apresentados**
-         - Trata os dados para o modelo sppo_aux_registros_relocacao
-
-    **1.2 sppo_aux_registros_relocacao**
-    - Caminho do modelo:   prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_realocacao.sql
-         
-         - **1.2.1 Objetivo**: O modelo ajusta os registros de GPS com o serviço, garantindo que nenhum veículo tenha mais de um serviço alocado para aquela viagem.
-           
-         - **1.2.2 Fluxo de execução do modelo**:
-             
-            - *Materização*: Caso a variável 15 estiver ativa, trata-se de um modelo ephemeral, caso contrário é incremental.
-            - *Filtra* os registros de gps.
+------
+**1.1 sppo_realocacao**
+- **Caminho do modelo:** prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_realocacao.sql
+- **1.1.1 Objetivo**: Padronização de dados
+- **1.1.2 Fluxo de execução do modelo**:
+   - *Consulta* que converte o id_veiculo para string, ajusta o timestamp para o horário de São Paulo, transforma a coluna serviço gerando um identificador padronizado.    
+- **1.1.3 Resultados apresentados**
+   * Trata os dados para o modelo sppo_aux_registros_relocacao
+------
+**1.2 sppo_aux_registros_relocacao**
+**Caminho do modelo:**   prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_realocacao.sql
+**1.2.1 Objetivo**: O modelo ajusta os registros de GPS com o serviço, garantindo que nenhum veículo tenha mais de um serviço alocado para aquela viagem.
+**1.2.2 Fluxo de execução do modelo**:
+ * *Materização*: Caso a variável 15 estiver ativa, trata-se de um modelo ephemeral, caso contrário é incremental.
+ * *Filtra* os registros de gps.
             - *Combina o gps* com a realocação. 
          
-   * **1.2.3 Resultados apresentados**: Trata os dados para o modelo sppo_aux_registros_filtrada.
+**1.2.3 Resultados apresentados**: 
+   * Trata os dados para o modelo sppo_aux_registros_filtrada.
+------
+**1.3 sppo_registros**
+- **Caminho do modelo**: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_filtrada.sql       
+**1.3.1 Objetivo**: Filtragem e tratamentos básicos de registro de gps.
+**1.3.2 Fluxo de execução do modelo**:
+   * *Filtra* que converte a coluna ordem para string.
+   * *Trata* a latitude e longitude.
+**1.3.3 Resultados apresentados**
+   * Trata os dados para o modelo sppo_aux_registros_filtrada.
+------     
+**1.4 sppo_aux_registros_filtrada**
+**Caminho do modelo:** prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_filtrada.sql
+**1.4.1 Objetivo**: Filtragem e tratamento básico de registros de gps.
+ **1.4.2 Fluxo de execução do modelo**:
+   * *Materização*: Caso a variável 15 estiver ativa, trata-se de um modelo ephemeral, caso contrário é incremental.
+   * *Filtra* registros que estão fora de uma marcação geográfica que contém a área do município de Rio de Janeiro. Usando a função st_intersectsbox [Vide documentação <https://postgis.net/docs/ST_Intersects.html>]
+   * *Filtra* registros antigos. Remove registros que tem diferença maior que 1 minuto entre o timestamp_captura e timestamp_gps.
+   * *Renomeia* ordem para id_veiculo.
+**1.4.3 Resultados apresentados**
+   * Trata os dados para os modelos sppo_aux_registros_flag_trajeto_correto, sppo_aux_registros_parada, sppo_aux_registros_velocidade.
+------   
+**1.5 sppo_aux_registros_velocidade**
+**Caminho do modelo:** prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_velocidade.sql
+**1.5.1 Objetivo**: Filtragem e tratamento básico de registros de gps.
+**1.5.2 Fluxo de execução do modelo**:
+   * *Materização*: Ephemeral.
+   * *Calcula* a distância em metros entre a posição atual do veículo e aposição anterior. Usa a função lag [Vide documentação<https://www.postgresql.org/docs/current/functions-window.html>]
+   * *Calcula* a velocidade instântanea.
+   * *Cria* um indicador boleano para verificar se o veículo está em movimento.
+ **1.5.3 Resultados apresentados**
+   * Fornece insumos diretos para a Tabela gps_sppo.
+------   
+**1.6 sppo_aux_registros_parada**
+**Caminho do modelo:** prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_parada.sql
+**1.6.1 Objetivo**: Identifica veículos parados em terminais ou garagens.
+ **1.6.2 Fluxo de execução do modelo**:
+   * *Materização*: Ephemeral.
+   * *Seleciona* a lista de terminais e garagens conhecidos para a definição do tipo_parada igual a terminal. Utiliza a função ST_GEOGPOINT e ST_GEOGFROMTEXT [vide documentação <https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions>]
+   * *Calcula* a velocidade instântanea.
+   * *Cria* um indicador boleano para verificar se o veículo está em movimento.
+ **1.6.3 Resultados apresentados**
+   * Fornece insumos diretos para a Tabela gps_sppo.
+------     
+**1.7 sppo_aux_registros_flag_trajeto_correto**
+**Caminho do modelo:** prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_flag_trajeto_correto.sql
+**1.7.1 Objetivo**: Identifica se os veículos estão dentro de um trajeto planejado.
+**1.7.2 Fluxo de execução do modelo**:
+   * *Materização*: Ephemeral.
+   * *Verifica* a partir de uma janela de tempo (período pré-estabelecido) se o veículo esteve pelo menos uma vez dentro do trajeto planejado. 
+   * *O Serviço* é verificado, analisa se ele está no cadastro do SIGMOB.
+   * *Utiliza* a função ST_DWITHIN [vide documentação<http://postgis.net/docs/ST_DWithin.html>] com um buffer de 500 metros para verificar se o ponto está próximo do shape. Se ele esteve pelo menos uma vez no trajeto correto, cria uma flag_trajeto_correto_hist com o valor TRUE, caso contrário, essa flag recebe o valor FALSE.
+**1.7.3 Resultados apresentados**
+   * Fornece insumos diretos para a Tabela gps_sppo.   
 
-    **1.3 sppo_registros**
-    - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_filtrada.sql
-         
-         * **1.3.1 Objetivo**: Filtragem e tratamentos básicos de registro de gps.
-         
-         * **1.3.2 Fluxo de execução do modelo**:
-           - *Filtra* que converte a coluna ordem para string.
-           - *Trata* a latitude e longitude.
-         
-         * **1.3.3 Resultados apresentados**
-         - Trata os dados para o modelo sppo_aux_registros_filtrada.
-     
-    **1.4 sppo_aux_registros_filtrada**
-    - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_filtrada.sql
-         
-         * **1.4.1 Objetivo**: Filtragem e tratamento básico de registros de gps.
-         
-         * **1.4.2 Fluxo de execução do modelo**:
-           * *Materização*: Caso a variável 15 estiver ativa, trata-se de um modelo ephemeral, caso contrário é incremental.
-           * *Filtra* registros que estão fora de uma marcação geográfica que contém a área do município de Rio de Janeiro. Usando a função st_intersectsbox [Vide documentação <https://postgis.net/docs/ST_Intersects.html>]
-           * *Filtra* registros antigos. Remove registros que tem diferença maior que 1 minuto entre o timestamp_captura e timestamp_gps.
-           * *Renomeia* ordem para id_veiculo.
-                  
-         * **1.4.3 Resultados apresentados**
-         * Trata os dados para os modelos sppo_aux_registros_flag_trajeto_correto, sppo_aux_registros_parada, sppo_aux_registros_velocidade.
+**LINHAGEM DOS MODELOS**
 
-    **1.5 sppo_aux_registros_velocidade**
-    - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_velocidade.sql
-         
-         * **1.5.1 Objetivo**: Filtragem e tratamento básico de registros de gps.
-         
-         * **1.5.2 Fluxo de execução do modelo**:
-           * *Materização*: Ephemeral.
-           * *Calcula* a distância em metros entre a posição atual do veículo e aposição anterior. Usa a função lag [Vide documentação<https://www.postgresql.org/docs/current/functions-window.html>]
-           * *Calcula* a velocidade instântanea.
-           * *Cria* um indicador boleano para verificar se o veículo está em movimento.
-                               
-         * **1.5.3 Resultados apresentados**
-         * Fornece insumos diretos para a Tabela gps_sppo.
-
-    **1.6 sppo_aux_registros_parada**
-    - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_parada.sql
-         
-         * **1.6.1 Objetivo**: Identifica veículos parados em terminais ou garagens.
-         
-         * **1.6.2 Fluxo de execução do modelo**:
-           * *Materização*: Ephemeral.
-           * *Seleciona* a lista de terminais e garagens conhecidos para a definição do tipo_parada igual a terminal. Utiliza a função ST_GEOGPOINT e ST_GEOGFROMTEXT [vide documentação <https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions>]
-           * *Calcula* a velocidade instântanea.
-           * *Cria* um indicador boleano para verificar se o veículo está em movimento.
-                               
-         * **1.6.3 Resultados apresentados**
-         * Fornece insumos diretos para a Tabela gps_sppo.
-     
-      **1.7 sppo_aux_registros_flag_trajeto_correto**
-    - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_flag_trajeto_correto.sql
-         
-         * **1.7.1 Objetivo**: Identifica se os veículos estão dentro de um trajeto planejado.
-         
-         * **1.7.2 Fluxo de execução do modelo**:
-           * *Materização*: Ephemeral.
-           * *Verifica* a partir de uma janela de tempo (período pré-estabelecido) se o veículo esteve pelo menos uma vez dentro do trajeto planejado. 
-           * *O Serviço* é verificado, analisa se ele está no cadastro do SIGMOB.
-           * *Utiliza* a função ST_DWITHIN [vide documentação<http://postgis.net/docs/ST_DWithin.html>] com um buffer de 500 metros para verificar se o ponto está próximo do shape. Se ele esteve pelo menos uma vez no trajeto correto, cria uma flag_trajeto_correto_hist com o valor TRUE, caso contrário, essa flag recebe o valor FALSE.
-                               
-         * **1.7.3 Resultados apresentados**
-         * Fornece insumos diretos para a Tabela gps_sppo.   
-
-
-
-- ## LINHAGEM DOS MODELOS
-- ![Linhagem ETAPA 1](imagens/LINHAGEMETAPA1.png)
+![Linhagem ETAPA 1](imagens/LINHAGEMETAPA1.png)
 
 
 ------------------------------------------------------------------------------
