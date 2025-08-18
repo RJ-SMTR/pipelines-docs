@@ -32,7 +32,7 @@
 - Consiste no tratamento e estruturação dos dados do GTFS para que possam ser corretamente consumidos nas etapas subsequentes.
 - São utilizados os modelos sppo_realocacao, sppo_registros, sppo_aux_registros_filtrada, sppo_registros_relocacao, sppo_aux_registros_relocacao, sppo_aux_registros_flag_trajeto_correto, sppo_aux_registros_parada, sppo_aux_registros_velocidade que serão detalhados a seguir.
 ------
-**1.1 sppo_realocacao**
+## **1.1 sppo_realocacao**
 - **Caminho do modelo:** prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_realocacao.sql
 
 - **1.1.1 Objetivo**: Padronização de dados
@@ -44,7 +44,7 @@
 - Trata os dados para o modelo sppo_aux_registros_relocacao
 ------
 
-**1.2 sppo_aux_registros_relocacao**
+## **1.2 sppo_aux_registros_relocacao**
 **Caminho do modelo:**   prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_realocacao.sql
 
 **1.2.1 Objetivo**: O modelo ajusta os registros de GPS com o serviço, garantindo que nenhum veículo tenha mais de um serviço alocado para aquela viagem.
@@ -58,7 +58,7 @@
 - Trata os dados para o modelo sppo_aux_registros_filtrada.
 ------
 
-**1.3 sppo_registros**
+## **1.3 sppo_registros**
 - **Caminho do modelo**: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_filtrada.sql
         
 **1.3.1 Objetivo**: Filtragem e tratamentos básicos de registro de gps.
@@ -70,7 +70,7 @@
 **1.3.3 Resultados apresentados**
    * Trata os dados para o modelo sppo_aux_registros_filtrada.
 ------     
-**1.4 sppo_aux_registros_filtrada**
+## **1.4 sppo_aux_registros_filtrada**
 - **Caminho do modelo:** prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_filtrada.sql
 
 **1.4.1 Objetivo**: Filtragem e tratamento básico de registros de gps.
@@ -85,7 +85,7 @@
 - Trata os dados para os modelos sppo_aux_registros_flag_trajeto_correto, sppo_aux_registros_parada, sppo_aux_registros_velocidade.
 ------   
 
-**1.5 sppo_aux_registros_velocidade**
+## **1.5 sppo_aux_registros_velocidade**
 - **Caminho do modelo:** prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_velocidade.sql
 
 **1.5.1 Objetivo**: Filtragem e tratamento básico de registros de gps.
@@ -97,9 +97,9 @@
    * *Cria* um indicador boleano para verificar se o veículo está em movimento.
 
  **1.5.3 Resultados apresentados**
-   * Fornece insumos diretos para a Tabela gps_sppo.
+- Fornece insumos diretos para a Tabela gps_sppo.
 ------   
-**1.6 sppo_aux_registros_parada**
+## **1.6 sppo_aux_registros_parada**
 - **Caminho do modelo:** prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_parada.sql
 
 **1.6.1 Objetivo**: Identifica veículos parados em terminais ou garagens.
@@ -111,9 +111,9 @@
    * *Cria* um indicador boleano para verificar se o veículo está em movimento.
 
 **1.6.3 Resultados apresentados**
-   * Fornece insumos diretos para a Tabela gps_sppo.
+- Fornece insumos diretos para a Tabela gps_sppo.
 ------     
-**1.7 sppo_aux_registros_flag_trajeto_correto**
+## **1.7 sppo_aux_registros_flag_trajeto_correto**
 - **Caminho do modelo:** prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_flag_trajeto_correto.sql
 
 **1.7.1 Objetivo**: Identifica se os veículos estão dentro de um trajeto planejado.
@@ -125,7 +125,7 @@
    * * *Utiliza* a função ST_DWITHIN [vide documentação<http://postgis.net/docs/ST_DWithin.html>] com um buffer de 500 metros para verificar se o ponto está próximo do shape. Se ele esteve pelo menos uma vez no trajeto correto, cria uma flag_trajeto_correto_hist com o valor TRUE, caso contrário, essa flag recebe o valor FALSE.
 
 **1.7.3 Resultados apresentados**
-   * Fornece insumos diretos para a Tabela gps_sppo.   
+- Fornece insumos diretos para a Tabela gps_sppo.   
 
 **LINHAGEM DOS MODELOS**
 
@@ -134,7 +134,6 @@
 ------------------------------------------------------------------------------
 ## ETAPA 2
 - ![Especificação ETAPA 2](imagens/ETAPA2.png)
-
 
 ## **2. Tabela: gps_sppo** 
 - *Caminho do modelo:* prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_veiculos/gps_sppo.sql
@@ -204,10 +203,9 @@
 
 * *Modelo* esquemático:
 - ![Esquema](imagens/esquema_status_viagem.png)
-
                   
 **3.3 Resultados apresentados**
-* Oferecer insumos para as tabelas registro_status_viagem, aux_viagem_inicio_fim. Classificar as viagens conforme o posicionamento. 
+- Oferecer insumos para as tabelas registro_status_viagem, aux_viagem_inicio_fim. Classificar as viagens conforme o posicionamento. 
 
 **3.4 Linhagem**:
 - ![Linhagem](imagens/linhagem_3_status_viagem.png)
