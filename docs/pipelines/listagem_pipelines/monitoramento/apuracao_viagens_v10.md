@@ -38,23 +38,23 @@
          * **1.1.1 Objetivo**: Padronização de dados
          
          * **1.1.2 Fluxo de execução do modelo**:
-          * *Consulta* que converte o id_veiculo para string, ajusta o timestamp para o horário de São Paulo, transforma a coluna serviço gerando um identificador padronizado.
+          - *Consulta* que converte o id_veiculo para string, ajusta o timestamp para o horário de São Paulo, transforma a coluna serviço gerando um identificador padronizado.
          
          * **1.1.3 Resultados apresentados**
-         * Trata os dados para o modelo sppo_aux_registros_relocacao
+         - Trata os dados para o modelo sppo_aux_registros_relocacao
 
     **1.2 sppo_aux_registros_relocacao**
     - Caminho do modelo:   prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_realocacao.sql
          
-         * **1.2.1 Objetivo**: O modelo ajusta os registros de GPS com o serviço, garantindo que nenhum veículo tenha mais de um serviço alocado para aquela viagem.
+         - **1.2.1 Objetivo**: O modelo ajusta os registros de GPS com o serviço, garantindo que nenhum veículo tenha mais de um serviço alocado para aquela viagem.
            
-         * **1.2.2 Fluxo de execução do modelo**:
-          * *Materização*: Caso a variável 15 estiver ativa, trata-se de um modelo ephemeral, caso contrário é incremental.
-          * *Filtra* os registros de gps.
-          * *Combina o gps* com a realocação. 
+         - **1.2.2 Fluxo de execução do modelo**:
+             
+            - *Materização*: Caso a variável 15 estiver ativa, trata-se de um modelo ephemeral, caso contrário é incremental.
+            - *Filtra* os registros de gps.
+            - *Combina o gps* com a realocação. 
          
-         * **1.2.3 Resultados apresentados**
-         * Trata os dados para o modelo sppo_aux_registros_filtrada.
+   * **1.2.3 Resultados apresentados**: Trata os dados para o modelo sppo_aux_registros_filtrada.
 
     **1.3 sppo_registros**
     - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_filtrada.sql
@@ -62,11 +62,11 @@
          * **1.3.1 Objetivo**: Filtragem e tratamentos básicos de registro de gps.
          
          * **1.3.2 Fluxo de execução do modelo**:
-          * *Filtra* que converte a coluna ordem para string.
-          * *Trata* a latitude e longitude.
+           - *Filtra* que converte a coluna ordem para string.
+           - *Trata* a latitude e longitude.
          
          * **1.3.3 Resultados apresentados**
-         * Trata os dados para o modelo sppo_aux_registros_filtrada.
+         - Trata os dados para o modelo sppo_aux_registros_filtrada.
      
     **1.4 sppo_aux_registros_filtrada**
     - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_onibus_gps/sppo_aux_registros_filtrada.sql
@@ -381,3 +381,23 @@
 - ![Tabela gerada](imagens/vg_completa_tab2.png)
 - ![Tabela gerada](imagens/vg_completa_tab3.png)
 - ![Tabela gerada](imagens/vg_completa_tab4.png)
+------------------------------------------------------------------------------
+## **REFERENCIAS**
+
+- DBT <https://learn.getdbt.com/courses/dbt-fundamentals>;
+- Documentação DBT Rio <https://docs.mobilidade.rio/#!/overview?g_v=1&g_i=%2Bviagem_completa>;
+- Documentação GITHUB <https://docs.github.com/pt>
+- Função ST_DISTANCE <https://learn.microsoft.com/pt-br/stream-analytics-query/st-distance>;
+- Função ST_DWITHIN <http://postgis.net/docs/ST_DWithin.html>;
+- Função ST_INTERSECTBOX <https://postgis.net/docs/ST_Intersects.html>;
+- Fumção ST_GEOGFROMTEXT <https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions]>;
+- Função ST_GEOPOINT <https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions]>;
+- Função LAG <https://www.postgresql.org/docs/current/functions-window.html]>;
+- Função LEAD <https://learn.microsoft.com/pt-br/sql/t-sql/functions/lead-transact-sql?view=sql-server-ver16>;
+- Função WINDOW <https://www.postgresql.org/docs/current/functions-window.html>;
+- GTFS Rio <https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about>;
+- Materialização de modelos <https://docs.getdbt.com/docs/build/materializations>;
+- Openmetadata <https://metadata.mobilidade.rio>
+- Plano Operacional <https://transportes.prefeitura.rio>.
+
+
