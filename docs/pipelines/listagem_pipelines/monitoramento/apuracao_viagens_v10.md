@@ -47,7 +47,7 @@
 * Identifica se os veículos estão "parado fora do trajeto" ou "parado trajeto correto".
 
 **1.4 Resultados apresentados**:
-* A tabela gps_sppo apresenta cada linha como registro a cada 30 segundos da comunicação do GPS dos veículos particionado por data. Nesta tabela, constam os atributos:
+* A tabela `gps_sppo` apresenta cada linha como registro a cada 30 segundos da comunicação do GPS dos veículos particionado por data. Nesta tabela, constam os atributos:
    * Data (YYYY-mm-dd);
    * Hora (hh:mm:ss);
    * Id_veiculo;
@@ -70,125 +70,243 @@
 **1.6 Linhagem**:
 - ![Linhagem GPS SPPO](imagens/linhagem_gps_sppo.png)
 
-**2.5 Modelo da Tabela**:
+**1.7 Modelo da Tabela**:
 ![Tabela gerada](imagens/sppo_tab1.png)
 ![Tabela gerada](imagens/sppo_tab2.png)
 ------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-## ETAPA 3
-- ![Figura 3 - Especificação ETAPA 3](imagens/etapa3.png)
 
-## **3. Aux_registros_status_trajeto**
- - Caminho do modelo: prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_registros_status_trajeto.sql
+------------------------------------------------
+## **ETAPA 2**
+
+## **2. Tabela: Aux_registros_status_trajeto** 
+*Caminho do modelo:* 
+*prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_registros_status_trajeto.sql*
+
+- ![Modelo](imagens/aux_registro_status_trajeto.png)
+
+**2.1 Objetivo**: Monitorar e classificar a posição dos veículos de transporte público em relação às suas rotas planejadas
+
          
-**3.1 Objetivo**: Monitorar e classificar a posição dos veículos de transporte público em relação às suas rotas planejadas
-         
-**3.2 Fluxo de execução do modelo**:
-* *Materização*: Não declarada;
-* *Busca o GTFS* vigente;
-* *Filtra* registros da Tabela gps_sppo com o critério d-2;
-* *Remove* os veículos parados em garagem;
-* *Correspondência do tipo de serviço*, o modelo analisa que se o serviço informado via GPS está igual ao serviço planejado; 
-* *Utiliza a função ST_GEOGPOINT* para criar um ponto georreferenciado. [vide documentação <https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions>];
-* *Utiliza a função ST_DWINTHIN* para verificar se a posição do veículo está dentro do planejado;
-* *Gera um buffer* define o quanto o veículo precisa estar próximo a rota para que o trajeto seja considerado válido. Dentro de um buffer de 500 metros;
-*  *Classifica* o registro do GPS em start, middle e end. 
-*  *Indicador de posição:*
+**2.2 Fluxo de execução do modelo**:
+* Materização declarada no arquivo dbt_project.yml 
+* Busca o GTFS vigente;
+* Filtra registros da Tabela gps_sppo com o critério d-2;
+* Remove os veículos parados em garagem;
+* Associa o serviço com base no informado;
+* Utiliza a função [ST_GEOGPOINT](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions) para criar um ponto georreferenciado;
+* Utiliza a função [ST_DWINTHIN](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions) para verificar se a posição do veículo está dentro do planejado;
+* Gera um buffer de 500 metros define o quanto o veículo precisa estar próximo a rota para que o trajeto seja considerado válido;
+*  Classifica o registro do GPS em indicadores de posição:
    * start: o veículo está próximo ao início da rota.
    * middle: a viagem e o veículo recebem o status de middle a partir da primeira comunicação depois do buffer inicial (start).
    * end: o veículo encontra-se próximo ao final da rota
    * out: veículo fora da rota.
+   * *Modelo esquemático*:
+![Esquema](imagens/esquema_start_middle_end.png)
+                  
+**2.3 Resultados apresentados**
+* A tabela `aux_registros_status_trajeto` apresenta cada linha como registro a cada 30 segundos da comunicação do GPS dos veículos particionado por data. Nesta tabela, constam os atributos:
+   * Data (YYYY-mm-dd);
+   * Timestamp do GPS;
+   * Id_veiculo;
+   * Id_empresa;
+   * Serviço informado;
+   * Serviço realizado;
+   * Dados de geolocalização do veículo em formato wkt POINT;
+   * Shape id;
+   * Shape id planejado;
+   * Sentido da Shape (ida ou volta);
+   * Sentido;
+   * Trip id;
+   * Trip planejado;
+   * Definição do Start e do End point, conforme definido no indicador de posição;
+   * Distância planejada;
+   * Distância realizada;
+   * Status da viagem, com a informação se aquele registro está no star, middle, end ou out com relação a rota; 
+    * Versão.   
 
-* *Modelo* esquemático:
-![Esquema](imagens/esquema_status_viagem.png)
+**2.4 Linhagem**
+
+![Linhagem](imagens/linhagem_aux_registro_vg_trajeto.png)
+
+**2.5 Modelo da Tabela**
+
+![Tabela gerada](imagens/aux_registros_status_trajeto_tab1.png)
+![Tabela gerada](imagens/aux_registros_status_trajeto_tab2.png)
+![Tabela gerada](imagens/aux_registros_status_trajeto_tab3.png)
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+## **ETAPA 3**
+
+## **3. Tabela: viagem_planejada** 
+*Caminho do modelo:* 
+*prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_planejada.sql*
+
+- ![Modelo](imagens/viagem_planejada.png)
+
+**3.1 Objetivo**: Criar uma tabela unificada de viagens planejadas.
+         
+**3.2 Fluxo de execução do modelo**:
+* Materização incremental
+* Uni as tabelas de `viagem_planejada1` e `viagem_plenajada2`.
                   
 **3.3 Resultados apresentados**
-- Classifica o registro do GPS.
+* A tabela `viagem_planejada` apresenta cada linha como registro com os seguintes atributos:
+   * Data (YYYY-mm-dd);
+   * Tipo_dia, especificação quanto ao dia útil, sábado, domingo, feriado, dias atípicos;
+   * Serviço;
+   * Vista que trata do nome do itinerário;
+   * Consórcio;
+   * Sentido (Ida/Volta);
+   * Partida_total_planejada que traz quantas partidas são especificadas;
+   * Distância Planejada por viagem;
+   * Distância Total para o dia;
+   * Início do período;
+   * Fim do Período;
+   * Faixa Horária Início;
+   * Faixa Horária Fim;
+   * Trip id planejado;
+   * Trip id;
+   * Shape id;
+   * Shape id planejado;
+   * Shape (em formato multilinestring);
+   * sentido_shape;
+   * Start_pt, ponto de início da viagem;
+   * End_pt, ponto final da viagem;
+   * Id_tipo_trajeto;
+   * Feed Version;
+   * Feed Start Date;
+   * Datetime da última atualização;
 
 **3.4 Linhagem**:
-- ![Linhagem](imagens/linhagem_3_status_viagem.png)
 
-* **3.5 Modelo da Tabela**:
-- ![Tabela gerada](imagens/registro_status_trajeto.png)
+![Linhagem](imagens/vp_linhagem.png)
 
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-## ETAPA 4
-- ![Especificação ETAPA 4](imagens/etapa4.png)
+**3.5 Modelo da Tabela**
 
-## **4. Viagem Planejada**
-*Caminho do modelo:*  prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_planejada.sql
-**4.1 Objetivo**: Criar uma tabela unificada de viagens planejadas.
+ ![Tabela gerada](imagens//viagem_planejada_tab0.png)
+ ![Tabela gerada](imagens/viagem_planejada_tab2.png)
+ ![Tabela gerada](imagens/viagem_planejada_tab3.png)
 
-**4.2 Fluxo de execução do modelo**:
-* *Materização*: Incremental.
-  
-**4.3 Resultados apresentados**
-- Tabela unificada com os dados de viagens planejadas.
-  
-**4.4 Linhagem**:
-- ![Linhagem](imagens/vg_planejada.png)
 
-**4.5 Modelo da Tabela**:
-- ![Tabela gerada](imagens/vg_planejada_tab.png)
 
 ------------------------------------------------------------------------------
-## **5. Aux_viagem_inicio_fim**
-*Caminho do modelo*: prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_viagem_inicio_fim.sql
+------------------------------------------------------------------------------
+## **ETAPA 4**
+
+## **4. Tabela: aux_viagem_inicio_fim** 
+*Caminho do modelo:* 
+*prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_viagem_inicio_fim.sql*
+
+- ![Modelo](imagens/aux_viagem_inicio_fim.png)
+
+**4.1 Objetivo**: Elabora um parâmetro das viagens completas (partida e chegada) de cada veículo no shape planejado.
          
-**5.1 Objetivo**: Elabora um parâmetro das viagens completas (partida e chegada) de cada veículo no shape planejado.
+**4.2 Fluxo de execução do modelo**:
+* Materização declarada no arquivo dbt_project.yml;
+* Cria coluna identificadora para início (start) e fim (end) da viagem;
+* Coloca no mesmo registro início e o fim da viagem, e posições geográficas de início e fim, utilizando a função [LEAD](https://cloud.google.com/bigquery/docs/reference/standard-sql/navigation_functions#lead);
+* Cria um id único para a viagem, utilizando o id_veiculo, sentido, shape_id_planejado e data;
+* Calcula a distância entre a posição inicial e final por meio da função [ST_DISTANCE](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_distance), transformando a distância em metros.
+                  
+**4.3 Resultados apresentados**
+Transforma a sequência de pontos do GPS em uma viagem com data e hora, posição inicial e final, distância real e planejada e cria um id único com o objetivo de fornecer insumos para a Tabela Viagem em conformidade.
 
-**5.2 Fluxo de execução do modelo**: 
-* *Materização*: Não declarada;
-* *Analisa* se há diferença entre duas classificações de registro de GPS, próximo registro do GPS for middle, então o anterior é o início da viagem, se mudar o status de middle, então tem-se o fim da viagem;
-* *startend* um padrão para detectar se a viagem é curta;
-* *Função lead* cada registro de partida é pareado com o seu próximo registro de chegada na mesma linha, guardando também suas posições geográficas. [Vide documentação para função Lead <https://learn.microsoft.com/pt-br/sql/t-sql/functions/lead-transact-sql?view=sql-server-ver16>];
-* *Cria um id único* para a viagem;
-* *Calcula* a distância entre o planejado e o real usando a função st_distance ao selecionar o ponto inicial e o ponto final. [Vide documentação <https://learn.microsoft.com/pt-br/stream-analytics-query/st-distance>] Além disso, faz uma divisão por mil para transformar metros em quilometros e arredonda para três casas decimais.
-      
+
+**4.4 Linhagem**:
+- ![Linhagem](imagens/aux_viagem_inicio_fim_linhagem.png)
+
+
+
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+## **ETAPA 5**
+
+## **5 Tabela: aux_viagem_circular* 
+*Caminho do modelo:* 
+ *prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_viagem_circular.sql*
+
+- ![Modelo](imagens/aux_viagem_circular.png)
+
+**5.1 Objetivo**:Identificar viagens de ida que possuem volta consegutiva, realizando o pivot para uma única linha com datetime de ida e datetime de volta. 
+         
+**5.2 Fluxo de execução do modelo**:
+* Utiliza a função [LEAD](https://cloud.google.com/bigquery/docs/reference/standard-sql/navigation_functions#lead) para inserir em mesmor registro o datetime ida e o datetime volta;
+* Utiliza o modelo `aux_viagem_inicio_fim` e cruza com uma view de ida_volta_circular para armazenar os dados de ida e volta e depois atribui um id_viagem sendo o mesmo para ida quanto para volta.
+                  
 **5.3 Resultados apresentados**
-- Transforma a sequência de pontos do GPS em uma viagem com data e hora, posição inicial e final, distância real e planejada e cria um id único com o objetivo de fornecer insumos para a Tabela Viagem em conformidade.
+* Para viagens circulares é garantido um id_viagem tanto para ida quanto para volta. 
+
 
 **5.4 Linhagem**:
-- ![Linhagem](imagens/inicio_fim.png)
 
+![Linhagem](imagens/aux_viagem_circular_linhagem.png)
+
+
+
+-----------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-## **6. Tabela: registros_status_viagem**
-*Caminho do modelo:* prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/registro_status_viagem.sql
-         
-**6.1 Objetivo**: Filtrar os registros de GPS e selecionar apenas aqueles que fazem parte de viagens realizadas que tenha um  início e um fim.
+## **ETAPA 6**
+
+## **6 Tabela: registros_status_viagem** 
+*Caminho do modelo:* 
+*prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/registros_status_viagem.sql*
+
+- ![Modelo](imagens/registro_status_viagem.png)
+
+**6.1 Objetivo**: Filtrar apenas viagens que possuem início e fim, a partir dos modelos. `aux_registros_status_trajeto`e `aux_viagem_circular`.
          
 **6.2 Fluxo de execução do modelo**:
-* *Materização*: Incremental com granularidade diária;
-* *Id_veiculo + horário e data(timestamp)* são a chave;
-* *Unifica* a tabela inicio e fim com a aux_circular (item 7).
-       
+* Materização incremental com partição diária;
+* Associa o veículo id_veiculo;
+* Faz um join entre as tabelas `aux_registros_status_trajeto`e `aux_viagem_circular`
+                  
 **6.3 Resultados apresentados**
-- Transforma os registros de GPS em uma base com os registros de viagem realmente realzadas.
+* A tabela `registros_status_viagem` apresenta cada linha como registro com os seguintes atributos:
+   * Data (YYYY-mm-dd);
+   * Id_veiculo;
+   * Id_empresa;
+   * Timestamp_gps
+   * Timestamp_minutos que desconsidera os segundos do timestamp_gps;
+   * Posição georreferenciada do veículo;
+   * Serviço informado;
+   * Serviço realizado;
+   * Shape_id e Shape id_planejado;
+   * Sentido Shpae (Ida 'I' e Volta 'V');
+   * Trip_id e Trip_id planejado;
+   * Sentido (Ida 'I' e Volta 'V');
+   * Start_pt ponto de início georreferenciado;
+   * End_pt ponto de fim da viagem georreferenciado;
+   * Distância planeada;
+   * Distância realizada;
+   * Status da viagem (start, middle, end, out);
+   * Datetime_partida;
+   * Datetime_chegada;
+   * Distância Início-Fim;
+   * id_viagem.
+ 
 
 **6.4 Linhagem**:
-- ![Linhagem](imagens/registro_status.png)
 
-**6.5 Modelo da Tabela**:
-- ![Tabela gerada](imagens/registro_status_vg_tab.png)
+![Linhagem](imagens/registro_status_viagem_linhagem.png)
 
-------------------------------------------------------------------------------
-## **7. Aux_viagem_circular**
- - *Caminho do modelo:* prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_viagem_circular.sql
-         
-**7.1 Objetivo**: Identificar as viagens circulares de ida e volta.
-         
-**7.2 Fluxo de execução do modelo**:
-* *Materização*: Não declarada;
-* *Usa a função lead* para encontrar as viagens de ida que são imediatamente seguidas por uma de volta quando há um mesmo serviço e veículo. [Vide documentação para função Lead <https://learn.microsoft.com/pt-br/sql/t-sql/functions/lead-transact-sql?view=sql-server-ver16>];
-* *Reatribui um novo id_viagem* para ida e para volta;
-* *Junta* todas as viagens.
-       
-**7.3 Resultados apresentados**
-- Gera uma tabela consolidada com as viagens circulares de ida e volta que possuem um mesmo id_viagem e combina com as demais viagens que não são circulares.
+**6.5 Modelo da Tabela**
 
-**7.4 Linhagem**:
-- ![Linhagem](imagens/vg_circular.png)
+ ![Tabela gerada](imagens/registro_status_viagem_tab1.png)
+ ![Tabela gerada](imagens/registro_status_viagem_tab2.png)
+ ![Tabela gerada](imagens/registro_status_viagem_tab3.png)
+
+
+
+
+
+
+
+
+
+
 
 ------------------------------------------------------------------------------
 ## **8. Aux_viagem_registros**
