@@ -71,8 +71,8 @@
 - ![Linhagem GPS SPPO](imagens/linhagem_gps_sppo.png)
 
 **2.5 Modelo da Tabela**:
-- ![Tabela gerada](imagens/1.tabela_sppo.png)
-  
+![Tabela gerada](imagens/sppo_tab1.png)
+![Tabela gerada](imagens/sppo_tab2.png)
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 ## ETAPA 3
