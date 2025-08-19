@@ -13,6 +13,8 @@ nav:
     - Introdução: pipelines/introducao.md # descrição dos motivos para criarmos as pipelines como fazemos atualmente
     - Pipelines genéricos: pipelines/templates.md # templates de pipelines genéricos, captura, tratamento
     - Listagem das pipelines: # histórico das pipelines já existentes, para cada uma falar dos parâmetros e do que se trata    
+      - Financeiro:
+        - Apuração do Subsídio (SPPO): pipelines/listagem_pipelines/financeiro/apuracao_subsidio_sppo.md # pipeline de apuração do subsidio
       - Monitoramento: 
         - Apuração de viagens (SPPO) [1.0]: pipelines/listagem_pipelines/monitoramento/apuracao_viagens_v1.md # pipeline de apuração de viagens v1
       - FAQ: pipelines/listagem_pipelines/faq.md # perguntas frequentes sobre as pipelines de apuração do subsídio
