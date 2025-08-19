@@ -67,10 +67,10 @@
 
 **1.5 Observaçoes**: Indicador de conformidade em rota com o SIGMOB foi descontinuado.
 
-**1.6 Linhagem**:
+**1.6 Linhagem**
 - ![Linhagem GPS SPPO](imagens/linhagem_gps_sppo.png)
 
-**1.7 Modelo da Tabela**:
+**1.7 Modelo da Tabela**
 ![Tabela gerada](imagens/sppo_tab1.png)
 ![Tabela gerada](imagens/sppo_tab2.png)
 ------------------------------------------------------------------------------
@@ -224,7 +224,7 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 ------------------------------------------------------------------------------
 ## **ETAPA 5**
 
-## **5 Tabela: aux_viagem_circular* 
+## **5 Tabela: aux_viagem_circular** 
 *Caminho do modelo:* 
  *prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_viagem_circular.sql*
 
