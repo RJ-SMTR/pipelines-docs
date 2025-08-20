@@ -6,11 +6,11 @@
 ## **Glossário:**
 - **Distância aferida**: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos;
 - **Garagem**: Local onde os veículos de transporte ficam quando não estão em operação;
-- **GTFS**: Arquivo contendo informações sobre linhas de ônibus e serviços de BRT da cidade do Rio de Janeiro. Atualizado mensalmente pela Secretaria Municipal de Transportes <https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about>;
+- **GTFS**: Arquivo contendo informações sobre linhas de ônibus e serviços de BRT da cidade do Rio de Janeiro. Atualizado mensalmente pela [Secretaria Municipal de Transportes](https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about);
 - **id_veiculo**: Identificação do veículo a partir de um número de ORDEM;
 - **id_viagem**: Identificação única para cada viagem;
-- **Modelo ephemeral e incremental**: Vide DBT (<https://docs.getdbt.com/docs/build/materializations>);
-- **Plano operacional**: Documento divulgado pelo site <https://transportes.prefeitura.rio> que contém as características operacionais dos serviços;
+- **Modelo ephemeral e incremental**: Vide [DBT](https://docs.getdbt.com/docs/build/materializations);
+- **Plano operacional**: Documento divulgado pela [Prefeitura](https://transportes.prefeitura.rio) que contém as características operacionais dos serviços;
 - **Ponto**: Comunicação pontual do GPS;
 - **Rota planejada**: Rota planejada para aquele tipo de serviço e sentido conforme o GTFS;
 - **Rota realizada**: Rota realizada pelo veículo em determinado tipo de serviço, sentido, data, horário;
@@ -29,7 +29,7 @@
 ------------------------------------------------
 ## **ETAPA 1**
 
-## **1. Tabela: gps_sppo** 
+## **1. Tabela: `gps_sppo`** 
 *Caminho do modelo:* 
 *prefeitura_rio/pipelines_rj_smtr/queries/models/br_rj_riodejaneiro_veiculos/gps_sppo.sql*
 
@@ -78,7 +78,7 @@
 ------------------------------------------------
 ## **ETAPA 2**
 
-## **2. Tabela: Aux_registros_status_trajeto** 
+## **2. Tabela: `Aux_registros_status_trajeto`** 
 *Caminho do modelo:* 
 *prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_registros_status_trajeto.sql*
 
@@ -138,7 +138,7 @@
 ------------------------------------------------------------------------------
 ## **ETAPA 3**
 
-## **3. Tabela: viagem_planejada** 
+## **3. Tabela: `viagem_planejada`** 
 *Caminho do modelo:* 
 *prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_planejada.sql*
 
@@ -194,7 +194,7 @@
 ------------------------------------------------------------------------------
 ## **ETAPA 4**
 
-## **4. Tabela: aux_viagem_inicio_fim** 
+## **4. Tabela: `aux_viagem_inicio_fim`** 
 *Caminho do modelo:* 
 *prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_viagem_inicio_fim.sql*
 
@@ -224,7 +224,7 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 ------------------------------------------------------------------------------
 ## **ETAPA 5**
 
-## **5 Tabela: aux_viagem_circular** 
+## **5 Tabela: `aux_viagem_circular`** 
 *Caminho do modelo:* 
  *prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_viagem_circular.sql*
 
@@ -250,7 +250,7 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 ------------------------------------------------------------------------------
 ## **ETAPA 6**
 
-## **6 Tabela: registros_status_viagem** 
+## **6 Tabela: `registros_status_viage`** 
 *Caminho do modelo:* 
 *prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/registros_status_viagem.sql*
 
@@ -301,88 +301,165 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 
 
 
-
-
-
-
-
-
-
+-----------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-## **8. Aux_viagem_registros**
- - *Caminho do modelo:* prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_viagem_registros.sql
+## **ETAPA 7**
+
+## **7 Tabela: `aux_viagem_registros`** 
+*Caminho do modelo:* 
+*prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_viagem_registros.sql*
+
+- ![Modelo](imagens/aux_viagem_registro.png)
+
+**7.1 Objetivo**: Unificar no atributo registros_shape a quantidade de comunicações e calcula a distância total
          
-**8.1 Objetivo**: Consolidar a quilomentragem das viagens.
+**7.2 Fluxo de execução do modelo**:
+* Conta quantos registros ocorreram em start, middle e end;
+* Calcula a distância total, inclusive juntando as viagens de ida e volta circular para a totalização da viagem.
+
+**7.3 Resultados apresentados**
+* A tabela `aux_viagem_registros` apresenta indicadores por viagem com a distância aferida, pontos de gps por fase (start, middle, end e out) e quantos minutos tiveram registros de gps.
+
+ 
+**7.4 Linhagem**:
+
+![Linhagem](imagens/aux_viagem_registros_linhagem.png)
+
+
+
+-----------------------------------------------------------------------------
+------------------------------------------------------------------------------
+## **ETAPA 8**
+
+## **8 Tabela: `Viagem_conformidade`** 
+*Caminho do modelo:* 
+*prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_conformidade.sql*
+
+- ![Modelo](imagens/viagem_conformidade.png)
+
+**8.1 Objetivo**: Calcular o tempo total de viagem, os percentuais de conformidade de distância e os registros no shape
          
 **8.2 Fluxo de execução do modelo**:
-* *Materização*: Não declarada;
-* * *CTE distancia* para calcular a distancia percorrida, somando todas as distancias de todos os trechos e converte em quilometro. Em max(distancia_inicio_fim) inclui um gap, considerando o primeiro sinal de gps e o ponto inicial do shape e o último sinal do gps como o ponto final e arredonda para três casas;
-* * *Conta o registro* das comunicações criando a instância n_registros_total e cria também a n_registros_minuto para não contar dois registros que foram emitidos no mesmo minuto;
-* * *CTE filtro de datas* que verifica um ou dois dias de dados.
-  * Essa parte do modelo faz essa análise dos dias:
-             data = date_sub(date("{{ var("run_date") }}"), interval 1 day)
-            {% else %}
-            data between date_sub(date("{{ var("run_date") }}"), interval 1 day) and date("{{ var("run_date") }}")
-            {% endif %}
-* *CTE consolidação final* agrupa pelo id_viagem e consolida os cálculos de distância e refistros de gps. 
-       
+* Materialização incremental com particionamento por data e granularidade diária;
+* Calcula o percentual de conformidade do shape, dividindo o registro do shape pelos registros totais;
+* Calcula o percentual de conformidade da distância, dividindo a distância aferida pela distância planejada;
+* Calcula o percentual de conformidade de registros da comunicação do gps ao dividir o número de registros por minuto pelo tempo total da viagem.
+
 **8.3 Resultados apresentados**
-- Elabora indicadores por viagem com a distância aferida, pontos de gps por fase (start, middle, end e out) e quantos minutos tiveram registros de gps.
+* A tabela `Viagem_conformidade` apresenta:
+   * Id_viagem;
+   * Data (YYYY-mm-dd);
+   * Id_empresa;
+   * Id_veiculo;
+   * Serviço informado;
+   * Serviço realizado;
+   * Distância planejada;
+   * Sentido (ida "I", volta "V");
+   * Datetime_partida, ou seja, o horário que a viagem iniciou;
+   * Datetime_chegada, ou seja, o horário que a viagem finalizou;
+   * Trip_id;
+   * Shape_id;
+   * Tempo de viagem em minutos;
+   * Distância aferida em metros;
+   * Distância entre o início e fim em quilometrs;
+   * Número de registros separadamente de start, middle, end e out;
+   * Número total de registros que é a soma do item anterior;
+   * Número de registros por minuto;
+   * Número de registros na shape;
+   * Velocidade média;
+   * E os percentuais de conformidade:
+      * conformidade_shape;
+      * conformidade_distância;
+      * conformidade_registros.
 
-**8.4 Linhagem**:
-- ![Linhagem](imagens/aux_viagem_registro.png)
+ 
+**8.4 Linhagem**
+
+![Linhagem](imagens/viagem_conformidade_linhagem.png)
+
+**8.5 Modelo da Tabela**
+
+ ![Tabela gerada](imagens/viagem_conformidade_tab1.png)
+ ![Tabela gerada](imagens/viagem_conformidade_tab2.png)
+
+
 ------------------------------------------------------------------------------
-## **9. Viagem_conformidade**
- - *Caminho do modelo:* prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_conformidade.sql
-         
-**9.1 Objetivo**: Calcular os indicadores de conformidade entre as viagens planejadas e as viagens realizadas.
-         
-**9.2 Fluxo de execução do modelo**:
-* *Materização*: Incremental;
-* * *CTE viagens* realiza o calculo de quatro indicadores, sendo eles:
-  * * perc_conformidade_shape que se trata do percentual de pontos do GPS dentro do trajeto planeado (pontos_no_trajeto / total_pontos) * 100
-  * * perc_conformidade_distancia que se trata do percentual da distância real versus a planejada. (distancia_real / distancia_planejada) * 100
-  * * perc_conformidade_registros que se trata do percentual de minutos com registros de GPS. (minutos_com_gps / tempo_total) * 100
-  * * velocidade média que é calculado a partir da divisão da distância pelo tempo. 
-          
-**9.3 Resultados apresentados**
-- Elabora uma tabela com os indicadores das viagens.
-
-**9.4 Linhagem**:
-- ![Linhagem](imagens/vg_conformidade.png)
-
-**9.5 Modelo da Tabela**:
-- ![Tabela gerada](imagens/vg_conformidade_tab1.png)
-- ![Tabela gerada](imagens/vg_conformidade_tab2.png)
 ------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-# ETAPA 5
-- ![Especificação ETAPA 5](imagens/etapafinal.png)
 
-## **10. Viagem Completa**
-- *Caminho do modelo:* prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_completa.sql
-         
-**10.1 Objetivo**: Consolidação das viagens com a apresentação dos indicadores.
-         
-**10.2 Fluxo de execução do modelo**:
-* *Materização*: Incremental com granularidade diária;
-* *No primeiro bloco* do modelo é feita uma análise de versões de shapes válidos. A partir da variável  subsidio_data_versao_efetiva roda o dia anterior para selecionar a tabela shapes_geom_gtfs;
-* *Seleciona as viagens plenejadas* e as viagens realizadas, realizando um filtro de horário;
-* *Seleciona as viagens completas* desde que tenham um percentual de comunicação dentro do shape, que tenha uma distância aferida dentro do critério que foi planejado (80%);
-* *Exceções* como o show da Madonna são tratadas com regras diferentes;
-* *Retira as duplicidades*.
-         
-**10.3 Resultados apresentados**
-         * Tabela unificada em que cada linha é uma viagem válida com dados de id, data, consórcio e com os indicadores de conformidade distancia_planejada, distancia_aferida, velocidade_media, perc_conformidade_shape, perc_conformidade_distancia e perc_conformidade_registros.
-         
-**10.4 Linhagem**:
-- ![Linhagem](imagens/vg_completa.png)
+## **ETAPA 9**
 
-**10.5 Modelo da Tabela**:
-- ![Tabela gerada](imagens/vg_completa_tab1.png)
-- ![Tabela gerada](imagens/vg_completa_tab2.png)
-- ![Tabela gerada](imagens/vg_completa_tab3.png)
-- ![Tabela gerada](imagens/vg_completa_tab4.png)
+## **9 Tabela: `Viagem_completa`** 
+*Caminho do modelo:* 
+*prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_completa.sql*
+
+- ![Modelo](imagens/viagem_completa.png)
+
+**9.1 Objetivo**: Consolidar das viagens e apresentação dos indicadores.
+         
+         
+**8.2 Fluxo de execução do modelo**:
+* Materização incremental com granularidade diária;
+* Identifica as viagens que estão dentro do `viagem_planejada`;
+* Realiza uma seleção completa de acordo com a conformidade;
+* Faz a associação de serviço informado e serviço realizado;
+* Analisa se a velocidade média está de acordo com a velocidade mínima;
+* Utiliza as funções:
+   * [ST_BUFFER](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_bufferwithtolerance) para criar um ponto em volta do start (ponto que a viagem se inicia);
+   * [ST_INTERSECTION](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_intersection) para cruzar a área com o shape;
+   * [ST_NUMGEOMETRIES](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_numgeometries)
+
+* Analisa se os percentuais de conformidade estão dentro dos mínimos declarados no dbt_project;
+* Possibilita ajuste no modelo diante de atipicidade, como shows, reveillon, etc. 
+
+**8.3 Resultados apresentados**
+* A tabela `Viagem_completa` apresenta a consolidação de todas as informações e possui os seguintes atributos:
+   * Consórcio;
+   * Data (YYYY-mm-dd);
+   * Tipo de dia (útil, sábado, domingo, ponto facultativo, atípico);
+   * Id_empresa;
+   * Id_veiculo;
+   * Id_viagem;
+   * Serviço informado;
+   * Serviço realizado;
+   * Vista que são os bairros de atendimento;
+   * Trip_id;
+   * Shape_id;
+   * Datetime_partida, ou seja, o horário que a viagem iniciou;
+   * Datetime_chegada, ou seja, o horário que a viagem finalizou;
+   * Início do período da faixa horária;
+   * Fim do período da faixa horária;
+   * Tipo_viagem (Exemplo: "Completa Linha correta" ou "Completa linha incorreta");
+   * Tempo de viagem;
+   * Tempo planejado;
+   * Distância planejada em quilometros;
+   * Distância aferida em quilometros;
+   * Sentido (ida "I", volta "V");
+   * Número de registros na shape;
+   * Número total de registros;
+   * Tempo de viagem em minutos;
+   * Distância aferida em metros;
+   * Distância entre o início e fim em quilometrs;
+   * Número de registros;
+   * Número de registros por minuto;
+   * Velocidade média;
+   * E os percentuais de conformidade:
+      * conformidade_shape;
+      * conformidade_distância;
+      * conformidade_registros;
+   * Datetime com a última atualização.
+
+ 
+**9.4 Linhagem**
+
+![Linhagem](imagens/viagem_completa_linhagem.png)
+
+**8.5 Modelo da Tabela**
+
+ ![Tabela gerada](imagens/viagem_completa_tab1.png)
+ ![Tabela gerada](imagens/viagem_completa_tab2.png)
+ ![Tabela gerada](imagens/viagem_completa_tab3.png)
+ ![Tabela gerada](imagens/viagem_completa_tab4.png)
+
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 ## **REFERENCIAS**
