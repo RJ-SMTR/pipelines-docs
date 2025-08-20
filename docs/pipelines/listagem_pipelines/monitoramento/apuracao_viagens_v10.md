@@ -1,9 +1,56 @@
 # Documentação consolidada do processo de apuração das viagens do transporte público municipal do Rio de Janeiro. 
-*Inclui glossário, descrição dos modelos que são apresentados na sequência de execução da pipeline.*
+*Inclui legislação, glossário, descrição dos modelos que são apresentados na sequência de execução da pipeline.*
+
 
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-## **Glossário:**
+# **Legislação**
+
+## **2022** 
+
+[RESOLUÇÃO SMTR Nº 3552, DE 12 DE SETEMBRO DE 2022](https://transportes.prefeitura.rio/wp-content/uploads/sites/31/2022/09/RESOLUC%CC%A7A%CC%83O-SMTR-No-3552-DE-12-DE-SETEMBRO-DE-2022.pdf)
+   *  Dispõe sobre a metodologia de apuração de quilometragem realizada pelo Serviço Público de Transporte de Passageiros por Ônibus - SPPO a ser subsidiada pelo Município do Rio de Janeiro, de acordo com as premissas e requisitos estabelecidos no acordo judicial.
+
+
+## **2023** 
+
+[RESOLUÇÃO SMTR Nº 3591 DE 01 DE FEVEREIRO DE 2023](https://transportes.prefeitura.rio/wp-content/uploads/sites/31/2023/02/RESOLUCAO-SMTR-No-3592-DE-01-DE-FEVEREIRO-DE-2023.pdf) 
+
+   * Art. 1º (...) A linha atingir 80% ou mais de conformidade com o planejado pela SMTR para a quilometragem do dia.
+
+
+## **2024**
+
+[RESOLUÇÃO SMTR Nº 3777 DE 11 DE OUTUBRO DE 2024](https://transportes.prefeitura.rio/wp-content/uploads/sites/31/2024/10/RESOLUCAO-SMTR-No-3777-DE-11-DE-OUTUBRO-DE-2024.pdf)
+
+   * Altera a Resolução SMTR nº 3.529, de 13 de junho de 2022, para dispor sobre os percentuais mínimos e máximos de quilometragem percorrida e quadro de horários das linhas do Serviço Público de Transporte de Passageiros por Ônibus da Cidade do Rio de Janeiro - SPPO/RJ, em cumprimento ao Acordo Judicial da Ação Civil Pública Nº 0045547-94.2019.8.19.0001.
+
+
+## **2025**
+
+
+[DECRETO RIO Nº 55631 DE 1º DE JANEIRO DE 2025](https://transportes.prefeitura.rio/wp-content/uploads/sites/31/2025/01/DECRETO-RIO-No-55631-DE-1o-DE-JANEIRO-DE-2025-.pdf)
+
+   * Art. 7º º Caso as concessionárias não atinjam a meta de 80% da quilometragem determinada pela SMTR por linha e por faixa horária, na forma do Acordo Judicial, além de não ser devido o subsídio por quilômetro rodado, será imposta uma penalidade caso haja redução da operação a patamares inferiores a 60% da quilometragem determinada pelo Município do Rio de Janeiro para cada linha do SPPO-RJ.
+
+
+[RESOLUÇÃO SMTR Nº 3862, DE 11 DE JULHO DE 2025](https://transportes.prefeitura.rio/wp-content/uploads/sites/31/2025/07/RESOLUCAO-SMTR-No-3862-DE-11-DE-JULHO-DE-2025-Altera-a-SMTR-no-3.529-de-13-de-junho-de-2022.pdf)
+
+   * Altera a SMTR nº 3.529, de 13 de junho de 2022, para dispor sobre os percentuais mínimos e máximos de quilometragem percorrida por sentido, e sobre a distribuição de faixas horárias na operação das linhas do Serviço Público de Transporte de Passageiros por Ônibus da Cidade do Rio de Janeiro - SPPO/RJ, em cumprimento à repactuação do Acordo Judicial da Ação Civil Pública Nº 0045547-94.2019.8.19.0001 celebrada em 30 de abril de 2025.
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+# **Glossário**
 - **Distância aferida**: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos;
 - **Garagem**: Local onde os veículos de transporte ficam quando não estão em operação;
 - **GTFS**: Arquivo contendo informações sobre linhas de ônibus e serviços de BRT da cidade do Rio de Janeiro. Atualizado mensalmente pela [Secretaria Municipal de Transportes](https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about);
@@ -16,18 +63,19 @@
 - **Rota realizada**: Rota realizada pelo veículo em determinado tipo de serviço, sentido, data, horário;
 - **Serviço**: Codificação alfanumérica que possui itinerário pré-definido e especificação de quilometragem, também denominado LINHA;
 - **Shape** - Elemento geométrico que representa o espaço em formato linestring ou multilinestring;
+- **SPPO** - Sistema de transporte público por ônibus; 
 - **Timestamp** - Registro de data e hora;
 - **Viagem** - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término[duas meias viagens];
 - **Viagem Circular** - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
 -----------------------------------------------------------------------
-## MODELOS DESTA DOCUMENTAÇÃO
+# **MODELOS DESTA DOCUMENTAÇÃO**
 - ![Modelo](imagens/ESQUEMA.png)
 
 
 
 
 ------------------------------------------------
-## **ETAPA 1**
+# **ETAPA 1**
 
 ## **1. Tabela: `gps_sppo`** 
 *Caminho do modelo:* 
@@ -76,7 +124,7 @@
 ------------------------------------------------------------------------------
 
 ------------------------------------------------
-## **ETAPA 2**
+# **ETAPA 2**
 
 ## **2. Tabela: `Aux_registros_status_trajeto`** 
 *Caminho do modelo:* 
@@ -136,7 +184,7 @@
 ![Tabela gerada](imagens/aux_registros_status_trajeto_tab3.png)
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-## **ETAPA 3**
+# **ETAPA 3**
 
 ## **3. Tabela: `viagem_planejada`** 
 *Caminho do modelo:* 
@@ -192,7 +240,7 @@
 
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-## **ETAPA 4**
+# **ETAPA 4**
 
 ## **4. Tabela: `aux_viagem_inicio_fim`** 
 *Caminho do modelo:* 
@@ -222,7 +270,7 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-## **ETAPA 5**
+# **ETAPA 5**
 
 ## **5 Tabela: `aux_viagem_circular`** 
 *Caminho do modelo:* 
@@ -248,9 +296,9 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 
 -----------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-## **ETAPA 6**
+# **ETAPA 6**
 
-## **6 Tabela: `registros_status_viage`** 
+## **6 Tabela: `registros_status_viagem`** 
 *Caminho do modelo:* 
 *prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/registros_status_viagem.sql*
 
@@ -303,7 +351,7 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 
 -----------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-## **ETAPA 7**
+# **ETAPA 7**
 
 ## **7 Tabela: `aux_viagem_registros`** 
 *Caminho do modelo:* 
@@ -329,7 +377,7 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 
 -----------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-## **ETAPA 8**
+# **ETAPA 8**
 
 ## **8 Tabela: `Viagem_conformidade`** 
 *Caminho do modelo:* 
@@ -386,7 +434,7 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 
-## **ETAPA 9**
+# **ETAPA 9**
 
 ## **9 Tabela: `Viagem_completa`** 
 *Caminho do modelo:* 
@@ -397,7 +445,7 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 **9.1 Objetivo**: Consolidar das viagens e apresentação dos indicadores.
          
          
-**8.2 Fluxo de execução do modelo**:
+**9.2 Fluxo de execução do modelo**:
 * Materização incremental com granularidade diária;
 * Identifica as viagens que estão dentro do `viagem_planejada`;
 * Realiza uma seleção completa de acordo com a conformidade;
@@ -411,7 +459,7 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 * Analisa se os percentuais de conformidade estão dentro dos mínimos declarados no dbt_project;
 * Possibilita ajuste no modelo diante de atipicidade, como shows, reveillon, etc. 
 
-**8.3 Resultados apresentados**
+**9.3 Resultados apresentados**
 * A tabela `Viagem_completa` apresenta a consolidação de todas as informações e possui os seguintes atributos:
    * Consórcio;
    * Data (YYYY-mm-dd);
@@ -462,22 +510,21 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-## **REFERENCIAS**
+# **REFERENCIAS**
 
-- DBT <https://learn.getdbt.com/courses/dbt-fundamentals>;
-- Documentação DBT Rio <https://docs.mobilidade.rio/#!/overview?g_v=1&g_i=%2Bviagem_completa>;
-- Documentação GITHUB <https://docs.github.com/pt>
-- Função ST_DISTANCE <https://learn.microsoft.com/pt-br/stream-analytics-query/st-distance>;
-- Função ST_DWITHIN <http://postgis.net/docs/ST_DWithin.html>;
-- Função ST_INTERSECTBOX <https://postgis.net/docs/ST_Intersects.html>;
-- Fumção ST_GEOGFROMTEXT <https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions]>;
-- Função ST_GEOPOINT <https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions]>;
-- Função LAG <https://www.postgresql.org/docs/current/functions-window.html]>;
-- Função LEAD <https://learn.microsoft.com/pt-br/sql/t-sql/functions/lead-transact-sql?view=sql-server-ver16>;
-- Função WINDOW <https://www.postgresql.org/docs/current/functions-window.html>;
-- GTFS Rio <https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about>;
-- Materialização de modelos <https://docs.getdbt.com/docs/build/materializations>;
-- Openmetadata <https://metadata.mobilidade.rio>
-- Plano Operacional <https://transportes.prefeitura.rio>.
+- [DBT fundamentos](https://learn.getdbt.com/courses/dbt-fundamentals);
+- [Documentação DBT Rio](https://docs.mobilidade.rio/#!/overview?g_v=1&g_i=%2Bviagem_completa);
+- [Função ST_DISTANCE](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_distance);
+- [Função ST_DWITHIN](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_dwithin);
+- [Função ST_INTERSECTBOX](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions);
+- [Função ST_GEOGFROMTEXT](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogfromtext);
+- [Função ST_GEOGPOINT](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogpoint)
+- [Função LAG](https://cloud.google.com/bigquery/docs/reference/legacy-sql?hl=pt-br);
+- [Função LEAD](https://cloud.google.com/bigquery/docs/reference/legacy-sql?hl=pt-br);
+- [Função WINDOW](https://cloud.google.com/bigquery/docs/reference/standard-sql/window-function-calls);
+- [GTFS Rio](https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about);
+- [Materialização de modelos Incremental e Ephemeral DBT](https://docs.getdbt.com/docs/build/materializations);
+- [Openmetadata](https://metadata.mobilidade.rio);
+- [Plano Operacional](https://transportes.prefeitura.rio).
 
 
