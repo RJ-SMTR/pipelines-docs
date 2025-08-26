@@ -11,7 +11,8 @@ Este guia resume e simplifica os procedimentos da **Resolução SMTR nº [NÚMER
 |--------|----------|-------------------|
 | **Servidor da SMTR** | Servidores lotados ou designados na SMTR | Art. 6º |
 | **Servidor PCRJ externo à SMTR** | Servidor de outro órgão da PCRJ | Art. 7º |
-| **Contratado ou conveniado atuando na SMTR** | Pessoa física atuando por contrato, convênio ou cooperação | Art. 6º §2º ou Art. 7º §1º |
+| **Contratado ou conveniado atuando na SMTR** | Pessoa física atuando por contrato, convênio ou cooperação com a SMTR | Art. 6º, §2º |
+| **Contratado ou conveniado da PCRJ externo à SMTR** | Pessoa física atuando por contrato, convênio ou cooperação com a PCRJ | Art. 7º, §1º |
 | **Instituição externa sem vínculo** | Universidade, empresa, ONG, organismo internacional | Art. 8º ou 9º, conforme tipo de dado |
 | **Acesso a dados públicos** | Dados abertos | Art. 4º (dispensa autorização) |
 
