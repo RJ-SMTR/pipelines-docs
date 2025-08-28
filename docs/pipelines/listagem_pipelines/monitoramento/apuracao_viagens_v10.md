@@ -573,3 +573,18 @@
 - [Plano Operacional](https://transportes.prefeitura.rio).
 
 
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+## Disposições Finais e Critérios de Precedência Normativa
+
+Este documento possui caráter meramente técnico-descritivo, destinado a detalhar, de forma didática, os procedimentos, fluxos de dados, parâmetros e indicadores utilizados pela Secretaria Municipal de Transportes para a apuração de viagens e quilometragem do SPPO/RJ.
+
+Em hipótese alguma este documento substitui, altera ou modifica as disposições contidas na legislação municipal, em normas regulamentares, em decisões judiciais ou em atos administrativos vigentes, nem o modelo computacional oficial parametrizado pela SMTR.
+
+Para todos os efeitos legais e operacionais, em caso de divergência ou inconsistência entre as informações aqui descritas e:
+
+A legislação vigente (leis, decretos, resoluções e demais normas aplicáveis), prevalecerá a legislação;
+O modelo computacional oficial utilizado na produção da base viagem_completa e demais artefatos publicados no repositório oficial da SMTR ([https://github.com/prefeitura-rio/pipelines\_rj\_smtr](https://github.com/prefeitura-rio/pipelines_rj_smtr)), prevalecerá o resultado gerado por este modelo;
+Este documento, que será interpretado como instrumento complementar, com função de apoio e transparência, não vinculando a Administração em detrimento das normas e modelos oficiais.
+
+Eventuais ajustes ou atualizações técnicas na pipeline poderão ser implementados e refletidos no modelo oficial, observando-se sempre os parâmetros definidos em norma e os princípios de legalidade, publicidade e transparência administrativa.
