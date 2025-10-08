@@ -11,147 +11,150 @@
 * *Data de Início:* 07/10/2025
 * *Status:* Em andamento
 
-## 2. Objetivo e Justificativa
+## 2. Diagnóstico, Objetivo e Justificativa
 
-* Contexto
-    * Em 2022 na retomada da pandemia existia uma excessiva assimetria de informações, a SMTR não tinha nenhum controle sobre as viagens realizadas pelos operadores de transporte, o que gerava insegurança jurídica e operacional (exceto RDO)
-    * Método convalidado pela Controladoria Geral do Município (CGM)
+Em 2022, durante a retomada pós-pandemia, a Secretaria Municipal de Transportes do Rio de Janeiro se deparava com um cenário de forte assimetria de informações. Não havia mecanismos consolidados de monitoramento das viagens realizadas pelos operadores, o que comprometia a transparência e dificultava a gestão da operação. Nesse contexto, foi desenvolvido um método de inferência de viagens baseado no cruzamento entre dados de GPS e informações de planejamento (OS e GTFS), posteriormente convalidado pela Controladoria Geral do Município (CGM). À época, a iniciativa representou um marco importante, pois estabeleceu, pela primeira vez, uma referência objetiva para acompanhamento da operação, reduzindo significativamente a lacuna informacional existente.
 
-* Vulnerabilidades do método atual
-    * Desenvolve um processo de inferência de viagens a partir do cruzamento entre os dados de GPS e os dados de planejamento (OS + GTFS)
-    * Não existe uma interface para quem opera/executa a viagem informar as viagens que o operador realiza
-    * Há falhas recorrentes em itinerários complexos e em trajetos circulares
-    * Em um mesmo serviço e sentido pode ser realizado mais de um itinerário, e a SMTR necessita fazer um processo de inferência para identificar qual itinerário foi realizado
-    * Riscos
-        * Poder concedente: apurar possíveis viagens que não ocorreram de fato
-        * Operador: não ter como informar viagens que foram realizadas, mas não estão apuradas
-        * Operador: como o poder concedente infere as viagens, é possível que a caracterização de início/fim de viagem não seja a mais adequada, o que por sua vez pode interferir na remuneração do operador pois o cálculo é feito por faixa horária
+Passados três anos, o avanço tecnológico e a maturidade institucional permitem que esse modelo seja aperfeiçoado. O processo de inferência de viagens, embora tenha cumprido papel fundamental em sua origem, apresenta limitações para lidar com situações operacionais mais complexas, como diferentes itinerários possíveis para um mesmo serviço ou linhas de característica circular. Além disso, a ausência de uma interface direta para registro das viagens pelos operadores dificulta a consolidação de um processo mais transparente e auditável.
 
-    * O método atual possui poucos critérios de validação, o que pode favorecer os operadores. É o mesmo método desde 2022, na qual os operadores já se adaptaram e conhecem as regras de inferência, o que pode levar a uma manipulação dos dados de GPS para obter uma remuneração maior.
-    * Em 2022 era um outro contexto e agora há espaço para aprimorar o processo de validação e controle das viagens realizadas pelos operadores de transporte.
+O objetivo do projeto Viagens 2.0 é, portanto, evoluir esse sistema de monitoramento, estabelecendo critérios mais robustos de validação, mecanismos de registro direto pelos operadores e integração aprimorada com dados de planejamento e posicionamento. A proposta busca aumentar a segurança jurídica e regulatória, fortalecer a confiabilidade da informação e oferecer maior clareza para todos os atores envolvidos na prestação do serviço de transporte público. Dessa forma, preserva-se a contribuição histórica do método anterior, mas adequa-se a governança da operação ao novo estágio de exigência institucional, tecnológica e social.
 
-## 3. Diagnóstico e Fontes de Dados
+## 3. Fontes de Dados
 
-* Bases utilizadas:
-    * GPS 2.0: dados de geolocalização dos veículos
-    * OS: ordens de serviço emitidas pelo poder concedentes
-    * GTFS: dados de planejamento das linhas de transporte emitidos pelo poder concedente
-    * Camada logradouro: dados geográficos dos logradouros do município para fins de identificação de túneis
-* Origem dos dados:
-    * Operadores de transporte
-    * PCRJ/SMTR
-    * PCRJ/IPP
+* **Bases utilizadas:**
+
+  * **GPS 2.0:** registros de geolocalização em tempo real dos veículos.
+  * **OS (Ordens de Serviço):** programação oficial emitida pela **SMTR**.
+  * **GTFS (General Transit Feed Specification):** dados estruturados de planejamento das linhas e serviços de transporte publicados pela **SMTR**.
+  * **Camada de logradouros – IPP:** base geográfica do município utilizada, entre outras finalidades, para identificação de trechos em túneis.
+
+* **Origem dos dados:**
+
+  * **Operadores de transporte público**, responsáveis pelo envio de informações primárias.
+  * **Secretaria Municipal de Transportes (SMTR/PCRJ)**, responsável pela consolidação, regulação e disponibilização dos dados operacionais e de planejamento.
+  * **Instituto Pereira Passos (IPP/PCRJ)**, provedor da base cartográfica e de geoinformações de referência.
 
 ## 4. Levantamento de Requisitos
 
-* Requisitos funcionais:
-    * Interface para os operadores informarem as viagens realizadas
-    * Validação de viagens com base em GPS, OS e GTFS
-    * Validação com base em critérios objetivos
+* **Requisitos funcionais:**
 
-* Demandas regulatórias ou legais:
-    * Contrato de concessão
-    * Acordo judicial
-    * RESOLUÇÃO SMTR Nº 3552, DE 12 DE SETEMBRO DE 2022
+  * Implementação de uma **interface oficial** para que os operadores registrem as viagens realizadas.
+  * **Validação automatizada** das viagens a partir da integração entre dados de GPS, OS e GTFS.
+  * Aplicação de **critérios objetivos e auditáveis** para assegurar consistência, transparência e comparabilidade dos registros.
 
-* Partes interessadas envolvidas:
-  - Gestores internos:
-    - Subsecretário de Tecnologia em Transportes.
-    - Subsecretário de Operação e Planejamento.
-    - Coordenador de Monitoramento.
-  - Concessionárias de Transporte Público.
-  - Consumidor final (População).
+* **Demandas regulatórias e legais:**
+
+  * **Contratos de concessão** firmados com as concessionárias de transporte.
+  * **Acordos judiciais** que impactam diretamente a forma de apuração das viagens.
+  * **Resolução SMTR nº 3.552/2022**, que estabelece parâmetros e diretrizes para o controle operacional.
+
+* **Partes interessadas:**
+
+  * **Gestores internos da SMTR:**
+
+    * Subsecretário de Tecnologia em Transportes.
+    * Subsecretário de Operação e Planejamento.
+    * Coordenador de Monitoramento.
+  * **Concessionárias de transporte público**, responsáveis pela execução da operação.
+  * **População usuária**, beneficiária final da melhoria na confiabilidade e transparência das informações.
 
 ## 5. Análise de Alternativas Técnicas (AIR)
 
-* **Cenários avaliados:**
-    - **Cenário 1 - Manter o método atual de inferência de viagens:**
-        - Regras
-            - II - uma viagem será avaliada quando um veículo comunicar a posição, por GPS, no raio aceitável nos pontos
-                início e im da linha, ou no ponto regulador para o caso das linhas circulares;
-                III - a avaliação da viagem será composta por dois parâmetros:
-                a) qualidade da transmissão das posições de GPS;
-                b) quantidade de transmissão das posições de GPS dentro do itinerário.
-                § 1º Uma viagem apenas será considerada válida quando ela for completamente concluída conforme os
-                parâmetros de conformidade, descritos no artigo 2º.
-                § 2º A avaliação da viagem só ocorrerá para os veículos devidamente associados à linha correta no cadastro do
-                GPS, desde o momento de início da viagem até o término.
-                § 3º A conformidade da distância percorrida em comparação ao planejado para a viagem de cada linha será aferida por meio da comunicação do GPS nos pontos inicial e inal (ou regulador), como também pela comunicação
-                ao longo do itinerário cadastrado.
-                Art. 2º Os valores dos parâmetros dispostos no artigo 1º são:
-                I - raio aceitável: 500 metros;
-                II - qualidade do GPS: 50%;
-                III - quantidade de transmissões dentro do itinerário: 80%.
-            
-            - Critérios adicionais
-                - Velocidade média máxima: 110 km/h
+### Cenário 1 – Manutenção do método atual de inferência de viagens
 
-    - **Cenário 2 - Implementar uma interface para registro de viagens pelos operadores:**
-        - Realizado benchmarking com a experiência de outra cidade que fez implementação semelhante (Prefeitura de Belo Horizonte)
-            - Regras
-                - Regra geral
-                    - Itinerário é segmentado em segmetnos de ~1 km (o menor sempre fica o mais próximo possível do meio)
-                    - Cada segmento tem um buffer de 30 m para cada lado (sem sobreposição entre eles)
-                    - Segmentos válidos: segmentos considerados que possuem, no mínimo, 1 ponto de GPS dentro do buffer
-                    - Segmentos necessários: 90% dos segmentos considerados
-                    - Segmentos válidos >= segmentos necessários: viagem válida
+* **Descrição:**
+  Permanecer com a apuração de viagens baseada exclusivamente na inferência por cruzamento de dados de GPS e planejamento (OS + GTFS), sem comunicação ativa dos operadores.
 
-                - Exceções
-                    - Trechos em túneis: desconsiderar
-                    - Trechos com menos de 990 m: desconsiderar
-                    - Buffer com menos de 50% da área original (após ajustes de sobreposição): desconsiderar
+* **Regras principais:**
 
-                - Tolerâncias
-                    - Segmentos necessários: sempre há no mínimo 1 segmento de tolerância (ainda que 90% dos trechos considerados seja < 1)
-                    - Arredondamentos
-                        - Uso da função ROUND BigQuery 
+  * Viagem considerada quando o veículo transmite posição de GPS no raio aceitável dos pontos inicial e final da linha, ou no ponto regulador (linhas circulares).
+  * Avaliação composta por:
+    1. **Qualidade do GPS:** mínimo de 50% das posições transmitidas.
+    2. **Cobertura do itinerário:** pelo menos 80% das posições dentro da rota cadastrada.
+  * Condição de validade: viagem concluída integralmente, vinculada à linha correta no cadastro do GPS.
+  * **Critério adicional:** velocidade média máxima de 110 km/h.
+* **Avaliação:**
 
-                - Critérios adicionais de invalidação
-                    - Serviço planejado: serviço deve constar na OS e no GTFS para o dia da semana e faixa horária
-                    - Serviço divergente: serviço informado no GPS e na viagem devem ser iguais
-                    - Shape inválido: shape deve constar no GTFS no serviço informado
-                    - Velocidade média máxima: 110 km/h
-                    - Viagem sobreposta: viagens realizadas pelo mesmo veículo que se sobrepõem no tempo (impossível o mesmo veículo realizar duas viagens ao mesmo tempo)
-                    - Campos obrigatórios:
-                        - ID da viagem
-                        - datetime partida
-                        - datetime chegada
-                        - datetime partida < datetime chegada
-                        - shape_id
-                        - route_id
-                        - id_veiculo
+  * *Vantagens:* simplicidade e baixo custo.
+  * *Desvantagens:* limitações de controle, menor transparência regulatória e risco de inconsistências.
 
-    * Análise comparativa (vantagens, desvantagens, viabilidade):
-        - Cenário 1: 
-            - Vantagens: Simplicidade, baixo custo de implementação.
-            - Desvantagens: Falta de controle, insegurança jurídica, manipulação dos dados pelos operadores, apenas a Prefeitura do Rio de Janeiro utiliza esse método (ao que sabemos).
-        - Cenário 2:
-            - Vantagens: Maior controle, transparência, segurança jurídica, redução de manipulação.
-            - Desvantagens: Custo de desenvolvimento e manutenção da interface.
+### Cenário 2 – Registro de viagens pelos operadores via API consumida pela SMTR
 
-* Justificativa da escolha da solução:
-    - A implementação de uma interface para registro de viagens pelos operadores é a solução mais adequada, pois resolve as vulnerabilidades do método atual, aumenta a transparência e segurança jurídica, e reduz o risco de manipulação dos dados. Apesar do custo inicial, os benefícios superam as desvantagens.
-    - A solução escolhida também está alinhada com as melhores práticas observadas em outras cidades.
+* **Descrição:**
+  Nesse modelo, os operadores enviam registros de viagens por meio de **API padronizada e consumida diretamente pela SMTR**, que cruza essas informações com dados de GPS, OS e GTFS para validação. O desenho segue benchmarking da experiência de Belo Horizonte, adaptado ao contexto do Rio de Janeiro.
+
+* **Regras gerais:**
+
+  * O itinerário é segmentado em trechos de aproximadamente 1 km.
+  * Cada segmento possui um buffer lateral de 30 m em ambos os lados, com **ajuste de área para evitar sobreposição entre buffers adjacentes**.
+  * **Definições:**
+
+    * **Segmentos considerados:** todos os trechos resultantes da segmentação, exceto aqueles descartados pelas regras de exceção.
+    * **Segmentos válidos:** segmentos considerados que possuem ao menos 1 ponto de GPS dentro do buffer.
+    * **Segmentos necessários:** quantidade mínima de segmentos válidos exigida, correspondente a 90% dos segmentos considerados (arredondado para o inteiro mais próximo, com .5 para cima).
+  * **Regra de validação:** a viagem é válida quando **segmentos válidos ≥ segmentos necessários**, observada a tolerância mínima de 1 segmento.
+
+* **Exemplo da regra:**
+
+  * N=5 segmentos → 90% = 4,5 → arredondamento = 5 → exigência ajustada para **4 segmentos necessários** (tolerância mínima).
+  * N=7 segmentos → 90% = 6,3 → arredondamento = 6 → exigência = **6 segmentos necessários**.
+  * N=11 segmentos → 90% = 9,9 → arredondamento = 10 → exigência = **10 segmentos necessários**.
+
+* **Exceções (segmentos que não são considerados):**
+
+  * Segmentos que interceptam, ainda que parcialmente, túneis;
+  * Trechos com extensão inferior a 990 metros;
+  * Buffers cuja área remanescente, após ajuste para eliminar sobreposição, seja inferior a 50% da área original.
+
+* **Critérios adicionais de invalidação:**
+
+  * Serviço não previsto na OS ou GTFS.
+  * Divergência entre serviço informado pelo operador e o registrado no GPS.
+  * Shape inexistente ou incompatível com o GTFS.
+  * Velocidade média superior a 110 km/h.
+  * Viagens sobrepostas para o mesmo veículo no mesmo período.
+  * Campos obrigatórios inconsistentes ou ausentes (ID da viagem, data/hora de partida e chegada, shape_id, route_id, id_veículo).
+
+* **Avaliação:**
+
+  * *Vantagens:* maior controle, transparência, auditabilidade e segurança jurídica; redução de inconsistências e manipulações.
+  * *Desvantagens:* maior custo de implementação e manutenção da API e dos processos de integração.
+
+### Comparativo
+
+* **Cenário 1:** manutenção simples e barata, mas pouco robusta e sujeita a questionamentos.
+* **Cenário 2:** maior confiabilidade, segurança regulatória e aderência a boas práticas, com investimento inicial justificado pelos ganhos institucionais.
+
+### Justificativa da escolha
+
+A alternativa recomendada é o **registro de viagens via API consumida pela SMTR**, pois responde às vulnerabilidades do método atual, amplia a transparência e fortalece a segurança regulatória. Essa solução está alinhada com experiências bem-sucedidas em outras cidades e representa a evolução natural da governança sobre as viagens, equilibrando inovação tecnológica com confiabilidade institucional.
+
+Excelente observação 👌 — sim, é possível (e até mais elegante) estruturar a seção **por risco**, em vez de dividir em blocos separados. Assim, cada risco/condição tem uma **definição**, a **probabilidade/impacto** e as **medidas de controle/mitigação** diretamente vinculadas, facilitando a leitura executiva e reduzindo ambiguidades.
 
 ## 7. Riscos e Controles
 
-* Riscos identificados (técnicos, institucionais, de segurança):
-    - Risco de manipulação dos horários de início e fim de viagens pelos operadores.
-    - Risco de interrupção da viagem, mas atendidos os demais parâmetros (ex.: operador inicia a viagem, acessa a garagem, e depois retoma a viagem - viagem "fantasma").
-    - Não apurar as viagens em até D+1 (método atual)
-* Probabilidade e impacto:
-    - Risco de manipulação dos horários de início e fim de viagens pelos operadores: alta
-    - Risco de interrupção da viagem, mas atendidos os demais parâmetros (ex.: operador inicia a viagem, acessa a garagem, e depois retoma a viagem - viagem "fantasma"): baixa
-* Controles ou mitigadores adotados:
-    - Risco de manipulação dos horários de início e fim de viagens pelos operadores
-        - Definir uma cerca eletrônica (geofence) para início e fim de viagem e definir uma tolerância entre o informado e o efetivamente registrado pelo GPS
-    - Risco de interrupção da viagem, mas atendidos os demais parâmetros
-        - Não identificamos nenhum controle efetivo para mitigar esse risco, mas o impacto é baixo.
-        - Alternativas avaliadas:
-            - Definir o horário de início e fim de cada segmento da viagem: inviável em razão de trajetos complexos (ida e volta pelo mesmo segmento)
-            - Tempo médio entre segmentos sequenciais: inviável em razão de trajetos complexos e variação do trânsito
-    - Não apurar as viagens em até D+1 (método atual)
-        - Implementado processo de inferência de viagens utilizando, inclusive, os dados de GPS dos validadores utilizando os mesmos critérios de validação do Cenário 2 (válido para fins de monitoramento e planejamento operacional, mas não para remuneração dos operadores)
+### Risco 1 – Divergência de horários de início e término de viagens
+
+* **Definição:** possibilidade de discrepância entre os horários informados pelos operadores e os captados via GPS, considerando que a remuneração é calculada por faixa horária.
+* **Probabilidade e impacto:** probabilidade **alta**, com impacto relevante sobre a consistência da informação e o cálculo da remuneração.
+* **Controle/Mitigação:** utilização de cercas eletrônicas (*geofences*) para delimitação dos pontos de partida e chegada, com definição de tolerâncias entre o horário informado e o captado pelo GPS, assegurando critério uniforme para fins de remuneração.
+
+### Risco 2 – Interrupções temporárias na execução da viagem
+
+* **Definição:** ocorrência eventual de interrupções atípicas no percurso, mesmo quando os demais parâmetros técnicos sejam atendidos.
+* **Probabilidade e impacto:** probabilidade **baixa**, impacto reduzido e considerado residual.
+* **Controle/Mitigação:** alternativas de mitigação foram analisadas (como horários por segmento ou tempos médios entre segmentos), mas mostraram-se pouco aplicáveis devido à complexidade dos itinerários e à variabilidade do trânsito. Assim, o risco é acompanhado e tratado como residual.
+
+### Risco 3 – Apuração das viagens além de D+1
+
+* **Definição:** no novo método, a apuração das viagens observa o prazo regulamentar de até dois dias úteis para que os operadores registrem suas viagens. Trata-se de uma condição do modelo, com risco de impacto apenas sobre a disponibilidade imediata de dados.
+* **Probabilidade e impacto:** **ocorrência prevista**, decorrente de regra normativa, com impacto restrito ao monitoramento tempestivo.
+* **Controle/Mitigação:** a SMTR implementou processo complementar de inferência de viagens, inclusive com uso dos dados de GPS dos validadores, aplicando os mesmos critérios de validação do novo método. Esse processo garante continuidade do monitoramento e do planejamento operacional, sem efeito sobre a remuneração.
+
+### Distinção fundamental
+
+* **Viagens válidas (para fins de remuneração):** exclusivamente aquelas informadas pelos operadores via API e validadas pela SMTR.
+* **Viagens inferidas (para fins de monitoramento):** apuradas pela SMTR a partir de dados de GPS e regras complementares, utilizadas apenas para monitoramento e planejamento, sem efeito sobre repasses financeiros.
 
 ## 8. Indicadores de Impacto
 
@@ -176,29 +179,34 @@
 * Local de armazenamento e versão:
 * Estratégia para manter o material atualizado (checklists, rotinas, versionamento):
 
-## 11. Lições Aprendidas (a preencher ao final do projeto ou a cada versão relevante)
+## 11. Lições Aprendidas
 
-* O que funcionou bem:
-    - Benchmarking com a experiência de outra cidade (Prefeitura de Belo Horizonte)
+* **O que funcionou bem:**
 
-* O que poderia ter sido feito de outra forma:
-    - Definição clara de escopo com o cliente desde o início
-    - Definição clara de requisitos funcionais com o cliente desde o início
-    - Definição clara de requisitos de aceitação com o cliente desde o início
-    
-* Barreiras encontradas e superadas:
-    - Método da PBH não era totalmente aplicável ao contexto do Rio de Janeiro, exigindo adaptações principalmente em razão de túneis. Junto ao IPP foi possível identificar os túneis e desconsiderá-los na análise.
+  * A realização de benchmarking com experiências de outras cidades, em especial a referência da Prefeitura de Belo Horizonte, trouxe insumos relevantes para a concepção do modelo adotado.
 
-* Recomendações para projetos futuros:
-    - Ter um ciclo de vida claro do produto de dados
-        1. Entender o problema
-        2. Realizar um processo de benchmarking/discovery com outras cidades/entidades
-        3. Avaliar adaptações ao contexto local
-        4. Desenvolver um protótipo
-        5. Validar o protótipo com o cliente
-        6. Desenvolver a solução final
+* **O que poderia ter sido feito de outra forma:**
 
-    - Desenvolvimento de documentação
+  * Estabelecer desde o início uma definição clara e consensual de escopo junto à área demandante.
+  * Formalizar de maneira antecipada os requisitos funcionais, reduzindo ajustes posteriores.
+  * Pactuar critérios de aceitação logo na fase inicial, evitando revisões tardias.
+
+* **Barreiras encontradas e superadas:**
+
+  * O método utilizado em Belo Horizonte não pôde ser integralmente replicado no Rio de Janeiro, em razão de especificidades locais como a presença de túneis e itinerários complexos. Essa barreira foi superada por meio de parceria com o Instituto Pereira Passos (IPP), que viabilizou a identificação e exclusão adequada desses segmentos da análise.
+
+* **Recomendações para projetos futuros:**
+
+  * Adotar um ciclo de vida estruturado para produtos de dados, contemplando as seguintes etapas:
+
+    1. Compreensão aprofundada do problema.
+    2. Processo de benchmarking e discovery com outras cidades e entidades.
+    3. Avaliação das adaptações necessárias ao contexto local.
+    4. Desenvolvimento de protótipo.
+    5. Validação do protótipo junto ao cliente.
+    6. Desenvolvimento e implantação da solução final.
+  * Garantir a elaboração e manutenção contínua da documentação do projeto, assegurando rastreabilidade e transparência em todas as fases.
+
 
 ## 12. Referências e Documentos Vinculados
 
