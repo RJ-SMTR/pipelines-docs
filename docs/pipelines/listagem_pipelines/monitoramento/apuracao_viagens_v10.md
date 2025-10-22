@@ -539,7 +539,6 @@ A tabela apresenta os seguintes atributos:
  ![Tabela gerada](imagens/viagem_completa_tab2.png)
  ![Tabela gerada](imagens/viagem_completa_tab3.png)
  ![Tabela gerada](imagens/viagem_completa_tab4.png)
-
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 # **REFERENCIAS**
