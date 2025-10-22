@@ -107,7 +107,7 @@
 **1.5 Observaçoes**: Indicador de conformidade em rota com o SIGMOB foi descontinuado.
 
 **1.6 Linhagem**
-![Linhagem GPS SPPO](imagens/linhagem_gps_sppo.png)
+![Linhagem GPS SPPO](imagens/dbt-dag (1).png)
 
 **1.7 Modelo da Tabela**
 ![Tabela gerada](imagens/sppo_tab1.png)
