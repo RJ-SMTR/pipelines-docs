@@ -1,9 +1,9 @@
 # Documentação consolidada do processo de apuração das viagens do transporte público municipal do Rio de Janeiro. 
 *Inclui legislação, glossário, descrição dos modelos que são apresentados na sequência de execução da pipeline.*
 
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
 # **Legislação**
 
 ## **2022** 
@@ -60,12 +60,9 @@
 - **Viagem Circular** - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. 
 -----------------------------------------------------------------------
 # **Modelos desta documentação**
-- ![Modelo](imagens/etapa.png)
+![Modelo](imagens/etapa.png)
 
-
-
-
-------------------------------------------------
+-----------------------------------------------------------------------
 # **ETAPA 1**
 
 ## **1. Tabela: `gps_sppo`** 
@@ -87,27 +84,30 @@
 
 **1.4 Resultados apresentados**:
 * A tabela `gps_sppo` apresenta cada linha como registro a cada 30 segundos da comunicação do GPS dos veículos particionado por data. Nesta tabela, constam os atributos:
-   * Data (YYYY-mm-dd);
-   * Hora (hh:mm:ss);
-   * Id_veiculo;
-   * Serviço (garagem ou determinada linha);
-   * Dados de geolocalização latitude e longitude;
-   * Tipo de parada (terminal ou garagem);
+   * `modo`
+   * `timestamp_gps`
+   * `data` (YYYY-mm-dd);
+   * `hora` (hh:mm:ss);
+   * `id_veiculo`;
+   * `servico` (garagem ou determinada linha);
+   * `latitude` e `longitude` que são os dados de geolocalização;
    * Flags com respostas booleanas (TRUE e FALSE): 
-      * flag para verificar se o veículo está em operação, flag para verificar se o veículo está em movimento;
-      * flag para verificar se o serviço existe no SIGMOB;
-      * flag cujo objetivo é retornar se o veículo está no trajeto correto;
-      * flag para verificar se veículo está no trajeto correto hist (10 minutos);
-   * Status do veículo ("em operação" ou "operando fora do trajeto");
-   * Velocidade instantânea;
-   * Velocidade estimada nos últimos 10 minutos;
-   * Distância calculada entre cada registro;
-   * Versão.       
+      * `flag_em_operacao` flag para verificar se o veículo está em operação, 
+      * `flag_em_movimento` flag para verificar se o veículo está em movimento;
+      * `tipo_parada`;
+      * `flag_linha_existe_sigmob` flag para verificar se o serviço existe no SIGMOB;
+      * `flag_trajeto_correto` flag cujo objetivo é retornar se o veículo está no trajeto correto;
+      * `flag_trajeto_correto_hist` flag para verificar se veículo está no trajeto correto hist (10 minutos);
+   * `status` do veículo ("em operação" ou "operando fora do trajeto");
+   * `velocidade_instantanea`;
+   * `velocidade_estimada_10_min` velocidade estimada nos últimos 10 minutos;
+   * `distancia` calculada entre cada registro;
+   * `versao`.       
 
 **1.5 Observaçoes**: Indicador de conformidade em rota com o SIGMOB foi descontinuado.
 
 **1.6 Linhagem**
-- ![Linhagem GPS SPPO](imagens/linhagem_gps_sppo.png)
+![Linhagem GPS SPPO](imagens/linhagem_gps_sppo.png)
 
 **1.7 Modelo da Tabela**
 ![Tabela gerada](imagens/sppo_tab1.png)
@@ -121,7 +121,7 @@
 *Caminho do modelo:* 
 *prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/aux_registros_status_trajeto.sql*
 
-- ![Modelo](imagens/etapa2.png)
+![Modelo](imagens/etapa2.png)
 
 **2.1 Objetivo**: Monitorar e classificar a posição dos veículos de transporte público em relação às suas rotas planejadas
 
@@ -145,26 +145,26 @@
                   
 **2.3 Resultados apresentados** 
 * A tabela `aux_registros_status_trajeto` apresenta cada linha como registro de comunicação do GPS a cada 30 segundos dos veículos particionado por data. Nesta tabela, constam os atributos:
-   * Data (YYYY-mm-dd);
-   * Id_veiculo;
-   * Id_empresa;
-   * Timestamp_gps com a hora contendo os segundos;
-   * Timestamp_minuto_GPS contendo apenas hora e minuto;
-   * Posicao_veiculo_geo, onde constam os dados de geolocalização do veículo em formato WKT POINT;  
-   * Serviço informado;
-   * Serviço realizado;
-   * Shape_id;
-   * Sentido da Shape (ida "I" ou volta "V");
-   * Shape id_planejado;
-   * Trip id;
-   * Trip planejado;
-   * Sentido;
-   * Start_pt onde são armazenadas a geolocalização do ponto inicial da rota;
-   * End_point onde são armazenadas a geolocalização do ponto final da rota;
-   * Distância planejada;
-   * Distância realizada;
-   * Status da viagem, com a informação se aquele registro está no start middle, end ou out com relação a rota; 
-   * Versão.   
+   * `data` (YYYY-mm-dd);
+   * `id_veiculo`;
+   * `id_empresa`;
+   * `timestamp_gps` com a hora contendo os segundos;
+   * `timestamp_minuto_gps` contendo apenas hora e minuto;
+   * `posicao_veiculo_geo`, onde constam os dados de geolocalização do veículo em formato WKT POINT;  
+   * `servico_informado`;
+   * `servico_realizado`;
+   * `shape_id`;
+   * `sentido` da Shape (ida "I" ou volta "V");
+   * `shape_id_planejado`;
+   * `trip_id`;
+   * `trip_planejado`;
+   * `sentido`;
+   * `start_pt` onde são armazenadas a geolocalização do ponto inicial da rota;
+   * `end_point` onde são armazenadas a geolocalização do ponto final da rota;
+   * `distancia_planejada`;
+   * `distancia_realizada`;
+   * `status` da viagem, com a informação se aquele registro está no start middle, end ou out com relação a rota; 
+   * `versao`.   
 
 **2.4 Linhagem**
 
@@ -193,33 +193,33 @@
                   
 **3.3 Resultados apresentados**
 * A tabela `viagem_planejada` apresenta cada linha como registro com os seguintes atributos:
-   * data (YYYY-mm-dd);
-   * tipo_dia, especificação quanto ao dia útil, sábado, domingo, feriado, dias atípicos;
-   * servico;
-   * vista que trata do nome do itinerário;
-   * consorcio;
-   * sentido (Ida/Volta);
-   * partida_total_planejada que traz quantas partidas estão especificadas;
-   * distancia_planejada por viagem;
-   * distância_total para o dia;
-   * Início do período;
-   * Fim do Período;
-   * Faixa Horária Início;
-   * Faixa Horária Fim;
-   * Trip id planejado;
-   * Trip id;
-   * Shape id;
-   * Shape id planejado;
-   * Data_shape;
-   * Shape (em formato multilinestring);
-   * Sentido_shape;
-   * Start_pt, ponto de início da viagem;
-   * End_pt, ponto final da viagem;
-   * Id_tipo_trajeto;
-   * Feed Version;
-   * Feed Start Date;
-   * Datetime da última atualização;
-   * Id_execucao_dbt.
+   * `data` (YYYY-mm-dd);
+   * `tipo_dia`, especificação quanto ao dia útil, sábado, domingo, feriado, dias atípicos;
+   * `servico`;
+   * `vista` nome do itinerário;
+   * `consorcio`;
+   * `sentido` (Ida/Volta);
+   * `partida_total_planejada` que traz quantas partidas estão especificadas;
+   * `distancia_planejada` por viagem;
+   * `distancia_total` para o dia;
+   * `inicio_periodo`;
+   * `fim_periodo`;
+   * `faixa_horaria_inicio`;
+   * `faixa_horaria_fim`;
+   * `trip_id_planejado`;
+   * `trip_id`;
+   * `shape_id`;
+   * `shape_id_planejado`;
+   * `data_shape`;
+   * `shape` (em formato multilinestring);
+   * `sentido_shape`;
+   * `start_pt`, ponto de início da viagem;
+   * `end_pt`, ponto final da viagem;
+   * `id_tipo_trajeto`;
+   * `feed_version`;
+   * `feed_start_date`;
+   * `datetime_ultima_atualizacao`;
+   * `id_execucao_dbt`.
 
 **3.4 Linhagem**:
 
@@ -255,33 +255,27 @@
 **4.3 Resultados apresentados**
 
 Transforma a sequência de pontos do GPS em uma viagem com data e hora, posição inicial e final, distância real e planejada e cria um id único com o objetivo de fornecer insumos para a Tabela `viagem_conformidade`, com os seguintes atributos:
-   * id_viagem;
-   * data;
-   * id_empresa;
-   * id_veiculo;
-   * servico_informado;
-   * servico_realizado;
-   * trip_id;
-   * shape_id;
-   * sentido_shape;
-   * distancia_inicio_fim;
-   * distancia_planejada;
-   * shape_id_planejado;
-   * trip_id_planejado;
-   * sentido;
-   * datetime_partida;
-   * datetime_chegada;
-   * versao_modelo.
-
-
+   * `id_viagem`;
+   * `data`;
+   * `id_empresa`;
+   * `id_veiculo`;
+   * `servico_informado`;
+   * `servico_realizado`;
+   * `trip_id`;
+   * `shape_id`;
+   * `sentido_shape`;
+   * `distancia_inicio_fim`;
+   * `distancia_planejada`;
+   * `shape_id_planejado`;
+   * `trip_id_planejado`;
+   * `sentido`;
+   * `datetime_partida`;
+   * `datetime_chegada`;
+   * `versao_modelo`.
 
 **4.4 Linhagem**
 
 ![Linhagem](imagens/aux_viagem_inicio_fim_linhagem.png)
-
-
-
-
 
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -302,30 +296,28 @@ Transforma a sequência de pontos do GPS em uma viagem com data e hora, posiçã
 
 **5.3 Resultados apresentados**
 A tabela apresenta os seguintes atributos:
-   * id_viagem;
-   * data;
-   * id_empresa;
-   * id_veiculo;
-   * servico_informado;
-   * servico_realizado;
-   * trip_id;
-   * shape_id;
-   * sentido_shape;
-   * distancia_inicio_fim;
-   * distancia_planejada;
-   * shape_id_planejado;
-   * trip_id_planejado;
-   * sentido;
-   * datetime_partida;
-   * datetime_chegada;
-   * versao_modelo.
+   * `id_viagem`;
+   * `data`;
+   * `id_empresa`;
+   * `id_veiculo`;
+   * `servico_informado`;
+   * `servico_realizado`;
+   * `trip_id`;
+   * `shape_id`;
+   * `sentido_shape`;
+   * `distancia_inicio_fim`;
+   * `distancia_planejada`;
+   * `shape_id_planejado`;
+   * `trip_id_planejado`;
+   * `sentido`;
+   * `datetime_partida`;
+   * `datetime_chegada`;
+   * `versao_modelo`.
 
 
 **5.4 Linhagem**:
 
 ![Linhagem](imagens/aux_viagem_circular_linhagem.png)
-
-
 
 -----------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -346,30 +338,30 @@ A tabela apresenta os seguintes atributos:
                   
 **6.3 Resultados apresentados**
 * A tabela `registros_status_viagem` apresenta cada linha como registro com os seguintes atributos:
-   * data (YYYY-mm-dd);
-   * id_veiculo;
-   * id_empresa;
-   * timestamp_gps
-   * timestamp_minutos que desconsidera os segundos do timestamp_gps;
-   * Posição georreferenciada do veículo;
-   * Serviço informado;
-   * Serviço realizado;
-   * Shape_id;
-   * Sentido Shape (Ida 'I' e Volta 'V');
-   * Shape id_planejado;
-   * Trip_id;
-   * Trip_id planejado;
-   * Sentido (Ida 'I' e Volta 'V');
-   * Start_pt ponto de início georreferenciado;
-   * End_pt ponto de fim da viagem georreferenciado;
-   * Distância_planeada;
-   * Distância (realizada);
-   * Status da viagem (start, middle, end, out);
-   * Datetime_partida;
-   * Datetime_chegada;
-   * Distancia_Inicio_Fim;
-   * id_viagem;
-   * Versao_modelo
+   * `data` (YYYY-mm-dd);
+   * `id_veiculo`;
+   * `id_empresa`;
+   * `timestamp_gps`;
+   * `timestamp_minutos` que desconsidera os segundos do timestamp_gps;
+   * `posicao_veiculo_geo`;
+   * `servico_informado`;
+   * `servico_realizado`;
+   * `shape_id`;
+   * `sentido_shape` (Ida 'I' e Volta 'V');
+   * `shape_id_planejado`;
+   * `trip_id`;
+   * `trip_id_planejado`;
+   * `sentido` (Ida 'I' e Volta 'V');
+   * `start_pt` ponto de início georreferenciado;
+   * `end_pt` ponto de fim da viagem georreferenciado;
+   * `distancia_planeada`;
+   * `distancia` que caracteriza a distância realizada;
+   * `status` da viagem (start, middle, end, out);
+   * `datetime_partida`;
+   * `datetime_chegada`;
+   * `distancia_Inicio_Fim`;
+   * `id_viagem`;
+   * `versao_modelo`.
 
 
 **6.4 Linhagem**:
@@ -381,9 +373,6 @@ A tabela apresenta os seguintes atributos:
  ![Tabela gerada](imagens/registro_status_viagem_tab1.png)
  ![Tabela gerada](imagens/registro_status_viagem_tab2.png)
  ![Tabela gerada](imagens/registro_status_viagem_tab3.png)
-
-
-
 
 -----------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -404,24 +393,21 @@ A tabela apresenta os seguintes atributos:
 
 **7.3 Resultados apresentados**
 * A tabela `aux_viagem_registros` apresenta indicadores por viagem com a distância aferida, pontos de gps por fase (start, middle, end e out) e quantos minutos tiveram registros de gps, com os seguintes atributos:
-   * id_viagem;
-   * distancia_aferida;
-   * distancia_Inicio_Fim;
-   * n_registros_middle (os números de registros quando o veículo está na posição middle)
-   * n_registros_start (os números de registros quando o veículo está na posição start)
-   * n_registros_end (os números de registros quando o veículo está na posição end)
-   * n_registros_out (os números de registros quando o veículo está na posição out, fora da rota)
-   * n_registros_total(o número total de registros)
-   * n_registros_minuto (o número total de registro por minuto)
-   * n_registros_shape (o número total de registros que interccionam a shape)
-   * Versao_modelo
+   * `id_viagem`;
+   * `distancia_aferida`;
+   * `distancia_inicio_fim`;
+   * `n_registros_middle` (os números de registros quando o veículo está na posição middle)
+   * `n_registros_start` (os números de registros quando o veículo está na posição start)
+   * `n_registros_end` (os números de registros quando o veículo está na posição end)
+   * `n_registros_out` (os números de registros quando o veículo está na posição out, fora da rota)
+   * `n_registros_total` (o número total de registros)
+   * `n_registros_minuto` (o número total de registro por minuto)
+   * `n_registros_shape` (o número total de registros que interccionam a shape)
+   * `versao_modelo`
 
- 
-**7.4 Linhagem**:
+ **7.4 Linhagem**:
 
 ![Linhagem](imagens/aux_viagem_registros_linhagem.png)
-
-
 
 -----------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -443,32 +429,32 @@ A tabela apresenta os seguintes atributos:
 
 **8.3 Resultados apresentados**
 * A tabela `Viagem_conformidade` apresenta:
-   * Id_viagem;
-   * Data (YYYY-mm-dd);
-   * Id_empresa;
-   * Id_veiculo;
-   * Serviço informado;
-   * Serviço realizado;
-   * Distância planejada;
-   * Sentido (ida "I", volta "V");
-   * Datetime_partida
-   * Datetime_chegada
-   * Trip_id;
-   * Shape_id;
-   * Tempo_viagem (em minutos);
-   * Distancia_aferida (metros);
-   * Distancia_inicio_fim (quilometros);
-   * n_registros_middle (os números de registros quando o veículo está na posição middle);
-   * n_registros_start (os números de registros quando o veículo está na posição start);
-   * n_registros_end (os números de registros quando o veículo está na posição end);
-   * n_registros_total(o número total de registros);
-   * n_registros_minuto (o número total de registro por minuto);
-   * n_registros_shape (o número total de registros que interccionam a shape);
-   * Velocidade média;
+   * `id_viagem`;
+   * `data` (YYYY-mm-dd);
+   * `id_empresa`;
+   * `id_veiculo`;
+   * `servico_informado`;
+   * `servico_realizado`;
+   * `distância planejada`;
+   * `sentido` (ida "I", volta "V");
+   * `datetime_partida`
+   * `datetime_chegada`
+   * `trip_id`;
+   * `shape_id`;
+   * `tempo_viagem` (em minutos);
+   * `distancia_aferida` (metros);
+   * `distancia_inicio_fim` (quilometros);
+   * `n_registros_middle` (os números de registros quando o veículo está na posição middle);
+   * `n_registros_start` (os números de registros quando o veículo está na posição start);
+   * `n_registros_end` (os números de registros quando o veículo está na posição end);
+   * `n_registros_total`(o número total de registros);
+   * `n_registros_minuto` (o número total de registro por minuto);
+   * `n_registros_shape` (o número total de registros que interccionam a shape);
+   * `velocidade_media`;
    * E os percentuais de conformidade:
-      * conformidade_shape;
-      * conformidade_distância;
-      * conformidade_registros.
+      * `perc_conformidade_shape`;
+      * `perc_conformidade_distancia`;
+      * `perc_conformidade_registros`.
 
  
 **8.4 Linhagem**
@@ -486,7 +472,7 @@ A tabela apresenta os seguintes atributos:
 
 # **ETAPA 9**
 
-## **9 Tabela: `Viagem_completa`** 
+## **9 Tabela: `viagem_completa`** 
 *Caminho do modelo:* 
 *prefeitura_rio/pipelines_rj_smtr/queries/models/projeto_subsidio_sppo/viagem_completa.sql*
 
@@ -495,52 +481,52 @@ A tabela apresenta os seguintes atributos:
 **9.1 Objetivo**: Consolidar as viagens e apresentação dos indicadores.
                   
 **9.2 Fluxo de execução do modelo**:
-* Materialização incremental com partição diária; (PADRONIZAR)
+* Materialização incremental com partição diária; (PADRONIZAR);
 * Identifica as viagens que estão dentro do `viagem_planejada`;
 * Filtra apenas as viagens que atendem aos percentuais mínimos de conformidade;
 * Faz a associação de serviço informado e serviço realizado;
 * Filtra as viagens com velocidade média acima de 110km/h (A partir de 16/11/2024);
 * Utiliza as funções:
-   * [ST_BUFFER](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_bufferwithtolerance) para criar um ponto em volta do start (ponto que a viagem se inicia);
+   * [ST_BUFFER](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_bufferwithtolerance) para criar uma área em volta do ponto;
    * [ST_INTERSECTION](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_intersection) para cruzar a área com o shape;
    * [ST_NUMGEOMETRIES](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_numgeometries) verifica se o buffer interccionou com o shape em pelo menos um registro.
    * Analisa se os percentuais de conformidade estão dentro dos mínimos declarados no dbt_project;
    * Possibilita ajuste no modelo diante de atipicidade, como shows, reveillon, etc. 
 
 **9.3 Resultados apresentados**
-* A tabela `Viagem_completa` apresenta a consolidação de todas as informações e possui os seguintes atributos:
-   * Consórcio;
-   * Data (YYYY-mm-dd);
-   * Tipo de dia (útil, sábado, domingo, ponto facultativo, atípico);
-   * Id_empresa;
-   * Id_veiculo;
-   * Id_viagem;
-   * Serviço informado;
-   * Serviço realizado;
-   * Vista que são strings com os nomes das localidades iniciais e finais atendimento;
-   * Trip_id;
-   * Shape_id;
-   * Datetime_partida, ou seja, o horário que a viagem iniciou;
-   * Datetime_chegada, ou seja, o horário que a viagem finalizou;
-   * Início do período da faixa horária;
-   * Fim do período da faixa horária;
-   * Tipo_viagem (Exemplo: "Completa Linha correta" ou "Completa linha incorreta");
-   * Tempo_viagem;
-   * Tempo_planejado;
-   * Distancia_planejada (quilometros);
-   * Distancia_aferida em (quilometros);
-   * Sentido (ida "I", volta "V");
-   * n_registros_shape (o número total de registros que interccionam a shape);
-   * n_registros_total(o número total de registros);
-   * n_registros_minuto (o número total de registro por minuto);
-   * Velocidade média;
+* A tabela `viagem_completa` apresenta a consolidação de todas as informações e possui os seguintes atributos:
+   * `consorcio`;
+   * `data` (YYYY-mm-dd);
+   * `tipo_dia` (útil, sábado, domingo, ponto facultativo, atípico);
+   * `id_empresa`;
+   * `id_veiculo`;
+   * `id_viagem`;
+   * `servico_informado`;
+   * `servico_realizado`;
+   * `vista` que são strings com os nomes das localidades iniciais e finais atendimento;
+   * `trip_id`;
+   * `shape_id`;
+   * `datetime_partida`, ou seja, o horário que a viagem iniciou;
+   * `datetime_chegada`, ou seja, o horário que a viagem finalizou;
+   * `inicio_faixa_horaria`;
+   * `fim_faixa_horaria`;
+   * `tipo_viagem` (Exemplo: "Completa Linha correta" ou "Completa linha incorreta");
+   * `tempo_viagem`;
+   * `tempo_planejado`;
+   * `distancia_planejada` (quilometros);
+   * `distancia_aferida` em (quilometros);
+   * `sentido` (ida "I", volta "V");
+   * `n_registros_shape` (o número total de registros que interccionam a shape);
+   * `n_registros_total`(o número total de registros);
+   * `n_registros_minuto` (o número total de registro por minuto);
+   * `velocidade_media`;
    * E os percentuais de conformidade:
-      * perc_conformidade_shape;
-      * perc_conformidade_distância;
-      * perc_conformidade_registros;
-      * perc_conformidade_tempo.
-   * Datetime com a última atualização;
-   * Versao_modelo.
+      * `perc_conformidade_shape`;
+      * `perc_conformidade_distancia`;
+      * `perc_conformidade_registros`;
+      * `perc_conformidade_tempo`.
+   * `datetime_ultima_atualizacao`;
+   * `versao_modelo`.
 
  
 **9.4 Linhagem**
