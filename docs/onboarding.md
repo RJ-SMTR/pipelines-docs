@@ -179,15 +179,34 @@ cd pipelines_rj_smtr
 
 ---
 
-## 10. Configuração do Ambiente Python
+## 10. Instalar Poetry
 
-### 10.1 Criar ambiente virtual
+Poetry é o gerenciador de dependências Python usado no projeto.
+
+### 10.1 Instalar Poetry
+
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+### 10.2 Adicionar Poetry ao PATH
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+---
+
+## 11. Configuração do Ambiente Python
+
+### 11.1 Criar ambiente virtual
 
 ```bash
 python3.10 -m venv .pipelines
 ```
 
-### 10.2 Ativar ambiente virtual
+### 11.2 Ativar ambiente virtual
 
 ```bash
 source .pipelines/bin/activate
@@ -195,16 +214,25 @@ source .pipelines/bin/activate
 
 ---
 
-## 11. Instalar dependências
+## 12. Instalar dependências
 
 ```bash
 poetry install --all-groups
 pip install -e .
 ```
 
+### 12.1 Instalar pre-commit
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
 ---
 
-### 12.2 Criar arquivo `.env`
+## 13. Configurar Variáveis de Ambiente
+
+### 13.1 Criar arquivo `.env`
 
 Na raiz do projeto, crie um arquivo chamado `.env` com o seguinte conteúdo:
 
@@ -217,8 +245,24 @@ BASEDOSDADOS_CREDENTIALS_STAGING=
 DBT_PROFILES_DIR=/home/SEU_USUARIO/prefeitura_rio/pipelines_rj_smtr/queries/dev
 DBT_USER=
 ```
+> **Importante:** Substitua `SEU_USUARIO` pelo seu nome de usuário do Ubuntu.
+
+### 13.2 Carregar as variáveis de ambiente
+
+Após preencher o arquivo `.env`, carregue as variáveis no terminal:
+
+```bash
+set -a && source .env && set +a
+```
+
+> **Nota:** Este comando precisa ser executado toda vez que você abrir um novo terminal. Alternativamente, você pode adicionar este comando ao final do arquivo `~/.bashrc` para carregar automaticamente:
+>
+> ```bash
+> echo 'set -a && source ~/prefeitura_rio/pipelines_rj_smtr/.env && set +a' >> ~/.bashrc
+> ```
 
 ---
+
 ## ✅ Pronto!
 O ambiente está configurado para começar a trabalhar com os projetos da equipe.  
 Qualquer dúvida, é só chamar! 🚀
