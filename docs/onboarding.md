@@ -42,7 +42,7 @@ Ao abrir o Ubuntu pela primeira vez, você será solicitado a criar um usuário 
 Após criar o usuário, atualize o sistema:
 
 ```bash
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
 ```
 
 ---
@@ -57,7 +57,7 @@ sudo apt update && sudo apt upgrade
 ## 4. Instalar Git
 
 ```bash
-sudo apt-get install git
+sudo apt-get install git -y
 ```
 
 Configure nome e e-mail:
@@ -177,6 +177,14 @@ gh repo clone prefeitura-rio/pipelines_rj_smtr
 cd pipelines_rj_smtr
 ```
 
+### 9.3 Configurar Perfis do DBT
+
+Para que o dbt saiba como se conectar ao banco de dados, copie o arquivo de configuração de exemplo:
+
+```bash
+cp queries/dev/profiles-example.yml queries/dev/profiles.yml
+```
+
 ---
 
 ## 10. Instalar Poetry
@@ -240,8 +248,6 @@ Na raiz do projeto, crie um arquivo chamado `.env` com o seguinte conteúdo:
 INFISICAL_TOKEN=
 INFISICAL_ADDRESS=https://infisical.dados.rio
 GOOGLE_APPLICATION_CREDENTIALS=/home/SEU_USUARIO/.config/gcloud/application_default_credentials.json
-BASEDOSDADOS_CREDENTIALS_PROD=
-BASEDOSDADOS_CREDENTIALS_STAGING=
 DBT_PROFILES_DIR=/home/SEU_USUARIO/prefeitura_rio/pipelines_rj_smtr/queries/dev
 DBT_USER=
 ```
