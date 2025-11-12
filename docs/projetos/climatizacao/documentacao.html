@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>documentacao</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="documentacao_files/libs/clipboard/clipboard.min.js"></script>
+<script src="documentacao_files/libs/quarto-html/quarto.js"></script>
+<script src="documentacao_files/libs/quarto-html/popper.min.js"></script>
+<script src="documentacao_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="documentacao_files/libs/quarto-html/anchor.min.js"></script>
+<link href="documentacao_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="documentacao_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="documentacao_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="documentacao_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="documentacao_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="frame-dados-framework-de-documentação-de-projetos-de-dados-públicos" class="level1">
+<h1>FRAME-DADOS – Framework de Documentação de Projetos de Dados Públicos</h1>
+<section id="identificação-do-projeto" class="level2">
+<h2 class="anchored" data-anchor-id="identificação-do-projeto">1. Identificação do Projeto</h2>
+<ul>
+<li><em>Nome do Projeto:</em> Avaliação de Climatização de Viagens</li>
+<li><em>Identificador do Projeto:</em> <code>climatizacao</code></li>
+<li><em>Equipe Técnica:</em>
+<ul>
+<li>Rodrigo Cunha (Diretor Técnico Especial de Dados e Inovação)</li>
+<li>Adriano Neto (Analista de Dados)</li>
+</ul></li>
+<li><em>Instituição/Setor:</em> PCRJ/SMTR/SUBTT</li>
+<li><em>Data de Início:</em> 21/05/2025</li>
+<li><em>Status:</em> Em andamento</li>
+</ul>
+</section>
+<section id="objetivo-e-justificativa" class="level2">
+<h2 class="anchored" data-anchor-id="objetivo-e-justificativa">2. Objetivo e Justificativa</h2>
+<p>O transporte público municipal trava uma jornada constante pela busca de melhorias no serviço prestado à população. Um dos fatores que impactam diretamente na qualidade do serviço e consequentemente na satisfação do usuário do transporte público, é a climatização, que se aplicada de forma correta proporcionará a população um transporte mais confortável e de qualidade.</p>
+<p>COm o objetivo primário de alcançar níveis adequados de qualidade e conforto, a SMTR está criando regras guiarão a frota municipal para garantir a climatização adequada visando viagens mais agradáveis ao usuário. Mas, também garantindo a aplicação real na operação diária pelas operadoras das concessionárias de transportes público. Segundamente, no contexto operacional avaliar a efetividade dessas medidas, utilizou-se da construção de regras e patamares mínimos aceitáveis para a regularidade da temperatura nas viagens efetuadas, assim como punição para casos onde o patamar mínimo não for obtido.</p>
+<p>De forma a contextualizar melhor essa necessidade, é possível citar as grandes ondas de calor que afetam diretamente todo o planeta e que estão cada vez mais frequentes no dia-a-dia da população e que podem causar diversos malefícios à saúde do individuo. Medidas como esta podem incentivar o aumento do uso de transporte público, assim como evitar possíveis complicações de saúde durante o trajeto e garantir conforto durante o uso (OLIVEIRA, 2015).</p>
+<p>Essas medidas dão continuidade às políticas públicas já estabelecidas, como o Decreto nº 38.328/2014, que determina que todos os ônibus adquiridos para o sistema municipal sejam equipados com ar-condicionado. Além disso, reforçam a necessidade de evidências técnicas que assegurem o funcionamento adequado desses equipamentos, com o objetivo de atingir a meta de que 100% das viagens tenham, no mínimo, 80% dos registros de temperatura em conformidade com os parâmetros definidos neste projeto.</p>
+</section>
+<section id="diagnóstico-e-fontes-de-dados" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-e-fontes-de-dados">3. Diagnóstico e Fontes de Dados</h2>
+<ul>
+<li><p><strong>3.1. Plataforma de Bilhetagem Digital Jaé:</strong></p>
+<p>Dados de temperatura interna dos veículos são provenientes do Sistema Digital de Bilhetagem fornecido pela concessionária de Bilhetagem Digital (Jaé).</p>
+<p>A procedência e a disponibilidade desses dados são caracterizadas pela disponibilidade constante das medições realizadas pelos sensores de temperatura localizados no interior dos veículos da frota municipal de transportes público. Embora apresentem um grau de precisão razoável, a qualidade da informação é considerada adequada, especialmente sob boas condições de manutenção dos equipamentos.</p>
+<p>Apesar de algumas limitações, as medições podem ser devidamente tratadas por técnicas estatísticas robustas para identificação e mitigação de dados extremos(Outliers). Estes, em poucos casos, mostram-se presentes, mas, em sua maioria, não comprometem a integridade da análise técnica e rigorosa, que utiliza regras e métodos cientificamente validados.</p>
+<p>Através dessa avaliação, é possível também identificar possíveis problemáticas que estarão sendo monitoradas visando reduzir e mitigar toda e qualquer intervenção indesejada na disponibilidade de informações de qualidade por defeitos técnicos, operacionais ou acidentais. <br></p></li>
+<li><p><strong>3.2. Instituto Nacional de Meteorologia - INMET:</strong></p>
+<p>Os dados meteorológicos utilizados como parâmetro de avaliação para a temperatura externa do ambiente são provenientes das 4 estações de medição do INMET referentes ao município do Rio de Janeiro, que são devidamente armazenadas e disponibilizadas publicamente no Site/Banco de Dados Meteorológicos do INMET.</p>
+<p>A procedência e qualidade dos dados fornecidos pelo INMET são de alta precisão e qualidade, dada toda a tecnologia e equipamento especializado para medições de temperatura. Podemos citar o uso de termohigrógrafos e estações meteorológicas automáticas para medir e registrar a temperatura do ambiente, considerando a umidade relativa do ar e outras variáveis relevantes. Há dados disponibilizados em tempo real, mas que carecem de algumas padronizações e tratamentos (nada referente a imprecisão), e dados consolidados, os quais demoram um tempo um pouco maior para serem disponibilizados, portanto não estão disponíveis em tempo real.</p>
+<p>Apesar de todos os pontos positivos mencionados anteriormente, ainda é observável a carência de um dicionário de dados mais robusto e acessível, que, dessa forma, possa centralizar informações e conceitos de forma mais detalhada sobre colunas e tabelas dos dados meteorológicos.</p>
+<p><br></p></li>
+</ul>
+</section>
+<section id="levantamento-de-requisitos" class="level2">
+<h2 class="anchored" data-anchor-id="levantamento-de-requisitos">4. Levantamento de Requisitos</h2>
+<ul>
+<li><strong>Requisitos funcionais:</strong>
+<ul>
+<li><p>Classificar de forma clara e objetiva se a viagem efetuada está em regularidade com as regras de climatização impostas pela Secretaria Municipal de Transportes (SMTR).</p></li>
+<li><p><strong>Requisitos funcionais acessório:</strong></p>
+<ul>
+<li><p>Tabelas, painéis ou elementos similares contendo informações atualizadas em tempo real sobre veículos com possíveis problemas de medição visando apoiar e direcionar a operação de fiscalização nas concessionárias envolvidas.</p>
+<p>Para Exemplificar o que poderia constar como esses veículos com problemas, temos como exemplo:</p>
+<ul>
+<li>Veículos que após avaliarmos a temperatura registrada ao longo de um dia ou mesmo 1 viagem, não é possível observar qualquer variação da temperatura medida. Essa avaliação pode ser feita através do cálculo do desvio padrão da temperatura no período, onde espera-se que o desvio padrão seja maior que zero.</li>
+</ul></li>
+</ul></li>
+<li><p>API com dados de temperatura, onde a operação poderá ter acesso as informações e assim poder efetuar um monitoramento em tempo real. As condições de disponbilidade serão disponibilizar as duas horas mais recentes do dia em relação ao momento da consulta a API.</p></li>
+</ul></li>
+<li><strong>Requisitos não funcionais (desempenho, segurança, disponibilidade etc.):</strong>
+<ul>
+<li>Testes, validação, relacionamento de tabelas, verificação de replicabilidade e desempenho factível.</li>
+<li>Os dados são públicos, não sendo abrangidos por restrições da LGPD quanto a dados sensíveis.</li>
+</ul></li>
+<li><strong>Demandas regulatórias ou legais:</strong>
+<ul>
+<li>Acordo Judicial Nº 0072879-94.2023.8.19.0001</li>
+<li>Norma ABNT NBR 15570:2021</li>
+<li>Termo de conciliação</li>
+</ul></li>
+<li><strong>Partes interessadas envolvidas:</strong>
+<ul>
+<li>Gestores internos:
+<ul>
+<li>Subsecretário de Tecnologia em Transportes.</li>
+<li>Subsecretário de Operação e Planejamento.</li>
+<li>Coordenador de Monitoramento.</li>
+</ul></li>
+<li>Concessionárias de Transporte Público.</li>
+<li>Consumidor final (População).</li>
+</ul></li>
+</ul>
+</section>
+<section id="fluxo-de-validação-da-viagem" class="level2">
+<h2 class="anchored" data-anchor-id="fluxo-de-validação-da-viagem">5. Fluxo de Validação da Viagem</h2>
+<pre><code>└── Ínicio - Demanda pela análise
+    │
+    ├── Processamento dos dados de temperatura externa brutos
+    │   ├── Identificação de temperatura máxima                    
+    │   └── Gerar Dados de temperatura externa por hora
+    │
+    ├── Processamento dos dados de temperatura interna brutos
+    │   └── Realizar Remoção de Nulos  
+    │   └── Realizar Remoção de outliers (IQR + Modified Z-Score)           
+    │
+    └── Avaliação da Regularidade e Apuração Final da Viagem 
+        │
+        ├── Decisão de Regularidade:
+        │   │
+        │   └── Condição: (Temperatura Externa - Temperatura Interna &gt;= 8°C ou Temperatura Interna &lt;= 24°C)
+        │       │                                                 
+        │       ├── SE SIM (Condição de regularidade atendida):
+        │       │   └── Classificar como Registro de temperatura regular
+        │       │
+        │       └── SE NÃO (Condição de regularidade não atendida):
+        │           └── Classificar como Registro de temperatura irregular
+        │
+        └── Apuração do percentual de registros de temperatura válida por viagem
+            │
+            └── Classificação de validade da Viagem
+                │
+                └── Condição: (Percentual de registros de temperatura válidos &gt;= 80%)
+                    │
+                    ├── SE SIM:
+                    │   └── Viagem válida
+                    └── SE NÃO:
+                        └── Viagem inválida</code></pre>
+</section>
+<section id="análise-de-impacto-regulatório-air" class="level2">
+<h2 class="anchored" data-anchor-id="análise-de-impacto-regulatório-air">6. Análise de Impacto Regulatório (AIR)</h2>
+<ul>
+<li><p><strong>Cenários avaliados:</strong> <br></p>
+<ul>
+<li><p><strong>Primeiro cenário - Avaliação pela temperatura média dos registros:</strong><br>
+Este cenário considerava a utilização da média (ou mediana) da temperatura interna dos veículos como base para a análise.</p></li>
+<li><p><strong>Segundo cenário - Avaliação por registros unitários:</strong><br>
+Este cenário propunha a comparação individual de cada registro de temperatura interna com o valor máximo da temperatura externa para determinar a regularidade.<br>
+<br></p></li>
+</ul></li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>Análise comparativa (vantagens, desvantagens, viabilidade):</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 42%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspecto</th>
+<th><strong>1. Temperatura Média</strong></th>
+<th><strong>2. Registros Unitários</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Vantagens</strong></td>
+<td>- Simplicidade de cálculo e compreensão inicial.</td>
+<td>- Maior precisão e detalhamento.<br>- Melhor representação do comportamento térmico durante a viagem.</td>
+</tr>
+<tr class="even">
+<td><strong>Desvantagens</strong></td>
+<td>- Dados com distribuição não normal (bimodal).<br>- Média e mediana não representavam adequadamente o centro.<br>- Sensível a distorções por registros extremos.<br>- Limitações técnicas dos sensores.</td>
+<td>- Requer mais processamento e cuidado na análise individual dos dados.</td>
+</tr>
+<tr class="odd">
+<td><strong>Viabilidade</strong></td>
+<td>Reduzida, devido ao comportamento estatístico dos dados e limitações técnicas.</td>
+<td>Alta, pois permite validação detalhada e análise mais robusta diante das incertezas dos dados.</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><br></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Controles ou mitigadores adotados:</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><h2 id="indicadores-de-impacto" class="anchored">9. Indicadores de Impacto</h2></li>
+<li><strong>Como o sucesso do projeto será medido?</strong><br>
+Poderemos avaliar e medir o sucesso do projeto através da melhoria dos indicadores institucionais e técnicos, que impactarão diretamente a população que é o foco principal da busca pela melhoria desse serviço.</li>
+<li><strong>Indicadores institucionais:</strong>
+<ul>
+<li>Índice de regularidade da temperatura (descrever o que é isso)</li>
+</ul></li>
+<li><strong>Indicadores técnicos (desempenho, tempo de resposta, completude etc.):</strong>
+<ul>
+<li>Índice de veículos suspeitos.</li>
+<li>Índice de ajuste da operação:<br>
+Avaliado através do tempo que os indicadores anteriores progridem ou regridem em marcos temporais de 30 dias, 90 dias, 180 dias e 365 dias. Ou mesmo avaliando uma série de tempo diária.</li>
+</ul></li>
+</ul>
+</section>
+<section id="plano-de-manutenção-técnica" class="level2">
+<h2 class="anchored" data-anchor-id="plano-de-manutenção-técnica">10. Plano de Manutenção Técnica</h2>
+<ul>
+<li><p><strong>Frequência de revisão dos dados/pipelines:</strong><br>
+Definida de acordo com a demanda dos gestores e outros envolvidos.</p></li>
+<li><p><strong>Procedimento de versionamento:</strong><br>
+Versionamento via GitHub.</p></li>
+<li><p><strong>Responsável pela sustentação:</strong><br>
+Equipe de dados da SMTR.</p></li>
+<li><p><strong>Monitoramento e alertas:</strong><br>
+Possivelmente verificações de duplicações, nulidade dos dados e frequência adequada de atualização do dado visando não impactar o operador.</p></li>
+</ul>
+</section>
+<section id="plano-de-manutenção-da-documentação" class="level2">
+<h2 class="anchored" data-anchor-id="plano-de-manutenção-da-documentação">11. Plano de Manutenção da Documentação</h2>
+<ul>
+<li><p><strong>Responsável por atualizar o FRAME-DADOS:</strong><br>
+Adriano Neto (Analista de dados - SMTR)</p></li>
+<li><p><strong>Frequência de revisão:</strong><br>
+Conforme a demanda dos gestores e outras autoridades envolvidas.</p></li>
+<li><p><strong>Local de armazenamento e versão:</strong><br>
+Repositório de documentações da equipe de dados da SMTR no GitHub.<br>
+</p></li>
+<li><p><strong>Estratégia para manter o material atualizado (checklists, rotinas, versionamento):</strong><br>
+A partir das demandas e entregas de alterações iremos atualizando o material base.</p></li>
+</ul>
+</section>
+<section id="lições-aprendidas" class="level2">
+<h2 class="anchored" data-anchor-id="lições-aprendidas">12. Lições Aprendidas</h2>
+<ul>
+<li><strong>O que funcionou bem:</strong>
+<ul>
+<li>Uma análise inicial curta para atender demandas mais urgentes e dessa forma, pautar melhor as discussões sobre melhorias, resultados encontrados e caminhos a seguir.<br>
+</li>
+</ul></li>
+<li><strong>O que poderia ter sido feito de outra forma:</strong>
+<ul>
+<li><p>Efetuar uma análise completa em um momento anterior a definição de quaisquer regras necessárias para aplicação posterior. Com isso, evidências e resultados prévios passam a fundamentar tecnicamente as regras e políticas públicas, ao invés de serem desenvolvidas posteriormente à sua implementação.</p></li>
+<li><p>Definição inicial do escopo (detalhar melhor)</p></li>
+</ul></li>
+<li><strong>Barreiras encontradas e superadas:</strong>
+<ul>
+<li>A falta de disponibilidade completa de dados das 4 estações, o que nos guiou a utilizar o valor máximo com apenas 3 estações do total de 4 disponíveis para o município do Rio de Janeiro.<br>
+</li>
+<li>A falta de um dicionário de dados visando facilitar o entendimento e metodologia das tabelas, colunas e conceitos envolvidos no contexto de dados meteorológicos.<br>
+</li>
+</ul></li>
+<li><h2 id="recomendações-para-projetos-futuros" class="anchored"><strong>Recomendações para projetos futuros:</strong></h2></li>
+</ul>
+</section>
+<section id="referências-e-documentos-vinculados" class="level2">
+<h2 class="anchored" data-anchor-id="referências-e-documentos-vinculados">13. Referências e Documentos Vinculados</h2>
+<ul>
+<li><p>Acordo Judicial Nº 0072879-94.2023.8.19.0001 firmado em 30 de abril de 2025 entre o Município do Rio de Janeiro e os consórcios operadores do sistema de transporte coletivo, foram estabelecidas novas diretrizes para a operação e monitoramento do serviço, incluindo obrigações específicas de transparência e cumprimento de metas operacionais sob a supervisão da SPPO.</p></li>
+<li><p>Norma ABNT NBR 15570:2021</p></li>
+<li><p>Art. 3° do Decreto n° 53.856/2023.</p></li>
+<li><p>Resolução SMTR Nº 3636, de 11 de julho de 2023.<br>
+</p></li>
+<li><p>NETO, Adriano. Análise da Regularidade de Temperatura - SMTR20250521. Rio de Janeiro: SMTR, 2025. Disponível em: Anexo no repositório institucional da SMTR. Acesso em: 23 jun. 2025.<br>
+</p></li>
+<li><p>NETO, Adriano. 20250616_Análise da Regularidade de Temperatura - SMTR 2025. Rio de Janeiro: SMTR, 2025. Apresentação em slides. Disponível em: https://docs.google.com/presentation/d/1lFGgDx2-42lpawTwoulhAXygr0CgW4-S99R2sQR-Fic/. Acesso em: 23 jun. 2025.</p></li>
+<li><p>TUKEY, John W. Exploratory Data Analysis. Reading, MA: Addison-Wesley, 1977.<br>
+</p></li>
+<li><p>IGLEWICZ, Boris; HOAGLIN, David C. How to Detect and Handle Outliers. Milwaukee, WI: ASQC Quality Press, 1993. (ASQC Statistics Textbook Series)<br>
+<br></p></li>
+<li><p><strong>Anexos:</strong></p></li>
+<li><p><strong>Processos administrativos ou ofícios:</strong></p></li>
+<li><p><strong>Links para dossiês complementares:</strong><br>
+<br></p></li>
+</ul>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
