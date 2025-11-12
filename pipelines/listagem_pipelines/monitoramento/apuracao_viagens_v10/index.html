@@ -1,0 +1,1158 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://rj-smtr.github.io/pipelines-docs/pipelines/listagem_pipelines/monitoramento/apuracao_viagens_v10/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Apuracao viagens v10 - SMTR -  Pipelines</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gotham:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Gotham";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../static/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#glossario" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../../.." title="SMTR -  Pipelines" class="md-header__button md-logo" aria-label="SMTR -  Pipelines" data-md-component="logo">
+      
+  <img src="../../../../img/logo_branco.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SMTR -  Pipelines
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Apuracao viagens v10
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Mudar para tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SMTR -  Pipelines" class="md-nav__button md-logo" aria-label="SMTR -  Pipelines" data-md-component="logo">
+      
+  <img src="../../../../img/logo_branco.png" alt="logo">
+
+    </a>
+    SMTR -  Pipelines
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pastas_arquivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pastas e arquivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ambientes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambientes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabelas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tabelas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tabelas/manual_estilo_tabelas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual de Estilo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tabelas/backups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipelines
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pipelines
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipelines genéricos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listagem das pipelines
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Listagem das pipelines
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_1" id="__nav_6_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoramento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoramento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apuracao_viagens_v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apuração de viagens (SPPO) [1.0]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ferramentas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ferramentas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#glossario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glossário:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-tabela-gps_sppo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Tabela: gps_sppo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Tabela: gps_sppo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-tabela-registros_status_viagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Tabela: registros_status_viagem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-tabela-viagem-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Tabela: viagem completa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dicas-inserir-todos-os-nomes-das-querys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dicas: inserir todos os nomes das querys
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Apuracao viagens v10</h1>
+
+<h2 id="glossario"><strong>Glossário:</strong></h2>
+<ul>
+<li><strong>Distância aferida</strong>: Cálculo da distância percorrida entre dois pontos de dados de GPS sucessivos.</li>
+<li><strong>Garagem</strong>: Local onde os veículos de transporte ficam quando não estão em operação.</li>
+<li><strong>GTFS</strong>: Arquivo contendo informações sobre linhas de ônibus e serviços de BRT da cidade do Rio de Janeiro. Atualizado mensalmente pela Secretaria Municipal de Transportes <a href="https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about">https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about</a></li>
+<li><strong>id_veiculo</strong>: Identificação do veículo a partir de um número de ordem.</li>
+<li><strong>id_viagem</strong>: Identificação única para cada viagem</li>
+<li><strong>Modelo ephemeral e incremental</strong>: Vide DBT (<a href="https://docs.getdbt.com/docs/build/materializations">https://docs.getdbt.com/docs/build/materializations</a>)</li>
+<li><strong>Plano operacional</strong>: Documento divulgado pelo site <a href="https://transportes.prefeitura.rio">https://transportes.prefeitura.rio</a> que contém as características operacionais dos serviços.</li>
+<li><strong>Ponto</strong>: Comunicação pontual do GPS.</li>
+<li><strong>Rota planejada</strong>: Rota planejada para aquele tipo de serviço e sentido conforme o GTFS.</li>
+<li><strong>Rota realizada</strong>: Rota realizada pelo veículo em determinado tipo de serviço, sentido, data, horário</li>
+<li><strong>Serviço</strong>: Codificação alfanumérica que possui itinerário pré-definido e especificação de quilometragem. </li>
+<li><strong>Shape</strong> - Elemento geométrico que representa o espaço em formato linestring ou multilinestring.</li>
+<li><strong>Timestamp</strong> - Registro de data e hora</li>
+<li><strong>Viagem</strong> - O percurso completo de um veículo, partindo de um ponto inicial e terminando em um ponto final, com determinado horário de início e término[duas meias viagens].</li>
+<li><strong>Viagem Circular</strong> - Viagens que o início e o fim do trajeto possuem a mesma geolocalização. </li>
+</ul>
+<hr />
+<h2 id="1-tabela-gps_sppo"><strong>1. Tabela: gps_sppo</strong></h2>
+<ul>
+<li>Definição: A tabela <em>gps_sppo</em> é onde são armazenados os dados do gps após passar pelas seguintes transformações de cálculo da velocidade instantânea, 
+cálculo da velocidade média, análise se o veículo encontra-se parado, conformidade com a rota. </li>
+</ul>
+<p><strong>1.1 Cálculo da velocidade instantânea [velocidade_instantanea]</strong>
+- A velocidade instantânea é calculada dividindo a distância percorrida pelo tempo entre dois registros de timestamp consecutivos. 
+- O resultado é então multiplicado por 3,6 para converter a unidade para km/h.</p>
+<p><strong>1.2 Cálculo da velocidade média [velocidade_estimada_10_min]</strong>
+- Modelo ephemeral [sppo_aux_registros_velocidade.sql]
+- A velocidade média é zerada quando há qualquer alteração de veículo ou serviço.
+- A velocidade média é calculada a partir da média das velocidades dos últimos 10 minutos (declarado no modelo como 600 seconds).
+- Antes de completar os 10 minutos, a velocidade média permanece igual a zero.
+- Caso a velocidade exceda 60 km/h (sendo um outlier), ela será ajustada para 60 km/h.</p>
+<p><strong>1.3 Veículo parado [tipo_parada]</strong>
+- Modelo ephemeral [sppo_aux_registros_parada]
+- Veículo recebe o <em>status quo</em> de parado quando a velocidade entre dois pontos é igual a 0km/h.
+- Velocidade limiar parada: 3km/h
+O veículo poderá estar parado próximos a terminais (dentro de um raio de 250m) ou dentro da garagem.
+Esta definição permite rotular as observações da coluna tipo_parada como "Em operação", "Parado garagem"</p>
+<p><strong>1.4 Rota</strong>
+- Modelo ephemeral [sppo_aux_registros_flag_trajeto_correto]
+- Etapa que objetiva analisar se o veículo realizou o trajeto correto, conforme as shapes (camadas georreferenciadas) dos trajetos e dos trajetos alternativos. 
+- A partir da utilização do window_function o modelo calcula um indicador de quantas vezes o veículo esteve dentro do trajeto correto.
+- A condição de trajeto correto é atingida se o veículo estiver dentro da variável buffer_segmento_metros (500 metros). </p>
+<p><strong>1.5 Linhagem do dado</strong></p>
+<ul>
+<li><img alt="Linhagem GPS SPPO" src="../imagens/linhagem_gps_sppo.png" /></li>
+</ul>
+<p><strong>1.6 Exemplo da Tabela</strong></p>
+<ul>
+<li><img alt="Exemplo da Tabela GPS_SPPO" src="../imagens/gps_sppo_tabela.png" /></li>
+</ul>
+<hr />
+<h3 id="2-tabela-registros_status_viagem"><strong>2. Tabela: registros_status_viagem</strong></h3>
+<p>Caminho queries/models/projeto_subsidio_sppo/registro_status_viagem</p>
+<ul>
+<li>Objetivo: processamento do status da viagem (start, middle, end, out)</li>
+</ul>
+<p><strong>2.1 Tratamento das viagens com serviço caracterizado como circular</strong>
+- Modelo ephemeral:aux_viagem_circular<br />
+- Caminho queries/models/projeto_subsidios_sppo/aux_viagem_circular.sql
+- Esse modelo ephemeral consulta o modelo aux_viagem_inicio_fim para filtrar apenas as viagens com sentido = "C", o objetivo é selecionar para essa análise apenas as viagens circulares.
+- Ao utilizar a window function LEAD o modelo identifica o próximo registro de determinado veículo e serviço dentro de uma janela de tempo.
+- flag_proximo_volta se for igual a TRUE e o sentido do shape for igual a "I" (Ida) e o datetime chegada for menor ou igual ao datetime partida volta gera um resultado que garante que o trajeto que representa a ida de uma viagem circular com sua volta logo em seguida.
+- O modelo, ao realizar o particionamento de ida e volta, garante que ambos sentidos recebam o mesmo id_viagem.
+- Após o tratamento das viagens circulares, o modelo concatena as viagens usando "union all" que não têm os serviços circulares. </p>
+<p><strong>2.2 Processamento</strong>
+- Modelo ephemeral: aux_registros_status_trajeto
+- Caminho queries/models/projeto_subsidios_sppo/aux_registros_status_trajeto.sql</p>
+<ul>
+<li>O objetivo desse modelo é verificar se o veículo está em rota e, em caso positivo, verificar qual indicador de posição o veículo está.</li>
+<li>Indicador de posição:<ul>
+<li>start: o veículo está próximo ao início da rota.</li>
+<li>middle: a viagem e o veículo recebem o status de middle a partir da primeira comunicação depois do buffer inicial (start).</li>
+<li>end: o veículo encontra-se próximo ao final da rota</li>
+<li>out: veículo fora da rota.</li>
+</ul>
+</li>
+<li>Vide ilustração esquemática:</li>
+<li>
+<p><img alt="Esquema" src="../imagens/esquema_status_viagem.png" /></p>
+</li>
+<li>
+<p>Variável buffer geográfico {{ var("buffer") }} define o quanto o veículo precisa estar próximo a rota para que o trajeto seja considerado válido ( Atualmente o buffer está declarado como 500 metros)</p>
+</li>
+<li>Função determinística para validação do indicador de posição - ST_DWITHIN.</li>
+<li>Caso especial (janela temporal): eventos como o show da Madonna requerem ajuste de parâemtros como do buffer geográfico ou seleções de tipos de serviço.</li>
+<li>Correspondência do tipo de serviço: o modelo analisa que se o serviço informado via GPS está igual ao serviço planejado. </li>
+<li>Resumo de validação da viagem:</li>
+<li>Indicador de posição (start, middle, end): a comunicação do GPS deve acontecer nas três instâncias do indicador de posição.</li>
+<li>O serviço planejado deve ser igual ao serviço informado.</li>
+</ul>
+<p>(Verificar se é nesse trecho que instancio a faixa horária)</p>
+<p><strong>2.3 Modelo de tabela: registros_status_viagem</strong></p>
+<ul>
+<li><img alt="Modelo de tabela Registros_status_viagem" src="../imagens/registro_status_viagem.png" /></li>
+</ul>
+<p><strong>2.4 Linhagem da tabela registro_status_viagem</strong></p>
+<ul>
+<li><img alt="Linhagem Registros_status_viagem" src="imagens/inhagem_registros_status_viagem.png" /></li>
+</ul>
+<hr />
+<h3 id="3-tabela-viagem-completa"><strong>3. Tabela: viagem completa</strong></h3>
+<ul>
+<li>Caminho queries/models/projeto_subsidio_sppo/viagem_completa.sql</li>
+<li>Esse modelo acessa três tabelas, sendo os itens 3.1 Viagem Planejada e 3.2 Viagem Conformidade e a Tabela de Shapes proveniente do GTFS.</li>
+<li>O objetivo dessa tabela é consolidar informações para cada viagem de distância planejada e distância aferida, tempo de viagem, número de registros da comunicação do GPS e apresentar o percentual de conformidade.</li>
+<li>Regra de negócio: O veículo para estar em conformidade, deve no mínimo comunicar em 80% do trajeto planejado, sendo que uma comunicação deve ser no star e outra no end..</li>
+<li>Modelo da tabela</li>
+<li><img alt="Tabela Viagem Completa" src="../imagens/viagem_completa_tabela.png" /> </li>
+<li>Linhagem da tabela</li>
+<li><img alt="Linhagem da Tabela Viagem Completa" src="../imagens/linhagem_viagem_completa.png" /> </li>
+</ul>
+<p><strong>3.1 Tabela Viagem planejada</strong>
+- Modelo incremental: viagem_planejada.sql
+- Caminho queries/models/projeto_subsidio_sppo/viagem_planejada.sql
+- O objetivo dessa consulta para a geração do modelo viagem completa é gerar uma tabela de viagens planejadas para o período apurado.</p>
+<p><strong>3.1.1 Modelo Tabela</strong>
+- <img alt="Tabela_Viagem_Planejada" src="imagens/modelo_viagem_planejada.png" />
+<strong>3.1.2 Linhagem da tabela viagem planejada</strong></p>
+<ul>
+<li><img alt="Linhagem_Viagem_Planejada" src="imagens/linhagem_viagem_planejada.png" /></li>
+</ul>
+<p><strong>3.2 Viagem conformidade</strong>
+- Modelo incremental: viagem_conformidade.sql
+- Caminho queries/models/projeto_subsidio_sppo/viagem_conformidade.sql
+- O objetivo dessa tabela que alimenta a tabela viagem completa é gerar uma tabela de viagens que analisa as conformidades conforme o planejado
+- Esse modelo acessa os modelos efêmeros listados no item:
+  * 2.1 Item aux_viagem_circular
+- Esse modelo consulta o modelo ephemeral aux_viagem_registros (3.2.1).</p>
+<pre><code> **3.2.1 aux_viagem_registro**
+ - Modelo ephemeral: aux_viagem_registros.sql
+ - Caminho queries/models/projeto_subsidio_sppo/ aux_viagem_registros.sql
+ - Os principais objetivos desse modelo são:
+   * medir a quantidade de registros;
+   * medir a distância entre o início e fim do trecho;
+   * contar registros de comunicações do GPS no indicador de posição (2.2): start, middle, end.
+</code></pre>
+<p><strong>3.2.2 Modelo Tabela Viagem Conformidade</strong>
+- <img alt="Tabela_Viagem_Conformidade" src="../imagens/tabela_viagem_conformidade.png" /></p>
+<ul>
+<li><strong>3.2.3 Linhagem da Tabela viagem conformidade</strong></li>
+<li><img alt="Linhagem_Viagem_Conformidade" src="../imagens/linhagem_viagem_conformidade.png" /></li>
+</ul>
+<hr />
+<p><strong>4. Tabela subsidio_data_versao_efetiva</strong>
+- Modelo Incremental: subsidio_data_versao_efetiva.sql
+- Caminho queries/models/projeto_subsidio_sppo/subsidio_data_versao_efetiva.sql
+- O objetivo desse modelo é criar um calendário operacional, classificando os tipos de dia como:
+  * Dia útil,
+  * Sábado,
+  * Domingo,
+  * Ponto Facultativo.
+- O modelo faz a classificação por subtipo de dia, classificados como:
+  * Verão,
+  * E eventos como (Show da Madonna, Rock in Rio, Concurso Público Unificado (CNU), Eleição.
+- O modelo capta a última data_versao, considerando um intervalo de 30 dias, que consta nas tabelas trips, shapes e frequencies.
+- No modelo atual há especificação de datas atípicas, como eventos na cidade.
+- Atenção para a variável: {var('DATA_SUBSIDIO_**_INICIO')- Declarada no dbt_project com datas importantes. </p>
+<p><strong>4.1 Modelo de tabela</strong></p>
+<p><strong>4.2 Linhagem do dado</strong></p>
+<hr />
+<hr />
+<ul>
+<li><strong>Processamento de Horários (quadro):</strong></li>
+<li>Realiza um <strong>JOIN</strong> com a tabela de horários planejados (<strong>subsidio_quadro_horario</strong>) para associar as viagens aos horários corretos.</li>
+<li>
+<p>Converte os horários de início e fim (<strong>inicio_periodo</strong> e <strong>fim_periodo</strong>) para objetos datetime.</p>
+</li>
+<li>
+<p><strong>Integração de Dados das Viagens (trips):</strong></p>
+</li>
+<li>
+<p>Faz um <strong>JOIN</strong> com a tabela de trips (<strong>subsidio_trips_desaninhada</strong>), aplicando filtros com base nas versões específicas para garantir que os dados planejados sejam alinhados corretamente.</p>
+</li>
+<li>
+<p><strong>Ajustes dos IDs das Trips (quadro_trips):</strong></p>
+</li>
+<li>
+<p>Ajusta os IDs das trips com base na direção do trajeto (<strong>sentido</strong>), criando identificadores únicos que diferenciam as trips de ida, volta e circular, quando aplicável.</p>
+</li>
+<li>
+<p><strong>Combinação de Trips e Shapes (quadro_tratada):</strong></p>
+</li>
+<li>Integra os dados das trips ajustadas com os <strong>shapes</strong> das rotas, combinando os <strong>trip_id</strong> planejados e reais para garantir a aderência entre o planejamento e a execução.</li>
+<li>
+<p>Ajusta os <strong>shape_id</strong> com base no sentido da viagem, assegurando que a geometria associada corresponda ao trajeto planejado.</p>
+</li>
+<li>
+<p><strong>Processamento dos Dados de Shapes (shapes):</strong></p>
+</li>
+<li>
+<p>Faz um <strong>JOIN</strong> com a tabela de formas geométricas (<strong>subsidio_shapes_geom</strong>), recuperando a geometria completa das rotas, assim como os pontos de início e fim para cada trajeto planejado.</p>
+</li>
+<li>
+<p><strong>Seleção e Ajuste Final:</strong></p>
+</li>
+<li>Combina as informações processadas das trips e dos shapes, estabelecendo a direção do shape (<strong>sentido_shape</strong>) com base nas condições observadas.</li>
+<li>Adiciona colunas complementares como <strong>id_tipo_trajeto</strong>, <strong>feed_version</strong>, e a data/hora atual para registrar a última atualização (<strong>datetime_ultima_atualizacao</strong>).</li>
+</ul>
+<p>O resultado final é um conjunto de dados consolidado que engloba todas as informações planejadas das viagens, associando horários, trajetos e geometrias. Esse conjunto serve como base para as comparações com os dados reais de execução, permitindo uma análise detalhada da conformidade e do desempenho operacional.</p>
+<h2 id="dicas-inserir-todos-os-nomes-das-querys">Dicas: inserir todos os nomes das querys</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prefeitura-rio/pipelines_rj_smtr" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.top"], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

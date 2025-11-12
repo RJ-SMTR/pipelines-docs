@@ -1,0 +1,1432 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://rj-smtr.github.io/pipelines-docs/tabelas/manual_estilo_tabelas/">
+      
+      
+        <link rel="prev" href="../../ambientes/">
+      
+      
+        <link rel="next" href="../backups/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Manual de Estilo - SMTR -  Pipelines</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gotham:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Gotham";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../static/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#manual-de-estilo-de-modelos-e-tabelas" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="SMTR -  Pipelines" class="md-header__button md-logo" aria-label="SMTR -  Pipelines" data-md-component="logo">
+      
+  <img src="../../img/logo_branco.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SMTR -  Pipelines
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Manual de Estilo
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Mudar para tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SMTR -  Pipelines" class="md-nav__button md-logo" aria-label="SMTR -  Pipelines" data-md-component="logo">
+      
+  <img src="../../img/logo_branco.png" alt="logo">
+
+    </a>
+    SMTR -  Pipelines
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pastas_arquivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pastas e arquivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ambientes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambientes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabelas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tabelas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual de Estilo
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual de Estilo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modelos-dbt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelos DBT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modelos DBT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#organizacao-do-diretorio-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Organização do Diretório models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estruturacao-dos-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estruturação dos Modelos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabelas-e-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabelas e Datasets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabelas e Datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nomeacao-de-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nomeação de Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nomeacao-de-tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nomeação de Tabelas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nomeacao-e-tipos-de-colunas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nomeação e Tipos de Colunas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordenamento-de-colunas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordenamento de Colunas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#descricoes-de-tabelas-e-colunas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descrições de tabelas e colunas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Descrições de tabelas e colunas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unidades-de-medida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unidades de medida
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dicionarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dicionários
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dicionários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cobertura-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cobertura temporal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipelines
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pipelines
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipelines genéricos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listagem das pipelines
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Listagem das pipelines
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_1" id="__nav_6_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoramento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoramento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/listagem_pipelines/monitoramento/apuracao_viagens_v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apuração de viagens (SPPO) [1.0]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/listagem_pipelines/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ferramentas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ferramentas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modelos-dbt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelos DBT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modelos DBT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#organizacao-do-diretorio-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Organização do Diretório models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estruturacao-dos-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estruturação dos Modelos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabelas-e-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabelas e Datasets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabelas e Datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nomeacao-de-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nomeação de Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nomeacao-de-tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nomeação de Tabelas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nomeacao-e-tipos-de-colunas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nomeação e Tipos de Colunas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordenamento-de-colunas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordenamento de Colunas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#descricoes-de-tabelas-e-colunas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descrições de tabelas e colunas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Descrições de tabelas e colunas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unidades-de-medida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unidades de medida
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dicionarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dicionários
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dicionários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cobertura-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cobertura temporal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="manual-de-estilo-de-modelos-e-tabelas">Manual de Estilo de Modelos e Tabelas</h1>
+<p>Esta página é baseada no <a href="https://basedosdados.github.io/sdk/style_data/">manual de estilo da Base dos Dados</a></p>
+<h2 id="modelos-dbt">Modelos DBT</h2>
+<h3 id="organizacao-do-diretorio-models">Organização do Diretório models</h3>
+<p>O diretório <code>queries/models</code> deve ser dividido em pastas referentes aos datasets do BigQuery em que cada tabela será criada. Cada pasta
+de dataset pode conter uma subpasta <code>staging</code>, para armazenar os modelos intermediários para a criação das tabelas e views finais. Além disso, cada
+dataset deve contenter um arquivo schema.yml para a criação das descrições das tabelas, views e colunas.</p>
+<p><br>Exemplo:</p>
+<pre><code>└── queries
+    └── models
+       └── nome_dataset
+            ├── nome_modelo.sql # instruções sql para materialização de uma tabela ou view
+            ├── schema.yml # estrutura e documentação do modelo
+            └── staging
+                └── nome_modelo_intermediario.sql
+</code></pre>
+<h3 id="estruturacao-dos-modelos">Estruturação dos Modelos</h3>
+<h2 id="tabelas-e-datasets">Tabelas e Datasets</h2>
+<h3 id="nomeacao-de-datasets">Nomeação de Datasets</h3>
+<ul>
+<li>
+<p>Caso sejam para tabelas de uso geral, os datasets são nomeados de acordo com a categoria dos dados armazenados.
+<br><br>Exemplo:</p>
+<ul>
+<li><code>bilhetagem</code></li>
+<li><code>financeiro</code></li>
+<li><code>subsidio</code></li>
+</ul>
+</li>
+<li>
+<p>Os datasets também podem ser nomeados de forma a indicar a finalidade específica em que os dados são usados
+<br><br>Exemplo:</p>
+<ul>
+<li><code>validacao_dados_jae</code></li>
+</ul>
+</li>
+<li>
+<p>Ou com o nome de um dashboard, utilizando o prefixo <code>dashboard_</code>
+<br><br>Exemplo:</p>
+<ul>
+<li><code>dashboard_subsidio_sppo</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="nomeacao-de-tabelas">Nomeação de Tabelas</h3>
+<ul>
+<li>
+<p>As tabelas devem ser sempre nomeadas no singular</p>
+</li>
+<li>
+<p>Caso a tabela tenha algum qualificador, por exemplo <code>aux</code> e <code>view</code>, ele deve ser colocado como prefixo. Exemplo: <code>aux_gratuidade</code></p>
+</li>
+<li>
+<p>A nomeação de tabelas não agregadas é menos estruturada, devendo apenas indicar claramente qual informação que se encontra nela.</p>
+</li>
+<li>
+<p>Para tabelas agregadas, nós nomeamos de forma a indicar o nivel de agregação do menor para o maior. Exemplo:<br />
+<code>ordem_pagamento_servico_operador_dia</code></p>
+<ul>
+<li>Este exemplo indica uma tabela com os dados das ordens de pagamento, agregados por <code>servico</code> (campo mais específico), <code>operador</code> e <code>dia</code> (campo mais geral)</li>
+</ul>
+</li>
+</ul>
+<h3 id="nomeacao-e-tipos-de-colunas">Nomeação e Tipos de Colunas</h3>
+<ul>
+<li>Procurar usar os nomes que já são utilizados. Exemplos: <code>data</code>, <code>servico</code>, <code>modo</code>, <code>id_veiculo</code>.</li>
+<li>Ser o mais claro e intuitivo possível.</li>
+<li>O nome das colunas devem ser escritos em snake_case (todas as letras minúsculas e palavras separadas por <code>_</code>).</li>
+<li>Colunas do tipo booleano devem ter um prefixo <code>indicador_</code>. Exemplo: <code>indicador_transacao_valida</code>.</li>
+<li>Colunas numéricas com ponto flutuante que representam valores financeiros devem utilizar o tipo <code>NUMERIC</code>.</li>
+<li>Colunas de id devem ser do tipo <code>STRING</code>, exceto se este for o campo de partição da tabela.</li>
+</ul>
+<h3 id="ordenamento-de-colunas">Ordenamento de Colunas</h3>
+<ul>
+<li>Os primeiros campos devem ser sempre a coluna de partição da tabela (se houver) e a chave única da tabela, nesta ordem.</li>
+<li>Caso não tenha chave única, as chaves primárias devem ser dispostas em ordem decrescente de abrangência (Exemplo: <code>modo</code>, <code>id_servico</code>, <code>id_operador</code>)</li>
+<li>As próximas colunas devem ser outras informações identificadores em ordem decrescente de abrangência.</li>
+<li>Colunas de <code>id</code>, sua descrição e outras informações relativas a ele devem permanecer agrupadas. Sempre com o <code>id</code> sendo a primeira coluna. Exemplos: <code>id_servico</code>, <code>servico</code>, <code>descricao_servico</code>, <code>id_operador</code>, <code>operador</code></li>
+<li>Colunas qualitativas devem ser agrupadas por tema e dispostas em ordem decrescente de relevância.</li>
+<li>O mesmo deve ser feito para colunas quantitativas, em seguida.</li>
+<li>
+<p>Por fim, deve ser incluídas as colunas de controle: <code>datetime_captura</code> (se aplicável), <code>datetime_ultima_atualizacao</code>, <code>versao</code></p>
+</li>
+<li>
+<p>Exemplo de ordenamento:<br />
+<code>data</code> (partição)<br />
+<code>id_transacao</code> (chave única)<br />
+<code>datetime_transacao</code> (identificador temporal)<br />
+<code>datetime_processamento</code> (identificador temporal)<br />
+<code>modo</code> (identificador modo)<br />
+<code>id_consorcio</code> (identificador consorcio)<br />
+<code>consorcio</code> (identificador consorcio)<br />
+<code>id_operadora</code> (identificador operadora)<br />
+<code>operadora</code> (identificador operadora)<br />
+<code>id_servico_jae</code> (identificador servico)<br />
+<code>servico_jae</code> (identificador servico)<br />
+<code>descricao_servico_jae</code> (identificador servico)<br />
+<code>sentido</code> (identificador sentido)<br />
+<code>id_veiculo</code> (identificador veiculo)<br />
+<code>id_validador</code> (identificador validador)<br />
+<code>id_cliente</code> (identificador cliente)<br />
+<code>tipo_pagamento</code> (qualitativa)<br />
+<code>tipo_transacao</code> (qualitativa)<br />
+<code>tipo_transacao_smtr</code> (qualitativa)<br />
+<code>tipo_gratuidade</code> (qualitativa)<br />
+<code>id_tipo_integracao</code> (qualitativa)<br />
+<code>id_integracao</code> (qualitativa)<br />
+<code>latitude</code> (qualitativa)<br />
+<code>longitude</code> (qualitativa)<br />
+<code>stop_id</code> (qualitativa)<br />
+<code>stop_lat</code> (qualitativa)<br />
+<code>stop_lon</code> (qualitativa)<br />
+<code>valor_transacao</code> (quantitativa)<br />
+<code>valor_pagamento</code> (quantitativa)<br />
+<code>datetime_captura</code> (controle)<br />
+<code>datetime_ultima_atualizacao</code> (controle),<br />
+<code>versao</code> (controle)  </p>
+</li>
+</ul>
+<h2 id="descricoes-de-tabelas-e-colunas">Descrições de tabelas e colunas</h2>
+<p>As descrições de tabelas e colunas devem seguir um padrão específico para garantir clareza e consistência. A estrutura adotada é a seguinte:</p>
+<ul>
+<li><strong>Descrição dos dados</strong>: Explicação clara e objetiva sobre o conteúdo da coluna ou tabela;</li>
+<li><strong>Explicação/Observação</strong>: Se aplicável, qualquer informação adicional relevante deve ser incluída entre colchetes em minúsculo (exceto siglas) <code>[]</code>;</li>
+<li><strong>Unidade de medida</strong>: Se aplicável, sempre por último, observadas também as regras da <a href="#unidades-medida">seção específica</a>.</li>
+</ul>
+<p><br>Exemplo:</p>
+<pre><code class="language-yml">- &quot;Receita total esperada com base na quilometragem [IRK x km] (R$)&quot;
+- &quot;Nome curto da linha operada pelo veículo com variação de serviço [ex.: 010, 011SN, ...]&quot;
+- &quot;Parâmetros de remuneração do subsídio dos serviços de ônibus [SPPO] por tipo de viagem [descontinuada a partir de 2024-03-01]&quot;
+</code></pre>
+<h3 id="unidades-de-medida"><h3 id="unidades-medida">Unidades de medida</h3></h3>
+<p>As unidades de medida devem ser registradas na descrição da coluna entre parênteses, garantindo clareza e padronização na interpretação dos dados. Nossas regras são:</p>
+<ul>
+<li>Caso a coluna represente um valor absoluto, utilize apenas a unidade correspondente (ex.: <code>R$</code>, <code>km</code>, <code>min</code>);</li>
+<li>Se a unidade estiver associada a uma referência, utilize o formato "Unidade/Referência" para indicar a relação entre grandezas (ex.:<code>R$/km</code>, <code>km/h</code>);</li>
+<li>Sempre use abreviações padronizadas para unidades conforme Sistema Internacional de Unidades (SI), evitando variações informais (ex.: <code>h</code> para horas, não <code>hrs</code>);</li>
+<li>Caso a unidade não seja óbvia, inclua uma explicação sucinta entre colchetes.</li>
+</ul>
+<p><br>Exemplo:</p>
+<pre><code class="language-yml">- &quot;Receita total aferida [receita tarifária + subsidio pago] (R$)&quot;
+- &quot;Valor máximo de subsídio, conforme tipo de viagem (R$/km)&quot;
+- &quot;Distância percorrida (km)&quot;
+</code></pre>
+<h2 id="dicionarios">Dicionários</h2>
+<ul>
+<li>Sempre que possível e necessário, cada conjunto de dados deverá incluir até um dicionário;</li>
+<li>Para cada tabela, coluna e cobertura temporal, cada chave mapeia unicamente um valor;</li>
+<li>Chaves não podem ter valores nulos;</li>
+<li>Dicionários devem cobrir todas as chaves disponíveis nas tabelas originais.</li>
+</ul>
+<h3 id="cobertura-temporal">Cobertura temporal</h3>
+<p>Preencher a coluna <code>cobertura_temporal</code> nos metadados de tabela, coluna e chave (em dicionários) segue o seguinte padrão.</p>
+<ul>
+<li>Formato geral: <code>data_inicial(unidade_temporal)data_final</code><ul>
+<li><code>data_inicial</code> e <code>data_final</code> estão na correspondente unidade temporal.<ul>
+<li>Exemplo: tabela com unidade <code>ano</code> tem cobertura <code>2005(1)2018</code>.</li>
+<li>Exemplo: tabela com unidade <code>mes</code> tem cobertura <code>2005-08(1)2018-12</code>.</li>
+<li>Exemplo: tabela com unidade <code>semana</code> tem cobertura <code>2005-08-01(7)2018-08-31</code>.</li>
+<li>Exemplo: tabela com unidade <code>dia</code> tem cobertura <code>2005-08-01(1)2018-12-31</code>.</li>
+</ul>
+</li>
+<li>Caso a <code>data_final</code> ainda não tenha sido alcançada:<ul>
+<li>Exemplo: tabela com unidade <code>ano</code> tem cobertura <code>2005(1)</code>.</li>
+<li>Exemplo: tabela com unidade <code>mes</code> tem cobertura <code>2005-08(1)</code>.</li>
+<li>Exemplo: tabela com unidade <code>semana</code> tem cobertura <code>2005-08-01(7)</code>.</li>
+<li>Exemplo: tabela com unidade <code>dia</code> tem cobertura <code>2005-08-01(1)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prefeitura-rio/pipelines_rj_smtr" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
