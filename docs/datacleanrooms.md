@@ -1,5 +1,5 @@
 ## Como fixar o projeto no bigquery
-- Abra o console do [Bigquery]([url](https://console.cloud.google.com/bigquery))
+- Abra o console do [Bigquery](https://console.cloud.google.com/bigquery)
 - No lado esquerdo da tela, clique no ícone de bússola (Explorador) como mostrado na imagem abaixo; em seguida clique em "Adicionar dados"
 - <img width="322" height="234" alt="image" src="https://github.com/user-attachments/assets/866a3e42-7133-4262-b010-3122b7091c82" />
 - Na nova aba que será aberta do lado direito da tela, na parte inferior, clique em "Marcar um projeto com estrela por nome"
@@ -18,4 +18,4 @@
 - Clique em "Inscrever-se"
 - A partir de agora, no projeto que estava selecionado no momento da inscrição, você deverá encontrar um dataset com o mesmo nome da Clean Room na qual você se inscreveu
     - Dentro desse dataset, você deve conseguir ver as tabelas que foram compartilhadas dentro do Clean Room
-    - Dados compartilhados em Data Clean Rooms, normalmente são protegidos por regras de análise, para mais informações, leia o [tutorial]([url](https://cloud.google.com/bigquery/docs/analytics-hub-view-subscribe-listings?hl=pt-br))
+    - Dados compartilhados em Data Clean Rooms, normalmente são protegidos por regras de análise, para mais informações, leia o [tutorial](https://cloud.google.com/bigquery/docs/analytics-hub-view-subscribe-listings?hl=pt-br)
