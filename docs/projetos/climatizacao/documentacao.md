@@ -6,16 +6,16 @@
 * *Identificador do Projeto:* `climatizacao`
 * *Equipe Técnica:*
     * Rodrigo Cunha (Diretor Técnico Especial de Dados e Inovação)
-    * Adriano Neto (Analista de Dados)
+    * Adriano Neto (Analytics Engineer)
 * *Instituição/Setor:* PCRJ/SMTR/SUBTT
 * *Data de Início:*  21/05/2025
-* *Status:* Em andamento
+* *Status:* Concluído
 
 ## 2. Objetivo e Justificativa 
     
   O transporte público municipal trava uma jornada constante pela busca de melhorias no serviço prestado à população. Um dos fatores que impactam diretamente na qualidade do serviço e consequentemente na satisfação do usuário do transporte público, é a climatização, que se aplicada de forma correta proporcionará a população um transporte mais confortável e de qualidade.
   
-  COm o objetivo primário de alcançar níveis adequados de qualidade e conforto, a SMTR está criando regras guiarão a frota municipal para garantir a climatização adequada visando viagens mais agradáveis ao usuário. Mas, também garantindo a aplicação real na operação diária pelas operadoras das concessionárias de transportes público. Segundamente, no contexto operacional avaliar a efetividade dessas medidas, utilizou-se da construção de regras e patamares mínimos aceitáveis para a regularidade da temperatura nas viagens efetuadas, assim como punição para casos onde o patamar mínimo não for obtido.
+  COm o objetivo primário de alcançar níveis adequados de qualidade e conforto, a SMTR está criando regras que guiarão a frota municipal para garantir a climatização adequada visando viagens mais agradáveis ao usuário. Mas, também garantindo a aplicação real na operação diária pelas operadoras das concessionárias de transportes público. Segundamente, no contexto operacional avaliar a efetividade dessas medidas, utilizou-se da construção de regras e patamares mínimos aceitáveis para a regularidade da temperatura nas viagens efetuadas, assim como punição para casos onde o patamar mínimo não for obtido.
 
   De forma a contextualizar melhor essa necessidade, é possível citar as grandes ondas de calor que afetam diretamente todo o planeta e que estão cada vez mais frequentes no dia-a-dia da população e que podem causar diversos malefícios à saúde do individuo. Medidas como esta podem incentivar o aumento do uso de transporte público, assim como evitar possíveis complicações de saúde durante o trajeto e garantir conforto durante o uso (OLIVEIRA, 2015).
 
@@ -243,14 +243,10 @@
   - Art. 3° do Decreto n° 53.856/2023.
   - Resolução SMTR Nº 3636, de 11 de julho de 2023.  
   - NETO, Adriano. Análise da Regularidade de Temperatura - SMTR20250521. Rio de Janeiro: SMTR, 2025. Disponível em: Anexo no repositório institucional da SMTR. Acesso em: 23 jun. 2025.   
-  - NETO, Adriano. 20250616_Análise da Regularidade de Temperatura - SMTR 2025. Rio de Janeiro: SMTR, 2025. Apresentação em slides. Disponível em: https://docs.google.com/presentation/d/1lFGgDx2-42lpawTwoulhAXygr0CgW4-S99R2sQR-Fic/. Acesso em: 23 jun. 2025.  
+  - NETO, Adriano. 20250616_Análise da Regularidade de Temperatura - SMTR 2025. Rio de Janeiro: SMTR, 2025. Apresentação em slides. Disponível em: Anexo no repositório institucional da SMTR. Acesso em: 23 jun. 2025.  
   
   - TUKEY, John W. Exploratory Data Analysis. Reading, MA: Addison-Wesley, 1977.  
   - IGLEWICZ, Boris; HOAGLIN, David C. How to Detect and Handle Outliers. Milwaukee, WI: ASQC Quality Press, 1993. (ASQC Statistics Textbook Series)  
   <br>
-* **Anexos:**  
-  
-* **Processos administrativos ou ofícios:**  
-  
-* **Links para dossiês complementares:**  
+
   <br>  
