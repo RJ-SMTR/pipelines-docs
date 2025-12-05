@@ -203,18 +203,15 @@ Os dados meteorológicos utilizados como opção de substituição quando houver
   - test_check_regularidade_temperatura
 ## 8. Riscos e Controles
 
-* **Riscos identificados (técnicos, institucionais, de segurança):**
-  - Possibilidade de interferência indevida no funcionamento dos medidores de temperatura por operadores e afins. Responsabilizando a operadora de forma clara e objetiva pela etapa do fluxo de captação do dado, que tange o intervalo desde a medição até a chegada do dado no validador do gps. 
-  - Falta de disponibilidade do dado de temperatura interna por algum problema técnico na etapa pós validador para a SMTR, que é responsabilidade da Concessionária de Bilhetagem Digital Jaé.  
-  - Furto dos sensores de medição.
-  - Qualquer tipo de avaria que impeça o funcionamento adequado do sensor de temperatura.  
-  
-* **Probabilidade e impacto:**  
-  - Melhoria da qualidade da climatização pela operadora.
-  - Impacto real na qualidade e conforto para o usuário final.
-* **Controles ou mitigadores adotados:**
-  - 
-  - 
+| Categoria                                   | Descrição                                                                                                                                                                                                 |
+|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Riscos identificados**                    | **Possibilidade de interferência indevida nos medidores** – Operadores podem afetar o funcionamento dos sensores; responsabilidade da operadora pela etapa entre a medição e o recebimento pelo validador. |
+|                                             | **Indisponibilidade do dado de temperatura interna** – Problemas técnicos após o validador que impedem o envio para a SMTR; responsabilidade da Concessionária de Bilhetagem Digital Jaé.                 |
+|                                             | **Furto dos sensores** de medição.                                                                                                                                                                         |
+|                                             | **Avarias nos sensores** que impeçam seu funcionamento adequado.                                                                                                                                            |
+| **Probabilidade e impacto**                 | **Melhoria da qualidade da climatização** pela operadora.                                                                                                                                                  |
+|                                             | **Impacto real no conforto do usuário final**.                                                                                                                                                             |
+
 ## 9. Indicadores de Impacto
 
 * **Como o sucesso do projeto será medido?**  
