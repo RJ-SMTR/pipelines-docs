@@ -17,7 +17,7 @@
   
   COm o objetivo primário de alcançar níveis adequados de qualidade e conforto, a SMTR está criando regras que guiarão a frota municipal para garantir a climatização adequada visando viagens mais agradáveis ao usuário. Mas, também garantindo a aplicação real na operação diária pelas operadoras das concessionárias de transportes público. Segundamente, no contexto operacional avaliar a efetividade dessas medidas, utilizou-se da construção de regras e patamares mínimos aceitáveis para a regularidade da temperatura nas viagens efetuadas, assim como punição para casos onde o patamar mínimo não for obtido.
 
-  De forma a contextualizar melhor essa necessidade, é possível citar as grandes ondas de calor que afetam diretamente todo o planeta e que estão cada vez mais frequentes no dia-a-dia da população e que podem causar diversos malefícios à saúde do individuo. Medidas como esta podem incentivar o aumento do uso de transporte público, assim como evitar possíveis complicações de saúde durante o trajeto e garantir conforto durante o uso (OLIVEIRA, 2015).
+  De forma a contextualizar melhor essa necessidade, é possível citar as grandes ondas de calor que afetam diretamente todo o planeta e que estão cada vez mais frequentes no dia-a-dia da população e que podem aumentar riscos de problemas de saúde do individuo. Investimento em medidas de climatização adequada no tranporte público não só melhoram a qualidade do serviço, mas também impacatar positivamente a satisfação e saúde do usuário final.
 
   Essas medidas dão continuidade às políticas públicas já estabelecidas, como o Decreto nº 38.328/2014, que determina que todos os ônibus adquiridos para o sistema municipal sejam equipados com ar-condicionado. Além disso, reforçam a necessidade de evidências técnicas que assegurem o funcionamento adequado desses equipamentos.
 
@@ -275,6 +275,8 @@ Os dados meteorológicos utilizados como opção de substituição quando houver
   - RIO DE JANEIRO (Município). Secretaria Municipal de Transportes (SMTR). Resolução SMTR n. 3857, de 1º de julho de 2025. [Ementa/Assunto da Resolução]. Disponível em: Anexo no repositório institucional da SMTR.
   - TUKEY, John W. Exploratory Data Analysis. Reading, MA: Addison-Wesley, 1977.  
   - IGLEWICZ, Boris; HOAGLIN, David C. How to Detect and Handle Outliers. Milwaukee, WI: ASQC Quality Press, 1993. (ASQC Statistics Textbook Series)  
+  - CAMPOS, A. R. et al. Thermal discomfort and hypertension in bus drivers and chargers in the city of São Paulo, Brazil. Applied Ergonomics, v. 47, p. 122-127, 2015. DOI: 10.1016/j.apergo.2014.09.002. Disponível em: https://www.sciencedirect.com/science/article/abs/pii/S000368701400194X. Acesso em: 8 dez. 2025.
+  -  PATANIA, A. et al. Thermal comfort analysis of public transport passengers in Catania. In: WIT TRANSACTIONS ON ECOLOGY AND THE ENVIRONMENT, v. 157, p. 217-227, 2012. WIT Press. DOI: 10.2495/SDP120191. Disponível em: https://www.witpress.com/elibrary/wit-transactions-on-ecology-and-the-environment/157/23292. Acesso em: 8 dez. 2025.
   <br>
 
   <br>  
