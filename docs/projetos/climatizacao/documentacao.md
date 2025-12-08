@@ -13,18 +13,18 @@
 
 ## 2. Objetivo e Justificativa 
     
-  O transporte público municipal trava uma jornada constante pela busca de melhorias no serviço prestado à população. Um dos fatores que impactam diretamente na qualidade do serviço e consequentemente na satisfação do usuário do transporte público, é a climatização, que se aplicada de forma correta proporcionará a população um transporte mais confortável e de qualidade.
-  
-  COm o objetivo primário de alcançar níveis adequados de qualidade e conforto, a SMTR está criando regras que guiarão a frota municipal para garantir a climatização adequada visando viagens mais agradáveis ao usuário. Mas, também garantindo a aplicação real na operação diária pelas operadoras das concessionárias de transportes público. Segundamente, no contexto operacional avaliar a efetividade dessas medidas, utilizou-se da construção de regras e patamares mínimos aceitáveis para a regularidade da temperatura nas viagens efetuadas, assim como punição para casos onde o patamar mínimo não for obtido.
+  O **transporte público municipal da cidade do Rio de Janeiro** busca constantemente implementar **melhorias no serviço** prestado à população. O **conforto térmico** é um fator crucial na garantia da qualidade deste serviço, sendo o objetivo principal da adoção de **novas medidas** que visam assegurar o bem-estar e a qualidade das viagens.
 
-  De forma a contextualizar melhor essa necessidade, é possível citar as grandes ondas de calor que afetam diretamente todo o planeta e que estão cada vez mais frequentes no dia-a-dia da população e que podem aumentar riscos de problemas de saúde do individuo. Investimento em medidas de climatização adequada no tranporte público não só melhoram a qualidade do serviço, mas também impacatar positivamente a satisfação e saúde do usuário final.
+  Com o propósito de garantir a qualidade do serviço e o **conforto térmico** aos usuários, a **SMTR** estipulou regras de referência para a adequação do funcionamento operacional da frota municipal. Em conjunto, realiza o **monitoramento e a manutenção** dessas medidas de qualidade, estabelecendo um **conjunto de patamares mínimos aceitáveis** para a regularidade da climatização durante as viagens.
 
-  Essas medidas dão continuidade às políticas públicas já estabelecidas, como o Decreto nº 38.328/2014, que determina que todos os ônibus adquiridos para o sistema municipal sejam equipados com ar-condicionado. Além disso, reforçam a necessidade de evidências técnicas que assegurem o funcionamento adequado desses equipamentos.
+  Tendo em vista o **cenário de problemáticas climáticas**, faz-se necessária a adoção de melhorias para garantir o **conforto térmico**, especialmente para enfrentar as **frequentes ondas de calor** que impactam a população diariamente e podem **aumentar os riscos de problemas de saúde**. O **investimento em climatização adequada** no transporte público não apenas melhora a qualidade do serviço, mas também **impacta positivamente a satisfação e a saúde** do usuário final.
+
+  Essas ações dão **continuidade às políticas públicas já estabelecidas**, como o **Decreto nº 38.328/2014**, que determina que todos os ônibus adquiridos para o sistema municipal sejam equipados com **ar-condicionado**. Além disso, reforçam a necessidade de **evidências técnicas** que assegurem o funcionamento adequado desses equipamentos, **requisitos que serão garantidos e detalhados nas novas regras adotadas nesta documentação**.
 
 
 ## 3. Diagnóstico e Fontes de Dados
 
-* **3.1. Sistema Digital de Bilhetagem (Jaé):**
+* **3.1. Sistema Digital de Bilhetagem - JAÉ:**
   
   Dados de temperatura interna dos veículos são provenientes do Sistema Digital de Bilhetagem fornecido pela concessionária de Bilhetagem Digital (Jaé).
 
@@ -83,7 +83,7 @@ Os dados meteorológicos utilizados como opção de substituição quando houver
 
   - [API com dados de temperatura](https://tracking.mobilidade.rio/docs), onde a operação poderá ter acesso as informações e assim poder efetuar um monitoramento em tempo real. As condições de disponbilidade serão disponibilizar as duas horas mais recentes do dia em relação ao momento da consulta a API.
     
-* **Requisitos não funcionais (desempenho, segurança, disponibilidade etc.):** 
+* **Requisitos não funcionais:** 
   - Testes, validação, relacionamento de tabelas, verificação de replicabilidade e desempenho factível.
   - Os dados são públicos, não sendo abrangidos por restrições da LGPD quanto a dados sensíveis.  
   
@@ -214,13 +214,13 @@ Os dados meteorológicos utilizados como opção de substituição quando houver
 
 ## 9. Indicadores de Impacto
 
-* **Como o sucesso do projeto será medido?**  
-  Poderemos avaliar e medir o sucesso do projeto através da melhoria dos indicadores institucionais e técnicos, que impactarão diretamente a população que é o foco principal da busca pela melhoria desse serviço.
+* **Indicadores de sucesso do projeto:**  
+  - Avaliar e medir o sucesso do projeto através da melhoria dos indicadores institucionais e técnicos, que impactarão diretamente a população que é o foco principal da busca pela melhoria desse serviço.
 * **Indicadores institucionais:**  
-  - Índice de regularidade da temperatura (descrever o que é isso)
-* **Indicadores técnicos (desempenho, tempo de resposta, completude etc.):**
-  - Índice de veículos suspeitos.
-  - Índice de ajuste da operação:  
+  - Índicador de regularidade da temperatura
+* **Indicadores técnicos:**
+  - Índicador de veículos suspeitos.
+  - Índicador de ajuste da operação:  
      Avaliado através do tempo que os indicadores anteriores progridem ou regridem em marcos temporais de 30 dias, 90 dias, 180 dias e 365 dias. Ou mesmo avaliando uma série de tempo diária.   
 
 ## 10. Plano de Manutenção Técnica
@@ -238,7 +238,7 @@ Os dados meteorológicos utilizados como opção de substituição quando houver
 ## 11. Plano de Manutenção da Documentação
 
 * **Responsável por atualizar o FRAME-DADOS:**  
-  Adriano Neto (Analista de dados - SMTR)  
+  Adriano Neto (Analytics Engineer - SMTR)  
 
 * **Frequência de revisão:**  
   Conforme a demanda dos gestores e outras autoridades envolvidas. 
