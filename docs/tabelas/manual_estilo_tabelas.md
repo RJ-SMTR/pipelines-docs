@@ -11,7 +11,7 @@ de dataset pode conter uma subpasta `staging`, para armazenar os modelos interme
 dataset deve contenter um arquivo schema.yml para a criação das descrições das tabelas, views e colunas.
 
 <br>Exemplo:
-```
+```text
 └── queries
     └── models
        └── nome_dataset
