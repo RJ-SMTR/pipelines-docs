@@ -1,6 +1,6 @@
 ### Estrutura de diretórios
 
-```
+```text
 ├── pipelines
 │   ├── nome_dataset_projeto # diretório de projeto
 │   │   ├── flows.py # declaração dos flows
@@ -16,7 +16,7 @@
 │   └── utils
 │       ├── __init__.py # inicia o pacote
 │       ├── secret.py # funções para acessar tokens e secrets necessários
-│       └── utils.py # funções auxiliares 
+│       └── utils.py # funções auxiliares
 ├── queries
 │   ├── dbt_project.yml # configurações do dbt e dos modelos
 │   ├── dev
@@ -35,6 +35,4 @@
 │   ├── profiles.yml # configuração do ambiente cloud
 │   └── tests # arquivos para testar a qualidade dos dados
 └── README.md # descrição do repositório
-
-
 ```

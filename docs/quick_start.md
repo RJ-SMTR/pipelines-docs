@@ -15,19 +15,19 @@
 
 - Clonar esse repositório:
 
-```
+```bash
 git clone https://github.com/prefeitura-rio/pipelines_rj_smtr
 ```
 
 - Criar um ambiente virtual com venv:
 
-```
-python -m venv ./venv 
+```bash
+python -m venv ./venv
 ```
 
 - Ativar o ambiente:
 
-```
+```bash
 source venv/bin/activate
 ```
 
@@ -37,19 +37,19 @@ Obs.: Essa maneira de criar o ambiente virtual presume que você já tenha a ver
 
 - No seu ambiente de desenvolvimento, instalar [poetry](https://python-poetry.org/) para gerenciamento de dependências:
 
-```
+```bash
 pip3 install poetry
 ```
 
 - Instalar as dependências para desenvolvimento:
 
-```
+```bash
 poetry install
 ```
 
 - Instalar os hooks de pré-commit:
 
-```
+```bash
 pre-commit install
 ```
 
@@ -57,12 +57,12 @@ pre-commit install
 
 Obs.: o comando abaixo serve para ambientes Linux.
 
-```
- bash .git/hooks/pre-commit 
+```bash
+ bash .git/hooks/pre-commit
 ```
 Ou:
 
-```
+```bash
 pre-commit run
 ```
 
@@ -87,7 +87,7 @@ run_local(flow, parameters = {"param": "val"})
 1. Configure as variáveis de ambiente num arquivo chamado `.env` na raiz
    do projeto:
 
-```
+```env
 GOOGLE_APPLICATION_CREDENTIALS=/path/to/credentials.json  # Credenciais do Google Cloud
 PREFECT__BACKEND=cloud
 PREFECT__SERVER__HOST=https://prefect.dados.rio/api
