@@ -1,6 +1,9 @@
 site_name: SMTR -  Pipelines
 site_url: https://rj-smtr.github.io/pipelines-docs/
 
+hooks:
+  - hooks/disclaimer_footer.py
+
 nav:
   - Home: index.md # descrição das pessoas, repositórios, da documentação
   - Quick Start: quick_start.md # setar ambiente virtual, instalar com poetry, mencionar o infisical, configuração por OS
@@ -19,6 +22,7 @@ nav:
           - FAQ: pipelines/listagem_pipelines/faq.md # perguntas frequentes sobre as pipelines de apuração do subsídio
   - Datasets: datasets.md # histórico dos datasets já existentes
   - Ferramentas: ferramentas.md # ferramentas e versões utilizadas
+  - Aviso Legal: aviso_legal.md
 
 theme:
   name: material
@@ -45,6 +49,8 @@ theme:
   language: pt
 
 markdown_extensions:
+  - admonition
+  - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
