@@ -20,6 +20,13 @@ Os únicos resultados oficiais, para todos os fins legais, regulatórios e contr
 Este material não se presta à fundamentação de pleitos administrativos, contratuais ou judiciais, tampouco à instrução de defesas, recursos ou impugnações por parte de operadores, concessionárias ou quaisquer terceiros.
 
 A utilização deste conteúdo para tais finalidades será considerada interpretação indevida de sua natureza e finalidade.
+Os únicos resultados oficiais, para todos os fins legais, regulatórios e contratuais, são aqueles gerados diretamente pelos sistemas e modelos computacionais mantidos e executados pela SMTR em ambiente institucional controlado.
+
+## Uso e Interpretação
+
+Este material não se presta à fundamentação de pleitos administrativos, contratuais ou judiciais, tampouco à instrução de defesas, recursos ou impugnações por parte de operadores, concessionárias ou quaisquer terceiros.
+
+A utilização deste conteúdo para tais finalidades será considerada interpretação indevida de sua natureza e finalidade.
 ## Limitações e Precedência
 
 Em hipótese alguma este documento substitui, altera ou modifica as disposições contidas na
