@@ -2,18 +2,16 @@
 
 ## Natureza do Documento
 
-Este documento — e toda a documentação contida neste site — possui caráter meramente
+Toda a documentação contida neste site possui caráter meramente
 técnico-descritivo, destinado a detalhar, de forma didática, os procedimentos, fluxos de dados,
-parâmetros e indicadores utilizados pela Secretaria Municipal de Transportes para a apuração de
-viagens e quilometragem do SPPO/RJ.
+parâmetros e indicadores utilizados pela Secretaria Municipal de Transportes.
 
 ## Geração Automatizada
 
 Esta documentação é gerada e atualizada automaticamente com auxílio de **inteligência artificial**
 (Claude, Anthropic) a partir da análise estrutural do código-fonte e dos modelos de dados dos
 repositórios [pipelines_v3](https://github.com/RJ-SMTR/pipelines_v3) e
-[pipelines_rj_smtr](https://github.com/prefeitura-rio/pipelines_rj_smtr). Todo conteúdo gerado
-passa por revisão da equipe técnica da SMTR antes da publicação.
+[pipelines_rj_smtr](https://github.com/prefeitura-rio/pipelines_rj_smtr).
 
 ## Limitações e Precedência
 

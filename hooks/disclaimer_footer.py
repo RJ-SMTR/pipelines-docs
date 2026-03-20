@@ -21,9 +21,9 @@ FOOTER_TEMPLATE = """\
 !!! warning "Aviso Legal"
 
     :material-robot: *Este documento foi gerado automaticamente com auxílio de
-    inteligência artificial e revisado pela equipe técnica da SMTR.*
+    inteligência artificial.*
 
-    Este documento possui caráter meramente técnico-descritivo. Para mais
+    Este documento possui caráter meramente técnico-descritivo e pode conter erros. Para mais
     informações, consulte o [Aviso Legal completo]({disclaimer_url}).
 """
 
