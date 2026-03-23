@@ -10,9 +10,6 @@ nav:
   - Histórico: historico.md # descrição dos motivos para criarmos as pipelines como fazemos atualmente
   - Pipelines: 
     - Introdução: pipelines/introducao.md # descrição dos motivos para criarmos as pipelines como fazemos atualmente
-    - Criação de pipelines: pipelines/novos_pipelines.md # como criar novos pipelines
-    - Pipelines genéricos: pipelines/templates.md # templates de pipelines genéricos, captura, tratamento
-    - Listagem das pipelines: pipelines/listagem_pipelines.md # histórico das pipelines já existentes, para cada uma falar dos parâmetros e do que se trata    
   - Tabelas:
       - Manual de Estilo: tabelas/manual_estilo_tabelas.md # manual para criação de tabelas e modelos
       - Backup: tabelas/backups.md #descreve o processo de backups
