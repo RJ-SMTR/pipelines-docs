@@ -50,11 +50,11 @@ O objetivo do projeto Viagens 2.0 é, portanto, evoluir esse sistema de monitora
 
 * **Partes interessadas:**
 
-  * **Gestores internos da SMTR:**
+  * **Áreas internas da SMTR:**
 
-    * Subsecretário de Tecnologia em Transportes.
-    * Subsecretário de Operação e Planejamento.
-    * Coordenador de Monitoramento.
+    * TR/SUBTT;
+    * TR/SUBTT/CMO;
+    * TR/SUBTOP.
   * **Concessionárias de transporte público**, responsáveis pela execução da operação.
   * **População usuária**, beneficiária final da melhoria na confiabilidade e transparência das informações.
 
@@ -129,7 +129,6 @@ O objetivo do projeto Viagens 2.0 é, portanto, evoluir esse sistema de monitora
 
 A alternativa recomendada é o **registro de viagens via API consumida pela SMTR**, pois responde às vulnerabilidades do método atual, amplia a transparência e fortalece a segurança regulatória. Essa solução está alinhada com experiências bem-sucedidas em outras cidades e representa a evolução natural da governança sobre as viagens, equilibrando inovação tecnológica com confiabilidade institucional.
 
-Excelente observação 👌 — sim, é possível (e até mais elegante) estruturar a seção **por risco**, em vez de dividir em blocos separados. Assim, cada risco/condição tem uma **definição**, a **probabilidade/impacto** e as **medidas de controle/mitigação** diretamente vinculadas, facilitando a leitura executiva e reduzindo ambiguidades.
 
 ## 7. Riscos e Controles
 
@@ -165,21 +164,7 @@ Excelente observação 👌 — sim, é possível (e até mais elegante) estrutu
         - Número de viagens invalidadas
         - Número de viagens contestadas pelos operadores
 
-## 9. Plano de Manutenção Técnica
-
-* Frequência de revisão dos dados/pipelines:
-* Procedimento de versionamento:
-* Responsável pela sustentação:
-* Monitoramento e alertas:
-
-## 10. Plano de Manutenção da Documentação
-
-* Responsável por atualizar o FRAME-DADOS:
-* Frequência de revisão:
-* Local de armazenamento e versão:
-* Estratégia para manter o material atualizado (checklists, rotinas, versionamento):
-
-## 11. Lições Aprendidas
+## 9. Lições Aprendidas
 
 * **O que funcionou bem:**
 
@@ -206,16 +191,3 @@ Excelente observação 👌 — sim, é possível (e até mais elegante) estrutu
     5. Validação do protótipo junto ao cliente.
     6. Desenvolvimento e implantação da solução final.
   * Garantir a elaboração e manutenção contínua da documentação do projeto, assegurando rastreabilidade e transparência em todas as fases.
-
-
-## 12. Referências e Documentos Vinculados
-
-* Normas, leis, decretos:
-* Relatórios técnicos:
-* Processos administrativos ou ofícios:
-* Links para dossiês complementares:
-
-## 14. Anexos
-
-* Screenshots, esquemas, mapas mentais ou fluxos de dados:
-* Links para dashboards, painéis ou pipelines:
