@@ -24,16 +24,16 @@
 
 ## 3. Diagnóstico e Fontes de Dados
 
-* **3.1. Sistema Digital de Bilhetagem - JAÉ:**
+* **3.1. Sistema Digital de Bilhetagem - Jaé:**
   
   Dados de temperatura interna dos veículos são provenientes do Sistema Digital de Bilhetagem fornecido pela concessionária de Bilhetagem Digital (Jaé).
 
-  A procedência e a disponibilidade desses dados são caracterizadas pela disponibilidade constante das medições realizadas pelos sensores de temperatura localizados no interior dos veículos da frota municipal de transportes público. Disponibilizando o grau de precisão conforme manual do fabricante, observada as adequadas condições de manutenção.
+  A procedência e a disponibilidade desses dados são caracterizadas pela disponibilidade constante das medições realizadas pelos sensores de temperatura localizados no interior dos veículos da frota municipal de transporte público. Disponibilizando o grau de precisão conforme manual do fabricante, observada as adequadas condições de manutenção.
   
 
   Apesar de algumas limitações, as medições podem ser devidamente tratadas por técnicas estatísticas robustas para identificação e mitigação de dados extremos (outliers). Estes, em poucos casos, mostram-se presentes, mas, em sua maioria, não comprometem a integridade da análise técnica e rigorosa, que utiliza regras e métodos cientificamente validados.
 
-  Sendo estes dados apenas comunicados pelo Sistema Digital de Bilhetagem (JAÉ), conforme consta na resolução  SMTR Nº 3857/2025.
+  Sendo estes dados apenas comunicados pelo Sistema Digital de Bilhetagem (Jaé), conforme consta na resolução  SMTR Nº 3857/2025.
   <br>  
 
 * **3.2. Instituto Nacional de Meteorologia - INMET:** 
@@ -54,31 +54,6 @@ Os dados meteorológicos utilizados como opção de substituição quando houver
   - **Requisitos funcionais acessórios:**
     - Tabelas, painéis ou elementos similares contendo informações atualizadas frequentemente sobre veículos com possíveis problemas de medição visando apoiar e direcionar a operação de fiscalização nas concessionárias envolvidas. 
 
-      § 1º Serão considerados indícios de falha do Concessionário do SPPO RJ os padrões recorrentes de transmissão ou inconsistência nos dados de temperatura interna que, conforme critérios técnicos definidos pela SMTR, disponibilizados em repositório público e refletidos na relação pública prevista no § 4º, indiquem prejuízo à confiabilidade das informações, tais como:  
-
-      I – repetição do mesmo valor de temperatura ao longo de todas as viagens realizadas em um dia de operação;  
-      II – ausência total de transmissão de dados de temperatura interna durante um dia de operação;  
-      III – descarte de mais de 50% dos registros de temperatura de todas as viagens realizadas em um dia de operação, nos termos do art. 2º-A.  
-        
-      § 2º Para os fins deste artigo, considera-se dia de operação aquele em que o veículo tenha executado ao menos uma viagem.  
-      § 3º Persistindo qualquer padrão de falha identificado nos termos do § 1º por 5 (cinco) dias de operação consecutivos, a situação deixará de ser tratada como indício, configurando-se a falha do Concessionário SPPO RJ, e as viagens realizadas pelo veículo serão classificadas na forma do art. 2º-F, permanecendo nessa condição até a efetiva regularização.  
-      § 4º A SMTR manterá relação pública dos veículos enquadrados na condição descrita neste artigo, com atualização diária em seu data lakehouse.  
-      § 5º Para fins de apuração, as viagens realizadas pelo veículo serão classificadas na forma do art. 2º-F nos dias em que o veículo estiver incluído na relação pública referida no § 4º, compreendidos entre o 6º dia e o dia da regularização, inclusive, abrangendo o dia completo, ainda que a regularização ocorra no decorrer do mesmo.  
-      § 6º Após a regularização, eventual recorrência das falhas reiniciará o ciclo de monitoramento e contagem previsto neste artigo, podendo resultar, novamente, na classificação das viagens realizadas pelo veículo na forma do art. 2º-F.  
-        
-      Art. 2º-E As disposições desta Resolução aplicam-se aos veículos do SPPO RJ:    
-        
-      I – com ano de fabricação igual ou anterior a 2019, a partir de 16 de julho de 2025;    
-      II – aos demais, a partir de 1º de novembro de 2025.  
-      
-      Art. 2º-F A partir das datas estabelecidas no Art. 2º-E, serão classificadas como “Detectado com ar inoperante” as viagens realizadas por veículos que:  
-      
-      I – não transmitirem dados de temperatura interna;  
-      II – transmitirem dados em desconformidade com o art. 2º;  
-      III – tiverem todos os registros de temperatura descartados em razão dos tratamentos de exclusão de valores inválidos conforme inciso I do Art. 2º-A.  
-      IV – estiverem enquadrados em situação de falha configurada nos termos do art. 2º-D, §§ 3º a 6º.  
-        
-      Parágrafo único. As viagens assim classificadas não farão jus ao pagamento de subsídio e, na hipótese de também se enquadrarem em outra classificação prevista, deverá ser observada a ordem de prioridade estabelecida na Resolução SMTR nº 3.843/2025.  
 
 
   - [API com dados de temperatura](https://tracking.mobilidade.rio/docs), onde a operação poderá ter acesso as informações e assim poder efetuar um monitoramento em tempo real. As condições de disponbilidade serão disponibilizar as duas horas mais recentes do dia em relação ao momento da consulta a API.
@@ -93,10 +68,10 @@ Os dados meteorológicos utilizados como opção de substituição quando houver
   - Termo de conciliação  
     
 * **Partes interessadas envolvidas:**  
-  - Gestores internos:
-    - Subsecretário de Tecnologia em Transportes.
-    - Subsecretário de Operação e Planejamento.
-    - Coordenador de Monitoramento.
+  - Áreas internas da SMTR:
+    - TR/SUBTT;
+    - TR/SUBTT/CMO;
+    - TR/SUBTOP.
   - Concessionárias de Transporte Público.
   - Consumidor final (População).
 
@@ -176,32 +151,7 @@ Os dados meteorológicos utilizados como opção de substituição quando houver
   - Viabilizar uma análise mais robusta, simples e segura para a tomada de decisão.
 
 
-## 7. Solução Técnica Definida
-
-* **Arquitetura de dados:**
-    - Arquitura Não Relacional.
-* **Ferramentas e linguagens utilizadas:**
-    - Prefect.
-    - Data Build Tool - DBT.
-    - Google Cloud Platform - GCP.
-    - Python (Pandas, Numpy, matplotlib, seaborn, scipy, plotly, etc).
-    - Quarto.
-    - Git/Github.  
-* **Principais pipelines ou tabelas modeladas:**  
-  - Principais tabelas:  
-    - viagem_regularidade_temperatura  
-    - veiculo_regularidade_temperatura_dia  
-    - temperatura  
-  - Principais pipelines:  
-    - monitoramento_temperatura - materializacao
-    - temperatura - captura
-
-* **Mecanismos de validação e testes:**  
-  - unique_combination_of_columns
-  - not_null
-  - test_consistencia_indicadores_temperatura
-  - test_check_regularidade_temperatura
-## 8. Riscos e Controles
+## 7. Riscos e Controles
 
 | Categoria                                   | Descrição                                                                                                                                                                                                 |
 |---------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -223,31 +173,8 @@ Os dados meteorológicos utilizados como opção de substituição quando houver
   - Índicador de ajuste da operação:  
      Avaliado através do tempo que os indicadores anteriores progridem ou regridem em marcos temporais de 30 dias, 90 dias, 180 dias e 365 dias. Ou mesmo avaliando uma série de tempo diária.   
 
-## 10. Plano de Manutenção Técnica
 
-* **Frequência de revisão dos dados/pipelines:**  
-  Definida de acordo com a demanda dos gestores e outros envolvidos.
-* **Procedimento de versionamento:**  
-  Versionamento via GitHub.  
-
-* **Responsável pela sustentação:**  
-  Equipe de dados da SMTR.
-* **Monitoramento e alertas:**  
-  Possivelmente verificações de duplicações, nulidade dos dados e frequência adequada de atualização do dado visando não impactar o operador.  
-
-## 11. Plano de Manutenção da Documentação
-
-* **Responsável por atualizar o FRAME-DADOS:**  
-  Adriano Neto (Analytics Engineer - SMTR)  
-
-* **Frequência de revisão:**  
-  Conforme a demanda dos gestores e outras autoridades envolvidas. 
-* **Local de armazenamento e versão:**  
-  Repositório de documentações da equipe de dados da SMTR no GitHub.  
-* **Estratégia para manter o material atualizado (checklists, rotinas, versionamento):**  
-  A partir das demandas e entregas de alterações iremos atualizando o material base.
-
-## 12. Lições Aprendidas
+## 8. Lições Aprendidas
 
 * **O que funcionou bem:** 
   - Uma análise inicial mais objetiva e sucinta visando atender demandas mais prévias. Que dessa forma, proporcionou pautar melhor as discussões sobre melhorias, resultados encontrados e caminhos a seguir.  
@@ -270,9 +197,9 @@ Os dados meteorológicos utilizados como opção de substituição quando houver
   - Norma ABNT NBR 15570:2021 
   - Decreto RIO n° 53.856/2023.
   - Resolução SMTR Nº 3636, de 11 de julho de 2023.  
-  - NETO, Adriano. Análise da Regularidade de Temperatura - SMTR20250521. Rio de Janeiro: SMTR, 2025. Disponível em: Anexo no repositório institucional da SMTR. 
-  - NETO, Adriano. 20250616_Análise da Regularidade de Temperatura - SMTR 2025. Rio de Janeiro: SMTR, 2025. Apresentação em slides. Disponível em: Anexo no repositório institucional da SMTR.
-  - RIO DE JANEIRO (Município). Secretaria Municipal de Transportes (SMTR). Resolução SMTR n. 3857, de 1º de julho de 2025. [Ementa/Assunto da Resolução]. Disponível em: Anexo no repositório institucional da SMTR.
+  - NETO, Adriano. Análise da Regularidade de Temperatura - SMTR20250521. Rio de Janeiro: SMTR, 2025a. 
+  - NETO, Adriano. 20250616_Análise da Regularidade de Temperatura - SMTR 2025. Rio de Janeiro: SMTR, 2025b. 
+  - RIO DE JANEIRO (Município). Secretaria Municipal de Transportes (SMTR). Resolução SMTR n. 3857, de 1º de julho de 2025. 
   - TUKEY, John W. Exploratory Data Analysis. Reading, MA: Addison-Wesley, 1977.  
   - IGLEWICZ, Boris; HOAGLIN, David C. How to Detect and Handle Outliers. Milwaukee, WI: ASQC Quality Press, 1993. (ASQC Statistics Textbook Series)  
   - CAMPOS, A. R. et al. Thermal discomfort and hypertension in bus drivers and chargers in the city of São Paulo, Brazil. Applied Ergonomics, v. 47, p. 122-127, 2015. DOI: 10.1016/j.apergo.2014.09.002. Disponível em: https://www.sciencedirect.com/science/article/abs/pii/S000368701400194X. Acesso em: 8 dez. 2025.
