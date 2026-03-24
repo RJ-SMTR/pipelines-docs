@@ -7,6 +7,8 @@ nav:
   - Onboarding: onboarding.md # tutorial de onboarding para novos desenvolvedores
   - Pastas e arquivos: pastas_arquivos.md # descrição da estrutura de pastas e arquivos
   - Ambientes: ambientes.md # descrever ambientes de produção, staging e dev
+  - Pipelines: 
+    - Introdução: pipelines/introducao.md # descrição dos motivos para criarmos as pipelines como fazemos atualmente
   - Tabelas:
       - Manual de Estilo: tabelas/manual_estilo_tabelas.md # manual para criação de tabelas e modelos
       - Backup: tabelas/backups.md #descreve o processo de backups
