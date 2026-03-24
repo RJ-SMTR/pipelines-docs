@@ -31,7 +31,7 @@
   A procedência e a disponibilidade desses dados são caracterizadas pela disponibilidade constante das medições realizadas pelos sensores de temperatura localizados no interior dos veículos da frota municipal de transporte público. Disponibilizando o grau de precisão conforme manual do fabricante, observada as adequadas condições de manutenção.
   
 
-  Apesar de algumas limitações, as medições podem ser devidamente tratadas por técnicas estatísticas robustas para identificação e mitigação de dados extremos (outliers). Estes, em poucos casos, mostram-se presentes, mas, em sua maioria, não comprometem a integridade da análise técnica e rigorosa, que utiliza regras e métodos cientificamente validados.
+  Apesar de algumas limitações, as medições podem ser devidamente tratadas por técnicas estatísticas robustas para identificação e mitigação de dados extremos (*outliers*). Estes, em poucos casos, mostram-se presentes, mas, em sua maioria, não comprometem a integridade da análise técnica e rigorosa, que utiliza regras e métodos cientificamente validados.
 
   Sendo estes dados apenas comunicados pelo Sistema Digital de Bilhetagem (Jaé), conforme consta na resolução  SMTR Nº 3857/2025.
   <br>  
