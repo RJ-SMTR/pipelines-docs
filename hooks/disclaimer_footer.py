@@ -20,7 +20,7 @@ FOOTER_TEMPLATE = """\
 
 !!! warning "Aviso Legal"
 
-    :material-robot: *Este documento foi gerado automaticamente com auxílio de
+    :material-robot-happy: *Este documento foi gerado automaticamente com auxílio de
     inteligência artificial.*
 
     Este documento possui caráter meramente técnico-descritivo e pode conter erros. Para mais

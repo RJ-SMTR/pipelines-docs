@@ -17,3 +17,8 @@
     height: auto;
     width: 15%;
 }
+
+.admonition .twemoji {
+    --md-icon-size: 2em;
+    vertical-align: text-bottom;
+}
