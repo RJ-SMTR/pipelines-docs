@@ -24,7 +24,7 @@ FOOTER_TEMPLATE = """\
     inteligência artificial.*
 
     Este documento possui caráter meramente técnico-descritivo e pode conter erros. Para mais
-    informações, consulte o [Aviso Legal completo]({disclaimer_url}).
+    informações, consulte o [Aviso Legal]({disclaimer_url}) completo.
 """
 
 
