@@ -1,6 +1,9 @@
 site_name: SMTR -  Pipelines
 site_url: https://rj-smtr.github.io/pipelines-docs/
 
+hooks:
+  - hooks/disclaimer_footer.py
+
 nav:
   - Home: index.md # descrição das pessoas, repositórios, da documentação
   - Quick Start: quick_start.md # setar ambiente virtual, instalar com poetry, mencionar o infisical, configuração por OS
@@ -18,9 +21,12 @@ nav:
       - Listagem das pipelines: # histórico das pipelines já existentes, para cada uma falar dos parâmetros e do que se trata
           - Monitoramento:
               - Apuração de viagens (SPPO) [1.0]: pipelines/listagem_pipelines/monitoramento/apuracao_viagens_v1.md # pipeline de apuração de viagens v1
+              - Apuração de viagens (SPPO) [10.0]: pipelines/listagem_pipelines/monitoramento/apuracao_viagens_v10.md # pipeline de apuração de viagens v10
           - FAQ: pipelines/listagem_pipelines/faq.md # perguntas frequentes sobre as pipelines de apuração do subsídio
+  - Data Clean Rooms: datacleanrooms.md # tutorial de Data Clean Rooms no BigQuery
   - Datasets: datasets.md # histórico dos datasets já existentes
   - Ferramentas: ferramentas.md # ferramentas e versões utilizadas
+  - Aviso Legal: aviso_legal.md
 
 theme:
   name: material
@@ -47,6 +53,8 @@ theme:
   language: pt
 
 markdown_extensions:
+  - admonition
+  - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -54,6 +62,9 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra:
   social:
