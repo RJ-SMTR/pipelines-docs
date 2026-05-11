@@ -108,9 +108,41 @@ dataset deve contenter um arquivo schema.yml para a criação das descrições d
 
 ## Descrições de tabelas e colunas
 
-As descrições de tabelas e colunas devem seguir um padrão específico para garantir clareza e consistência. A estrutura adotada é a seguinte:
+### Descrição de tabelas e modelos
 
-- **Descrição dos dados**: Explicação clara e objetiva sobre o conteúdo da coluna ou tabela;
+As descrições de tabelas devem seguir um padrão que garanta clareza e entregue **contexto operacional**. O objetivo é permitir que qualquer usuário (humano ou agente de IA) compreenda o significado, a utilização e as limitações do modelo.
+
+A descrição deve responder, quando aplicável:
+
+- **O que uma linha representa?** (grão da tabela)
+- **É estado atual ou histórico?** (ex: último estado conhecido, log de eventos, snapshot)
+- **Qual chave usar em joins?** (identificando chaves primárias ou compostas)
+- **Qual a fonte da verdade?** (sistemas ou tabelas de origem)
+- **Quais premissas estão embutidas?** (regras de negócio, filtros ou transformações críticas)
+- **Onde costuma quebrar?** (dependências sensíveis, atrasos de origem ou instabilidades conhecidas)
+
+<br>Evite:
+```yml
+- name: viagem_completa
+  description: |
+    Detalhes de todas as viagens completas identificadas.
+```
+
+<br>Prefira:
+```yml
+- name: viagem_completa
+  description: |
+    Uma linha por viagem realizada (SPPO), representando uma viagem completa identificada.
+    Identificador único (id_viagem) composto por id_veiculo + servico + sentido + shape_id + datetime_partida.
+    Construída a partir de gps_sppo + ordem_servico. Atualizada diariamente (D+1).
+    Não inclui viagens descartadas por inconsistência de quilometragem ou tempo.
+```
+
+### Descrição de colunas
+
+As descrições de colunas devem seguir um padrão específico para garantir clareza e consistência. A estrutura adotada é a seguinte:
+
+- **Descrição dos dados**: Explicação clara e objetiva sobre o conteúdo da coluna;
 - **Explicação/Observação**: Se aplicável, qualquer informação adicional relevante deve ser incluída entre colchetes em minúsculo (exceto siglas) `[]`;
 - **Unidade de medida**: Se aplicável, sempre por último, observadas também as regras da [seção específica](#unidades-medida).
 
