@@ -24,20 +24,26 @@
 * Avaliação da qualidade e limitações:
 * Observações relevantes:
 
-## 4. Levantamento de Requisitos
+## 4. Regras de Negócio
+
+* Critérios e condições que regem o processo (elegibilidade, validação, inclusão, exclusão etc.):
+* Definições e classificações relevantes ao domínio:
+* Restrições operacionais ou contratuais:
+
+## 5. Levantamento de Requisitos
 
 * Requisitos funcionais (o que o projeto precisa fazer):
 * Requisitos não funcionais (desempenho, segurança, disponibilidade etc.):
 * Demandas regulatórias ou legais:
 * Partes interessadas envolvidas:
 
-## 5. Análise de Alternativas Técnicas (AIR)
+## 6. Análise de Alternativas Técnicas (AIR)
 
 * Alternativas consideradas:
 * Análise comparativa (vantagens, desvantagens, viabilidade):
 * Justificativa da escolha da solução:
 
-## 6. Riscos e Controles
+## 7. Riscos e Controles
 
 * Riscos identificados (técnicos, institucionais, de segurança):
 * Probabilidade e impacto:
