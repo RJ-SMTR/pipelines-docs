@@ -134,7 +134,7 @@ A pipeline identifica esses casos via `JOIN` com `transito.autuacao` e envia a b
   * *Risco 2:* Probabilidade baixa, impacto sob a LGPD alto.
   * *Risco 3:* Probabilidade média, impacto operacional médio.
 * **Controles ou mitigadores adotados:**
-  * *Controle para Risco 1:* Validação de elegibilidade diária realizada no modelo dbt `aux_autuacao_negativacao` que cruza as indicações do CRV com a base consolidada de autuações. Se houver registro de pagamento (`data_pagamento is not null`) ou recurso pendente, a inclusão é bloqueada (`indicador_nao_inclusao = true`) e o motivo é gravado.
+  * *Controle para Risco 1:* Validação de elegibilidade diária realizada no modelo dbt `aux_autuacao_negativacao` que cruza as indicações da CRV com a base consolidada de autuações. Se houver registro de pagamento (`data_pagamento is not null`) ou recurso pendente, a inclusão é bloqueada (`indicador_nao_inclusao = true`) e o motivo é gravado.
   * *Controle para Risco 2:* Acesso controlado via IAM e proteção a nível de coluna (Column-level security) no BigQuery por meio de Policy Tags aplicadas nas colunas sensíveis das views de consumo e tabelas auxiliares.
   * *Controle para Risco 3:* Execução de chamadas assíncronas concorrentes com limite de 300 requisições simultâneas orquestrada pelo Prefect. As respostas de API são salvas em arquivos CSV no GCS. A estratégia incremental com `insert_overwrite` permite reiniciar execuções pendentes e deduplicar os lotes retornados sem duplicar registros.
 
