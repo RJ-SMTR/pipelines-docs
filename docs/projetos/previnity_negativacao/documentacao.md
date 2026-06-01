@@ -154,7 +154,7 @@ A pipeline identifica esses casos via `JOIN` com `transito.autuacao` e envia a b
   * O fluxo assíncrono concorrente com limite de rate limit no Prefect resolveu o gargalo de tempo de envio.
   * Divisão modular em tabelas dbt que facilitou a depuração de dados brutos de envio e retorno.
 * **O que poderia ter sido feito de outra forma:**
-  * 
+  * Desenvolver uma interface visual simples para a ingestão inicial dos lotes de negativação. A dependência exclusiva da planilha Google Sheets como canal de entrada torna o fluxo funcional, mas pouco tangível para as equipes operacionais — uma interface mínima de upload ou visualização de registros tornaria o produto mais concreto e acessível para usuários que não têm familiaridade com data lakes.
 * **Barreiras encontradas e superadas:**
   * **Reprocessamento retroativo de lotes:** Ajuste refinado no cálculo de intervalo de datas (`get_previnity_date_range`) implementado em 12/05/2026 para obter dinamicamente a data máxima já materializada e iniciar o processamento incremental exatamente do dia subsequente. Isso evitou que dias anteriores já materializados fossem reprocessados desnecessariamente devido a atrasos de atualização das tabelas de autuações originais.
 * **Recomendações para projetos futuros:**
