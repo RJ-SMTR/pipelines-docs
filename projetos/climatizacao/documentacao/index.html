@@ -1,0 +1,1466 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://rj-smtr.github.io/pipelines-docs/projetos/climatizacao/documentacao/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>FRAME-DADOS – Framework de Documentação de Projetos de Dados Públicos - SMTR -  Pipelines</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gotham:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Gotham";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../static/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#frame-dados-framework-de-documentacao-de-projetos-de-dados-publicos" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="SMTR -  Pipelines" class="md-header__button md-logo" aria-label="SMTR -  Pipelines" data-md-component="logo">
+      
+  <img src="../../../img/logo_branco.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SMTR -  Pipelines
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              FRAME-DADOS – Framework de Documentação de Projetos de Dados Públicos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Mudar para tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="SMTR -  Pipelines" class="md-nav__button md-logo" aria-label="SMTR -  Pipelines" data-md-component="logo">
+      
+  <img src="../../../img/logo_branco.png" alt="logo">
+
+    </a>
+    SMTR -  Pipelines
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../onboarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pastas_arquivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pastas e arquivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ambientes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambientes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipelines
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pipelines
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pipelines/introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabelas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tabelas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tabelas/manual_estilo_tabelas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual de Estilo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tabelas/backups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipelines
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pipelines
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pipelines/introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pipelines/templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipelines genéricos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listagem das pipelines
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Listagem das pipelines
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3_1" id="__nav_8_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoramento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoramento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pipelines/listagem_pipelines/monitoramento/apuracao_viagens_v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apuração de viagens (SPPO) [1.0]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pipelines/listagem_pipelines/monitoramento/apuracao_viagens_v10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apuração de viagens (SPPO) [10.0]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pipelines/listagem_pipelines/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../datacleanrooms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Clean Rooms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ferramentas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ferramentas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../aviso_legal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aviso Legal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-identificacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Identificação do Projeto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objetivo-e-justificativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objetivo e Justificativa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-diagnostico-e-fontes-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Diagnóstico e Fontes de Dados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-levantamento-de-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Levantamento de Requisitos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-fluxo-de-validacao-da-viagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Fluxo de Validação da Viagem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-analise-de-impacto-regulatorio-air" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Análise de Impacto Regulatório (AIR)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-riscos-e-controles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Riscos e Controles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-indicadores-de-impacto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Indicadores de Impacto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-licoes-aprendidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Lições Aprendidas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-referencias-e-documentos-vinculados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Referências e Documentos Vinculados
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="frame-dados-framework-de-documentacao-de-projetos-de-dados-publicos">FRAME-DADOS – Framework de Documentação de Projetos de Dados Públicos</h1>
+<h2 id="1-identificacao-do-projeto">1. Identificação do Projeto</h2>
+<ul>
+<li><em>Nome do Projeto:</em> Avaliação de Climatização de Viagens</li>
+<li><em>Identificador do Projeto:</em> <code>climatizacao</code></li>
+<li><em>Equipe Técnica:</em><ul>
+<li>Rodrigo Cunha (Diretor Técnico Especial de Dados e Inovação)</li>
+<li>Adriano Neto (Analytics Engineer)</li>
+</ul>
+</li>
+<li><em>Instituição/Setor:</em> PCRJ/SMTR/SUBTT</li>
+<li><em>Data de Início:</em>  21/05/2025</li>
+<li><em>Status:</em> Concluído</li>
+</ul>
+<h2 id="2-objetivo-e-justificativa">2. Objetivo e Justificativa</h2>
+<p>O <strong>transporte público municipal da cidade do Rio de Janeiro</strong> busca constantemente implementar <strong>melhorias no serviço</strong> prestado à população. O <strong>conforto térmico</strong> é um fator crucial na garantia da qualidade deste serviço, sendo o objetivo principal da adoção de <strong>novas medidas</strong> que visam assegurar o bem-estar e a qualidade das viagens.</p>
+<p>Com o propósito de garantir a qualidade do serviço e o <strong>conforto térmico</strong> aos usuários, a <strong>SMTR</strong> estipulou regras de referência para a adequação do funcionamento operacional da frota municipal. Em conjunto, realiza o <strong>monitoramento e a manutenção</strong> dessas medidas de qualidade, estabelecendo um <strong>conjunto de patamares mínimos aceitáveis</strong> para a regularidade da climatização durante as viagens.</p>
+<p>Tendo em vista o <strong>cenário de problemáticas climáticas</strong>, faz-se necessária a adoção de melhorias para garantir o <strong>conforto térmico</strong>, especialmente para enfrentar as <strong>frequentes ondas de calor</strong> que impactam a população diariamente e podem <strong>aumentar os riscos de problemas de saúde</strong>. O <strong>investimento em climatização adequada</strong> no transporte público não apenas melhora a qualidade do serviço, mas também <strong>impacta positivamente a satisfação e a saúde</strong> do usuário final.</p>
+<p>Essas ações dão <strong>continuidade às políticas públicas já estabelecidas</strong>, como o <strong>Decreto nº 38.328/2014</strong>, que determina que todos os ônibus adquiridos para o sistema municipal sejam equipados com <strong>ar-condicionado</strong>. Além disso, reforçam a necessidade de <strong>evidências técnicas</strong> que assegurem o funcionamento adequado desses equipamentos, <strong>requisitos que serão garantidos e detalhados nas novas regras adotadas nesta documentação</strong>.</p>
+<h2 id="3-diagnostico-e-fontes-de-dados">3. Diagnóstico e Fontes de Dados</h2>
+<ul>
+<li><strong>3.1. Sistema Digital de Bilhetagem - Jaé:</strong></li>
+</ul>
+<p>Dados de temperatura interna dos veículos são provenientes do Sistema Digital de Bilhetagem fornecido pela concessionária de Bilhetagem Digital (Jaé).</p>
+<p>A procedência e a disponibilidade desses dados são caracterizadas pela disponibilidade constante das medições realizadas pelos sensores de temperatura localizados no interior dos veículos da frota municipal de transporte público. Disponibilizando o grau de precisão conforme manual do fabricante, observada as adequadas condições de manutenção.</p>
+<p>Apesar de algumas limitações, as medições podem ser devidamente tratadas por técnicas estatísticas robustas para identificação e mitigação de dados extremos (<em>outliers</em>). Estes, em poucos casos, mostram-se presentes, mas, em sua maioria, não comprometem a integridade da análise técnica e rigorosa, que utiliza regras e métodos cientificamente validados.</p>
+<p>Sendo estes dados apenas comunicados pelo Sistema Digital de Bilhetagem (Jaé), conforme consta na resolução  SMTR Nº 3857/2025.
+  <br>  </p>
+<ul>
+<li><strong>3.2. Instituto Nacional de Meteorologia - INMET:</strong> </li>
+</ul>
+<p>Os dados meteorológicos utilizados como parâmetro de avaliação para a temperatura externa do ambiente são provenientes das 4 estações de medição do INMET referentes ao município do Rio de Janeiro, que são devidamente armazenadas e disponibilizadas publicamente no Site/Banco de Dados Meteorológicos do INMET.</p>
+<p>A fidedignidade e a alta precisão dos dados de temperatura fornecidos pelo Instituto Nacional de Meteorologia (INMET) são garantidas pelo emprego de tecnologia de ponta e equipamentos especializados, como termo-higrógrafos e Estações Meteorológicas Automáticas (EMAs), que asseguram medições robustas ao considerar variáveis atmosféricas correlatas, incluindo a umidade relativa do ar. O INMET opera com dois fluxos de disponibilização: Dados em Tempo Real, que são fornecidos imediatamente após a coleta e possuem alta precisão intrínseca, embora possam demandar padronização e tratamentos complementares pelo usuário final para monitoramento contínuo (o que não reflete imprecisão da medição) e os dados consolidados, que são submetidos a processos rigorosos de validação e tratamento de qualidade, sendo disponibilizados em um prazo maior e, portanto, inadequados para aplicações que exigem monitoramento estrito em tempo real.
+  <br>  </p>
+<ul>
+<li><strong>3.3. Sistema Alerta Rio:</strong> 
+Os dados meteorológicos utilizados como opção de substituição quando houver a ausência dos dados disponíveis por determinado período no Instituto Nacional de Metereologia (INMET) serão oriundos do Sistema Alerta Rio. Sendo este o sistema de alerta de chuvas intensas e de deslizamentos em encostas da cidade do Rio de Janeiro.</li>
+</ul>
+<h2 id="4-levantamento-de-requisitos">4. Levantamento de Requisitos</h2>
+<ul>
+<li><strong>Requisitos funcionais:</strong>  </li>
+<li>
+<p>Classificar de forma clara e objetiva se a viagem efetuada está em regularidade com as regras de climatização estabelecidas pela Secretaria Municipal de Transportes (SMTR).  </p>
+</li>
+<li>
+<p><strong>Requisitos funcionais acessórios:</strong></p>
+<ul>
+<li>Tabelas, painéis ou elementos similares contendo informações atualizadas frequentemente sobre veículos com possíveis problemas de medição visando apoiar e direcionar a operação de fiscalização nas concessionárias envolvidas. </li>
+</ul>
+</li>
+<li>
+<p><a href="https://tracking.mobilidade.rio/docs">API com dados de temperatura</a>, onde a operação poderá ter acesso as informações e assim poder efetuar um monitoramento em tempo real. As condições de disponbilidade serão disponibilizar as duas horas mais recentes do dia em relação ao momento da consulta a API.</p>
+</li>
+<li>
+<p><strong>Requisitos não funcionais:</strong> </p>
+</li>
+<li>Testes, validação, relacionamento de tabelas, verificação de replicabilidade e desempenho factível.</li>
+<li>
+<p>Os dados são públicos, não sendo abrangidos por restrições da LGPD quanto a dados sensíveis.  </p>
+</li>
+<li>
+<p><strong>Demandas regulatórias ou legais:</strong>  </p>
+</li>
+<li>Acordo Judicial Nº 0072879-94.2023.8.19.0001</li>
+<li>Norma ABNT NBR 15570:2021</li>
+<li>
+<p>Termo de conciliação  </p>
+</li>
+<li>
+<p><strong>Partes interessadas envolvidas:</strong>  </p>
+</li>
+<li>Áreas internas da SMTR:<ul>
+<li>TR/SUBTT;</li>
+<li>TR/SUBTT/CMO;</li>
+<li>TR/SUBTOP.</li>
+</ul>
+</li>
+<li>Concessionárias de Transporte Público.</li>
+<li>Consumidor final (População).</li>
+</ul>
+<h2 id="5-fluxo-de-validacao-da-viagem">5. Fluxo de Validação da Viagem</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>└── Ínicio - Demanda pela análise
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    ├── Processamento dos dados de temperatura externa brutos
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    │   ├── Identificação de temperatura máxima                    
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    │   └── Gerar Dados de temperatura externa por hora
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ├── Processamento dos dados de temperatura interna brutos
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    │   └── Realizar Remoção de Nulos  
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    │   └── Realizar Remoção de outliers (IQR + Modified Z-Score)           
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    └── Avaliação da Regularidade e Apuração Final da Viagem 
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        │
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        ├── Decisão de Regularidade:
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        │   │
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        │   └── Condição: (Temperatura Externa - Temperatura Interna &gt;= 8°C ou Temperatura Interna &lt;= 24°C)
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        │       │                                                 
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        │       ├── SE SIM (Condição de regularidade atendida):
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        │       │   └── Classificar como Registro de temperatura regular
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        │       │
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        │       └── SE NÃO (Condição de regularidade não atendida):
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        │           └── Classificar como Registro de temperatura irregular
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        │
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        └── Apuração do percentual de registros de temperatura válida por viagem
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>            │
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            └── Classificação de validade da Viagem
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>                │
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>                └── Condição: (Percentual de registros de temperatura válidos &gt;= 80%)
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>                    │
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>                    ├── SE SIM:
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>                    │   └── Viagem válida
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>                    └── SE NÃO:
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>                        └── Viagem inválida
+</span></code></pre></div>
+<h2 id="6-analise-de-impacto-regulatorio-air">6. Análise de Impacto Regulatório (AIR)</h2>
+<ul>
+<li>
+<p><strong>Cenários avaliados:</strong>  <br>  </p>
+</li>
+<li>
+<p><strong>Primeiro cenário - Avaliação pela temperatura média dos registros:</strong><br />
+  Este cenário considerava a utilização da média (ou mediana) da temperatura interna dos veículos como base para a análise.</p>
+</li>
+<li>
+<p><strong>Segundo cenário - Avaliação por registros unitários:</strong><br />
+  Este cenário propunha a comparação individual de cada registro de temperatura interna com o valor máximo da temperatura externa para determinar a regularidade.<br />
+  <br>  </p>
+</li>
+</ul>
+<hr />
+<ul>
+<li><strong>Análise comparativa (vantagens, desvantagens, viabilidade):</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th><strong>1. Temperatura Média</strong></th>
+<th><strong>2. Registros Unitários</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vantagens</strong></td>
+<td>- Simplicidade de cálculo e compreensão inicial.</td>
+<td>- Maior precisão e detalhamento.<br>- Melhor representação do comportamento térmico durante a viagem.</td>
+</tr>
+<tr>
+<td><strong>Desvantagens</strong></td>
+<td>- Dados com distribuição não normal (bimodal).<br>- Média e mediana não representavam adequadamente o centro.<br>- Sensível a distorções por registros extremos.<br>- Requer mais processamento e cuidado na análise individual dos dados.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Viabilidade</strong></td>
+<td>Reduzida, devido ao comportamento estatístico dos dados e limitações técnicas.</td>
+<td>Alta, pois permite validação detalhada e análise mais robusta diante das incertezas dos dados.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><br>  </p>
+<ul>
+<li><strong>Justificativa da escolha da solução:</strong></li>
+</ul>
+<p>A escolha pela <strong>avaliação por registros unitários</strong> foi motivada por diversos fatores que comprometiam a representatividade e a confiabilidade da análise baseada em médias, tais como:</p>
+<ul>
+<li>Presença de distribuição bimodal, dificultando representação dos dados e, portanto, a interpretação através de estatísticas de tendência central, como a média ou mediana.</li>
+<li>Perda de detalhamento das variações ao longo da viagem, como temperaturas elevadas no início do trajeto e entre outros fenômenos observados ao longo das viagens.</li>
+</ul>
+<p>Ao adotar o cenário baseado em <strong>registros unitários</strong>, tornou-se possível:</p>
+<ul>
+<li>Contornar as distorções observadas no cenário anterior.</li>
+<li>Obter maior precisão e representatividade dos dados.</li>
+<li>Garantir capacidade de validação e rastreabilidade.</li>
+<li>Viabilizar uma análise mais robusta, simples e segura para a tomada de decisão.</li>
+</ul>
+<h2 id="7-riscos-e-controles">7. Riscos e Controles</h2>
+<table>
+<thead>
+<tr>
+<th>Categoria</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Riscos identificados</strong></td>
+<td><strong>Possibilidade de interferência indevida nos medidores</strong> – Operadores podem afetar o funcionamento dos sensores; responsabilidade da operadora pela etapa entre a medição e o recebimento pelo validador.</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Indisponibilidade do dado de temperatura interna</strong> – Problemas técnicos após o validador que impedem o envio para a SMTR; responsabilidade da Concessionária de Bilhetagem Digital Jaé.</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Furto dos sensores</strong> de medição.</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Avarias nos sensores</strong> que impeçam seu funcionamento adequado.</td>
+</tr>
+<tr>
+<td><strong>Probabilidade e impacto</strong></td>
+<td><strong>Melhoria da qualidade da climatização</strong> pela operadora.</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Impacto real no conforto do usuário final</strong>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-indicadores-de-impacto">9. Indicadores de Impacto</h2>
+<ul>
+<li><strong>Indicadores de sucesso do projeto:</strong>  </li>
+<li>Avaliar e medir o sucesso do projeto através da melhoria dos indicadores institucionais e técnicos, que impactarão diretamente a população que é o foco principal da busca pela melhoria desse serviço.</li>
+<li><strong>Indicadores institucionais:</strong>  </li>
+<li>Índicador de regularidade da temperatura</li>
+<li><strong>Indicadores técnicos:</strong></li>
+<li>Índicador de veículos suspeitos.</li>
+<li>Índicador de ajuste da operação:<br />
+     Avaliado através do tempo que os indicadores anteriores progridem ou regridem em marcos temporais de 30 dias, 90 dias, 180 dias e 365 dias. Ou mesmo avaliando uma série de tempo diária.   </li>
+</ul>
+<h2 id="8-licoes-aprendidas">8. Lições Aprendidas</h2>
+<ul>
+<li><strong>O que funcionou bem:</strong> </li>
+<li>Uma análise inicial mais objetiva e sucinta visando atender demandas mais prévias. Que dessa forma, proporcionou pautar melhor as discussões sobre melhorias, resultados encontrados e caminhos a seguir.  </li>
+<li><strong>O que poderia ter sido feito de outra forma:</strong></li>
+<li>
+<p>Efetuar uma análise completa em um momento anterior a definição de quaisquer regras necessárias para aplicação posterior. Com isso, evidências e resultados prévios passam a fundamentar tecnicamente as regras e políticas públicas, ao invés de serem desenvolvidas posteriormente à sua implementação.</p>
+</li>
+<li>
+<p>Definição inicial do escopo geral, além de possíveis hipóteses a serem trabalhadas e avaliadas ao longo da análise.</p>
+</li>
+<li>
+<p><strong>Barreiras encontradas e superadas:</strong>  </p>
+</li>
+<li>A falta de disponibilidade completa de dados das 4 estações, o que nos guiou a utilizar o valor máximo com apenas 3 estações do total de 4 disponíveis para o município do Rio de Janeiro.  </li>
+<li>A falta de um dicionário de dados visando facilitar o entendimento e metodologia das tabelas, colunas e conceitos envolvidos no contexto de dados meteorológicos.  </li>
+<li>Recaptura de temperaturas disponibilizadas pelo INMET mediante a disponibilização;  </li>
+<li>Falta em todas as estações do INMET;  </li>
+<li><strong>Recomendações para projetos futuros:</strong>  </li>
+</ul>
+<h2 id="13-referencias-e-documentos-vinculados">13. Referências e Documentos Vinculados</h2>
+<ul>
+<li>
+<p>Acordo Judicial Nº 0072879-94.2023.8.19.0001 firmado em 30 de abril de 2025 entre o Município do Rio de Janeiro e os consórcios operadores do sistema de transporte coletivo, foram estabelecidas novas diretrizes para a operação e monitoramento do serviço, incluindo obrigações específicas de transparência e cumprimento de metas operacionais sob a supervisão da SPPO.  </p>
+</li>
+<li>
+<p>Norma ABNT NBR 15570:2021 </p>
+</li>
+<li>Decreto RIO n° 53.856/2023.</li>
+<li>Resolução SMTR Nº 3636, de 11 de julho de 2023.  </li>
+<li>NETO, Adriano. Análise da Regularidade de Temperatura - SMTR20250521. Rio de Janeiro: SMTR, 2025a. </li>
+<li>NETO, Adriano. 20250616_Análise da Regularidade de Temperatura - SMTR 2025. Rio de Janeiro: SMTR, 2025b. </li>
+<li>RIO DE JANEIRO (Município). Secretaria Municipal de Transportes (SMTR). Resolução SMTR n. 3857, de 1º de julho de 2025. </li>
+<li>TUKEY, John W. Exploratory Data Analysis. Reading, MA: Addison-Wesley, 1977.  </li>
+<li>IGLEWICZ, Boris; HOAGLIN, David C. How to Detect and Handle Outliers. Milwaukee, WI: ASQC Quality Press, 1993. (ASQC Statistics Textbook Series)  </li>
+<li>CAMPOS, A. R. et al. Thermal discomfort and hypertension in bus drivers and chargers in the city of São Paulo, Brazil. Applied Ergonomics, v. 47, p. 122-127, 2015. DOI: 10.1016/j.apergo.2014.09.002. Disponível em: https://www.sciencedirect.com/science/article/abs/pii/S000368701400194X. Acesso em: 8 dez. 2025.</li>
+<li>PATANIA, A. et al. Thermal comfort analysis of public transport passengers in Catania. In: WIT TRANSACTIONS ON ECOLOGY AND THE ENVIRONMENT, v. 157, p. 217-227, 2012. WIT Press. DOI: 10.2495/SDP120191. Disponível em: https://www.witpress.com/elibrary/wit-transactions-on-ecology-and-the-environment/157/23292. Acesso em: 8 dez. 2025.
+  <br></li>
+</ul>
+<p><br>  </p>
+<hr />
+<div class="admonition warning">
+<p class="admonition-title">Aviso Legal</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 14h-1c0-3.87-3.13-7-7-7h-1V5.73A2 2 0 1 0 10 4c0 .74.4 1.39 1 1.73V7h-1c-3.87 0-7 3.13-7 7H2c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h1v1a2 2 0 0 0 2 2h14c1.11 0 2-.89 2-2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1M9.79 16.5C9.4 15.62 8.53 15 7.5 15s-1.9.62-2.29 1.5c-.13-.31-.21-.64-.21-1a2.5 2.5 0 0 1 5 0c0 .36-.08.69-.21 1m9 0c-.39-.88-1.29-1.5-2.29-1.5s-1.9.62-2.29 1.5c-.13-.31-.21-.64-.21-1a2.5 2.5 0 0 1 5 0c0 .36-.08.69-.21 1"/></svg></span> <em>Este documento foi gerado automaticamente com auxílio de
+inteligência artificial.</em></p>
+<p>Este documento possui caráter meramente técnico-descritivo e pode conter erros. Para mais
+informações, consulte o <a href="../../../aviso_legal/">Aviso Legal</a> completo.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prefeitura-rio/pipelines_rj_smtr" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
