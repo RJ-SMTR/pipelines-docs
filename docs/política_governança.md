@@ -33,7 +33,7 @@ Fundamentada no DAMA-DMBOK, que a conceitua como o exercício de autoridade, con
 
 A presente Política de Governança de Dados formaliza o compromisso da DTDI com a gestão responsável, segura e conformada dos dados e informação do ecossistema da SMTR, estabelecendo princípios, diretrizes, responsabilidades e processos que **devem** orientar a tomada de decisão e a execução de iniciativas de governança em todas as fases do ciclo de vida dos dados.
 
-Esta Política reconhece que a DTDI já desenvolve iniciativas estruturadas de governança de dados. O presente documento consolida essas práticas dispersas em um instrumento institucional coerente, referendado por boas práticas internacionais (DAMA-DMBOK 2 Revised) e alinhado com a legislação municipal, estadual e federal aplicável. Essa Política inicial funciona simultaneamente como fotografia do estado atual de maturidade e como bússola para evolução gradual e sustentável.
+Esta Política reconhece que a DTDI já desenvolve iniciativas estruturadas de governança de dados. O presente documento consolida essas práticas em um instrumento institucional coerente, referendado por boas práticas internacionais (DAMA-DMBOK 2 Revised) e alinhado com a legislação municipal, estadual e federal aplicável. Essa Política inicial funciona simultaneamente como fotografia do estado atual de maturidade e como bússola para evolução gradual e sustentável.
 
 A Política de Governança de Dados da DTDI persegue cinco objetivos estratégicos e complementares:
 
@@ -69,7 +69,9 @@ A Política **é mandatória** para todos os profissionais da DTDI e **vinculant
 | **Ativos de Dados** | Conjuntos de dados, metadados, processos e infraestrutura que **devem** ser gerenciados e governados como ativos de valor estratégico para a organização. |
 | **Auditoria de Dados** | Processo que **deve** verificar a conformidade das operações de dados com políticas, normas e regulações aplicáveis. |
 | **Autoridade em Dados** | Responsabilidade de exercer controle, decisão e direcionamento sobre os dados, conforme atribuído pela Política. |
+| **Backup** | Cópia de segurança de dados e configurações que garante a recuperação em caso de perda, corrupção ou desastre. Backups são executados regularmente conforme políticas de retenção e continuidade de negócio. |
 | **Big Data** | Área de conhecimento que **deve** aplicar tecnologias e metodologias para processar, armazenar e analisar volumes massivos de dados estruturados e não estruturados. |
+| **BigQuery** | Plataforma de data warehouse em nuvem do Google Cloud que armazena, processa e analisa grandes volumes de dados. Na DTDI, BigQuery funciona como repositório centralizado para dados processados e disponíveis para análise. |
 | **Business Data Steward** | Papel que **deve** ser responsável pela qualidade, conformidade e alinhamento dos dados com requisitos de negócio, atuando como intermediário entre áreas de negócio e DTDI. |
 | **Catálogo de Dados** | Repositório centralizado que **deve** documentar todos os ativos de dados da DTDI, incluindo metadados, linhagem, qualidade e responsáveis. |
 | **Ciclo de Vida dos Dados** | Sequência de fases que **devem** ser percorridas pelos dados: Planejamento, Coleta/Criação, Armazenamento, Processamento/Transformação, Análise/Uso, Governança/Proteção e Retenção/Descarte. |
@@ -78,10 +80,13 @@ A Política **é mandatória** para todos os profissionais da DTDI e **vinculant
 | **Controlador de Dados** | Pessoa física ou jurídica que **deve** determinar os propósitos e meios do tratamento de dados pessoais, conforme LGPD. Na SMTR, a Controladora é a Secretaria Municipal de Transportes. |
 | **Curador Técnico de Dados** | Papel que **deve** ser responsável pela qualidade técnica, segurança, conformidade e operação dos dados, atuando como intermediário entre DTDI e sistemas. |
 | **Custódia de Dados** | Responsabilidade de manter, proteger e disponibilizar os dados de forma segura e conforme regulação. A DTDI **deve** exercer custódia sobre os dados sob sua responsabilidade. |
-| **Data Clean Room** | Ambiente isolado e controlado que **deve** permitir o compartilhamento seguro de dados entre partes, com proteção de privacidade e conformidade regulatória. |
-| **Data Governance** | Veja "Governança de Dados". |
-| **Data Owner** | Veja "Proprietário de Dados". |
-| **Data Steward** | Veja "Gestor de Dados". |
+| **Cobertura Temporal** | Período de tempo que um dataset cobre, definindo o intervalo de datas ou períodos para os quais os dados estão disponíveis. Cobertura temporal deve ser documentada em metadados para facilitar a seleção apropriada de dados. |
+| **Data Clean Room** | Ambiente isolado e controlado que permite o compartilhamento seguro de dados entre partes, com proteção de privacidade e conformidade regulatória. Facilita análises colaborativas sem expor dados sensíveis. |
+| **Dataset** | Conjunto de dados organizado e estruturado que representa uma coleção de registros relacionados a um tópico ou contexto específico. Datasets são a unidade fundamental de gestão de dados na DTDI e devem ser documentados em metadados completos. |
+| **dbt (Data Build Tool)** | Ferramenta de transformação de dados que utiliza SQL para definir lógicas de processamento. Modelos dbt são versionados em Git e testados automaticamente, garantindo qualidade e rastreabilidade das transformações. |
+| **Data Governance** | Termo em inglês para Governança de Dados — Área de conhecimento que **deve** exercer autoridade, controle e decisão sobre os dados, orquestrando as demais disciplinas de gestão de dados. |
+| **Data Owner** | Termo em inglês para Proprietário de Dados — Profissional que **deve** ser responsável pela definição de requisitos, qualidade e conformidade de um domínio de dados específico. |
+| **Data Steward** | Termo em inglês para Gestor de Dados — Profissional que **deve** ser responsável pela qualidade, conformidade e operação de dados em seu domínio, atuando como intermediário entre negócio e tecnologia. |
 | **DAMA-DMBOK** | Data Management Body of Knowledge — Framework internacional que **deve** fundamentar as práticas de gestão e governança de dados da DTDI, com 11 áreas de conhecimento. |
 | **Dados Abertos** | Dados públicos que **devem** ser disponibilizados em formato acessível, reutilizável e sem restrições, conforme Lei de Acesso à Informação (Lei 12.527/2011). |
 | **Dados Mestres** | Dados de referência críticos que **devem** ser gerenciados centralizadamente para garantir consistência em toda a organização. |
@@ -95,10 +100,14 @@ A Política **é mandatória** para todos os profissionais da DTDI e **vinculant
 | **Descarte de Dados** | Fase do ciclo de vida que **deve** garantir a exclusão segura e conformada de dados conforme plano de retenção. |
 | **Desempenho da Governança** | Medição que **deve** avaliar a eficácia das iniciativas de governança através de métricas e indicadores. |
 | **Diretrizes** | Orientações prescritivas que **devem** guiar as ações e decisões da DTDI em relação à governança de dados. |
+| **Diretório** | Estrutura hierárquica de organização de arquivos e pastas em sistemas de armazenamento. Na DTDI, diretórios são utilizados para organizar datasets, scripts, documentação e artefatos de governança conforme padrões de nomenclatura. |
 | **Domínio de Dados** | Agrupamento lógico de dados relacionados a um contexto de negócio específico, que **deve** ter responsáveis designados (Data Owner e Data Steward). |
 | **Domain-Driven Design** | Metodologia que **deve** promover a compreensão compartilhada entre técnica e negócio através de linguagem ubíqua e modelagem de domínios. |
 | **DPO** | Data Protection Officer (Encarregado de Dados) — Profissional que **deve** ser responsável pela conformidade com LGPD e regulações de proteção de dados. |
 | **DTDI** | Diretoria Técnica de Dados e Inovação — Unidade da SMTR responsável pela gestão e governança de dados. |
+| **Ambiente de Desenvolvimento** | Ambiente isolado onde equipes desenvolvem, testam e validam lógicas de processamento de dados antes de implantação em produção. Ambiente de desenvolvimento segue padrões de segregação e não acessa dados de produção sensíveis. |
+| **Ambiente de Produção** | Ambiente onde dados são processados, armazenados e disponibilizados para uso operacional. Ambiente de produção segue rigorosos padrões de segurança, conformidade e monitoramento. |
+| **API** | Application Programming Interface — Interface de programação que permite comunicação entre sistemas. APIs na DTDI facilitam acesso seguro e controlado a dados, com autenticação, autorização e monitoramento. |
 | **Encarregado de Dados** | Profissional designado conforme LGPD que **deve** ser ponto de contato para assuntos de proteção de dados. |
 | **Entrega de Dados (TED)** | Termo de Entrega de Dados — Instrumento formal que **deve** documentar a entrega de dados pela DTDI, incluindo qualidade, conformidade e responsabilidades. |
 | **Especificação de Dados** | Documentação que **deve** descrever requisitos, estrutura, qualidade e conformidade esperados para cada ativo de dados. |
@@ -113,7 +122,7 @@ A Política **é mandatória** para todos os profissionais da DTDI e **vinculant
 | **Gestão de Metadados** | Área de conhecimento que **deve** documentar, organizar e disponibilizar informações sobre os dados (metadados). |
 | **Gestão de Riscos** | Processo que **deve** identificar, avaliar, mitigar e monitorar riscos associados aos dados. |
 | **Gestor de Dados** | Profissional que **deve** ser responsável pela qualidade, conformidade e operação de dados em seu domínio. |
-| **GitHub** | Plataforma de versionamento que **deve** ser utilizada para armazenar e gerenciar código, configurações e documentação de dados. |
+| **GitHub** | Plataforma de versionamento que armazena e gerencia código, configurações e documentação de dados. Na DTDI, GitHub é o repositório centralizado para todos os artefatos de governança, pipelines e datasets. |
 | **Governança como Código** | Prática que **deve** codificar regras, políticas e controles de governança em artefatos executáveis (YAML, scripts, etc.). |
 | **Governança de Dados** | Área de conhecimento que **deve** exercer autoridade, controle e decisão sobre os dados, orquestrando as demais disciplinas. |
 | **Guia de Governança de Metadados** | Documento que **deve** orientar o preenchimento de metadados em arquivos YAML para garantir rastreabilidade e qualidade. |
@@ -126,49 +135,57 @@ A Política **é mandatória** para todos os profissionais da DTDI e **vinculant
 | **Linhagem de Dados** | Documentação que **deve** rastrear a origem, transformações e destino de cada dado ao longo de seu ciclo de vida. |
 | **LGPD** | Lei Geral de Proteção de Dados Pessoais (Lei 13.709/2018) — Legislação federal que **deve** fundamentar todas as operações de dados. |
 | **Linguagem Ubíqua** | Linguagem compartilhada entre técnica e negócio que **deve** ser desenvolvida conforme Domain-Driven Design. |
-| **Maestro** | Papel da Governança que **deve** orquestrar as demais disciplinas de gestão de dados. |
-| **Metadados** | Informações sobre os dados que **devem** documentar estrutura, qualidade, origem, responsáveis e conformidade. |
-| **Modelagem de Dados** | Área de conhecimento que **deve** definir estruturas lógicas e físicas para representar dados. |
-| **Monitoramento** | Processo contínuo que **deve** acompanhar a qualidade, segurança e conformidade dos dados. |
-| **Norma** | Instrumento regulatório que **deve** estabelecer regras específicas para operações de dados. |
-| **Operador de Dados** | Pessoa física ou jurídica que **deve** realizar o tratamento de dados em nome do Controlador, conforme LGPD. |
-| **Operações de Dados** | Atividades que **devem** ser realizadas sobre dados (coleta, armazenamento, processamento, compartilhamento, descarte). |
-| **Orquestração** | Coordenação que **deve** ser exercida pela Governança sobre as demais disciplinas de gestão de dados. |
-| **Padrão de Qualidade** | Critério que **deve** definir o nível mínimo aceitável de qualidade para cada ativo de dados. |
-| **Padrões de Nomenclatura** | Regras que **devem** padronizar nomes de tabelas, colunas, campos e outros objetos de dados. |
-| **Papéis e Responsabilidades** | Atribuições que **devem** ser claramente definidas para cada ator envolvido na governança de dados. |
-| **Política** | Instrumento regulatório que **deve** estabelecer princípios, diretrizes e objetivos para a governança de dados. |
-| **Política como Código** | Prática que **deve** codificar políticas em artefatos executáveis (YAML, scripts, etc.) para automatizar conformidade. |
-| **Policy Tags** | Marcadores que **devem** ser aplicados aos dados para indicar sensibilidade, conformidade e restrições de acesso. |
+| **Maestro** | Papel da Governança que orquestra as demais disciplinas de gestão de dados. |
+| **Manual de Estilo de Modelos e Tabelas** | Guia de referência que documenta padrões, convenções e boas práticas para nomenclatura, estrutura e design de modelos de dados e tabelas na DTDI. Disponível em https://rj-smtr.github.io/pipelines-docs/tabelas/manual_estilo_tabelas/ |
+| **Metadados** | Informações sobre os dados que documentam estrutura, qualidade, origem, responsáveis e conformidade. |
+| **Modelagem de Dados** | Área de conhecimento que define estruturas lógicas e físicas para representar dados. |
+| **Monitoramento** | Processo contínuo que acompanha a qualidade, segurança e conformidade dos dados. |
+| **Norma** | Instrumento regulatório que estabelece regras específicas para operações de dados. |
+| **Onboarding** | Processo de integração de novos dados, sistemas ou equipes na estrutura de governança da DTDI. Onboarding inclui definição de papéis, documentação de metadados, alinhamento de requisitos e formalização de termos. |
+| **Operador de Dados** | Pessoa física ou jurídica que realiza o tratamento de dados em nome do Controlador, conforme LGPD. |
+| **Operações de Dados** | Atividades realizadas sobre dados (coleta, armazenamento, processamento, compartilhamento, descarte). |
+| **Orquestração** | Coordenação exercida pela Governança sobre as demais disciplinas de gestão de dados. |
+| **Padrão de Qualidade** | Critério que define o nível mínimo aceitável de qualidade para cada ativo de dados. |
+| **Padrões de Nomenclatura** | Regras que padronizam nomes de tabelas, colunas, campos e outros objetos de dados. |
+| **Pipelines** | Sequência de processos automatizados que extraem, transformam e carregam dados de fontes para destinos. Pipelines na DTDI são orquestrados, monitorados e documentados conforme padrões de governança. |
+| **Queries** | Consultas estruturadas em SQL que recuperam, filtram e agregam dados de bancos de dados. Queries na DTDI são documentadas, versionadas e testadas para garantir consistência e performance. |
+| **Papéis e Responsabilidades** | Atribuições claramente definidas para cada ator envolvido na governança de dados. |
+| **Política** | Instrumento regulatório que estabelece princípios, diretrizes e objetivos para a governança de dados. |
+| **Política como Código** | Prática que codifica políticas em artefatos executáveis (YAML, scripts, etc.) para automatizar conformidade. |
+| **Policy Tags** | Marcadores aplicados aos dados para indicar sensibilidade, conformidade e restrições de acesso. |
 | **PRE** | Prefeitura do Rio de Janeiro. |
-| **Princípios** | Valores fundamentais que **devem** guiar as ações e decisões em governança de dados. |
-| **Privacidade** | Direito que **deve** ser protegido através de controles, políticas e conformidade com LGPD. |
-| **Procedimento** | Instrumento regulatório que **deve** descrever passos operacionais para executar processos de governança. |
-| **Processo** | Sequência de atividades que **deve** ser executada para realizar operações de dados. |
-| **Proprietário de Dados** | Profissional que **deve** ser responsável pela definição de requisitos, qualidade e conformidade de um domínio de dados. |
-| **Qualidade de Dados** | Área de conhecimento que **deve** garantir que dados atendam a padrões de completude, consistência, acurácia e oportunidade. |
-| **Qualidade By Design** | Prática que **deve** integrar qualidade desde o início de cada projeto de dados. |
-| **Rastreabilidade** | Capacidade que **deve** permitir rastrear a origem, transformações e destino de cada dado. |
-| **Retenção de Dados** | Política que **deve** definir por quanto tempo dados **devem** ser mantidos conforme legislação. |
-| **Rules as Code (RaC)** | Prática que **deve** codificar regras de negócio em artefatos executáveis para automatizar conformidade. |
-| **Segurança de Dados** | Área de conhecimento que **deve** proteger dados contra acessos não autorizados, alterações indevidas e perda. |
-| **Segregação de Ambientes** | Prática que **deve** manter ambientes de desenvolvimento, teste e produção isolados para segurança. |
+| **Princípios** | Valores fundamentais que guiam as ações e decisões em governança de dados. |
+| **Privacidade** | Direito protegido através de controles, políticas e conformidade com LGPD. |
+| **Procedimento** | Instrumento regulatório que descreve passos operacionais para executar processos de governança. |
+| **Processo** | Sequência de atividades executadas para realizar operações de dados. |
+| **Proprietário de Dados** | Profissional responsável pela definição de requisitos, qualidade e conformidade de um domínio de dados. |
+| **Qualidade de Dados** | Área de conhecimento que garante que dados atendam a padrões de completude, consistência, acurácia e oportunidade. |
+| **Qualidade By Design** | Prática que integra qualidade desde o início de cada projeto de dados. |
+| **Rastreabilidade** | Capacidade que permite rastrear a origem, transformações e destino de cada dado. |
+| **Retenção de Dados** | Política que define por quanto tempo dados são mantidos conforme legislação. |
+| **Rules as Code (RaC)** | Prática que codifica regras de negócio em artefatos executáveis para automatizar conformidade. |
+| **Segurança de Dados** | Área de conhecimento que protege dados contra acessos não autorizados, alterações indevidas e perda. |
+| **Segregação de Ambientes** | Prática que mantém ambientes de desenvolvimento, teste e produção isolados para segurança. |
+| **SQL** | Structured Query Language — Linguagem padrão para consulta e manipulação de dados em bancos de dados relacionais. SQL é a linguagem principal utilizada na DTDI para processamento de dados. |
 | **SMTR** | Secretaria Municipal de Transportes do Rio de Janeiro. |
 | **SUBTT** | Subsecretaria de Tecnologia em Transportes — Unidade que **deve** exercer controle estratégico sobre dados. |
 | **TAD** | Termo de Alinhamento de Dados — Instrumento que **deve** especificar requisitos para demandas de dados. |
 | **TCD** | Termo de Custódia de Dados — Instrumento que **deve** formalizar responsabilidades de custódia. |
-| **Technical Data Steward** | Veja "Curador Técnico de Dados". |
+| **Technical Data Steward** | Termo em inglês para Curador Técnico de Dados — Profissional de Engenharia/Arquitetura de Dados ou Tecnologia da Informação que **deve** ser responsável pela qualidade técnica, segurança, conformidade e operação dos dados. |
 | **TED** | Termo de Entrega de Dados — Instrumento que **deve** documentar entrega de dados. |
 | **Temporalidade** | Período de tempo durante o qual dados **devem** ser acessíveis, conforme políticas de retenção. |
-| **Termo de Alinhamento** | Veja "TAD". |
-| **Termo de Custódia** | Veja "TCD". |
-| **Termo de Entrega** | Veja "TED". |
+| **Termo de Alinhamento** | Instrumento formal que **deve** especificar requisitos, expectativas e responsabilidades para cada demanda de dados recebida pela DTDI, também conhecido como TAD (Termo de Alinhamento de Dados). |
+| **Termo de Custódia** | Instrumento que **deve** formalizar as responsabilidades de custódia técnica e operacional de um ativo de dados, também conhecido como TCD (Termo de Custódia de Dados). |
+| **Termo de Entrega** | Instrumento formal que **deve** documentar a entrega de dados pela DTDI, incluindo qualidade, conformidade, responsabilidades e prazos, também conhecido como TED (Termo de Entrega de Dados). |
 | **Testes de Qualidade** | Validações automatizadas que **devem** verificar a conformidade de dados com padrões de qualidade. |
 | **Transformação de Dados** | Processo que **deve** converter dados de um formato/estrutura para outro. |
-| **Transparência** | Princípio que **deve** garantir que operações de dados sejam documentadas e comunicadas claramente. |
+| **Transparência** | Princípio que garante que operações de dados sejam documentadas e comunicadas claramente. |
 | **Tratamento de Dados** | Qualquer operação realizada sobre dados, conforme LGPD (coleta, processamento, armazenamento, compartilhamento, etc.). |
-| **TR/SUBTT** | Veja "SUBTT". |
-| **Versionamento** | Prática que **deve** rastrear mudanças em código, configurações e documentação através de sistemas como Git. |
+| **TR/SUBTT** | Abreviação para Subsecretaria de Tecnologia em Transportes — Unidade administrativa da SMTR que **deve** exercer controle estratégico e tático-operacional sobre os fluxos de dados finalísticos.
+| **Versionamento** | Prática que rastreia mudanças em código, configurações e documentação através de sistemas como Git. |
+| **Views** | Representações virtuais de dados que combinam, filtram ou transformam tabelas base sem armazenar dados fisicamente. Views na DTDI facilitam acesso seguro e simplificado a dados complexos. |
+| **VPN** | Virtual Private Network — Rede privada virtual que garante comunicação segura e criptografada entre sistemas. VPN é utilizada na DTDI para acesso seguro a ambientes e dados sensíveis. |
+| **Workflow** | Sequência de etapas orquestradas que automatizam processos de negócio ou técnicos. Workflows na DTDI são documentados, monitorados e auditados para garantir conformidade e rastreabilidade. |
 | **VPIA** | Superintendência de Planejamento, Inovação e Análise — Entidade que, em conjunto com IPLANRIO e DTDI, **deve** exercer custódia técnica. |
 | **Wiki DTDI** | Repositório centralizado que **deve** documentar processos, padrões, guias e conhecimento da DTDI. |
 | **YAML** | Formato de arquivo que **deve** ser utilizado para documentar metadados e configurações de dados. |
@@ -225,11 +242,11 @@ A Política de Governança de Dados da DTDI **repousa** sobre os seguintes princ
 
 ## 7. DIRETRIZES DE GOVERNANÇA DE DADOS DTDI
 
-A DTDI **reconhece** que já implementa 25 iniciativas estruturadas de governança de dados, distribuídas ao longo do ciclo de vida dos dados e cobrindo as 11 áreas de conhecimento do DAMA-DMBOK. O presente documento consolida essas práticas sob uma estrutura normativa coerente, estabelecendo diretrizes prescritivas que **devem** orientar a evolução contínua.
+Este documento **reconhece** 25 iniciativas estruturadas de governança de dados em curso, distribuídas ao longo do ciclo de vida dos dados e cobrindo as 11 áreas de conhecimento do DAMA-DMBOK. A Política de Governança de Dados da DTDI consolida essas práticas sob uma estrutura normativa coerente, estabelecendo diretrizes prescritivas que **devem** orientar a evolução contínua.
 
 ### 7.1 Histórico e Contexto das Iniciativas Vigentes
 
-A DTDI, na qualidade de Operadora e Custodiante de Dados da SMTR, **desenvolveu** ao longo de seus anos de operação um conjunto robusto de iniciativas que, embora dispersas e não formalmente consolidadas sob um instrumento de governança, **refletem** maturidade técnica e alinhamento com boas práticas internacionais.
+A DTDI, na qualidade de Operadora e Custodiante de Dados da SMTR, **desenvolveu** ao longo dos anos de operação um conjunto robusto de iniciativas que, embora ainda não formalmente consolidadas sob um instrumento central de governança, já são capazes de **refletir** a maturidade técnica e o alinhamento com boas práticas de padrão internacional.
 
 Essas iniciativas **abrangem**:
 
@@ -399,6 +416,112 @@ A DTDI **deve** garantir que toda solicitação de integração de dados ao Data
 - Padrões de qualidade
 - Conformidade regulatória
 - Responsabilidades e contatos
+
+#### 7.2.27 Aplicar Manual de Estilo de Modelos e Tabelas
+
+A DTDI **deve** aplicar o Manual de Estilo de Modelos e Tabelas em todos os projetos de dados, garantindo consistência, padronização e qualidade na nomenclatura, estrutura e design de modelos de dados e tabelas. O Manual de Estilo **deve** ser utilizado como referência obrigatória para:
+
+- Definição de padrões de nomenclatura (tabelas, colunas, índices)
+- Estruturação de modelos de dados (lógicos e físicos)
+- Convenções de design e boas práticas
+- Documentação de metadados associados
+- Garantia de interoperabilidade entre sistemas
+
+O Manual de Estilo está disponível em https://rj-smtr.github.io/pipelines-docs/tabelas/manual_estilo_tabelas/
+
+#### 7.2.28 Implementar Pipelines de Dados Orquestrados
+
+A DTDI **deve** implementar pipelines de dados automatizados que orquestrem o fluxo de dados desde a origem até o destino. Pipelines **devem** ser:
+
+- Documentados em repositório centralizado (GitHub)
+- Monitorados continuamente para falhas e anomalias
+- Versionados e rastreados conforme padrões de governança
+- Testados automaticamente para garantir qualidade
+- Auditados para conformidade regulatória
+
+#### 7.2.29 Gerenciar Datasets com Metadados Completos
+
+A DTDI **deve** garantir que cada dataset possua metadados completos e atualizados, incluindo:
+
+- Definição clara do dataset e seu propósito
+- Cobertura temporal (período de dados disponíveis)
+- Proprietário e gestores responsáveis
+- Origem, linhagem e transformações aplicadas
+- Padrões de qualidade e conformidade
+- Prazos de retenção e descarte
+
+#### 7.2.30 Utilizar dbt para Transformação de Dados
+
+A DTDI **deve** utilizar dbt (Data Build Tool) como ferramenta padrão para transformação de dados. Modelos dbt **devem**:
+
+- Ser versionados em Git com histórico completo de mudanças
+- Incluir testes automatizados de qualidade e conformidade
+- Documentar lógica de transformação e regras de negócio
+- Ser revisados antes de implantação em produção
+- Manter rastreabilidade completa de origem e destino
+
+#### 7.2.31 Padronizar Queries e Consultas SQL
+
+A DTDI **deve** padronizar a escrita e execução de queries SQL conforme boas práticas:
+
+- Queries **devem** ser documentadas e versionadas
+- Nomenclatura de aliases e variáveis **deve** seguir padrões definidos
+- Performance **deve** ser otimizada e monitorada
+- Queries **devem** ser testadas antes de uso em produção
+- Acesso a queries **deve** ser controlado conforme sensibilidade dos dados
+
+#### 7.2.32 Garantir Segregação de Ambientes
+
+A DTDI **deve** manter rigorosa segregação entre ambientes de desenvolvimento, teste e produção:
+
+- **Ambiente de Desenvolvimento:** Isolado para desenvolvimento e testes, sem acesso a dados de produção sensíveis
+- **Ambiente de Teste:** Utilizado para validação de lógicas antes de implantação
+- **Ambiente de Produção:** Protegido com controles rigorosos de segurança, conformidade e monitoramento
+
+Transferências entre ambientes **devem** seguir processos formais de promoção.
+
+#### 7.2.33 Implementar Backup e Recuperação de Dados
+
+A DTDI **deve** implementar políticas robustas de backup e recuperação de dados:
+
+- Backups **devem** ser executados regularmente conforme políticas de retenção
+- Planos de recuperação de desastres **devem** ser testados periodicamente
+- Backup **deve** ser armazenado em local seguro e geograficamente distinto
+- Tempo de recuperação (RTO) e ponto de recuperação (RPO) **devem** ser definidos
+- Conformidade com legislação **deve** ser garantida
+
+#### 7.2.34 Disponibilizar Dados através de APIs Seguras
+
+A DTDI **deve** disponibilizar acesso a dados através de APIs seguras e controladas:
+
+- APIs **devem** implementar autenticação e autorização robustas
+- Acesso **deve** ser monitorado e auditado
+- Limites de taxa (rate limiting) **devem** ser aplicados
+- Documentação de API **deve** ser completa e acessível
+- Conformidade com LGPD **deve** ser garantida
+
+#### 7.2.35 Utilizar Views para Acesso Seguro a Dados
+
+A DTDI **deve** utilizar views como camada de abstração para facilitar acesso seguro a dados complexos:
+
+- Views **devem** ser documentadas e versionadas
+- Permissões de acesso **devem** ser gerenciadas a nível de view
+- Views **devem** implementar mascaramento ou filtros de dados sensíveis
+- Performance **deve** ser otimizada
+- Linhagem **deve** ser rastreada conforme padrões de governança
+
+#### 7.2.36 Implementar Estratégia de Particionamento de Dados
+
+A DTDI **deve** adotar a estratégia de particionamento de dados para otimizar performance, reduzir custos e facilitar governança. Particionamento **deve**:
+
+- Ser planejado conforme padrões de acesso e volume de dados
+- Utilizar critérios lógicos de divisão (data, região, categoria, etc.)
+- Ser documentado em metadados com definição clara de chaves de partição
+- Ser revisado periodicamente para garantir eficácia conforme evolução dos dados
+- Facilitar consultas mais rápidas e eficientes, reduzindo tempo de processamento
+- Permitir gestão granular de retenção e descarte de dados
+- Ser implementado em conformidade com padrões de qualidade e segurança
+- Ser monitorado para detectar anomalias ou desequilíbrio de dados entre partições
 
 ---
 
@@ -779,10 +902,9 @@ A implementação da Política **deve** ocorrer em duas fases:
 
 ### Fase 2: Evolução (Meses 4-12)
 
-- 
-Expandir iniciativas
-- Aumentar automação
-- Integrar novas áreas de negócio
+- Expandir iniciativas
+- Aumentar automação de políticas, regras e testes
+- Integrar novas áreas de negócio na gestão do ciclo de vida dos dados
 - Revisar e atualizar política
 
 ---
