@@ -402,7 +402,7 @@ A DTDI **deve** garantir que toda solicitação de integração de dados ao Data
 
 ---
 
-## 8. ESTRUTURA ORGANIZACIONAL: GOVERNANÇA DTDI
+## 8. ESTRUTURA ORGANIZACIONAL GOVERNANÇA DTDI
 
 No âmbito de atuação da SMTR, a DTDI **adota** um modelo centralizado de gestão e governança de dados. Considerando que a maturidade em dados da Secretaria está em desenvolvimento, assim como em outros órgãos e entidades da Prefeitura do Rio de Janeiro, o objetivo **é** pavimentar o caminho para promover o desenvolvimento gradual de níveis de maturidade.
 
@@ -441,39 +441,39 @@ c) transparência em relação a dados públicos sob custódia;
 
 d) resposta ágil a mudanças regulatórias.
 
-### 8.4 Papéis
+### 8.4 Papéis Necessários Para Execução da Governança de Dados
 
-#### 8.4.1 Encarregado / DPO (Inciso VIII LGPD)
+#### 8.4.1 Encarregado / DPO (Inciso VIII da LGPD)
 
 Pessoa natural indicada pelo controlador e operador para atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD). É responsável pela conformidade com LGPD e Decreto Rio nº 54.984/2024, conforme designado pela Prefeitura.
 
 #### 8.4.2 Núcleo de Governança de Dados
 
-Deve ser responsável pela definição, estabelecimento, disseminação e monitoramento da Política de Governança de Dados. Coordena iniciativas multidisciplinares, arbitra conflitos, propõe evoluções da política em colaboração com os times.
+Unidade administrativa que deve ser responsável pela definição, estabelecimento, disseminação e monitoramento da Política de Governança de Dados. Coordena iniciativas multidisciplinares, arbitra conflitos, propõe evoluções da política em colaboração com os times técnicos e equipes das áreas de negócio.
 
 #### 8.4.3 Dono dos Dados (Data Owners)
 
-Profissionais designados como responsáveis por domínios específicos de dados (ex: bilhetagem, subsídio, planejamento). Devem definir requisitos de qualidade, segurança e conformidade para seus domínios.
+Profissionais designados como responsáveis por domínios específicos de dados (ex: bilhetagem, subsídio, planejamento), titulares de unidades administrativas. Devem definir requisitos de qualidade, segurança e conformidade para seus domínios de dados.
 
 #### 8.4.4 Curador de Dados
 
-Na estrutura de Governança de Dados, o papel do Curador de Dados (frequentemente chamado no mercado pelo termo em inglês Data Steward) é dividido entre o universo de Negócios e o de Tecnologia.
+Na estrutura de Governança de Dados, o papel do Curador de Dados (frequentemente chamado no mercado pelo termo em inglês Data Steward) é dividido entre o universo de **Negócios** e o de **Tecnologia**.
 
-**Curador Negócios (Business Data Steward):** É um especialista de uma área funcional (como Planejamento, Finanças, ou Operações) que assume a responsabilidade sobre o significado, a qualidade e o uso apropriado dos dados do seu domínio. Foco: Regras de negócio, significado, valor e uso das informações. Profissionais que devem garantir a qualidade, conformidade e documentação de dados específicos. Trabalham em colaboração com Data Owners e equipes técnicas de dados, por exemplo: SUBTOP. Principais Responsabilidades:
+a) **Curador Negócios (Business Data Steward):** É um especialista de uma área funcional (como Planejamento, Finanças, ou Operações) que assume a responsabilidade sobre o significado, a qualidade e o uso apropriado dos dados do seu domínio. Foco: Regras de negócio, significado, valor e uso das informações. Profissionais que devem garantir a qualidade, conformidade e documentação de dados específicos. Trabalham em colaboração com Data Owners e equipes técnicas de dados, por exemplo: SUBTOP. Principais Responsabilidades:
 
 - **Definição de Termos:** Criar e manter as definições de termos no Glossário de Negócios (ex: definir formalmente o que é "Operador" ou "Tarifa Técnica").
 - **Regras de Qualidade:** Estabelecer quais critérios de qualidade o dado deve atender (ex: "o campo CPF não pode estar nulo e deve ser válido").
 - **Classificação de Dados:** Definir o nível de confidencialidade da informação (pública, interna, confidencial, sensível e/ou pessoal).
 - **Uso e Acesso:** Definir quem dentro da organização tem autorização de negócio para acessar e utilizar determinada informação.
 
-**Curador Técnico de Dados (Technical Data Steward):** é um profissional de ou Engenharia/Arquitetura de Dados ou Tecnologia da Informação (TI) que conhece profundamente os sistemas, bancos de dados e estruturas onde as informações residem. Foco: Implementação técnica, modelagem, metadados técnicos e sustentação das estruturas de dados. Profissionais de arquitetura, segurança, qualidade, metadados e operações que devem implementar regras de negócio, políticas e normas de governança, por exemplo a DTDI. Principais responsabilidades:
+b) **Curador Técnico de Dados (Technical Data Steward):** é um profissional de ou Engenharia/Arquitetura de Dados ou Tecnologia da Informação (TI) que conhece profundamente os sistemas, bancos de dados e estruturas onde as informações residem. Foco: Implementação técnica, modelagem, metadados técnicos e sustentação das estruturas de dados. Profissionais de arquitetura, segurança, qualidade, metadados e operações que devem implementar regras de negócio, políticas e normas de governança, por exemplo a DTDI. Principais responsabilidades:
 
 - **Metadados Técnicos:** Mapear e documentar tabelas, colunas, tipos de dados, chaves primárias/estrangeiras e dicionários de dados do sistema.
 - **Linhagem dos Dados (Data Lineage):** Mapear a origem, o caminho de transformação e o destino dos dados entre diferentes sistemas (ETLs e pipelines).
 - **Automação da Qualidade:** Implementar as rotinas técnicas e scripts de validação para monitorar se as regras de qualidade definidas pelo negócio estão sendo cumpridas.
 - **Modelagem e Estrutura:** Garantir que os modelos de dados físicos e lógicos estejam otimizados e alinhados aos padrões técnicos da empresa.
 
-**Custodiante de Dados:** é a pessoa, equipe ou entidade encarregada da guarda operacional, manutenção técnica e proteção diária de um ativo de informação enquanto o ativo estiver sob sua posse ou administração. É a figura que recebe a delegação técnica (responsibility) do proprietário para operar e aplicar os controles necessários. O custodiante não "dita as regras" do dado, mas garante que as regras definidas pelo proprietário sejam cumpridas na prática. Principais responsabilidades:
+c) **Custodiante de Dados:** é a pessoa, equipe ou entidade encarregada da guarda operacional, manutenção técnica e proteção diária de um ativo de informação enquanto o ativo estiver sob sua posse ou administração. É a figura que recebe a delegação técnica (responsibility) do proprietário para operar e aplicar os controles necessários. O custodiante não "dita as regras" do dado, mas garante que as regras definidas pelo proprietário sejam cumpridas na prática. Principais responsabilidades:
 
 - **Aplicação de Controles de Segurança:** Implementar salvaguardas técnicas (como criptografia, regras de firewall e controles de acesso lógico).
 - **Continuidade e Backup:** Executar rotinas diárias de backup, planos de restauração e testes para garantir a disponibilidade do ativo.
@@ -481,11 +481,8 @@ Na estrutura de Governança de Dados, o papel do Curador de Dados (frequentement
 - **Concessão Operacional de Acessos:** Atribuir as permissões nos sistemas somente após a aprovação formal do Proprietário do Ativo.
 - **Descarte Seguro:** Executar a destruição ou descarte de mídias e dados quando o ciclo de vida do ativo chegar ao fim, seguindo as diretrizes do proprietário.
 
-#### 8.4.5 Comitê de Privacidade e Proteção de Dados
 
-Órgão colegiado que deve revisar iniciativas de governança, aprovar políticas e normas, e arbitrar questões de conformidade regulatória.
-
-### 8.5 Responsabilidades Contextualizadas
+### 8.5 Responsabilidades LGPD Aplicadas ao Contexto SMTR
 
 #### 8.5.1 Unidade Controladora (SMTR)
 
@@ -535,7 +532,7 @@ f) prestar suporte técnico subsidiário à controladora para esclarecimentos de
 
 ---
 
-## 9. CICLO DE VIDA DOS DADOS: RESPONSABILIDADES E INICIATIVAS
+## 9. INICIATIVAS DE GOVERNANÇA DE DADOS NA DTDI
 
 O ciclo de vida dos dados **deve** ser compreendido como a sequência de fases pelas quais dados percorrem desde sua concepção até seu descarte. A DTDI **deve** garantir que governança seja exercida em cada fase, com papéis, responsabilidades e iniciativas claramente definidas.
 
@@ -648,7 +645,7 @@ Nesta fase, dados **são** mantidos conforme política de retenção ou descarta
 
 ---
 
-## 10. GESTÃO DE DADOS ORQUESTRADAS PELA GOVERNANÇA NA DTDI
+## 10. GESTÃO DE DADOS ORQUESTRADA PELA GOVERNANÇA NA DTDI
 
 A Governança de Dados **deve** orquestrar as 11 áreas de conhecimento do DAMA-DMBOK, garantindo que cada uma contribua para os objetivos estratégicos. As seguintes áreas **devem** ser implementadas conforme diretrizes:
 
@@ -660,7 +657,7 @@ A Governança de Dados **deve** orquestrar as 11 áreas de conhecimento do DAMA-
 - Wiki DTDI
 - Catálogo de Dados
 - Programa de Governança de Dados DTDI
-- Comunicação Estratégica
+- Comunicação Estratégica com Áreas de Negócio
 
 ### 10.2 Segurança e Privacidade de Dados
 
@@ -769,27 +766,7 @@ A DTDI **deve** garantir que todas as operações de dados **estejam** em confor
 
 ---
 
-## 12. INDICADORES E MONITORAMENTO
-
-A DTDI **deve** monitorar o desempenho da governança de dados através dos seguintes indicadores:
-
-### Indicadores Estratégicos
-
-- Taxa de Conformidade com LGPD
-- Taxa de Conformidade com Decretos Rio
-- Número de Incidentes de Segurança
-- Número de Violações de Dados
-
-### Indicadores Operacionais
-
-- Taxa de Qualidade de Dados
-- Taxa de Cobertura de Metadados
-- Taxa de Cobertura de Testes
-- Tempo Médio de Resolução de Incidentes
-
----
-
-## 13. IMPLEMENTAÇÃO E EVOLUÇÃO
+## 12. IMPLEMENTAÇÃO E EVOLUÇÃO
 
 A implementação da Política **deve** ocorrer em duas fases:
 
@@ -797,19 +774,20 @@ A implementação da Política **deve** ocorrer em duas fases:
 
 - Formalizar iniciativas vigentes
 - Comunicar política internamente
-- Treinar equipes
-- Estabelecer indicadores
+- Aprovar política junto à liderança
+- Estabelecer Política de Governança
 
 ### Fase 2: Evolução (Meses 4-12)
 
-- Expandir iniciativas
+- 
+Expandir iniciativas
 - Aumentar automação
 - Integrar novas áreas de negócio
 - Revisar e atualizar política
 
 ---
 
-## 14. REVISÃO E ATUALIZAÇÃO
+## 13. REVISÃO E ATUALIZAÇÃO
 
 Esta Política **deve** ser revisada anualmente ou quando mudanças significativas ocorrerem. Revisões **devem** considerar:
 
@@ -820,7 +798,7 @@ Esta Política **deve** ser revisada anualmente ou quando mudanças significativ
 
 ---
 
-## 15. APROVAÇÃO E VIGÊNCIA
+## 14. APROVAÇÃO E VIGÊNCIA
 
 Esta Política **entra** em vigência na data de sua aprovação e **permanece** vigente até sua revogação ou substituição por instrumento normativo posterior.
 
