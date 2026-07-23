@@ -57,7 +57,967 @@ A Política **é mandatória** para todos os profissionais da DTDI e **vinculant
 
 ---
 
-## 4. GLOSSÁRIO TÉCNICO E NORMATIVO
+## 4. REFERÊNCIAS NORMATIVAS E REGULATÓRIAS
+
+A Política de Governança de Dados da DTDI **fundamenta-se** nas seguintes referências:
+
+### Legislação Federal
+
+- Lei nº 13.709/2018 — Lei Geral de Proteção de Dados Pessoais (LGPD)
+- Lei nº 12.527/2011 — Lei de Acesso à Informação
+- Lei nº 12.965/2014 — Marco Civil da Internet
+- Decreto Federal nº 10.046/2019 — Transformação Digital do Governo Federal
+
+### Legislação Municipal (Rio de Janeiro)
+
+- Decreto Rio nº 54.984/2024 — Política de Proteção de Dados Pessoais e Governança de Dados (revoga Decreto 48.972/2021)
+- Decreto Rio nº 53.700/2023 — Política de Segurança da Informação
+- Decreto Rio nº 56.646/2025 — Governança de Dados e Interoperabilidade
+- Decreto Rio nº 56.647/2025 — Conformidade e Auditoria de Dados
+- Decreto Rio nº 56.649/2025 — Proteção de Dados Pessoais em Sistemas Municipais
+- Resolução SEGOVI nº 91/2022 — Plano de Gestão de Proteção de Dados Pessoais
+- Resoluções SMTDI nº 7/2023 e nº 14/2023 — Prazos e Instrumentos de Governança
+
+### Referências de Base Técnica Aplicável
+
+- DAMA-DMBOK 2 Revised (Data Management Body of Knowledge) — Associação Internacional de Profissionais de Dados
+- Domain-Driven Design (Eric Evans) — Modelagem de Domínios e Linguagem Ubíqua
+- ISO/IEC 27001:2022 — Gestão de Segurança da Informação
+- COBIT 2019 — Governança e Gestão de TI
+
+---
+
+## 5. PRINCÍPIOS FUNDAMENTAIS
+
+A Política de Governança de Dados da DTDI **repousa** sobre os seguintes princípios:
+
+**Princípio 1 — Qualidade:** Os dados sob responsabilidade da DTDI **devem** atender a padrões mínimos de qualidade em completude, consistência, acurácia, conformidade e oportunidade, validados através de testes automatizados e monitoramento contínuo.
+
+**Princípio 2 — Segurança:** A proteção de dados contra acessos não autorizados, alterações indevidas, perda ou destruição **deve** ser responsabilidade primária. Segurança **deve** ser implementada através de controles técnicos, procedimentais e organizacionais, com aplicação de princípios de defesa em profundidade.
+
+**Princípio 3 — Conformidade:** A DTDI **deve** atuar em conformidade com a legislação aplicável, especialmente LGPD, Decreto Rio nº 54.984/2024 e Decreto Rio nº 53.700/2023, garantindo que todas as iniciativas de dados incorporem requisitos regulatórios desde o design.
+
+**Princípio 4 — Transparência:** As operações de dados, os responsáveis, os prazos, os riscos e as decisões **devem** ser documentados e comunicados de forma clara a todas as partes interessadas, promovendo confiança e accountability.
+
+**Princípio 5 — Responsabilização:** Cada ator envolvido no ciclo de vida dos dados **deve** possuir responsabilidades claramente definidas, com mecanismos de monitoramento, auditoria e prestação de contas.
+
+**Princípio 6 — Inovação Responsável:** A DTDI **deve** promover inovação em gestão e governança de dados, adotando novas tecnologias, metodologias e boas práticas, sempre alinhadas com segurança, conformidade e qualidade.
+
+---
+
+## 6. DIRETRIZES DE GOVERNANÇA DE DADOS DTDI
+
+Este documento **reconhece** 25 iniciativas estruturadas de governança de dados em curso, distribuídas ao longo do ciclo de vida dos dados e cobrindo as 11 áreas de conhecimento do DAMA-DMBOK. A Política de Governança de Dados da DTDI consolida essas práticas sob uma estrutura normativa coerente, estabelecendo diretrizes prescritivas que **devem** orientar a evolução contínua.
+A DTDI, na qualidade de Operadora e Custodiante de Dados da SMTR, **desenvolveu** ao longo dos anos de operação um conjunto robusto de iniciativas que, embora ainda não formalmente consolidadas sob um instrumento central de governança, já são capazes de **refletir** a maturidade técnica e o alinhamento com boas práticas de padrão internacional.
+
+Essas iniciativas **abrangem**:
+
+- **Documentação e Conhecimento:** Wiki DTDI, Catálogo de Dados, Guia de Governança de Metadados (Domain-Driven Design)
+- **Segurança e Proteção:** Conformidade LGPD, Segurança de Dados, Policy Tags, Gestão de Acesso e Credenciais, Termos de Custódia/Alinhamento/Entrega
+- **Qualidade e Metadados:** Testes de Qualidade de Dados (dbt), Padrões de Qualidade, Documentação de Metadados
+- **Arquitetura e Operações:** Segregação de Ambientes, Arquitetura Medallion, Arquitetura ETL/EtLT, Observabilidade e Monitoramento
+- **Automação e Conformidade:** CI/CD com GitHub Actions, Versionamento Git, Revisão de Código, Governança como Código, Política como Código, Rules as Code (RaC)
+- **Conformidade e Regulação:** Plano de Retenção e Descarte, Conformidade com Decretos Rio, Conformidade PSI
+- **Comunicação e Posicionamento:** Comunicação Estratégica para posicionamento da DTDI, Programa de Governança de Dados DTDI
+- **Onboarding e Alinhamento:** Onboarding DTDI, Termo de Alinhamento de Dados (TAD), Termo de Entrega de Dados (TED), Termo de Custódia de Dados (TCD)
+
+A presente Política **formaliza** essas iniciativas, conferindo-lhes status de instrumentos regulatórios e estabelecendo que cada uma **deve** ser executada conforme diretrizes prescritivas.
+
+### 6.1 Diretrizes de Governança de Dados DTDI
+
+
+## 6.1.1 Validar Dados em Tempo Real e Batch
+
+**Objetivo:** Detectar anomalias de qualidade antes que comprometam análises e decisões operacionais.
+
+**Como alcançar:**
+- Definir critérios de validação para cada dataset crítico
+- Executar testes automaticamente conforme frequência de atualização
+- Registrar falhas em sistema centralizado
+- Notificar proprietários de dados sobre desvios
+
+---
+
+## 6.1.2 Acompanhar Indicadores de Qualidade
+
+**Objetivo:** Identificar degradação de qualidade para correção rápida.
+
+**Como alcançar:**
+- Monitorar completude (% de registros com valores não-nulos)
+- Acompanhar consistência (conformidade com regras de negócio)
+- Validar acurácia contra fontes confiáveis
+- Verificar oportunidade (atualização conforme SLA definido)
+
+---
+
+## 6.1.3 Documentar Regras de Negócio
+
+**Objetivo:** Eliminar ambiguidades sobre como dados devem ser processados e validados.
+
+**Como alcançar:**
+- Codificar critérios de inclusão/exclusão de registros
+- Especificar transformações permitidas
+- Definir limites aceitáveis de variação
+- Documentar exceções e tratamentos especiais
+
+---
+
+## 6.1.4 Estabelecer Padrões de Qualidade Mensuráveis
+
+**Objetivo:** Avaliar objetivamente se dados atendem expectativas.
+
+**Como alcançar:**
+- Definir limite mínimo aceitável de completude por dataset
+- Estabelecer margem máxima de erro aceitável
+- Especificar frequência de atualização esperada
+- Determinar período de retenção obrigatória
+
+---
+
+## 6.1.5 Validar Dados na Origem
+
+**Objetivo:** Reduzir propagação de erros através de validação precoce.
+
+**Como alcançar:**
+- Implementar verificações de tipo de dado nos sistemas de origem
+- Validar intervalos permitidos
+- Detectar duplicatas
+- Alertar para valores fora do esperado
+
+---
+
+## 6.1.6 Manter Integridade Referencial
+
+**Objetivo:** Garantir consistência entre datasets relacionados.
+
+**Como alcançar:**
+- Validar relacionamentos entre tabelas
+- Verificar que chaves estrangeiras apontam para registros existentes
+- Definir regras de exclusão em cascata
+- Rastrear histórico de mudanças
+
+---
+
+## 6.1.7 Rastrear Origem e Transformações de Dados
+
+**Objetivo:** Permitir reconstrução do histórico de qualquer dado.
+
+**Como alcançar:**
+- Documentar fonte original do dado
+- Registrar transformações aplicadas (com datas e responsáveis)
+- Identificar sistemas que consomem o dado
+- Mapear impacto de mudanças em cascata
+
+---
+
+## 6.1.8 Manter Auditoria Completa de Operações
+
+**Objetivo:** Garantir rastreabilidade para conformidade e investigação.
+
+**Como alcançar:**
+- Manter catálogo centralizado de dados
+- Documentar metadados estruturados (proprietário, gestor, data de criação)
+- Registrar logs de acesso e modificações
+- Versionar transformações
+
+---
+
+## 6.1.9 Priorizar Qualidade Conforme Criticidade
+
+**Objetivo:** Concentrar investimentos em dados que impactam decisões estratégicas.
+
+**Como alcançar:**
+- Classificar datasets por criticidade (críticos, importantes, complementares)
+- Alocar recursos proporcionalmente à importância
+- Revisar classificação periodicamente
+- Comunicar prioridades à organização
+
+---
+
+## 6.1.10 Investigar e Resolver Incidentes de Qualidade
+
+**Objetivo:** Eliminar causas raiz para evitar recorrência.
+
+**Como alcançar:**
+- Detectar e registrar incidentes
+- Investigar causa raiz sistematicamente
+- Implementar correção
+- Validar que problema foi resolvido
+- Documentar para aprendizado organizacional
+
+---
+
+## 6.1.11 Alinhar Soluções com Requisitos das Partes Interessadas
+
+**Objetivo:** Evitar retrabalho e garantir que soluções atendam necessidades reais.
+
+**Como alcançar:**
+- Consultar proprietários de dados antes de iniciar desenvolvimento
+- Documentar requisitos formalmente (TAD — Termo de Alinhamento de Dados)
+- Validar compreensão mútua entre técnica e negócio
+- Formalizar acordo por escrito
+
+---
+
+## 6.1.12 Medir Qualidade de Dados Objetivamente
+
+**Objetivo:** Avaliar progresso e identificar áreas de melhoria.
+
+**Como alcançar:**
+- Implementar dashboard de qualidade
+- Acompanhar percentual de dados completos por dataset
+- Monitorar taxa de erros detectados
+- Registrar tempo médio de correção
+- Analisar tendências de melhoria ou degradação
+
+---
+
+## 6.1.13 Classificar Dados Conforme Sensibilidade e Conformidade
+
+**Objetivo:** Facilitar proteção e conformidade automática.
+
+**Como alcançar:**
+- Aplicar marcadores de sensibilidade (Público, Interno, Confidencial, Restrito)
+- Indicar status LGPD (dados pessoais, sensíveis, de menores)
+- Marcar requisitos regulatórios (interesse público, segurança pública)
+- Definir retenção obrigatória e descarte programado
+
+---
+
+## 6.1.14 Controlar Acesso Conforme Necessidade e Temporalidade
+
+**Objetivo:** Proteger dados sensíveis sem comprometer operações.
+
+**Como alcançar:**
+- Aplicar princípio do menor privilégio (acesso mínimo necessário)
+- Estabelecer expiração automática de credenciais
+- Auditar todos os acessos
+- Revogar acesso imediatamente quando não mais necessário
+
+---
+
+## 6.1.15 Identificar e Mitigar Riscos Associados aos Dados
+
+**Objetivo:** Proteger a organização de riscos legais, operacionais e reputacionais.
+
+**Como alcançar:**
+- Mapear risco de exposição de dados pessoais
+- Avaliar risco de decisões baseadas em dados incorretos
+- Considerar risco de indisponibilidade de dados críticos
+- Monitorar conformidade regulatória
+
+---
+
+## 6.1.16 Promover Envolvimento da Liderança
+
+**Objetivo:** Garantir suporte executivo para governança de dados.
+
+**Como alcançar:**
+- Comunicar importância da governança
+- Solicitar alocação de orçamento e recursos
+- Remover obstáculos organizacionais
+- Participar de decisões estratégicas
+
+---
+
+## 6.1.17 Acompanhar Desempenho da Governança
+
+**Objetivo:** Avaliar eficácia das iniciativas e orientar melhorias.
+
+**Como alcançar:**
+- Medir percentual de dados com metadados completos
+- Acompanhar tempo médio para resolver incidentes
+- Monitorar conformidade com políticas de retenção
+- Avaliar adoção de ferramentas de governança
+
+---
+
+## 6.1.18 Comunicar Políticas e Padrões de Forma Acessível
+
+**Objetivo:** Facilitar adoção através de transparência e clareza.
+
+**Como alcançar:**
+- Divulgar políticas através de Wiki centralizada
+- Manter catálogo de dados disponível para consulta
+- Comunicar mudanças em padrões ou processos
+- Compartilhar resultados de auditorias
+
+---
+
+## 6.1.19 Adotar Linguagem Acessível com Partes Interessadas
+
+**Objetivo:** Reduzir ambiguidades entre técnica e negócio.
+
+**Como alcançar:**
+- Aplicar princípios de Domain-Driven Design
+- Estabelecer glossário de termos específicos do domínio
+- Mapear termos técnicos para linguagem de negócio
+- Manter documentação centralizada e acessível
+
+---
+
+## 6.1.20 Automatizar Conformidade através de Código
+
+**Objetivo:** Reduzir erros manuais e garantir consistência.
+
+**Como alcançar:**
+- Codificar políticas em validações automáticas
+- Implementar regras como código (Rules as Code)
+- Versionar configurações em Git
+- Testar conformidade automaticamente
+
+---
+
+## 6.1.21 Formalizar Processos e Atividades de Dados
+
+**Objetivo:** Garantir consistência e rastreabilidade.
+
+**Como alcançar:**
+- Associar política ou norma a cada processo
+- Documentar procedimentos
+- Designar responsáveis
+- Revisar periodicamente (anual)
+
+---
+
+## 6.1.22 Disponibilizar Dados Públicos Conforme Lei de Acesso
+
+**Objetivo:** Cumprir Lei de Acesso à Informação e promover transparência.
+
+**Como alcançar:**
+- Identificar dados públicos sob custódia
+- Publicar em formato aberto (CSV, JSON, Parquet)
+- Acompanhar com dicionário de dados
+- Versionar com histórico de mudanças
+- Hospedar em repositório centralizado
+
+---
+
+## 6.1.23 Organizar Dados em Domínios com Responsáveis Designados
+
+**Objetivo:** Clarificar quem é responsável por cada conjunto de dados.
+
+**Como alcançar:**
+- Designar Data Owner (requisitos e qualidade)
+- Designar Technical Data Steward (operação e segurança)
+- Designar Business Data Steward (alinhamento com negócio)
+- Documentar padrões de qualidade
+- Estabelecer contato centralizado para dúvidas
+
+---
+
+## 6.1.24 Formalizar Acordos sobre Dados através de Instrumentos Contratuais
+
+**Objetivo:** Eliminar ambiguidades sobre requisitos, qualidade e responsabilidades.
+
+**Como alcançar:**
+- Utilizar TAD (Termo de Alinhamento de Dados) para especificar requisitos
+- Utilizar TED (Termo de Entrega de Dados) para documentar especificações da entrega
+- Utilizar TCD (Termo de Custódia de Dados) para formalizar responsabilidades
+
+---
+
+## 6.1.25 Manter Repositório Centralizado de Dados
+
+**Objetivo:** Garantir que todas as equipes acessem informações consistentes.
+
+**Como alcançar:**
+- Registrar todos os datasets em https://github.com/RJ-SMTR
+- Documentar descrição clara do conteúdo
+- Manter metadados estruturados
+- Preservar histórico de versões
+- Disponibilizar documentação de acesso
+
+---
+
+## 6.1.26 Documentar Metadados em Formato Estruturado
+
+**Objetivo:** Automatizar descoberta de dados e conformidade.
+
+**Como alcançar:**
+- Utilizar arquivos YAML para metadados
+- Incluir nome, descrição e proprietário
+- Documentar origem e transformações
+- Especificar padrões de qualidade
+- Indicar requisitos de conformidade
+- Fornecer contatos para suporte
+
+---
+
+## 6.1.27 Aplicar Padrões de Nomenclatura e Design
+
+**Objetivo:** Reduzir erros e facilitar integração entre sistemas.
+
+**Como alcançar:**
+- Utilizar nomenclatura consistente (tabelas, colunas, índices)
+- Seguir estrutura lógica e física padronizada
+- Aplicar convenções de design documentadas
+- Garantir interoperabilidade entre sistemas
+
+Referência: https://rj-smtr.github.io/pipelines-docs/tabelas/manual_estilo_tabelas/
+
+---
+
+## 6.1.28 Orquestrar Fluxo de Dados Automaticamente
+
+**Objetivo:** Garantir consistência e reduzir erros manuais.
+
+**Como alcançar:**
+- Documentar pipelines em repositório centralizado
+- Monitorar continuamente para falhas
+- Versionar com histórico completo
+- Testar antes de implantação
+- Auditar para conformidade
+
+---
+
+## 6.1.29 Manter Metadados Atualizados para Cada Dataset
+
+**Objetivo:** Facilitar descoberta, qualidade e conformidade.
+
+**Como alcançar:**
+- Proprietários de dados especificam definição e propósito
+- Documentar período de dados disponíveis
+- Identificar proprietário e gestores responsáveis
+- Registrar origem, transformações e destinos
+- Definir padrões de qualidade esperados
+- Estabelecer prazos de retenção e descarte
+
+---
+
+## 6.1.30 Padronizar Transformações de Dados
+
+**Objetivo:** Facilitar versionamento, testes e rastreabilidade.
+
+**Como alcançar:**
+- Utilizar dbt (Data Build Tool) como ferramenta padrão
+- Versionar modelos em Git com histórico
+- Incluir testes automatizados
+- Documentar lógica e regras de negócio
+- Revisar antes de produção
+
+---
+
+## 6.1.31 Padronizar Consultas SQL
+
+**Objetivo:** Melhorar performance, manutenção e consistência.
+
+**Como alcançar:**
+- Documentar e versionar queries
+- Aplicar nomenclatura consistente
+- Otimizar e monitorar performance
+- Validar antes de implantação
+- Controlar acesso conforme sensibilidade
+
+---
+
+## 6.1.32 Separar Ambientes de Desenvolvimento, Teste e Produção
+
+**Objetivo:** Proteger dados de produção e permitir testes seguros.
+
+**Como alcançar:**
+- Manter Desenvolvimento isolado, sem dados sensíveis de produção
+- Utilizar Teste para validação de lógicas
+- Proteger Produção com controles rigorosos
+- Seguir processo formal de promoção entre ambientes
+
+---
+
+## 6.1.33 Implementar Políticas de Backup e Recuperação
+
+**Objetivo:** Garantir continuidade de negócio e conformidade.
+
+**Como alcançar:**
+- Executar backups regularmente conforme retenção
+- Testar planos de recuperação periodicamente
+- Armazenar em local seguro e geograficamente distinto
+- Definir RTO (tempo máximo de indisponibilidade) e RPO (dados máximos perdidos)
+- Garantir conformidade com legislação
+
+---
+
+## 6.1.34 Disponibilizar Dados através de Interfaces Seguras
+
+**Objetivo:** Facilitar acesso controlado e conforme.
+
+**Como alcançar:**
+- Implementar autenticação e autorização robustas
+- Monitorar e auditar acessos
+- Aplicar limites de taxa (rate limiting)
+- Manter documentação completa
+- Garantir conformidade com LGPD
+
+---
+
+## 6.1.35 Utilizar Camadas de Abstração para Acesso Seguro
+
+**Objetivo:** Simplificar acesso a dados complexos sem expor sensibilidades.
+
+**Como alcançar:**
+- Documentar e versionar views
+- Gerenciar permissões a nível de view
+- Implementar mascaramento de dados sensíveis
+- Otimizar performance
+- Rastrear linhagem
+
+---
+
+## 6.1.36 Otimizar Armazenamento e Consultas através de Particionamento
+
+**Objetivo:** Melhorar performance e facilitar gestão granular de dados.
+
+**Como alcançar:**
+- Planejar conforme padrões de acesso e volume
+- Utilizar critérios lógicos (data, região, categoria)
+- Documentar em metadados
+- Revisar periodicamente
+- Facilitar consultas rápidas e eficientes
+- Permitir gestão granular de retenção
+- Implementar em conformidade com padrões
+- Monitorar anomalias
+
+---
+
+## 6.1.37 Priorizar Soluções e Ferramentas Open Source
+
+**Objetivo:** Garantir soberania tecnológica, autonomia e celeridade na evolução.
+
+**Como alcançar:**
+- Avaliar alternativas open source antes de soluções proprietárias
+- Documentar decisões de tecnologia
+- Evitar dependência de fornecedores únicos (lock-in)
+- Manter capacidade interna de customização
+- Participar de comunidades open source quando apropriado
+- Revisar regularmente para novas alternativas
+
+---
+
+## 6.1.38 Consultar Partes Interessadas Antes de Mudanças e Desenvolvimentos
+
+**Objetivo:** Garantir compreensão dos processos, evitar retrabalho e desgaste relacional.
+
+**Como alcançar:**
+- Identificar partes interessadas antes de iniciar projeto
+- Consultar sobre necessidades e processos envolvidos
+- Documentar feedback e incorporar ao escopo
+- Comunicar decisões e justificativas
+- Manter diálogo contínuo durante desenvolvimento
+- Validar solução com partes interessadas antes de implantação
+
+---
+
+## 7. ESTRUTURA ORGANIZACIONAL GOVERNANÇA DTDI
+
+No âmbito de atuação da SMTR, a DTDI **adota** um modelo centralizado de gestão e governança de dados. Considerando que a maturidade em dados da Secretaria está em desenvolvimento, assim como em outros órgãos e entidades da Prefeitura do Rio de Janeiro, o objetivo **é** pavimentar o caminho para promover o desenvolvimento gradual de níveis de maturidade.
+
+### 7.1 Perspectiva Estratégica
+
+A governança de dados da DTDI **deve** alinhar-se com a estratégia institucional da SMTR de consolidar o Rio de Janeiro como referência em mobilidade urbana inteligente e baseada em dados. As iniciativas de governança **devem** contribuir para:
+
+- Melhorar a qualidade das decisões operacionais e estratégicas
+- Aumentar a confiabilidade dos dados e sistemas
+- Garantir conformidade com legislação aplicável
+- Reduzir riscos operacionais e reputacionais
+- Promover inovação responsável em gestão de dados
+- Fortalecer a cultura data-driven na organização
+
+### 7.2 Perspectiva de Cultura Interna
+
+A DTDI reconhece que governança de dados é um esforço coletivo que requer engajamento de todas as equipes. Diretrizes culturais devem incluir:
+
+a) capacitação contínua em governança de dados para todos os profissionais;
+
+b) comunicação clara sobre políticas, normas e responsabilidades;
+
+c) reconhecimento de iniciativas de excelência em governança;
+
+d) criação de espaços de colaboração e aprendizado contínuo.
+
+### 7.3 Perspectiva de Ambiente Externo
+
+A DTDI atua em um ambiente regulatório em evolução, com múltiplos stakeholders (Prefeitura, SMTR, órgãos de controle, sociedade civil, cidadãos). Diretrizes externas devem incluir:
+
+a) participação ativa em fóruns de governança de dados municipais;
+
+b) compartilhamento de boas práticas com outras secretarias;
+
+c) transparência em relação a dados públicos sob custódia;
+
+d) resposta ágil a mudanças regulatórias.
+
+### 7.4 Papéis Necessários Para Execução da Governança de Dados
+
+#### 7.4.1 Encarregado / DPO (Inciso VIII da LGPD)
+
+Pessoa natural indicada pelo controlador e operador para atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD). É responsável pela conformidade com LGPD e Decreto Rio nº 54.984/2024, conforme designado pela Prefeitura.
+
+#### 7.4.2 Núcleo de Governança de Dados
+
+Unidade administrativa que deve ser responsável pela definição, estabelecimento, disseminação e monitoramento da Política de Governança de Dados. Coordena iniciativas multidisciplinares, arbitra conflitos, propõe evoluções da política em colaboração com os times técnicos e equipes das áreas de negócio.
+
+#### 7.4.3 Dono dos Dados (Data Owners)
+
+Profissionais designados como responsáveis por domínios específicos de dados (ex: bilhetagem, subsídio, planejamento), titulares de unidades administrativas. Devem definir requisitos de qualidade, segurança e conformidade para seus domínios de dados.
+
+#### 7.4.4 Curador de Dados
+
+Na estrutura de Governança de Dados, o papel do Curador de Dados (frequentemente chamado no mercado pelo termo em inglês Data Steward) é dividido entre o universo de **Negócios** e o de **Tecnologia**.
+
+a) **Curador Negócios (Business Data Steward):** É um especialista de uma área funcional (como Planejamento, Finanças, ou Operações) que assume a responsabilidade sobre o significado, a qualidade e o uso apropriado dos dados do seu domínio. Foco: Regras de negócio, significado, valor e uso das informações. Profissionais que devem garantir a qualidade, conformidade e documentação de dados específicos. Trabalham em colaboração com Data Owners e equipes técnicas de dados, por exemplo: SUBTOP. Principais Responsabilidades:
+
+- **Definição de Termos:** Criar e manter as definições de termos no Glossário de Negócios (ex: definir formalmente o que é "Operador" ou "Tarifa Técnica").
+- **Regras de Qualidade:** Estabelecer quais critérios de qualidade o dado deve atender (ex: "o campo CPF não pode estar nulo e deve ser válido").
+- **Classificação de Dados:** Definir o nível de confidencialidade da informação (pública, interna, confidencial, sensível e/ou pessoal).
+- **Uso e Acesso:** Definir quem dentro da organização tem autorização de negócio para acessar e utilizar determinada informação.
+
+b) **Curador Técnico de Dados (Technical Data Steward):** é um profissional de ou Engenharia/Arquitetura de Dados ou Tecnologia da Informação (TI) que conhece profundamente os sistemas, bancos de dados e estruturas onde as informações residem. Foco: Implementação técnica, modelagem, metadados técnicos e sustentação das estruturas de dados. Profissionais de arquitetura, segurança, qualidade, metadados e operações que devem implementar regras de negócio, políticas e normas de governança, por exemplo a DTDI. Principais responsabilidades:
+
+- **Metadados Técnicos:** Mapear e documentar tabelas, colunas, tipos de dados, chaves primárias/estrangeiras e dicionários de dados do sistema.
+- **Linhagem dos Dados (Data Lineage):** Mapear a origem, o caminho de transformação e o destino dos dados entre diferentes sistemas (ETLs e pipelines).
+- **Automação da Qualidade:** Implementar as rotinas técnicas e scripts de validação para monitorar se as regras de qualidade definidas pelo negócio estão sendo cumpridas.
+- **Modelagem e Estrutura:** Garantir que os modelos de dados físicos e lógicos estejam otimizados e alinhados aos padrões técnicos da empresa.
+
+c) **Custodiante de Dados:** é a pessoa, equipe ou entidade encarregada da guarda operacional, manutenção técnica e proteção diária de um ativo de informação enquanto o ativo estiver sob sua posse ou administração. É a figura que recebe a delegação técnica (responsibility) do proprietário para operar e aplicar os controles necessários. O custodiante não "dita as regras" do dado, mas garante que as regras definidas pelo proprietário sejam cumpridas na prática. Principais responsabilidades:
+
+- **Aplicação de Controles de Segurança:** Implementar salvaguardas técnicas (como criptografia, regras de firewall e controles de acesso lógico).
+- **Continuidade e Backup:** Executar rotinas diárias de backup, planos de restauração e testes para garantir a disponibilidade do ativo.
+- **Manutenção e Atualização:** Garantir que o ambiente técnico esteja corrigido (patches de segurança) e livre de vulnerabilidades.
+- **Concessão Operacional de Acessos:** Atribuir as permissões nos sistemas somente após a aprovação formal do Proprietário do Ativo.
+- **Descarte Seguro:** Executar a destruição ou descarte de mídias e dados quando o ciclo de vida do ativo chegar ao fim, seguindo as diretrizes do proprietário.
+
+
+### 7.5 Responsabilidades LGPD Aplicadas ao Contexto SMTR
+
+#### 7.5.1 Unidade Controladora (SMTR)
+
+O Artigo 5º (Inciso VI) da LGPD conceitua controlador como Pessoa natural ou jurídica a quem competem as decisões referentes ao tratamento de dados pessoais. A SMTR concentra a responsabilidade legal e a gestão estratégica, cabendo-lhe:
+
+a) exercer a supervisão macro das diretrizes de privacidade e proteção de dados da pasta;
+
+b) formalizar a nomeação do Encarregado de Dados Setorial e do Comitê de Privacidade;
+
+c) responder legal e institucionalmente perante a Autoridade Nacional de Proteção de Dados (ANPD), o Encarregado de Dados Geral do Município e os titulares dos dados;
+
+d) delegar o poder decisório tático-operacional sobre os fluxos de dados finalísticos às suas unidades administrativas competentes, como a TR/SUBTT.
+
+#### 7.5.2 Áreas de Negócio, Unidades Administrativas Curadoras de Negócio (TR/SUBTOP, TR/SUBPPT, TR/SUBG, TR/SETT, TR/SUBTT)
+
+As unidades administrativas da SMTR exercem a Curadoria de Negócio (Business Data Steward), sendo responsável por:
+
+a) definir as finalidades e diretrizes de negócio para o uso dos dados;
+
+b) definir a base legal adequada e garantir a legitimidade do tratamento, especialmente quanto a dados pessoais;
+
+c) deliberar, com exclusividade, sobre compartilhamentos, publicações ou usos específicos dos dados por sistemas consumidores, outras áreas da SMTR ou entes externos;
+
+d) avaliar a necessidade, adequação e proporcionalidade do tratamento frente aos processos finalísticos;
+
+e) definir prazos de retenção e regras de descarte, quando aplicáveis ao negócio;
+
+f) garantir o atendimento a eventuais demandas de titulares de dados pessoais;
+
+g) validar e ratificar classificações de acesso e de sigilo aplicáveis aos dados.
+
+#### 7.5.3 Unidade Operadora, Custodiante e Curadora Técnica de Dados (IPLANRIO/PRE/VPIA/DTDI)
+
+Conforme o Art. 5º (Inciso VII) da LGPD, o operador trata-se pessoa natural ou jurídica que realiza o tratamento de dados pessoais em nome do controlador e o custodiante (ISO/IEC 27001) é a pessoa, equipe ou entidade encarregada da guarda operacional, manutenção técnica e proteção diária de um ativo de informação. A DTDI é responsável pelos dois papéis, exercido através da Curadoria Técnica de Dados (Technical Data Steward) e atuando como custodiante dos dados, com atribuição de:
+
+a) implementar técnica e sistemicamente as regras de negócio, os controles de acesso e as restrições de sigilo determinadas pelo controlador;
+
+b) garantir a disponibilidade técnica, integridade e segurança da infraestrutura de custódia;
+
+c) manter o versionamento e a rastreabilidade das lógicas de processamento implementadas;
+
+d) registrar os metadados técnicos, operacionais e de governança acordados;
+
+e) implementar os controles de acesso (ex: mascaramento, restrição de colunas ou policy tags) conforme classificação de sigilo ou orientações formais estabelecidas pela controladora;
+
+f) prestar suporte técnico subsidiário à controladora para esclarecimentos de dúvidas sobre a estruturação do dado, quando formalmente demandada.
+
+---
+
+## 8. INICIATIVAS DE GOVERNANÇA DE DADOS NA DTDI
+
+O ciclo de vida dos dados **deve** ser compreendido como a sequência de fases pelas quais dados percorrem desde sua concepção até seu descarte. A DTDI **deve** garantir que governança seja exercida em cada fase, com papéis, responsabilidades e iniciativas claramente definidas.
+
+### 8.1 Fase 1: Planejamento
+
+Nesta fase, **devem** ser definidos requisitos, objetivos e estratégia para novos dados ou sistemas.
+
+**Responsabilidades:**
+- Data Owner: Definir requisitos de negócio
+- Coordenador de Governança: Assegurar alinhamento com políticas
+- DPO: Avaliar conformidade com LGPD
+
+**Iniciativas Vigentes:**
+- Onboarding DTDI
+- Termo de Alinhamento de Dados (TAD)
+
+### 8.2 Fase 2: Coleta/Criação
+
+Nesta fase, dados **são** coletados de fontes externas ou criados internamente.
+
+**Responsabilidades:**
+- Technical Data Steward: Implementar padrões de coleta
+- Coordenador de Governança: Garantir conformidade
+- DPO: Validar consentimento e finalidade
+
+**Iniciativas Vigentes:**
+- Conformidade LGPD
+- Policy Tags
+- Documentação de Metadados
+
+### 8.3 Fase 3: Armazenamento
+
+Nesta fase, dados **são** persistidos em repositórios seguros.
+
+**Responsabilidades:**
+- Technical Data Steward: Garantir segurança e disponibilidade
+- Coordenador de Governança: Monitorar conformidade
+- DPO: Validar proteção de dados
+
+**Iniciativas Vigentes:**
+- Segregação de Ambientes
+- Arquitetura Medallion
+- Segurança de Dados
+- Gestão de Acesso e Credenciais
+- Observabilidade e Monitoramento
+
+### 8.4 Fase 4: Processamento/Transformação
+
+Nesta fase, dados **são** transformados conforme regras de negócio.
+
+**Responsabilidades:**
+- Technical Data Steward: Implementar transformações
+- Business Data Steward: Validar regras de negócio
+- Coordenador de Governança: Garantir rastreabilidade
+
+**Iniciativas Vigentes:**
+- Arquitetura ETL/EtLT
+- CI/CD com GitHub Actions
+- Versionamento Git
+- Revisão de Código
+- Governança como Código
+- Política como Código
+- Rules as Code (RaC)
+
+### 8.5 Fase 5: Análise/Uso
+
+Nesta fase, dados **são** consultados e analisados para gerar insights.
+
+**Responsabilidades:**
+- Data Owner: Aprovar uso
+- Technical Data Steward: Garantir performance
+- Coordenador de Governança: Monitorar acessos
+
+**Iniciativas Vigentes:**
+- Testes de Qualidade de Dados
+- Catálogo de Dados
+- Guia de Governança de Metadados (Domain-Driven Design)
+- Termo de Entrega de Dados (TED)
+
+### 8.6 Fase 6: Governança/Proteção
+
+Nesta fase, dados **são** protegidos, auditados e conformados continuamente.
+
+**Responsabilidades:**
+- Coordenador de Governança: Orquestrar iniciativas
+- DPO: Garantir conformidade regulatória
+- Todos os papéis: Executar controles
+
+**Iniciativas Vigentes:**
+- Conformidade LGPD
+- Conformidade PSI
+- Conformidade Decretos Rio
+- Padrões de Qualidade
+- Gestão de Riscos
+- Auditoria e Monitoramento
+- Comunicação Estratégica
+
+### 8.7 Fase 7: Retenção/Descarte
+
+Nesta fase, dados **são** mantidos conforme política de retenção ou descartados de forma segura.
+
+**Responsabilidades:**
+- Data Owner: Definir política de retenção
+- Technical Data Steward: Executar descarte
+- DPO: Validar conformidade
+
+**Iniciativas Vigentes:**
+- Plano de Retenção e Descarte
+- Termo de Custódia de Dados (TCD)
+
+---
+
+## 9. GESTÃO DE DADOS ORQUESTRADA PELA GOVERNANÇA NA DTDI
+
+A Governança de Dados **deve** orquestrar as 11 áreas de conhecimento do DAMA-DMBOK, garantindo que cada uma contribua para os objetivos estratégicos. As seguintes áreas **devem** ser implementadas conforme diretrizes:
+
+### 9.1 Governança de Dados
+
+**Objetivo:** Exercer autoridade, controle e decisão sobre dados.
+
+**Iniciativas Vigentes:**
+- Wiki DTDI
+- Catálogo de Dados
+- Programa de Governança de Dados DTDI
+- Comunicação Estratégica com Áreas de Negócio
+
+### 9.2 Segurança e Privacidade de Dados
+
+**Objetivo:** Proteger dados contra acessos não autorizados e conformar com LGPD.
+
+**Iniciativas Vigentes:**
+- Conformidade LGPD
+- Segurança de Dados
+- Policy Tags
+- Gestão de Acesso e Credenciais
+- Termos de Custódia/Alinhamento/Entrega
+
+### 9.3 Arquitetura e Modelagem de Dados
+
+**Objetivo:** Definir estruturas lógicas e físicas para dados.
+
+**Iniciativas Vigentes:**
+- Segregação de Ambientes
+- Arquitetura Medallion
+- Padrões de Nomenclatura
+
+### 9.4 Armazenamento de Dados
+
+**Objetivo:** Garantir persistência, disponibilidade e performance.
+
+**Iniciativas Vigentes:**
+- Segregação de Ambientes
+- Observabilidade e Monitoramento
+
+### 9.5 Integração e Interoperabilidade
+
+**Objetivo:** Garantir compatibilidade e fluxo seguro entre sistemas.
+
+**Iniciativas Vigentes:**
+- Arquitetura ETL/EtLT
+- Integração de Dados
+
+### 9.6 Qualidade de Dados
+
+**Objetivo:** Garantir que dados atendam a padrões de qualidade.
+
+**Iniciativas Vigentes:**
+- Testes de Qualidade de Dados (dbt)
+- Padrões de Qualidade
+- Gestão de Incidentes de Qualidade
+
+### 9.7 Gerenciamento de Dados Mestres e de Referência
+
+**Objetivo:** Garantir consistência de dados críticos.
+
+**Iniciativas Vigentes:**
+- Padrões de Qualidade
+- Documentação de Metadados
+
+### 9.8 Gerenciamento de Metadados
+
+**Objetivo:** Documentar e disponibilizar informações sobre dados.
+
+**Iniciativas Vigentes:**
+- Catálogo de Dados
+- Guia de Governança de Metadados (Domain-Driven Design)
+- Documentação de Metadados
+
+### 9.9 Analytics e Big Data
+
+**Objetivo:** Aplicar técnicas de análise para gerar insights.
+
+**Iniciativas Vigentes:**
+- Testes de Qualidade de Dados
+- Observabilidade e Monitoramento
+
+### 9.10 Conformidade Regulatória
+
+**Objetivo:** Garantir alinhamento com legislação aplicável.
+
+**Iniciativas Vigentes:**
+- Conformidade LGPD
+- Conformidade PSI
+- Conformidade Decretos Rio
+- Plano de Retenção e Descarte
+
+### 9.11 Automação e Conformidade Técnica
+
+**Objetivo:** Automatizar governança através de código.
+
+**Iniciativas Vigentes:**
+- CI/CD com GitHub Actions
+- Versionamento Git
+- Revisão de Código
+- Governança como Código
+- Política como Código
+- Rules as Code (RaC)
+
+---
+
+## 10. CONFORMIDADE REGULATÓRIA
+
+A DTDI **deve** garantir que todas as operações de dados **estejam** em conformidade com a seguinte legislação:
+
+- **LGPD (Lei 13.709/2018):** Todos os dados pessoais **devem** ser tratados conforme princípios e direitos estabelecidos.
+- **Lei de Acesso à Informação (Lei 12.527/2011):** Dados públicos **devem** ser disponibilizados conforme solicitações.
+- **Marco Civil da Internet (Lei 12.965/2014):** Direitos de usuários na internet **devem** ser respeitados.
+- **Decreto Rio nº 54.984/2024:** Política de Proteção de Dados **deve** ser observada.
+- **Decreto Rio nº 53.700/2023:** Política de Segurança da Informação **deve** ser observada.
+- **Decretos Rio nº 56.646/2025, 56.647/2025, 56.649/2025:** Diretrizes municipais **devem** ser implementadas.
+
+---
+
+## 11. IMPLEMENTAÇÃO E EVOLUÇÃO
+
+A implementação da Política **deve** ocorrer em duas fases:
+
+### Fase 1: Consolidação (Meses 1-3)
+
+- Formalizar iniciativas vigentes
+- Comunicar política internamente
+- Aprovar política junto à liderança
+- Estabelecer Política de Governança
+
+### Fase 2: Evolução (Meses 4-12)
+
+- Expandir iniciativas
+- Aumentar automação de políticas, regras e testes
+- Integrar novas áreas de negócio na gestão do ciclo de vida dos dados
+- Revisar e atualizar política
+
+---
+
+## 12. REVISÃO E ATUALIZAÇÃO
+
+Esta Política **deve** ser revisada anualmente ou quando mudanças significativas ocorrerem. Revisões **devem** considerar:
+
+- Mudanças em legislação aplicável
+- Evolução de tecnologias
+- Feedback de stakeholders
+- Indicadores de desempenho
+
+---
+
+## 13. APROVAÇÃO E VIGÊNCIA
+
+Esta Política **entra** em vigência na data de sua aprovação e **permanece** vigente até sua revogação ou substituição por instrumento normativo posterior.
+
+**Aprovado por:**
+
+- Diretora da DTDI
+- Superintendente de Tecnologia em Transportes (TR/SUBTT)
+- Secretária Municipal de Transportes (SMTR)
+
+**Data de Aprovação:** _______________
+
+**Data de Vigência:** _______________
+
+---
+
+## 14. GLOSSÁRIO TÉCNICO E NORMATIVO
 
 | Termo | Definição |
 |-------|-----------|
@@ -181,7 +1141,7 @@ A Política **é mandatória** para todos os profissionais da DTDI e **vinculant
 | **Transformação de Dados** | Processo que **deve** converter dados de um formato/estrutura para outro. |
 | **Transparência** | Princípio que garante que operações de dados sejam documentadas e comunicadas claramente. |
 | **Tratamento de Dados** | Qualquer operação realizada sobre dados, conforme LGPD (coleta, processamento, armazenamento, compartilhamento, etc.). |
-| **TR/SUBTT** | Abreviação para Subsecretaria de Tecnologia em Transportes — Unidade administrativa da SMTR que **deve** exercer controle estratégico e tático-operacional sobre os fluxos de dados finalísticos.
+| **TR/SUBTT** | Abreviação para Subsecretaria de Tecnologia em Transportes — Unidade administrativa da SMTR que **deve** exercer controle estratégico e tático-operacional sobre os fluxos de dados finalísticos. |
 | **Versionamento** | Prática que rastreia mudanças em código, configurações e documentação através de sistemas como Git. |
 | **Views** | Representações virtuais de dados que combinam, filtram ou transformam tabelas base sem armazenar dados fisicamente. Views na DTDI facilitam acesso seguro e simplificado a dados complexos. |
 | **VPN** | Virtual Private Network — Rede privada virtual que garante comunicação segura e criptografada entre sistemas. VPN é utilizada na DTDI para acesso seguro a ambientes e dados sensíveis. |
@@ -189,751 +1149,5 @@ A Política **é mandatória** para todos os profissionais da DTDI e **vinculant
 | **VPIA** | Superintendência de Planejamento, Inovação e Análise — Entidade que, em conjunto com IPLANRIO e DTDI, **deve** exercer custódia técnica. |
 | **Wiki DTDI** | Repositório centralizado que **deve** documentar processos, padrões, guias e conhecimento da DTDI. |
 | **YAML** | Formato de arquivo que **deve** ser utilizado para documentar metadados e configurações de dados. |
-
----
-
-## 5. REFERÊNCIAS NORMATIVAS E REGULATÓRIAS
-
-A Política de Governança de Dados da DTDI **fundamenta-se** nas seguintes referências:
-
-### Legislação Federal
-
-- Lei nº 13.709/2018 — Lei Geral de Proteção de Dados Pessoais (LGPD)
-- Lei nº 12.527/2011 — Lei de Acesso à Informação
-- Lei nº 12.965/2014 — Marco Civil da Internet
-- Decreto Federal nº 10.046/2019 — Transformação Digital do Governo Federal
-
-### Legislação Municipal (Rio de Janeiro)
-
-- Decreto Rio nº 54.984/2024 — Política de Proteção de Dados Pessoais e Governança de Dados (revoga Decreto 48.972/2021)
-- Decreto Rio nº 53.700/2023 — Política de Segurança da Informação
-- Decreto Rio nº 56.646/2025 — Governança de Dados e Interoperabilidade
-- Decreto Rio nº 56.647/2025 — Conformidade e Auditoria de Dados
-- Decreto Rio nº 56.649/2025 — Proteção de Dados Pessoais em Sistemas Municipais
-- Resolução SEGOVI nº 91/2022 — Plano de Gestão de Proteção de Dados Pessoais
-- Resoluções SMTDI nº 7/2023 e nº 14/2023 — Prazos e Instrumentos de Governança
-
-### Referências de Base Técnica Aplicável
-
-- DAMA-DMBOK 2 Revised (Data Management Body of Knowledge) — Associação Internacional de Profissionais de Dados
-- Domain-Driven Design (Eric Evans) — Modelagem de Domínios e Linguagem Ubíqua
-- ISO/IEC 27001:2022 — Gestão de Segurança da Informação
-- COBIT 2019 — Governança e Gestão de TI
-
----
-
-## 6. PRINCÍPIOS FUNDAMENTAIS
-
-A Política de Governança de Dados da DTDI **repousa** sobre os seguintes princípios:
-
-**Princípio 1 — Qualidade:** Os dados sob responsabilidade da DTDI **devem** atender a padrões mínimos de qualidade em completude, consistência, acurácia, conformidade e oportunidade, validados através de testes automatizados e monitoramento contínuo.
-
-**Princípio 2 — Segurança:** A proteção de dados contra acessos não autorizados, alterações indevidas, perda ou destruição **deve** ser responsabilidade primária. Segurança **deve** ser implementada através de controles técnicos, procedimentais e organizacionais, com aplicação de princípios de defesa em profundidade.
-
-**Princípio 3 — Conformidade:** A DTDI **deve** atuar em conformidade com a legislação aplicável, especialmente LGPD, Decreto Rio nº 54.984/2024 e Decreto Rio nº 53.700/2023, garantindo que todas as iniciativas de dados incorporem requisitos regulatórios desde o design.
-
-**Princípio 4 — Transparência:** As operações de dados, os responsáveis, os prazos, os riscos e as decisões **devem** ser documentados e comunicados de forma clara a todas as partes interessadas, promovendo confiança e accountability.
-
-**Princípio 5 — Responsabilização:** Cada ator envolvido no ciclo de vida dos dados **deve** possuir responsabilidades claramente definidas, com mecanismos de monitoramento, auditoria e prestação de contas.
-
-**Princípio 6 — Inovação Responsável:** A DTDI **deve** promover inovação em gestão e governança de dados, adotando novas tecnologias, metodologias e boas práticas, sempre alinhadas com segurança, conformidade e qualidade.
-
----
-
-## 7. DIRETRIZES DE GOVERNANÇA DE DADOS DTDI
-
-Este documento **reconhece** 25 iniciativas estruturadas de governança de dados em curso, distribuídas ao longo do ciclo de vida dos dados e cobrindo as 11 áreas de conhecimento do DAMA-DMBOK. A Política de Governança de Dados da DTDI consolida essas práticas sob uma estrutura normativa coerente, estabelecendo diretrizes prescritivas que **devem** orientar a evolução contínua.
-
-### 7.1 Histórico e Contexto das Iniciativas Vigentes
-
-A DTDI, na qualidade de Operadora e Custodiante de Dados da SMTR, **desenvolveu** ao longo dos anos de operação um conjunto robusto de iniciativas que, embora ainda não formalmente consolidadas sob um instrumento central de governança, já são capazes de **refletir** a maturidade técnica e o alinhamento com boas práticas de padrão internacional.
-
-Essas iniciativas **abrangem**:
-
-- **Documentação e Conhecimento:** Wiki DTDI, Catálogo de Dados, Guia de Governança de Metadados (Domain-Driven Design)
-- **Segurança e Proteção:** Conformidade LGPD, Segurança de Dados, Policy Tags, Gestão de Acesso e Credenciais, Termos de Custódia/Alinhamento/Entrega
-- **Qualidade e Metadados:** Testes de Qualidade de Dados (dbt), Padrões de Qualidade, Documentação de Metadados
-- **Arquitetura e Operações:** Segregação de Ambientes, Arquitetura Medallion, Arquitetura ETL/EtLT, Observabilidade e Monitoramento
-- **Automação e Conformidade:** CI/CD com GitHub Actions, Versionamento Git, Revisão de Código, Governança como Código, Política como Código, Rules as Code (RaC)
-- **Conformidade e Regulação:** Plano de Retenção e Descarte, Conformidade com Decretos Rio, Conformidade PSI
-- **Comunicação e Posicionamento:** Comunicação Estratégica para posicionamento da DTDI, Programa de Governança de Dados DTDI
-- **Onboarding e Alinhamento:** Onboarding DTDI, Termo de Alinhamento de Dados (TAD), Termo de Entrega de Dados (TED), Termo de Custódia de Dados (TCD)
-
-A presente Política **formaliza** essas iniciativas, conferindo-lhes status de instrumentos regulatórios e estabelecendo que cada uma **deve** ser executada conforme diretrizes prescritivas.
-
-### 7.2 Diretrizes Prescritivas Aplicáveis
-
-As seguintes diretrizes **devem** orientar o exercício da Governança de Dados pela DTDI no ecossistema de gestão de dados e informação da SMTR:
-
-#### 7.2.1 Reconhecer Dados como Ativo Organizacional
-
-A DTDI **deve** considerar dados como ativos de valor estratégico para a organização. A gestão de dados **deve** estar focada na promoção de seu uso, com ética e em prol dos objetivos e metas de negócio. Cada iniciativa de dados **deve** contribuir para a criação de valor e para a sustentabilidade operacional.
-
-#### 7.2.2 Estabelecer Governança como Área Central de Conhecimento
-
-A Governança de Dados **deve** ser estabelecida como a área de conhecimento central da Gestão de Dados. Sua atuação **deve** orquestrar as atividades relacionadas ao gerenciamento dos dados, garantindo coerência e sinergia entre todas as suas áreas de conhecimento e o alinhamento com a estratégia de negócio.
-
-#### 7.2.3 Definir Papéis e Responsabilidades
-
-A DTDI **deve** garantir o estabelecimento claro de papéis e responsabilidades para atuação de:
-
-- **Proprietários de Dados (Data Owners):** Profissionais que **devem** ser responsáveis pela definição de requisitos, qualidade e conformidade de cada domínio de dados.
-- **Gestores de Dados — Negócio (Business Data Stewards):** Profissionais que **devem** ser responsáveis pela qualidade, conformidade e alinhamento dos dados com requisitos de negócio.
-- **Gestores de Dados — Técnico (Technical Data Stewards):** Profissionais que **devem** ser responsáveis pela qualidade técnica, segurança, conformidade e operação dos dados.
-- **Encarregado de Dados (DPO):** Profissional que **deve** ser responsável pela conformidade com LGPD e regulações de proteção de dados.
-- **Coordenador de Governança de Dados:** Profissional que **deve** coordenar a execução das iniciativas de governança.
-
-Cada domínio de dados **deve** ter designados seus respectivos proprietários e gestores.
-
-#### 7.2.4 Priorizar Segurança e Privacidade
-
-A DTDI **deve** priorizar a garantia da segurança e a proteção da privacidade dos dados, assegurando a observância de políticas, normas, processos e procedimentos, respaldados por tecnologia adequada para resultados eficazes. Todas as operações de dados **devem** incorporar controles de segurança desde o design.
-
-#### 7.2.5 Garantir Gerenciamento Efetivo de Metadados
-
-A DTDI **deve** assegurar o efetivo gerenciamento de metadados, para viabilizar o entendimento e a utilização dos ativos de dados de forma segura e eficaz durante todo o ciclo de vida. Metadados **devem** ser documentados em Catálogo de Dados centralizado e em arquivos YAML conforme Guia de Governança de Metadados.
-
-#### 7.2.6 Estabelecer Qualidade como Responsabilidade Colaborativa
-
-A DTDI **deve** reconhecer que a qualidade dos dados é uma responsabilidade que se estende às equipes de tecnologia da informação e às áreas de negócio. Regras, processos e procedimentos **devem** ser estabelecidos para garantir a colaboração conjunta em todas as atividades referentes à melhoria contínua da qualidade dos dados.
-
-#### 7.2.7 Integrar Qualidade desde o Design
-
-A DTDI **deve** integrar a qualidade de dados desde o início de cada projeto. Esta abordagem **deve** ser fundamental na estratégia de Governança de Dados, garantindo que qualidade de dados seja considerada de forma proativa, não reativa.
-
-#### 7.2.8 Garantir Rastreabilidade Completa
-
-Todos os processos e operações de dados **devem** dispor de linhagem de dados ou documentação pertinente que permita a rastreabilidade completa do ativo e dos respectivos curadores (técnico e de negócio). Rastreabilidade **deve** ser implementada através de Catálogo de Dados, metadados estruturados e logs de auditoria.
-
-#### 7.2.9 Alinhar Qualidade com Estratégia de Negócio
-
-A DTDI **deve** priorizar ações de melhoria de qualidade alinhadas à estratégia de negócio da organização, considerando a criticidade dos dados e o nível de risco para o atingimento de objetivos e metas. Qualidade **deve** ser mensurada e monitorada continuamente.
-
-#### 7.2.10 Gerenciar Incidentes de Qualidade
-
-A DTDI **deve** garantir a gestão eficaz de incidentes de qualidade de dados, buscando sempre eliminar a causa raiz. Isso **é essencial** para garantir com robustez e tempestividade a continuidade do negócio.
-
-#### 7.2.11 Orientar-se por Requisitos e Especificações
-
-A DTDI **deve** reconhecer a importância da interlocução com todos os atores e **deve** trabalhar orientada por requisitos e especificações que assegurem o alinhamento inequívoco de expectativas com as áreas demandantes. Instrumentos como TAD (Termo de Alinhamento de Dados) **devem** ser utilizados para formalizar esse alinhamento.
-
-#### 7.2.12 Mensurar Qualidade de Dados
-
-A DTDI **deve** considerar a mensuração da qualidade de dados como um componente vital para exercer a Governança de Dados. Métricas e indicadores **devem** ser utilizados para avaliar qualidade dos dados em relação à sua aderência aos requisitos de qualidade aos quais estão associados.
-
-#### 7.2.13 Aplicar Policy Tags para Classificação e Controle
-
-A DTDI **deve** aplicar Policy Tags (marcadores de política) aos dados para indicar sensibilidade, conformidade e restrições de acesso. Policy Tags **devem** ser utilizadas para:
-
-- Classificar dados conforme nível de sensibilidade (público, interno, confidencial, restrito)
-- Indicar conformidade com LGPD (dados pessoais, dados sensíveis, dados de menores)
-- Indicar conformidade com Decreto Rio (dados de interesse público, dados de segurança)
-- Automatizar controles de acesso e proteção
-- Facilitar auditoria e conformidade
-
-#### 7.2.14 Gerenciar Acesso e Credenciais conforme Princípios de Segurança
-
-A DTDI **deve** observar o princípio da finalidade (LGPD) e aspectos de temporalidade para garantir segurança e proteção. Gestão de Acesso **deve**:
-
-- Conceder acesso apenas conforme necessidade de negócio (princípio do menor privilégio)
-- Definir prazos de validade para credenciais (temporalidade)
-- Auditar todos os acessos e alterações
-- Revogar acesso imediatamente quando não mais necessário
-
-#### 7.2.15 Gerenciar Riscos Associados aos Dados
-
-A DTDI **deve** reconhecer que dados são ativos que também podem representar riscos para a organização. Riscos **devem** ser gerenciados ao longo do ciclo de vida dos dados, levando em consideração implicações éticas, legais, operacionais e reputacionais.
-
-#### 7.2.16 Garantir Comprometimento da Liderança
-
-A DTDI **deve** garantir o comprometimento de suas lideranças na contribuição efetiva para a eficácia da Gestão de Dados. Liderança **deve** alocar recursos, remover obstáculos e comunicar a importância da governança de dados.
-
-#### 7.2.17 Gerenciar o Desempenho da Governança
-
-A DTDI **deve** gerenciar o desempenho da Governança de Dados por meio de métricas e indicadores. Essas métricas e indicadores **devem** ser instrumentos de análise que **serão** compartilhados com a organização, visando avaliar o progresso e aprimorar continuamente a Gestão de Dados.
-
-#### 7.2.18 Garantir Transparência em Operações de Dados
-
-A DTDI **deve** garantir que informações sobre instrumentos normativos, melhores práticas, artefatos e outros assuntos relacionados à Governança de Dados **sejam** divulgadas de maneira transparente e segura através de canais apropriados (Wiki DTDI, Catálogo de Dados, comunicações formais).
-
-#### 7.2.19 Aplicar Domain-Driven Design para Linguagem Compartilhada
-
-A DTDI **deve** aplicar Domain-Driven Design para promover compreensão compartilhada entre técnica e negócio. Linguagem ubíqua **deve** ser desenvolvida para cada domínio de dados, facilitando comunicação clara e alinhamento de expectativas. Guia de Governança de Metadados **deve** documentar essa linguagem.
-
-#### 7.2.20 Codificar Governança em Artefatos Executáveis
-
-A DTDI **deve** codificar governança em artefatos executáveis (YAML, scripts, políticas como código) para automatizar conformidade e reduzir erros manuais. Governança como Código **deve** ser implementada através de:
-
-- Políticas como Código (Policy as Code)
-- Regras como Código (Rules as Code — RaC)
-- Configurações versionadas em Git
-- Testes automatizados de conformidade
-
-#### 7.2.21 Estabelecer Instrumentos Regulatórios Formais
-
-A DTDI **deve** fazer com que todos os processos e atividades das áreas de conhecimento da Gestão de Dados **sejam** respaldados por instrumentos regulatórios (Políticas, Normas, Processos e Procedimentos), seguindo os padrões vigentes na empresa. Cada iniciativa **deve** ter documentação formal associada.
-
-#### 7.2.22 Disponibilizar Dados Abertos conforme Lei de Acesso
-
-A DTDI **deve** identificar e disponibilizar dados públicos conforme Lei de Acesso à Informação (Lei 12.527/2011). Dados Abertos **devem** ser:
-
-- Publicados em formato acessível e reutilizável
-- Documentados com metadados completos
-- Versionados e mantidos atualizados
-- Disponibilizados através de repositório centralizado (GitHub)
-
-#### 7.2.23 Definir Domínios de Dados com Clareza
-
-A DTDI **deve** definir Domínios de Dados como agrupamentos lógicos de dados relacionados a um contexto de negócio específico. Cada Domínio **deve** ter:
-
-- Proprietário designado (Data Owner)
-- Gestores designados (Business e Technical Data Stewards)
-- Requisitos de qualidade definidos
-- Padrões de metadados documentados
-- Responsabilidades claramente atribuídas
-
-#### 7.2.24 Formalizar Contratos de Dados através de Termos
-
-A DTDI **deve** formalizar contratos de dados através de instrumentos específicos:
-
-- **TAD (Termo de Alinhamento de Dados):** Todas as demandas recebidas pela DTDI **devem** ser especificadas através de TAD para garantir que o desenvolvimento de soluções seja baseado em requisitos e especificações referendadas pelo demandante, evitando retrabalho, desperdício de recursos e aumentando o nível de assertividade e respaldo entre as partes envolvidas.
-
-- **TED (Termo de Entrega de Dados):** Toda demanda entregue pela DTDI **deve** ser formalizada mediante envio de TED, documentando qualidade, conformidade, responsabilidades e prazos.
-
-- **TCD (Termo de Custódia de Dados):** Toda demanda **deve** constar um TCD que formalize a custódia técnica e as responsabilidades operacionais do ativo de dados.
-
-#### 7.2.25 Centralizar Repositório de Dados em GitHub
-
-A DTDI **deve** garantir que todos os conjuntos de dados gerados ou mantidos **sejam** registrados no repositório centralizado https://github.com/RJ-SMTR. Esse repositório **deve** servir como fonte única de verdade para inventário de dados, versionamento e documentação.
-
-#### 7.2.26 Documentar Metadados em Arquivos YAML
-
-A DTDI **deve** garantir que toda solicitação de integração de dados ao Data Lakehouse **seja** feita mediante o preenchimento de arquivo YAML correspondente, conforme Guia de Governança de Metadados. Arquivo YAML **deve** documentar:
-
-- Nome e descrição do dataset
-- Proprietário e gestores
-- Origem e linhagem
-- Padrões de qualidade
-- Conformidade regulatória
-- Responsabilidades e contatos
-
-#### 7.2.27 Aplicar Manual de Estilo de Modelos e Tabelas
-
-A DTDI **deve** aplicar o Manual de Estilo de Modelos e Tabelas em todos os projetos de dados, garantindo consistência, padronização e qualidade na nomenclatura, estrutura e design de modelos de dados e tabelas. O Manual de Estilo **deve** ser utilizado como referência obrigatória para:
-
-- Definição de padrões de nomenclatura (tabelas, colunas, índices)
-- Estruturação de modelos de dados (lógicos e físicos)
-- Convenções de design e boas práticas
-- Documentação de metadados associados
-- Garantia de interoperabilidade entre sistemas
-
-O Manual de Estilo está disponível em https://rj-smtr.github.io/pipelines-docs/tabelas/manual_estilo_tabelas/
-
-#### 7.2.28 Implementar Pipelines de Dados Orquestrados
-
-A DTDI **deve** implementar pipelines de dados automatizados que orquestrem o fluxo de dados desde a origem até o destino. Pipelines **devem** ser:
-
-- Documentados em repositório centralizado (GitHub)
-- Monitorados continuamente para falhas e anomalias
-- Versionados e rastreados conforme padrões de governança
-- Testados automaticamente para garantir qualidade
-- Auditados para conformidade regulatória
-
-#### 7.2.29 Gerenciar Datasets com Metadados Completos
-
-A DTDI **deve** garantir que cada dataset possua metadados completos e atualizados, incluindo:
-
-- Definição clara do dataset e seu propósito
-- Cobertura temporal (período de dados disponíveis)
-- Proprietário e gestores responsáveis
-- Origem, linhagem e transformações aplicadas
-- Padrões de qualidade e conformidade
-- Prazos de retenção e descarte
-
-#### 7.2.30 Utilizar dbt para Transformação de Dados
-
-A DTDI **deve** utilizar dbt (Data Build Tool) como ferramenta padrão para transformação de dados. Modelos dbt **devem**:
-
-- Ser versionados em Git com histórico completo de mudanças
-- Incluir testes automatizados de qualidade e conformidade
-- Documentar lógica de transformação e regras de negócio
-- Ser revisados antes de implantação em produção
-- Manter rastreabilidade completa de origem e destino
-
-#### 7.2.31 Padronizar Queries e Consultas SQL
-
-A DTDI **deve** padronizar a escrita e execução de queries SQL conforme boas práticas:
-
-- Queries **devem** ser documentadas e versionadas
-- Nomenclatura de aliases e variáveis **deve** seguir padrões definidos
-- Performance **deve** ser otimizada e monitorada
-- Queries **devem** ser testadas antes de uso em produção
-- Acesso a queries **deve** ser controlado conforme sensibilidade dos dados
-
-#### 7.2.32 Garantir Segregação de Ambientes
-
-A DTDI **deve** manter rigorosa segregação entre ambientes de desenvolvimento, teste e produção:
-
-- **Ambiente de Desenvolvimento:** Isolado para desenvolvimento e testes, sem acesso a dados de produção sensíveis
-- **Ambiente de Teste:** Utilizado para validação de lógicas antes de implantação
-- **Ambiente de Produção:** Protegido com controles rigorosos de segurança, conformidade e monitoramento
-
-Transferências entre ambientes **devem** seguir processos formais de promoção.
-
-#### 7.2.33 Implementar Backup e Recuperação de Dados
-
-A DTDI **deve** implementar políticas robustas de backup e recuperação de dados:
-
-- Backups **devem** ser executados regularmente conforme políticas de retenção
-- Planos de recuperação de desastres **devem** ser testados periodicamente
-- Backup **deve** ser armazenado em local seguro e geograficamente distinto
-- Tempo de recuperação (RTO) e ponto de recuperação (RPO) **devem** ser definidos
-- Conformidade com legislação **deve** ser garantida
-
-#### 7.2.34 Disponibilizar Dados através de APIs Seguras
-
-A DTDI **deve** disponibilizar acesso a dados através de APIs seguras e controladas:
-
-- APIs **devem** implementar autenticação e autorização robustas
-- Acesso **deve** ser monitorado e auditado
-- Limites de taxa (rate limiting) **devem** ser aplicados
-- Documentação de API **deve** ser completa e acessível
-- Conformidade com LGPD **deve** ser garantida
-
-#### 7.2.35 Utilizar Views para Acesso Seguro a Dados
-
-A DTDI **deve** utilizar views como camada de abstração para facilitar acesso seguro a dados complexos:
-
-- Views **devem** ser documentadas e versionadas
-- Permissões de acesso **devem** ser gerenciadas a nível de view
-- Views **devem** implementar mascaramento ou filtros de dados sensíveis
-- Performance **deve** ser otimizada
-- Linhagem **deve** ser rastreada conforme padrões de governança
-
-#### 7.2.36 Implementar Estratégia de Particionamento de Dados
-
-A DTDI **deve** adotar a estratégia de particionamento de dados para otimizar performance, reduzir custos e facilitar governança. Particionamento **deve**:
-
-- Ser planejado conforme padrões de acesso e volume de dados
-- Utilizar critérios lógicos de divisão (data, região, categoria, etc.)
-- Ser documentado em metadados com definição clara de chaves de partição
-- Ser revisado periodicamente para garantir eficácia conforme evolução dos dados
-- Facilitar consultas mais rápidas e eficientes, reduzindo tempo de processamento
-- Permitir gestão granular de retenção e descarte de dados
-- Ser implementado em conformidade com padrões de qualidade e segurança
-- Ser monitorado para detectar anomalias ou desequilíbrio de dados entre partições
-
----
-
-## 8. ESTRUTURA ORGANIZACIONAL GOVERNANÇA DTDI
-
-No âmbito de atuação da SMTR, a DTDI **adota** um modelo centralizado de gestão e governança de dados. Considerando que a maturidade em dados da Secretaria está em desenvolvimento, assim como em outros órgãos e entidades da Prefeitura do Rio de Janeiro, o objetivo **é** pavimentar o caminho para promover o desenvolvimento gradual de níveis de maturidade.
-
-### 8.1 Perspectiva Estratégica
-
-A governança de dados da DTDI **deve** alinhar-se com a estratégia institucional da SMTR de consolidar o Rio de Janeiro como referência em mobilidade urbana inteligente e baseada em dados. As iniciativas de governança **devem** contribuir para:
-
-- Melhorar a qualidade das decisões operacionais e estratégicas
-- Aumentar a confiabilidade dos dados e sistemas
-- Garantir conformidade com legislação aplicável
-- Reduzir riscos operacionais e reputacionais
-- Promover inovação responsável em gestão de dados
-- Fortalecer a cultura data-driven na organização
-
-### 8.2 Perspectiva de Cultura Interna
-
-A DTDI reconhece que governança de dados é um esforço coletivo que requer engajamento de todas as equipes. Diretrizes culturais devem incluir:
-
-a) capacitação contínua em governança de dados para todos os profissionais;
-
-b) comunicação clara sobre políticas, normas e responsabilidades;
-
-c) reconhecimento de iniciativas de excelência em governança;
-
-d) criação de espaços de colaboração e aprendizado contínuo.
-
-### 8.3 Perspectiva de Ambiente Externo
-
-A DTDI atua em um ambiente regulatório em evolução, com múltiplos stakeholders (Prefeitura, SMTR, órgãos de controle, sociedade civil, cidadãos). Diretrizes externas devem incluir:
-
-a) participação ativa em fóruns de governança de dados municipais;
-
-b) compartilhamento de boas práticas com outras secretarias;
-
-c) transparência em relação a dados públicos sob custódia;
-
-d) resposta ágil a mudanças regulatórias.
-
-### 8.4 Papéis Necessários Para Execução da Governança de Dados
-
-#### 8.4.1 Encarregado / DPO (Inciso VIII da LGPD)
-
-Pessoa natural indicada pelo controlador e operador para atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD). É responsável pela conformidade com LGPD e Decreto Rio nº 54.984/2024, conforme designado pela Prefeitura.
-
-#### 8.4.2 Núcleo de Governança de Dados
-
-Unidade administrativa que deve ser responsável pela definição, estabelecimento, disseminação e monitoramento da Política de Governança de Dados. Coordena iniciativas multidisciplinares, arbitra conflitos, propõe evoluções da política em colaboração com os times técnicos e equipes das áreas de negócio.
-
-#### 8.4.3 Dono dos Dados (Data Owners)
-
-Profissionais designados como responsáveis por domínios específicos de dados (ex: bilhetagem, subsídio, planejamento), titulares de unidades administrativas. Devem definir requisitos de qualidade, segurança e conformidade para seus domínios de dados.
-
-#### 8.4.4 Curador de Dados
-
-Na estrutura de Governança de Dados, o papel do Curador de Dados (frequentemente chamado no mercado pelo termo em inglês Data Steward) é dividido entre o universo de **Negócios** e o de **Tecnologia**.
-
-a) **Curador Negócios (Business Data Steward):** É um especialista de uma área funcional (como Planejamento, Finanças, ou Operações) que assume a responsabilidade sobre o significado, a qualidade e o uso apropriado dos dados do seu domínio. Foco: Regras de negócio, significado, valor e uso das informações. Profissionais que devem garantir a qualidade, conformidade e documentação de dados específicos. Trabalham em colaboração com Data Owners e equipes técnicas de dados, por exemplo: SUBTOP. Principais Responsabilidades:
-
-- **Definição de Termos:** Criar e manter as definições de termos no Glossário de Negócios (ex: definir formalmente o que é "Operador" ou "Tarifa Técnica").
-- **Regras de Qualidade:** Estabelecer quais critérios de qualidade o dado deve atender (ex: "o campo CPF não pode estar nulo e deve ser válido").
-- **Classificação de Dados:** Definir o nível de confidencialidade da informação (pública, interna, confidencial, sensível e/ou pessoal).
-- **Uso e Acesso:** Definir quem dentro da organização tem autorização de negócio para acessar e utilizar determinada informação.
-
-b) **Curador Técnico de Dados (Technical Data Steward):** é um profissional de ou Engenharia/Arquitetura de Dados ou Tecnologia da Informação (TI) que conhece profundamente os sistemas, bancos de dados e estruturas onde as informações residem. Foco: Implementação técnica, modelagem, metadados técnicos e sustentação das estruturas de dados. Profissionais de arquitetura, segurança, qualidade, metadados e operações que devem implementar regras de negócio, políticas e normas de governança, por exemplo a DTDI. Principais responsabilidades:
-
-- **Metadados Técnicos:** Mapear e documentar tabelas, colunas, tipos de dados, chaves primárias/estrangeiras e dicionários de dados do sistema.
-- **Linhagem dos Dados (Data Lineage):** Mapear a origem, o caminho de transformação e o destino dos dados entre diferentes sistemas (ETLs e pipelines).
-- **Automação da Qualidade:** Implementar as rotinas técnicas e scripts de validação para monitorar se as regras de qualidade definidas pelo negócio estão sendo cumpridas.
-- **Modelagem e Estrutura:** Garantir que os modelos de dados físicos e lógicos estejam otimizados e alinhados aos padrões técnicos da empresa.
-
-c) **Custodiante de Dados:** é a pessoa, equipe ou entidade encarregada da guarda operacional, manutenção técnica e proteção diária de um ativo de informação enquanto o ativo estiver sob sua posse ou administração. É a figura que recebe a delegação técnica (responsibility) do proprietário para operar e aplicar os controles necessários. O custodiante não "dita as regras" do dado, mas garante que as regras definidas pelo proprietário sejam cumpridas na prática. Principais responsabilidades:
-
-- **Aplicação de Controles de Segurança:** Implementar salvaguardas técnicas (como criptografia, regras de firewall e controles de acesso lógico).
-- **Continuidade e Backup:** Executar rotinas diárias de backup, planos de restauração e testes para garantir a disponibilidade do ativo.
-- **Manutenção e Atualização:** Garantir que o ambiente técnico esteja corrigido (patches de segurança) e livre de vulnerabilidades.
-- **Concessão Operacional de Acessos:** Atribuir as permissões nos sistemas somente após a aprovação formal do Proprietário do Ativo.
-- **Descarte Seguro:** Executar a destruição ou descarte de mídias e dados quando o ciclo de vida do ativo chegar ao fim, seguindo as diretrizes do proprietário.
-
-
-### 8.5 Responsabilidades LGPD Aplicadas ao Contexto SMTR
-
-#### 8.5.1 Unidade Controladora (SMTR)
-
-O Artigo 5º (Inciso VI) da LGPD conceitua controlador como Pessoa natural ou jurídica a quem competem as decisões referentes ao tratamento de dados pessoais. A SMTR concentra a responsabilidade legal e a gestão estratégica, cabendo-lhe:
-
-a) exercer a supervisão macro das diretrizes de privacidade e proteção de dados da pasta;
-
-b) formalizar a nomeação do Encarregado de Dados Setorial e do Comitê de Privacidade;
-
-c) responder legal e institucionalmente perante a Autoridade Nacional de Proteção de Dados (ANPD), o Encarregado de Dados Geral do Município e os titulares dos dados;
-
-d) delegar o poder decisório tático-operacional sobre os fluxos de dados finalísticos às suas unidades administrativas competentes, como a TR/SUBTT.
-
-#### 8.5.2 Áreas de Negócio, Unidades Administrativas Curadoras de Negócio (TR/SUBTOP, TR/SUBPPT, TR/SUBG, TR/SETT, TR/SUBTT)
-
-As unidades administrativas da SMTR exercem a Curadoria de Negócio (Business Data Steward), sendo responsável por:
-
-a) definir as finalidades e diretrizes de negócio para o uso dos dados;
-
-b) definir a base legal adequada e garantir a legitimidade do tratamento, especialmente quanto a dados pessoais;
-
-c) deliberar, com exclusividade, sobre compartilhamentos, publicações ou usos específicos dos dados por sistemas consumidores, outras áreas da SMTR ou entes externos;
-
-d) avaliar a necessidade, adequação e proporcionalidade do tratamento frente aos processos finalísticos;
-
-e) definir prazos de retenção e regras de descarte, quando aplicáveis ao negócio;
-
-f) garantir o atendimento a eventuais demandas de titulares de dados pessoais;
-
-g) validar e ratificar classificações de acesso e de sigilo aplicáveis aos dados.
-
-#### 8.5.3 Unidade Operadora, Custodiante e Curadora Técnica de Dados (IPLANRIO/PRE/VPIA/DTDI)
-
-Conforme o Art. 5º (Inciso VII) da LGPD, o operador trata-se pessoa natural ou jurídica que realiza o tratamento de dados pessoais em nome do controlador e o custodiante (ISO/IEC 27001) é a pessoa, equipe ou entidade encarregada da guarda operacional, manutenção técnica e proteção diária de um ativo de informação. A DTDI é responsável pelos dois papéis, exercido através da Curadoria Técnica de Dados (Technical Data Steward) e atuando como custodiante dos dados, com atribuição de:
-
-a) implementar técnica e sistemicamente as regras de negócio, os controles de acesso e as restrições de sigilo determinadas pelo controlador;
-
-b) garantir a disponibilidade técnica, integridade e segurança da infraestrutura de custódia;
-
-c) manter o versionamento e a rastreabilidade das lógicas de processamento implementadas;
-
-d) registrar os metadados técnicos, operacionais e de governança acordados;
-
-e) implementar os controles de acesso (ex: mascaramento, restrição de colunas ou policy tags) conforme classificação de sigilo ou orientações formais estabelecidas pela controladora;
-
-f) prestar suporte técnico subsidiário à controladora para esclarecimentos de dúvidas sobre a estruturação do dado, quando formalmente demandada.
-
----
-
-## 9. INICIATIVAS DE GOVERNANÇA DE DADOS NA DTDI
-
-O ciclo de vida dos dados **deve** ser compreendido como a sequência de fases pelas quais dados percorrem desde sua concepção até seu descarte. A DTDI **deve** garantir que governança seja exercida em cada fase, com papéis, responsabilidades e iniciativas claramente definidas.
-
-### 9.1 Fase 1: Planejamento
-
-Nesta fase, **devem** ser definidos requisitos, objetivos e estratégia para novos dados ou sistemas.
-
-**Responsabilidades:**
-- Data Owner: Definir requisitos de negócio
-- Coordenador de Governança: Assegurar alinhamento com políticas
-- DPO: Avaliar conformidade com LGPD
-
-**Iniciativas Vigentes:**
-- Onboarding DTDI
-- Termo de Alinhamento de Dados (TAD)
-
-### 9.2 Fase 2: Coleta/Criação
-
-Nesta fase, dados **são** coletados de fontes externas ou criados internamente.
-
-**Responsabilidades:**
-- Technical Data Steward: Implementar padrões de coleta
-- Coordenador de Governança: Garantir conformidade
-- DPO: Validar consentimento e finalidade
-
-**Iniciativas Vigentes:**
-- Conformidade LGPD
-- Policy Tags
-- Documentação de Metadados
-
-### 9.3 Fase 3: Armazenamento
-
-Nesta fase, dados **são** persistidos em repositórios seguros.
-
-**Responsabilidades:**
-- Technical Data Steward: Garantir segurança e disponibilidade
-- Coordenador de Governança: Monitorar conformidade
-- DPO: Validar proteção de dados
-
-**Iniciativas Vigentes:**
-- Segregação de Ambientes
-- Arquitetura Medallion
-- Segurança de Dados
-- Gestão de Acesso e Credenciais
-- Observabilidade e Monitoramento
-
-### 9.4 Fase 4: Processamento/Transformação
-
-Nesta fase, dados **são** transformados conforme regras de negócio.
-
-**Responsabilidades:**
-- Technical Data Steward: Implementar transformações
-- Business Data Steward: Validar regras de negócio
-- Coordenador de Governança: Garantir rastreabilidade
-
-**Iniciativas Vigentes:**
-- Arquitetura ETL/EtLT
-- CI/CD com GitHub Actions
-- Versionamento Git
-- Revisão de Código
-- Governança como Código
-- Política como Código
-- Rules as Code (RaC)
-
-### 9.5 Fase 5: Análise/Uso
-
-Nesta fase, dados **são** consultados e analisados para gerar insights.
-
-**Responsabilidades:**
-- Data Owner: Aprovar uso
-- Technical Data Steward: Garantir performance
-- Coordenador de Governança: Monitorar acessos
-
-**Iniciativas Vigentes:**
-- Testes de Qualidade de Dados
-- Catálogo de Dados
-- Guia de Governança de Metadados (Domain-Driven Design)
-- Termo de Entrega de Dados (TED)
-
-### 9.6 Fase 6: Governança/Proteção
-
-Nesta fase, dados **são** protegidos, auditados e conformados continuamente.
-
-**Responsabilidades:**
-- Coordenador de Governança: Orquestrar iniciativas
-- DPO: Garantir conformidade regulatória
-- Todos os papéis: Executar controles
-
-**Iniciativas Vigentes:**
-- Conformidade LGPD
-- Conformidade PSI
-- Conformidade Decretos Rio
-- Padrões de Qualidade
-- Gestão de Riscos
-- Auditoria e Monitoramento
-- Comunicação Estratégica
-
-### 9.7 Fase 7: Retenção/Descarte
-
-Nesta fase, dados **são** mantidos conforme política de retenção ou descartados de forma segura.
-
-**Responsabilidades:**
-- Data Owner: Definir política de retenção
-- Technical Data Steward: Executar descarte
-- DPO: Validar conformidade
-
-**Iniciativas Vigentes:**
-- Plano de Retenção e Descarte
-- Termo de Custódia de Dados (TCD)
-
----
-
-## 10. GESTÃO DE DADOS ORQUESTRADA PELA GOVERNANÇA NA DTDI
-
-A Governança de Dados **deve** orquestrar as 11 áreas de conhecimento do DAMA-DMBOK, garantindo que cada uma contribua para os objetivos estratégicos. As seguintes áreas **devem** ser implementadas conforme diretrizes:
-
-### 10.1 Governança de Dados
-
-**Objetivo:** Exercer autoridade, controle e decisão sobre dados.
-
-**Iniciativas Vigentes:**
-- Wiki DTDI
-- Catálogo de Dados
-- Programa de Governança de Dados DTDI
-- Comunicação Estratégica com Áreas de Negócio
-
-### 10.2 Segurança e Privacidade de Dados
-
-**Objetivo:** Proteger dados contra acessos não autorizados e conformar com LGPD.
-
-**Iniciativas Vigentes:**
-- Conformidade LGPD
-- Segurança de Dados
-- Policy Tags
-- Gestão de Acesso e Credenciais
-- Termos de Custódia/Alinhamento/Entrega
-
-### 10.3 Arquitetura e Modelagem de Dados
-
-**Objetivo:** Definir estruturas lógicas e físicas para dados.
-
-**Iniciativas Vigentes:**
-- Segregação de Ambientes
-- Arquitetura Medallion
-- Padrões de Nomenclatura
-
-### 10.4 Armazenamento de Dados
-
-**Objetivo:** Garantir persistência, disponibilidade e performance.
-
-**Iniciativas Vigentes:**
-- Segregação de Ambientes
-- Observabilidade e Monitoramento
-
-### 10.5 Integração e Interoperabilidade
-
-**Objetivo:** Garantir compatibilidade e fluxo seguro entre sistemas.
-
-**Iniciativas Vigentes:**
-- Arquitetura ETL/EtLT
-- Integração de Dados
-
-### 10.6 Qualidade de Dados
-
-**Objetivo:** Garantir que dados atendam a padrões de qualidade.
-
-**Iniciativas Vigentes:**
-- Testes de Qualidade de Dados (dbt)
-- Padrões de Qualidade
-- Gestão de Incidentes de Qualidade
-
-### 10.7 Gerenciamento de Dados Mestres e de Referência
-
-**Objetivo:** Garantir consistência de dados críticos.
-
-**Iniciativas Vigentes:**
-- Padrões de Qualidade
-- Documentação de Metadados
-
-### 10.8 Gerenciamento de Metadados
-
-**Objetivo:** Documentar e disponibilizar informações sobre dados.
-
-**Iniciativas Vigentes:**
-- Catálogo de Dados
-- Guia de Governança de Metadados (Domain-Driven Design)
-- Documentação de Metadados
-
-### 10.9 Analytics e Big Data
-
-**Objetivo:** Aplicar técnicas de análise para gerar insights.
-
-**Iniciativas Vigentes:**
-- Testes de Qualidade de Dados
-- Observabilidade e Monitoramento
-
-### 10.10 Conformidade Regulatória
-
-**Objetivo:** Garantir alinhamento com legislação aplicável.
-
-**Iniciativas Vigentes:**
-- Conformidade LGPD
-- Conformidade PSI
-- Conformidade Decretos Rio
-- Plano de Retenção e Descarte
-
-### 10.11 Automação e Conformidade Técnica
-
-**Objetivo:** Automatizar governança através de código.
-
-**Iniciativas Vigentes:**
-- CI/CD com GitHub Actions
-- Versionamento Git
-- Revisão de Código
-- Governança como Código
-- Política como Código
-- Rules as Code (RaC)
-
----
-
-## 11. CONFORMIDADE REGULATÓRIA
-
-A DTDI **deve** garantir que todas as operações de dados **estejam** em conformidade com a seguinte legislação:
-
-- **LGPD (Lei 13.709/2018):** Todos os dados pessoais **devem** ser tratados conforme princípios e direitos estabelecidos.
-- **Lei de Acesso à Informação (Lei 12.527/2011):** Dados públicos **devem** ser disponibilizados conforme solicitações.
-- **Marco Civil da Internet (Lei 12.965/2014):** Direitos de usuários na internet **devem** ser respeitados.
-- **Decreto Rio nº 54.984/2024:** Política de Proteção de Dados **deve** ser observada.
-- **Decreto Rio nº 53.700/2023:** Política de Segurança da Informação **deve** ser observada.
-- **Decretos Rio nº 56.646/2025, 56.647/2025, 56.649/2025:** Diretrizes municipais **devem** ser implementadas.
-
----
-
-## 12. IMPLEMENTAÇÃO E EVOLUÇÃO
-
-A implementação da Política **deve** ocorrer em duas fases:
-
-### Fase 1: Consolidação (Meses 1-3)
-
-- Formalizar iniciativas vigentes
-- Comunicar política internamente
-- Aprovar política junto à liderança
-- Estabelecer Política de Governança
-
-### Fase 2: Evolução (Meses 4-12)
-
-- Expandir iniciativas
-- Aumentar automação de políticas, regras e testes
-- Integrar novas áreas de negócio na gestão do ciclo de vida dos dados
-- Revisar e atualizar política
-
----
-
-## 13. REVISÃO E ATUALIZAÇÃO
-
-Esta Política **deve** ser revisada anualmente ou quando mudanças significativas ocorrerem. Revisões **devem** considerar:
-
-- Mudanças em legislação aplicável
-- Evolução de tecnologias
-- Feedback de stakeholders
-- Indicadores de desempenho
-
----
-
-## 14. APROVAÇÃO E VIGÊNCIA
-
-Esta Política **entra** em vigência na data de sua aprovação e **permanece** vigente até sua revogação ou substituição por instrumento normativo posterior.
-
-**Aprovado por:**
-
-- Diretora da DTDI
-- Superintendente de Tecnologia em Transportes (TR/SUBTT)
-- Secretária Municipal de Transportes (SMTR)
-
-**Data de Aprovação:** _______________
-
-**Data de Vigência:** _______________
-
----
 
 **FIM DO DOCUMENTO**
