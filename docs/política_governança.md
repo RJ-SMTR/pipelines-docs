@@ -1064,7 +1064,7 @@ Esta Política **entra** em vigência na data de sua aprovação e **permanece**
 | **Domínio de Dados** | Agrupamento lógico de dados relacionados a um contexto de negócio específico, que **deve** ter responsáveis designados (Data Owner e Data Steward). |
 | **Domain-Driven Design** | Metodologia que **deve** promover a compreensão compartilhada entre técnica e negócio através de linguagem ubíqua e modelagem de domínios. |
 | **DPO** | Data Protection Officer (Encarregado de Dados) — Profissional que **deve** ser responsável pela conformidade com LGPD e regulações de proteção de dados. |
-| **DTDI** | Diretoria Técnica de Dados e Inovação — Unidade da SMTR responsável pela gestão e governança de dados. |
+| **DTDI** | Diretoria Técnica de Dados e Inovação — Unidade da IPLANRIO responsável pela gestão e governança de dados da SMTR. |
 | **Ambiente de Desenvolvimento** | Ambiente isolado onde equipes desenvolvem, testam e validam lógicas de processamento de dados antes de implantação em produção. Ambiente de desenvolvimento segue padrões de segregação e não acessa dados de produção sensíveis. |
 | **Ambiente de Produção** | Ambiente onde dados são processados, armazenados e disponibilizados para uso operacional. Ambiente de produção segue rigorosos padrões de segurança, conformidade e monitoramento. |
 | **API** | Application Programming Interface — Interface de programação que permite comunicação entre sistemas. APIs na DTDI facilitam acesso seguro e controlado a dados, com autenticação, autorização e monitoramento. |
@@ -1095,7 +1095,6 @@ Esta Política **entra** em vigência na data de sua aprovação e **permanece**
 | **Linhagem de Dados** | Documentação que **deve** rastrear a origem, transformações e destino de cada dado ao longo de seu ciclo de vida. |
 | **LGPD** | Lei Geral de Proteção de Dados Pessoais (Lei 13.709/2018) — Legislação federal que **deve** fundamentar todas as operações de dados. |
 | **Linguagem Ubíqua** | Linguagem compartilhada entre técnica e negócio que **deve** ser desenvolvida conforme Domain-Driven Design. |
-| **Maestro** | Papel da Governança que orquestra as demais disciplinas de gestão de dados. |
 | **Manual de Estilo de Modelos e Tabelas** | Guia de referência que documenta padrões, convenções e boas práticas para nomenclatura, estrutura e design de modelos de dados e tabelas na DTDI. Disponível em https://rj-smtr.github.io/pipelines-docs/tabelas/manual_estilo_tabelas/ |
 | **Metadados** | Informações sobre os dados que documentam estrutura, qualidade, origem, responsáveis e conformidade. |
 | **Modelagem de Dados** | Área de conhecimento que define estruturas lógicas e físicas para representar dados. |
@@ -1113,7 +1112,7 @@ Esta Política **entra** em vigência na data de sua aprovação e **permanece**
 | **Política** | Instrumento regulatório que estabelece princípios, diretrizes e objetivos para a governança de dados. |
 | **Política como Código** | Prática que codifica políticas em artefatos executáveis (YAML, scripts, etc.) para automatizar conformidade. |
 | **Policy Tags** | Marcadores aplicados aos dados para indicar sensibilidade, conformidade e restrições de acesso. |
-| **PRE** | Prefeitura do Rio de Janeiro. |
+| **PCRJ** | Prefeitura da Cidade do Rio de Janeiro. |
 | **Princípios** | Valores fundamentais que guiam as ações e decisões em governança de dados. |
 | **Privacidade** | Direito protegido através de controles, políticas e conformidade com LGPD. |
 | **Procedimento** | Instrumento regulatório que descreve passos operacionais para executar processos de governança. |
