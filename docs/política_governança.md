@@ -716,6 +716,28 @@ Para cada solução, registrar:
 | **Implementador** | Seguir modelo adotado |
 | **Documentação** | Registrar decisão e modelo adotado |
 
+
+## 6.1.40 — Utilizar Padrão de Vocabulário DCAT-BR para Metadados de Dados Abertos
+
+**Objetivo:** Garantir interoperabilidade e transparência através de padrão de metadados único.
+
+**Como alcançar:**
+
+- **Catálogo de Dados:** Estruturar em DCAT-BR
+- **Metadados:** Descrever usando vocabulário DCAT-BR (título, descrição, formato, criador, frequência)
+- **Datasets:** Classificar conforme DCAT-BR
+- **Estrutura:** Publicar em RDF/XML ou JSON-LD
+- **Fallback:** Quando DCAT-BR não atender, usar padrão DCAT internacional
+
+**Justificativa:**
+
+- DCAT-BR é padrão nacional (Infraestrutura Nacional de Dados, Catálogo Nacional de Dados)
+- Garante que portais de dados de ministérios, estados e municípios usem mesma estrutura
+- Facilita transparência e interoperabilidade de dados governamentais no Brasil
+- Permite buscas integradas entre diferentes catálogos e sites
+- Padroniza descrição de informações sobre dados
+
+
 ---
 
 ## 7. ESTRUTURA ORGANIZACIONAL GOVERNANÇA DTDI
