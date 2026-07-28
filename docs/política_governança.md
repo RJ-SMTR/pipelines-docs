@@ -604,6 +604,118 @@ Referência: https://rj-smtr.github.io/pipelines-docs/tabelas/manual_estilo_tabe
 - Manter diálogo contínuo durante desenvolvimento
 - Validar solução com partes interessadas antes de implantação
 
+  ## 6.1.39 — Selecionar Modelos de Solução Conforme Hierarquia de Conformidade
+
+**Objetivo:** Garantir que soluções de dados estejam alinhadas com conformidade regulatória e referências técnicas do mercado, evitando desenvolvimento desnecessário e reduzindo riscos de não-conformidade.
+
+---
+
+## COMO ALCANÇAR
+
+### **Passo 1: Avaliar Existência de Modelo Padrão**
+
+Quando uma nova solução ou processo de dados for necessário, seguir hierarquia de decisão:
+
+#### **Nível 1 — Modelo da PCRJ (Prioridade Máxima)**
+- Verificar se Prefeitura da Cidade do Rio de Janeiro já possui modelo padrão
+- Se SIM: Adotar modelo da PCRJ
+- Justificativa: Conformidade local, alinhamento com órgão responsável
+
+#### **Nível 2 — Modelo da ANPD (Prioridade Alta)**
+- Se PCRJ não possui modelo, verificar ANPD (Agência Nacional de Proteção de Dados)
+- Se SIM: Adotar modelo da ANPD
+- Justificativa: Conformidade nacional, referência em proteção de dados
+
+#### **Nível 3 — Modelo NIST (Prioridade Média)**
+- Se ANPD não possui modelo, verificar NIST (Instituto Nacional de Padrões e Tecnologia - EUA)
+- Se SIM: Adotar modelo NIST
+- Justificativa: Referência técnica internacional, best practices consolidadas
+
+#### **Nível 4 — Desenvolvimento Interno (Última Opção)**
+- Se nenhum modelo existe, desenvolver internamente
+- Justificativa: Solução específica para contexto da DTDI
+- Requisito: Documentar decisão e justificativa
+
+---
+
+### **Passo 2: Documentar Decisão**
+
+Para cada solução, registrar:
+- Qual nível foi consultado
+- Qual modelo foi adotado (ou por que nenhum foi encontrado)
+- Data da decisão
+- Responsável pela decisão
+- Link para modelo de referência (se aplicável)
+
+---
+
+### **Passo 3: Implementar Conforme Modelo**
+
+- Seguir padrões do modelo adotado
+- Adaptar apenas quando necessário para contexto específico
+- Documentar adaptações
+- Validar que implementação está conforme modelo
+
+---
+
+### **Passo 4: Revisar Periodicamente**
+
+- Anualmente, revisar se novos modelos surgiram
+- Atualizar implementação se modelo melhor for identificado
+- Documentar mudanças
+
+---
+
+## EXEMPLOS DE APLICAÇÃO
+
+### **Exemplo 1: Proteção de Dados Pessoais**
+
+**Pergunta:** Como proteger dados pessoais em conformidade?
+
+**Processo:**
+1. PCRJ tem modelo? → Não encontrado
+2. ANPD tem modelo? → SIM (Guia de LGPD)
+3. Decisão: Adotar modelo da ANPD
+4. Implementação: Seguir diretrizes de LGPD da ANPD
+
+---
+
+### **Exemplo 2: Segurança de Infraestrutura**
+
+**Pergunta:** Como implementar segurança em infraestrutura de dados?
+
+**Processo:**
+1. PCRJ tem modelo? → Não encontrado
+2. ANPD tem modelo? → Não (fora de escopo)
+3. NIST tem modelo? → SIM (NIST Cybersecurity Framework)
+4. Decisão: Adotar modelo NIST
+5. Implementação: Seguir framework de cibersegurança NIST
+
+---
+
+### **Exemplo 3: Qualidade de Dados**
+
+**Pergunta:** Como definir padrões de qualidade de dados?
+
+**Processo:**
+1. PCRJ tem modelo? → Não encontrado
+2. ANPD tem modelo? → Não (fora de escopo)
+3. NIST tem modelo? → Não específico
+4. Decisão: Desenvolver internamente
+5. Implementação: Criar padrões próprios baseados em best practices
+
+---
+
+## RESPONSABILIDADES
+
+| Papel | Responsabilidade |
+|------|-----------------|
+| **Data Owner** | Identificar necessidade de nova solução |
+| **Arquiteto de Dados** | Pesquisar modelos disponíveis (PCRJ, ANPD, NIST) |
+| **Governança (DTDI)** | Revisar e validar conformidade |
+| **Implementador** | Seguir modelo adotado |
+| **Documentação** | Registrar decisão e modelo adotado |
+
 ---
 
 ## 7. ESTRUTURA ORGANIZACIONAL GOVERNANÇA DTDI
