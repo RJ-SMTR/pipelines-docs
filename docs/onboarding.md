@@ -1,274 +1,106 @@
-# 🛠️ Tutorial de Onboarding - Equipe de Dados
+# Onboarding da equipe de dados
 
-## O que é o WSL?
+Este guia configura o desenvolvimento no [RJ-SMTR/pipelines_v3](https://github.com/RJ-SMTR/pipelines_v3): Python 3.13, uv, Prefect 3 e dbt Core, com autenticação Google OAuth de usuário.
 
-O **WSL (Windows Subsystem for Linux)** é uma funcionalidade do Windows que permite executar um ambiente Linux completo diretamente no Windows, sem a necessidade de máquina virtual ou dual boot. Com o WSL, você pode usar ferramentas e aplicações Linux nativamente, mantendo a integração com o sistema Windows. Isso é especialmente útil para desenvolvimento, pois muitas ferramentas de dados e pipelines funcionam melhor em ambientes Linux.
+As dependências são definidas pelo `pyproject.toml` e pelo `uv.lock` do checkout. Não instale pacotes avulsos com pip nessa venv.
 
----
+## 1. Preparação manual no Windows
 
-## 1. Instalação do WSL (Subsistema do Windows para Linux)
+Instale WSL 2 com Ubuntu 24.04 LTS pelo PowerShell como administrador:
 
-### 1.1 Ativar WSL
-- Abra o **PowerShell como Administrador**
-- Execute o comando:
-
-```bash
-wsl --install
-```
-
-> Reinicie o computador após a instalação.
-
-### 1.2 Configurar o WSL 2 como padrão
-```bash
+```powershell
+wsl --install -d Ubuntu-24.04
 wsl --set-default-version 2
 ```
 
-### 1.3 Instalar o Ubuntu 20.04
-- Abra a Microsoft Store
-- Procure por **Ubuntu 20.04.6 LTS**
-- Clique em **Obter** e instale
+Reinicie se solicitado, abra o Ubuntu e crie seu usuário e senha. Ubuntu 26.04 LTS também é aceito pelo script; novas instalações não devem usar 20.04, cujo suporte padrão terminou em 2025. O script não instala WSL nem migra a distribuição. [Ciclo de suporte do Ubuntu](https://ubuntu.com/about/release-cycle).
 
----
+Instale manualmente o [VS Code no Windows](https://code.visualstudio.com/download) e as extensões **WSL** e **Python**. Abra o projeto com `code .` dentro do Ubuntu e selecione `.venv/bin/python` como interpretador. Se usar uma extensão dbt, configure-a para o dbt Core local; não permita substituir a execução por dbt Fusion ou dbt Cloud. [VS Code com WSL](https://code.visualstudio.com/docs/remote/wsl).
 
-## 2. Configuração Inicial do Ubuntu
+Use o sistema de arquivos Linux, por exemplo `~/prefeitura_rio`, para os checkouts e ambientes virtuais.
 
-Ao abrir o Ubuntu pela primeira vez, você será solicitado a criar um usuário e senha:
-- Digite um **nome de usuário** (sem espaços, apenas letras minúsculas)
-- Defina uma **senha** (ela não aparecerá na tela enquanto você digita, mas está sendo registrada)
-- Confirme a senha
+## 2. Configuração automatizada no Ubuntu
 
-> **Importante:** Guarde bem essa senha, pois ela será necessária sempre que você executar comandos com `sudo`.
-
-Após criar o usuário, atualize o sistema:
+No terminal Ubuntu, execute como usuário comum:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+curl -fsSL https://raw.githubusercontent.com/RJ-SMTR/pipelines-docs/main/scripts/onboarding/setup-ubuntu.sh | bash
 ```
 
----
-
-## 3. (Opcional) Instalar o Terminal do Windows
-
-- Abra a **Microsoft Store**
-- Instale o **Windows Terminal**
-
----
-
-## 4. Instalar Git
+Se `curl` não estiver instalado, execute primeiro:
 
 ```bash
-sudo apt-get install git -y
+sudo apt-get update && sudo apt-get install -y curl
 ```
 
-Configure nome e e-mail:
+O script instala Git, GitHub CLI, Google Cloud CLI, e uv; cria `~/prefeitura_rio`; clona `pipelines_v3` e prepara a venv Python 3.13, os hooks e os pacotes dbt Core. Também cria `.env` se ausente, configura o Bash com backup e conduz os logins GitHub e Google OAuth. Informe sua identidade Git, conta Google e os consentimentos quando solicitado; a senha de sudo é necessária para instalar os pacotes.
 
-```bash
-git config --global user.name "Seu Nome"
-git config --global user.email "seuemail@exemplo.com"
-```
+Não é necessário clonar `pipelines-docs`. O instalador baixa os auxiliares da `main` e os mantém em `~/.local/share/smtr/onboarding/`. Checkouts, `.env` e perfis existentes são preservados; a venv é sincronizada com o `uv.lock`. Ele não troca o Python do Ubuntu, executa modelos ou faz deploy.
 
----
+Para instalar apenas a configuração Bash, substitua `| bash` por `| bash -s -- --shell-only` (requer python3 já instalado). Outras opções estão em `| bash -s -- --help`.
 
-## 5. Instalar GitHub CLI
+Ao terminar, revise as variáveis e a configuração do Bash nas próximas seções. Entre no projeto com `cd ~/prefeitura_rio/pipelines_v3`. `DBT_USER` usa seu usuário Linux por padrão e identifica seus datasets de desenvolvimento, como `seu_usuario__monitoramento`.
 
-```bash
-(type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) \
-    && sudo mkdir -p -m 755 /etc/apt/keyrings \
-    && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
-    && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
-    && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
-    && sudo mkdir -p -m 755 /etc/apt/sources.list.d \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-    && sudo apt update \
-    && sudo apt install gh -y
-```
+## 3. Variáveis e OAuth
 
-```bash
-sudo apt install gh
-```
+Revise o `.env` na raiz de `pipelines_v3`. O exemplo gerado contém:
 
-### Autenticar GitHub
-
-```bash
-gh auth login
-```
-
-Selecione:
-- `github.com`
-- Protocolo: `https`
-- Método: `Login with a web browser`
-- Copie o código fornecido e pressione ENTER
-- Cole o código no navegador e autentique
-
----
-
-## 6. Instalar Python 3.10
-
-### 6.1 Instalar Python 3.10
-
-```bash
-sudo apt install python3.10 python3.10-venv python3.10-dev -y
-```
-
-### 6.2 Configurar Python 3.10 como versão padrão
-
-```bash
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 2
-sudo update-alternatives --config python3
-```
-> Selecione o número correspondente ao Python 3.10 quando solicitado.
-
----
-
-## 7. Instalar Google Cloud CLI (gcloud)
-
-### 7.1 Instalar o `apt-transport-https` e o `curl`
-
-```bash
-sudo apt-get install apt-transport-https ca-certificates gnupg curl
-```
-
-### 7.2 Importar a chave pública do Google Cloud
-
-```bash
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
-```
-
-### 7.3 Adicionar o URI de distribuição da CLI gcloud como uma origem de pacote
-
-```bash
-echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-```
-
-### 7.3 Instalar o Google Cloud CLI
-
-```bash
-sudo apt update && sudo apt install google-cloud-cli -y
-```
-
-### 7.4 Inicializar o gcloud
-
-```bash
-gcloud init
-```
-> Siga as instruções para fazer login e configurar o projeto padrão.
-
----
-
-## 8. Instalar o VS Code
-- Baixe o instalador: https://code.visualstudio.com/download
-- Instale a extensão: **Power User for DBT**
-
----
-
-## 9. Clonar o Projeto da Prefeitura
-
-### 9.1 Criar pasta base
-
-```bash
-mkdir ~/prefeitura_rio
-cd ~/prefeitura_rio
-```
-
-### 9.2 Clonar repositório
-
-```bash
-gh repo clone prefeitura-rio/pipelines_rj_smtr
-cd pipelines_rj_smtr
-```
-
-### 9.3 Configurar Perfis do DBT
-
-Para que o dbt saiba como se conectar ao banco de dados, copie o arquivo de configuração de exemplo:
-
-```bash
-cp queries/dev/profiles-example.yml queries/dev/profiles.yml
-```
-
----
-
-## 10. Instalar Poetry
-
-Poetry é o gerenciador de dependências Python usado no projeto.
-
-### 10.1 Instalar Poetry
-
-```bash
-curl -sSL https://install.python-poetry.org | python3 -
-```
-
-### 10.2 Adicionar Poetry ao PATH
-
-```bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-```
-
----
-
-## 11. Configuração do Ambiente Python
-
-### 11.1 Criar ambiente virtual
-
-```bash
-python3.10 -m venv .pipelines
-```
-
-### 11.2 Ativar ambiente virtual
-
-```bash
-source .pipelines/bin/activate
-```
-
----
-
-## 12. Instalar dependências
-
-```bash
-poetry install --all-groups
-pip install -e .
-```
-
-### 12.1 Instalar pre-commit
-
-```bash
-pip install pre-commit
-pre-commit install
-```
-
----
-
-## 13. Configurar Variáveis de Ambiente
-
-### 13.1 Criar arquivo `.env`
-
-Na raiz do projeto, crie um arquivo chamado `.env` com o seguinte conteúdo:
-
-```env
-INFISICAL_TOKEN=
+```dotenv
+GCP_ACCOUNT=seu.email@exemplo.com
+GCP_PROJECT_ID=rj-smtr-dev
+QUOTA_PROJECT_ID=rj-smtr-dev
+DBT_USER=seu_usuario
 INFISICAL_ADDRESS=https://infisical.dados.rio
-GOOGLE_APPLICATION_CREDENTIALS=/home/SEU_USUARIO/.config/gcloud/application_default_credentials.json
-DBT_PROFILES_DIR=/home/SEU_USUARIO/prefeitura_rio/pipelines_rj_smtr/queries/dev
-DBT_USER=
+INFISICAL_CLIENT_ID=
+INFISICAL_CLIENT_SECRET=
+INFISICAL_PROJECT_ID=
 ```
-> **Importante:** Substitua `SEU_USUARIO` pelo seu nome de usuário do Ubuntu.
 
-### 13.2 Carregar as variáveis de ambiente
+Os campos Infisical são necessários para fluxos que acessam segredos por `pipelines/common/utils/secret.py`. Obtenha os valores com a equipe; o instalador não solicita, preenche ou imprime segredos. Não versione `.env`.
 
-Após preencher o arquivo `.env`, carregue as variáveis no terminal:
+Os perfis de exemplo já usam `method: oauth`. O ADC é gravado no diretório de configuração do gcloud e descoberto pelas bibliotecas Google. Em um terminal aberto na pasta do projeto, use:
 
 ```bash
-set -a && source .env && set +a
+gcp-login
 ```
 
-> **Nota:** Este comando precisa ser executado toda vez que você abrir um novo terminal. Alternativamente, você pode adicionar este comando ao final do arquivo `~/.bashrc` para carregar automaticamente:
->
-> ```bash
-> echo 'set -a && source ~/prefeitura_rio/pipelines_rj_smtr/.env && set +a' >> ~/.bashrc
-> ```
+A função executa `gcloud auth login "$GCP_ACCOUNT" --enable-gdrive-access --update-adc`, depois configura quota e projeto. Erros permanecem visíveis e qualquer falha retorna código diferente de zero.
 
----
+`--update-adc` substitui o ADC anterior; tanto ele quanto a conta/projeto ativos do gcloud são compartilhados pelo usuário Linux, não isolados por projeto. O projeto do gcloud não altera o projeto declarado no perfil dbt. Não execute login automaticamente a cada abertura do shell. [Referência do login Google](https://docs.cloud.google.com/sdk/gcloud/reference/auth/login).
 
-## ✅ Pronto!
-O ambiente está configurado para começar a trabalhar com os projetos da equipe.  
-Qualquer dúvida, é só chamar! 🚀
+## 4. Configuração do Bash
+
+O instalador adiciona ao `.bashrc` um único bloco, mantendo o restante do arquivo:
+
+```bash
+# >>> SMTR onboarding >>>
+source "$HOME/.config/smtr/onboarding-shell.bash"
+# <<< SMTR onboarding <<<
+```
+
+O arquivo carregado garante `$HOME/.local/bin` no PATH, define `open` quando `explorer.exe` existe e fornece a função `gcp-login`. Ao abrir um terminal na pasta do projeto, como o terminal integrado do VS Code, ele ativa `.venv` e carrega as variáveis do `.env` de pastas dentro de `~/prefeitura_rio`. Após alterar o `.env`, abra um novo terminal. O `.env` deve conter apenas pares `CHAVE=valor`, sem comandos.
+
+## 5. Validar e começar a trabalhar
+
+No terminal novo, dentro de `pipelines_v3`:
+
+```bash
+uv sync --locked --all-packages --check
+echo "DBT_USER=$DBT_USER"
+gcloud auth application-default print-access-token >/dev/null && echo 'ADC OK'
+```
+
+`uv sync --check` confirma que a `.venv` corresponde ao `uv.lock` sem alterá-la. O `DBT_USER` exibido confirma que o `.env` foi carregado. A obtenção de token confirma o ADC sem imprimi-lo. Essas verificações não comprovam permissões em tabelas BigQuery, planilhas Drive, Infisical ou Prefect.
+
+Execute dbt **Core** pelo ambiente do checkout, a partir de `queries`:
+
+```bash
+cd ~/prefeitura_rio/pipelines_v3/queries
+../.venv/bin/dbt --version
+../.venv/bin/dbt deps --profiles-dir ./dev
+../.venv/bin/dbt parse --profiles-dir ./dev --target dev
+```
+
+`deps` instala os pacotes dbt; `parse` valida o projeto localmente e não prova acesso ao BigQuery. Para testar conexão, execute deliberadamente `../.venv/bin/dbt debug --profiles-dir ./dev --target dev`. Comandos de execução de modelos devem selecionar o escopo desejado e o target `dev`.
+
+Instalar as ferramentas e autenticar não concede permissões IAM nem acesso aos segredos. Execução de pipelines, configuração do servidor Prefect e deploy dependem do fluxo e devem seguir as orientações da equipe.

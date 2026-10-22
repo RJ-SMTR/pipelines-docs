@@ -6,7 +6,7 @@ hooks:
 
 nav:
   - Home: index.md # descrição das pessoas, repositórios, da documentação
-  - Quick Start: quick_start.md # setar ambiente virtual, instalar com poetry, mencionar o infisical, configuração por OS
+  - Quick Start: quick_start.md # ambiente uv, OAuth e dbt Core
   - Onboarding: onboarding.md # tutorial de onboarding para novos desenvolvedores
   - Pastas e arquivos: pastas_arquivos.md # descrição da estrutura de pastas e arquivos
   - Ambientes: ambientes.md # descrever ambientes de produção, staging e dev
@@ -69,7 +69,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/prefeitura-rio/pipelines_rj_smtr
+      link: https://github.com/RJ-SMTR/pipelines_v3
 
 extra_css:
   - static/extra.css
