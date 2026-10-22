@@ -25,6 +25,7 @@ nav:
           - FAQ: pipelines/listagem_pipelines/faq.md # perguntas frequentes sobre as pipelines de apuração do subsídio
   - Data Clean Rooms: datacleanrooms.md # tutorial de Data Clean Rooms no BigQuery
   - Datasets: datasets.md # histórico dos datasets já existentes
+  - Política de Governança de Dados: politica_governanca.md # princípios, papéis e diretrizes para gestão de dados
   - Ferramentas: ferramentas.md # ferramentas e versões utilizadas
   - Aviso Legal: aviso_legal.md
 
